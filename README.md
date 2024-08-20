@@ -1,3 +1,4 @@
 # AdvSoftwareDevG3
 
-Book Shop Repo
+Group 3
+Repo for an Online Bookstore System
