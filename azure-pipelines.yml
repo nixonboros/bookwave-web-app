@@ -19,7 +19,7 @@ steps:
 # COMMENTED OUT MAVEN TASK UNTIL JAVA PROJECT IS SETUP
 - task: Maven@3
   inputs:
-    mavenPomFile: 'pom.xml'
+    mavenPomFile: 'online-bookstore-app/pom.xml'
     mavenOptions: '-Xmx3072m'
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.8'
