@@ -10,20 +10,21 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-# COMMENTED OUT MAVEN TASK
-# - task: Maven@3
-#   inputs:
-#     mavenPomFile: 'online-bookstore-app/pom.xml'
-#     mavenOptions: '-Xmx3072m'
-#     javaHomeOption: 'JDKVersion'
-#     jdkVersionOption: '1.8'
-#     jdkArchitectureOption: 'x64'
-#     publishJUnitResults: true
-#     testResultsFiles: '**/surefire-reports/TEST-*.xml'
-#     goals: 'package'
+# MAVEN TASK
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'online-bookstore-app/pom.xml'
+    mavenOptions: '-Xmx3072m'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '21'
+    jdkArchitectureOption: 'x64'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    goals: 'package'
 
 # PUBLISH ARTIFACT STEP
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Build.ArtifactStagingDirectory)'
+    targetPath: '$(Build.ArtifactStagingDirectory)/online-bookstore-app/target'
     artifact: drop
+    publishLocation: 'pipeline'
