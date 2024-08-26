@@ -10,20 +10,26 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+# MAVEN TASK
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'online-bookstore-app/pom.xml'
+    mavenOptions: '-Xmx3072m'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '21'
+    jdkArchitectureOption: 'x64'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    goals: 'package'
+
+# ZIP BUILD ARTIFACTS
+- script: |
+    zip -r $(Build.ArtifactStagingDirectory)/online-bookstore-app.zip $(Build.SourcesDirectory)/online-bookstore-app/target
+  displayName: 'Zip Build Artifacts'
+
 # PUBLISH ARTIFACT STEP
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(Build.ArtifactStagingDirectory)'
     artifact: drop
-    
-# COMMENTED OUT MAVEN TASK UNTIL JAVA PROJECT IS SETUP
-# - task: Maven@3
-#   inputs:
-#     mavenPomFile: 'pom.xml'
-#     mavenOptions: '-Xmx3072m'
-#     javaHomeOption: 'JDKVersion'
-#     jdkVersionOption: '1.8'
-#     jdkArchitectureOption: 'x64'
-#     publishJUnitResults: true
-#     testResultsFiles: '**/surefire-reports/TEST-*.xml'
-#     goals: 'package'
+    publishLocation: 'pipeline'
