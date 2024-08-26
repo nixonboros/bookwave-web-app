@@ -22,9 +22,16 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
 
+# ZIP BUILD ARTIFACTS
+- script: |
+    mkdir -p $(Build.ArtifactStagingDirectory)/Release
+    cd $(Build.SourcesDirectory)/online-bookstore-app/target
+    zip -r $(Build.ArtifactStagingDirectory)/Release/online-bookstore-app.zip .
+  displayName: 'Zip Build Artifacts'
+
 # PUBLISH ARTIFACT STEP
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Build.SourcesDirectory)/online-bookstore-app/target'
+    targetPath: '$(Build.ArtifactStagingDirectory)/Release'
     artifact: drop
     publishLocation: 'pipeline'
