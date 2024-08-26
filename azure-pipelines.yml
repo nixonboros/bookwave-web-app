@@ -10,9 +10,12 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo "Pipeline is running"
-  displayName: 'Print Hello World'
-
+# PUBLISH ARTIFACT STEP
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)'
+    artifact: drop
+    
 # COMMENTED OUT MAVEN TASK UNTIL JAVA PROJECT IS SETUP
 # - task: Maven@3
 #   inputs:
