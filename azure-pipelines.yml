@@ -24,14 +24,12 @@ steps:
 
 # ZIP BUILD ARTIFACTS
 - script: |
-    mkdir -p $(Build.ArtifactStagingDirectory)/Release
-    cd $(Build.SourcesDirectory)/online-bookstore-app/target
-    zip -r $(Build.ArtifactStagingDirectory)/Release/online-bookstore-app.zip .
+    zip -r $(Build.ArtifactStagingDirectory)/online-bookstore-app.zip $(Build.SourcesDirectory)/online-bookstore-app/target
   displayName: 'Zip Build Artifacts'
 
 # PUBLISH ARTIFACT STEP
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Build.ArtifactStagingDirectory)/Release'
+    targetPath: '$(Build.ArtifactStagingDirectory)'
     artifact: drop
     publishLocation: 'pipeline'
