@@ -16,7 +16,7 @@ steps:
     targetPath: '$(Build.ArtifactStagingDirectory)'
     artifact: drop
     
-COMMENTED OUT MAVEN TASK UNTIL JAVA PROJECT IS SETUP
+# COMMENTED OUT MAVEN TASK UNTIL JAVA PROJECT IS SETUP
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
