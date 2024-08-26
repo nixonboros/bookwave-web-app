@@ -22,6 +22,10 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
 
+- script: |
+    ls -R $(Build.SourcesDirectory)/online-bookstore-app/target
+  displayName: 'List directory contents'
+
 # PUBLISH ARTIFACT STEP
 - task: PublishPipelineArtifact@1
   inputs:
