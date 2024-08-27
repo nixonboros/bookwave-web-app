@@ -30,6 +30,6 @@ steps:
 # PUBLISH ARTIFACT STEP
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Build.ArtifactStagingDirectory)/Release'
+    targetPath: '$(Build.ArtifactStagingDirectory)'
     artifact: drop
     publishLocation: 'pipeline'
