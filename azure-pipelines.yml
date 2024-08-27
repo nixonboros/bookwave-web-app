@@ -22,6 +22,14 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
 
+# PUBLISH TEST RESULTS
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    failTaskOnFailedTests: true
+  displayName: 'Publish Test Results'
+
 # ZIP BUILD ARTIFACTS
 - script: |
     zip -r $(Build.ArtifactStagingDirectory)/online-bookstore-app.zip $(Build.SourcesDirectory)/online-bookstore-app/target
@@ -33,3 +41,4 @@ steps:
     targetPath: '$(Build.ArtifactStagingDirectory)'
     artifact: drop
     publishLocation: 'pipeline'
+  displayName: 'Publish Pipeline Artifact'
