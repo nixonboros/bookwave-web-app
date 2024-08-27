@@ -22,14 +22,27 @@ steps:
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
 
-# ZIP BUILD ARTIFACTS
-- script: |
-    zip -r $(Build.ArtifactStagingDirectory)/online-bookstore-app.zip $(Build.SourcesDirectory)/online-bookstore-app/target
-  displayName: 'Zip Build Artifacts'
+# # ZIP BUILD ARTIFACTS
+# - script: |
+#     zip -r $(Build.ArtifactStagingDirectory)/online-bookstore-app.zip $(Build.SourcesDirectory)/online-bookstore-app/target
+#   displayName: 'Zip Build Artifacts'
 
-# PUBLISH ARTIFACT STEP
-- task: PublishPipelineArtifact@1
+# # PUBLISH ARTIFACT STEP
+# - task: PublishPipelineArtifact@1
+#   inputs:
+#     targetPath: '$(Build.ArtifactStagingDirectory)'
+#     artifact: drop
+#     publishLocation: 'pipeline'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Publish the project - Release'
   inputs:
-    targetPath: '$(Build.ArtifactStagingDirectory)'
-    artifact: drop
-    publishLocation: 'pipeline'
+    command: 'publish'
+    projects: '**/*.csproj'
+    publishWebProjects: false
+    arguments: '--no-build --configuration Release --output $(Build.ArtifactStagingDirectory)/Release'
+    zipAfterPublish: true
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
+  condition: succeeded()
