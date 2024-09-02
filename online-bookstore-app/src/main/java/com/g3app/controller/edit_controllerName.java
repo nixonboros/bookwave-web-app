@@ -1,10 +1,10 @@
-package com.g3app;
+package com.g3app.controller;
 
 /**
  * Hello world!
  *
  */
-public class App 
+public class edit_controllerName 
 {
     public static void main( String[] args )
     {
