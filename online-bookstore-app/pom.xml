@@ -7,6 +7,7 @@
   <groupId>com.g3app</groupId>
   <artifactId>online-bookstore-app</artifactId>
   <version>1.0-SNAPSHOT</version>
+   <packaging>war</packaging>
 
   <name>online-bookstore-app</name>
   <!-- FIXME change it to the project's website -->
@@ -28,6 +29,7 @@
   </dependencies>
 
   <build>
+  <finalName>online-bookstore-app</finalName>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
@@ -68,6 +70,13 @@
         <plugin>
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.0.0</version>
+        </plugin>
+        <plugin>            
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-war-plugin</artifactId>
+          <configuration>
+            <webXml>src\main\webapp\WEB-INF\web.xml</webXml>        
+          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>

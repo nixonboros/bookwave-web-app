@@ -1,4 +1,4 @@
-package com.g3app;
+package com.webapp;
 
 import static org.junit.Assert.assertTrue;
 
