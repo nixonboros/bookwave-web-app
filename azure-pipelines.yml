@@ -13,7 +13,7 @@ steps:
 # RUN MAVEN TO BUILD PROJECT
 - task: Maven@3
   inputs:
-    mavenPomFile: 'online-bookstore-app/pom.xml'
+    mavenPomFile: 'online-bookstore-webapp/pom.xml'
     mavenOptions: '-Xmx3072m'
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '21'
@@ -33,7 +33,7 @@ steps:
 
 # ZIP BUILD ARTIFACTS
 - script: |
-    zip -r $(Build.ArtifactStagingDirectory)/online-bookstore-app.zip $(Build.SourcesDirectory)/online-bookstore-app/target
+    zip -r $(Build.ArtifactStagingDirectory)/online-bookstore-webapp.zip $(Build.SourcesDirectory)/online-bookstore-webapp/target
   displayName: 'Zip Build Artifacts'
 
 # PUBLISH ARTIFACT STEP
