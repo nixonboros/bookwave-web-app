@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <title>Bookstore</title>
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+    <title>Products - Bookstore</title>
 </head>
 <body>
     <header>
         <nav>
-            <div class="logo">Bookstore</div>
+            <div class="logo">
+                <img src="images/booklogo.png" alt="Bookstore Logo" class="logo-img">
+                Bookstore
+            </div>
             <ul class="nav-links">
                 <li><a href="index.jsp">Home</a></li>
                 <li><a href="product.jsp">Products</a></li>
@@ -24,5 +27,12 @@
             </div>
         </nav>
     </header>
+
+    <main>
+        <section class="form-section animated">
+            <h1>sample heading</h1>
+            <p>sample text.</p>
+        </section>
+    </main>
 </body>
 </html>

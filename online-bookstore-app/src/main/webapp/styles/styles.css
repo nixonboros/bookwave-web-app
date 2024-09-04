@@ -17,9 +17,17 @@ header {
 }
 
 .logo {
+    display: flex;
+    align-items: center;
     font-size: 24px;
     font-weight: bold;
-    color: #333333; /* Dark gray for the logo */
+    color: #333;
+}
+
+.logo-img {
+    height: 35px;
+    width: 35px;
+    margin-right: 10px; 
 }
 
 nav {
@@ -150,4 +158,25 @@ form {
 button:disabled {
     background-color: #E0E0E0; /* Light gray for disabled buttons */
     cursor: not-allowed;
+}
+
+.centerDiv a {
+    display: inline-block;
+    margin-top: 10px; /* Adjust this value to match the spacing above the login button */
+    text-align: center; /* Center the link if needed */
+}
+
+/* FADE IN */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+main .animated {
+    opacity: 0; 
+    animation: fadeIn 0.5s ease-in-out forwards;
 }
