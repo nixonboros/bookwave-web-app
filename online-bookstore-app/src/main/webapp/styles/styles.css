@@ -3,14 +3,13 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #F5F5F5; /* Light background for readability */
+    background-color: #F5F5F5; /* Light background for a bookstore */
     color: #333333; /* Dark gray text for readability */
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Ensures body takes at least the full viewport height */
+    min-height: 100vh;
 }
 
-/* Header styles */
 header {
     background-color: #FFFFFF; /* White header for a clean look */
     padding: 20px;
@@ -28,7 +27,7 @@ header {
 .logo-img {
     height: 35px;
     width: 35px;
-    margin-right: 10px;
+    margin-right: 10px; 
 }
 
 nav {
@@ -73,7 +72,6 @@ nav {
     background-color: #FF6F61; /* Coral underline for active link */
 }
 
-/* User actions styles */
 .user-actions a {
     margin-left: 20px;
     color: #333333; /* Dark gray text for user actions */
@@ -87,7 +85,11 @@ nav {
     color: #FF6F61; /* Coral color for user action links */
 }
 
-/* Main content styles */
+.register-link {
+    display: inline-block; 
+    padding-top: 10px; 
+}
+
 main {
     padding: 20px;
     box-sizing: border-box;
@@ -102,17 +104,15 @@ section {
     margin-bottom: 20px;
 }
 
-/* Footer styles */
 footer {
     background: #FFFFFF; /* White footer for consistency */
     padding: 10px; /* Adjusted padding for a clean look */
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
     color: #333333; /* Dark gray text for footer */
-    margin: 0;
+    margin: 0; 
 }
 
-/* Form styles */
 form {
     display: flex;
     flex-direction: column;
@@ -122,7 +122,6 @@ form {
 .form-group {
     display: flex;
     flex-direction: column;
-    margin-bottom: 15px;
 }
 
 .form-group label {
@@ -131,7 +130,8 @@ form {
 }
 
 .form-group input,
-.form-group textarea {
+.form-group textarea,
+.form-group select {
     width: 100%;
     padding: 8px;
     border: 1px solid #E0E0E0; /* Light gray border for input fields */
@@ -145,7 +145,6 @@ button {
     border: none;
     cursor: pointer;
     border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Added transition for hover effect */
 }
 
 button:disabled {
@@ -153,61 +152,130 @@ button:disabled {
     cursor: not-allowed;
 }
 
-/* Submit button styles */
-.submitButton {
+/* General button styling */
+.button {
+    padding: 10px 20px;
+    color: #FFFFFF;
     background-color: #FF6F61; /* Coral button color */
-    color: #FFFFFF; /* White text on button */
-    font-size: 18px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Added shadow for depth */
-}
-
-.submitButton:hover {
-    background-color: #FF8C69; /* Light coral for hover state */
-    transform: translateY(-2px); /* Subtle lift effect on hover */
-}
-
-.submitButton:active {
-    background-color: #FF6F61; /* Maintain coral color on click */
-    transform: translateY(0); /* Reset lift effect on click */
-}
-
-/* Centering link styles */
-.centerDiv a {
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
     display: inline-block;
-    margin-top: 10px; /* Adjust this value to match the spacing above the login button */
-    text-align: center; /* Center the link if needed */
+    font-size: 16px;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #e04b47; /* Slightly darker coral for hover effect */
+    transform: translateY(-2px); /* Lift effect on hover */
+}
+
+.button:active {
+    background-color: #c83c36; /* Even darker coral for active effect */
+    transform: translateY(0); /* Remove lift effect when clicked */
 }
 
 /* Tab styles */
 .tabs {
     display: flex;
     cursor: pointer;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 2px solid #B3B4BD; 
+    margin-bottom: 20px; 
 }
 
 .tab {
-    padding: 10px 20px;
+    padding: 12px 20px;
     margin-right: 5px;
-    border: 1px solid #ddd;
-    border-bottom: none;
-    background-color: #f9f9f9;
+    border: 1px solid #E0E0E0; 
+    border-radius: 5px 5px 0 0; 
+    background-color: #F9F9F9;
     text-align: center;
+    font-weight: bold;
+    color: #141619; 
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.tab:hover {
+    background-color: #E0E0E0; /* Light gray background on hover */
 }
 
 .tab.active {
-    background-color: #fff;
-    border-bottom: 1px solid #fff;
+    background-color: #FFFFFF; 
+    border-bottom: 2px solid #FF6F61; 
 }
 
 .tab-content {
     display: none;
     padding: 20px;
-    border: 1px solid #ddd;
-    border-top: none;
+    border: 1px solid #E0E0E0;
+    border-radius: 0 0 5px 5px; 
+    border-top: none; 
+    background-color: #FFFFFF; 
 }
 
 .tab-content.active {
     display: block;
+}
+
+/* Support Ticket Success Page */
+.success-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh; 
+    text-align: center;
+}
+
+.success-section img {
+    max-width: 100px; 
+    margin-bottom: 20px;
+}
+
+.success-section h1 {
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+.success-section p {
+    color: #141619;
+    margin-bottom: 30px;
+}
+
+.success-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+thead th {
+    background-color: #333333;
+    color: #fff;
+    padding: 15px;
+    text-align: left;
+}
+
+tbody td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    vertical-align: top;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
 }
 
 /* Animation */
@@ -224,3 +292,4 @@ main .animated {
     opacity: 0;
     animation: fadeIn 0.5s ease-in-out forwards;
 }
+

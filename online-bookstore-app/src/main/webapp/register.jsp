@@ -23,7 +23,7 @@
                 </div>
                 <div class="form-group">
                     <label class="formLabel" for="email">Email</label>
-                    <input type="text" id="email" name="email" required>
+                    <input type="email" id="email" name="email" required>
                 </div>
                 <div class="form-group">
                     <label class="formLabel" for="password">Password</label>
@@ -35,7 +35,7 @@
                 </div>
                 <input type="hidden" id="submitted" name="submitted" value="yes">
                 <div class="centerDiv">
-                    <button type="submit" class="submitButton" id="submit" name="submit">Register</button>
+                    <button type="submit" class="button" id="submit" name="submit">Register</button>
                 </div>
             </form>
         </section>
