@@ -8,6 +8,7 @@
 </head>
 <body>
     <jsp:include page="nav-header.jsp"/>
+    
     <main>
         <section class="form-section animated">
             <h1 class="formTitle">Log In</h1>
