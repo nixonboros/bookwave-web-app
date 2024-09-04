@@ -1,38 +1,31 @@
+/* General styles */
 body {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(to right, #485563, #29323c);
     color: #fff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensures body takes at least the full viewport height */
 }
 
 header {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: #fff; /* Solid background for header */
     padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
     font-size: 24px;
     font-weight: bold;
-    color: #fff;
-}
-
-header {
-    background-color: #fff;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #333; /* Header text color */
 }
 
 nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-.logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
 }
 
 .nav-links {
@@ -71,7 +64,6 @@ nav {
     background-color: #4CAF50;
 }
 
-
 .user-actions a {
     margin-left: 20px;
     color: #333;
@@ -85,28 +77,70 @@ nav {
     color: #4CAF50;
 }
 
-.formDiv{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+main {
+    padding: 20px;
+    box-sizing: border-box;
+    flex: 1; /* Allows the main content to expand and push footer down */
 }
 
-.formLabel{
-    display: flex;
-    color: white;
-    justify-content: center;
+main h1, main h2, main p {
+    margin: 0 0 15px 0;
 }
 
-.formTitle {
-    color: #000000;
-    font-weight: 700;
-    transform: scale(1.1, 1.1);
+section {
+    margin-bottom: 20px;
 }
 
-.centerDiv{
+footer {
+    background: #fff;
+    padding: 5px 10px; /* Adjusted padding for smaller height */
+    box-shadow: 0 -2px 4px rgba(98, 0, 255, 0.1);
     text-align: center;
+    color: #333;
+    margin: 0; 
 }
 
-.current-page{
-    color: #2dff73
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.form-group button {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.form-group button:hover {
+    background-color: #45a049;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
 }
