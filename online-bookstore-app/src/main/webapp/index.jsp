@@ -11,16 +11,16 @@
     <nav>
         <div class="logo">Bookstore</div>
         <ul class="nav-links">
-            <li><a href="index">Home</a></li>
-            <li><a href="product">Products</a></li>
-                <li><a href="order">Orders</a></li>
-                <li><a href="payment">Payments</a></li>
+            <li><a href="index.jsp">Home</a></li>
+            <li><a href="product.jsp">Products</a></li>
+                <li><a href="order.jsp">Orders</a></li>
+                <li><a href="payment.jsp">Payments</a></li>
             
         </ul>
 
         <div class="user-actions">
-            <a href="login">Login</a>
-            <a href="register">Register</a>
+            <a href="login.jsp">Login</a>
+            <a href="register.jsp">Register</a>
         </div>
 
     </nav>
