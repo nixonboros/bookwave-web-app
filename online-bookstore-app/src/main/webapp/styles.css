@@ -85,3 +85,28 @@ nav {
     color: #4CAF50;
 }
 
+.formDiv{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.formLabel{
+    display: flex;
+    color: white;
+    justify-content: center;
+}
+
+.formTitle {
+    color: #000000;
+    font-weight: 700;
+    transform: scale(1.1, 1.1);
+}
+
+.centerDiv{
+    text-align: center;
+}
+
+.current-page{
+    color: #2dff73
+}
