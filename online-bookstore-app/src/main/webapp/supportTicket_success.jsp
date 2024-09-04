@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
     <title>Support Ticket Success - Bookstore</title>
 </head>
 <body>
@@ -15,8 +15,8 @@
             <h1>Request has been sent!</h1>
             <p>Thank you for submitting your request. We will get back to you shortly.</p>
             <div class="success-buttons">
-                <a href="contact.jsp" class="button">See your request</a>
-                <a href="contact.jsp" class="button">Go back</a>
+                <a href="viewTicket.jsp" class="button">View ticket details</a>
+                <a href="contact.jsp" class="button">Go to dashboard</a>
             </div>
         </section>
     </main>

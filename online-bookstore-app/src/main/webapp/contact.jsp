@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
     <title>Contact Support - Bookstore</title>
 </head>
 <body>
@@ -38,14 +38,14 @@
                     <tbody>
                         <tr>
                             <td>12345</td>
-                            <td>Technical Support</td>
+                            <td>Billing Issues</td>
                             <td>Open</td>
                             <td>2024-09-01</td>
                             <td><a href="viewTicket.jsp?id=12345" class="button">View</a></td>
                         </tr>
                         <tr>
                             <td>67890</td>
-                            <td>Billing Issues</td>
+                            <td>Technical Support</td>
                             <td>Closed</td>
                             <td>2024-08-20</td>
                             <td><a href="viewTicket.jsp?id=67890" class="button">View</a></td>
