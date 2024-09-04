@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <title>Contact Us - Bookstore Support</title>
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+    <title>Contact Us - Bookstore</title>
     <style>
         .form-group {
             margin-bottom: 15px;
@@ -28,7 +28,10 @@
 <body>
     <header>
         <nav>
-            <div class="logo">Bookstore</div>
+            <div class="logo">
+                <img src="images/booklogo.png" alt="Bookstore Logo" class="logo-img">
+                Bookstore
+            </div>
             <ul class="nav-links">
                 <li><a href="index.jsp">Home</a></li>
                 <li><a href="product.jsp">Products</a></li>
@@ -45,7 +48,7 @@
     </header>
 
     <main>
-        <section class="contact-section">
+        <section class="contact-section animated">
             <h1>Contact Us</h1>
             <p>If you are experiencing any issues or have any questions, please fill out the form below, and our support team will get back to you as soon as possible.</p>
 
@@ -71,7 +74,7 @@
             </form>
         </section>
 
-        <section class="status-section">
+        <section class="status-section animated">
             <h2>Check Ticket Status</h2>
             <form id="checkStatusForm" action="checkTicketStatus" method="post">
                 <div class="form-group">

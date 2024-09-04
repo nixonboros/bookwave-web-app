@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <title>Bookstore</title>
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+    <title>Login - Bookstore</title>
 </head>
 <body>
     <header>
         <nav>
-            <div class="logo">Bookstore</div>
+            <div class="logo">
+                <img src="images/booklogo.png" alt="Bookstore Logo" class="logo-img">
+                Bookstore
+            </div>
             <ul class="nav-links">
                 <li><a href="index.jsp">Home</a></li>
                 <li><a href="product.jsp">Products</a></li>
@@ -26,7 +29,7 @@
     </header>
 
     <main>
-        <section class="form-section">
+        <section class="form-section animated">
             <h1 class="formTitle">Log In</h1>
             <form action="" method="POST" class="form">
                 <div class="form-group">
@@ -40,7 +43,7 @@
                 <input type="hidden" id="submitted" name="submitted" value="yes">
                 <div class="centerDiv">
                     <button type="submit" class="submitButton" id="submit" name="submit">Login</button><br>
-                    <a href="register.jsp">New User?</a>
+                    <a href="register.jsp">Create a new account</a>
                 </div>
             </form>
         </section>
