@@ -3,25 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="styles/styles.css">
-    <title>Contact Us - Bookstore</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <title>Contact Support - Bookstore</title>
 </head>
 <body>
     <jsp:include page="nav-header.jsp"/>
 
     <main>
         <section class="contact-section animated">
-            <h1>Contact Us</h1>
-            <p>If you are experiencing any issues or have any questions, please use the tabs below to access the relevant form.</p>
+            <h1>Contact Support</h1>
+            <p>Welcome to the support dashboard. Here you can manage your existing support tickets and submit new requests. 
+                Use the tabs below to navigate between viewing your tickets and creating a new support request.</p>
 
             <div class="tabs">
-                <div class="tab active" data-target="submitTicket">Create New Ticket</div>
-                <div class="tab" data-target="checkStatus">Check Ticket Status</div>
+                <div class="tab active" data-target="dashboard">Dashboard</div>
+                <div class="tab" data-target="submitTicket">Create New Ticket</div>
+
+            </div>
+            
+            <div id="dashboard" class="tab-content active">
+                <h2>Your Support Tickets</h2>
+                <p>Here you can view and manage all your support tickets. Click on a ticket to view its details.</p>
+                <!-- Example table, TO BE REPLACED W DATABASE-->
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Ticket ID</th>
+                            <th>Type</th>
+                            <th>Status</th>
+                            <th>Date Submitted</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>12345</td>
+                            <td>Billing Issues</td>
+                            <td>Open</td>
+                            <td>2024-09-01</td>
+                            <td><a href="viewTicket.jsp?id=12345" class="button">View</a></td>
+                        </tr>
+                        <tr>
+                            <td>67890</td>
+                            <td>Technical Support</td>
+                            <td>Closed</td>
+                            <td>2024-08-20</td>
+                            <td><a href="viewTicket.jsp?id=67890" class="button">View</a></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
-            <div id="submitTicket" class="tab-content active">
+            <div id="submitTicket" class="tab-content">
                 <h2>Submit Your Support Request</h2>
-                <form id="submitTicketForm" action="submitTicket" method="post">
+                <form id="submitTicketForm" action="supportTicket_success.jsp" method="post">
                     <div class="form-group">
                         <label for="name">Full Name:</label>
                         <input type="text" id="name" name="name" required>
@@ -30,6 +65,16 @@
                     <div class="form-group">
                         <label for="email">Email Address:</label>
                         <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="typeOfEnquiry">Type of Enquiry:</label>
+                        <select id="typeOfEnquiry" name="typeOfEnquiry" required>
+                            <option value="">Select an option</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="technical">Technical Support</option>
+                            <option value="billing">Billing Issues</option>
+                        </select>
                     </div>
 
                     <div class="form-group">
@@ -42,20 +87,6 @@
                     </div>
                 </form>
             </div>
-
-            <div id="checkStatus" class="tab-content">
-                <h2>View the Status of Your Request</h2>
-                <form id="checkStatusForm" action="checkTicketStatus" method="post">
-                    <div class="form-group">
-                        <label for="ticketID">Ticket ID:</label>
-                        <input type="text" id="ticketID" name="ticketID" required>
-                    </div>
-
-                    <div class="form-group">
-                        <button type="submit" id="checkStatusButton" disabled>Check Status</button>
-                    </div>
-                </form>
-            </div>
         </section>
     </main>
 
@@ -64,14 +95,22 @@
             function validateForm(formId, buttonId) {
                 const form = document.getElementById(formId);
                 const submitButton = document.getElementById(buttonId);
-                const inputs = form.querySelectorAll('input[required], textarea[required]');
+                const inputs = form.querySelectorAll('input[required], textarea[required], select[required]');
                 
                 function updateButtonState() {
                     let allValid = true;
 
                     inputs.forEach(input => {
-                        if (!input.value.trim()) {
-                            allValid = false;
+                        if (input.type === 'select-one') {
+                            // Check if select field has a value
+                            if (!input.value.trim()) {
+                                allValid = false;
+                            }
+                        } else {
+                            // Check if input field is filled
+                            if (!input.value.trim()) {
+                                allValid = false;
+                            }
                         }
                     });
 
@@ -80,12 +119,12 @@
                 }
 
                 form.addEventListener('input', updateButtonState);
+                form.addEventListener('change', updateButtonState); // Add change event listener for select fields
                 updateButtonState(); // Initial check
             }
 
-            // Validate both forms
+            // Validate the submit ticket form
             validateForm('submitTicketForm', 'submitTicketButton');
-            validateForm('checkStatusForm', 'checkStatusButton');
 
             // Tab functionality
             const tabs = document.querySelectorAll('.tab');

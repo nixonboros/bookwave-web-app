@@ -2,7 +2,7 @@
 <header>
     <nav>
         <div class="logo">
-            <img src="images/booklogo.png" alt="Bookstore Logo" class="logo-img">
+            <img src="images/book-logo.png" alt="Bookstore Logo" class="logo-img">
             Bookstore
         </div>
         <ul class="nav-links">

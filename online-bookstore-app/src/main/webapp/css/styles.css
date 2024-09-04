@@ -1,0 +1,400 @@
+/* General styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #F5F5F5; /* Light background for a bookstore */
+    color: #333333; /* Dark gray text for readability */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #FFFFFF; /* White header for a clean look */
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.logo-img {
+    height: 35px;
+    width: 35px;
+    margin-right: 10px; 
+}
+
+.back-arrow img{
+    display: block;
+    width: 35px;
+    height: auto;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links li {
+    margin-right: 20px;
+    position: relative;
+}
+
+.nav-links a {
+    color: #333333; /* Dark gray text for nav links */
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: #FF6F61; /* Coral color for active and hover state */
+}
+
+.nav-links a.active::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #FF6F61; /* Coral underline for active link */
+}
+
+.user-actions a {
+    margin-left: 20px;
+    color: #333333; /* Dark gray text for user actions */
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.user-actions a:hover {
+    color: #FF6F61; /* Coral color for user action links */
+}
+
+.register-link {
+    display: inline-block; 
+    padding-top: 10px; 
+}
+
+main {
+    padding: 20px;
+    box-sizing: border-box;
+    flex: 1; /* Allows the main content to expand and push footer down */
+}
+
+main h1, main h2, main p {
+    margin: 0 0 15px 0;
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+footer {
+    background: #FFFFFF; /* White footer for consistency */
+    padding: 10px; /* Adjusted padding for a clean look */
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: #333333; /* Dark gray text for footer */
+    margin: 0; 
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #E0E0E0; /* Light gray border for input fields */
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    padding: 10px 20px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:disabled {
+    background-color: #E0E0E0; /* Light gray for disabled buttons */
+    cursor: not-allowed;
+}
+
+/* General button styling */
+.button {
+    padding: 10px 20px;
+    color: #FFFFFF;
+    background-color: #FF6F61; /* Coral button color */
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #e04b47; /* Slightly darker coral for hover effect */
+    transform: translateY(-2px); /* Lift effect on hover */
+}
+
+.button:active {
+    background-color: #c83c36; /* Even darker coral for active effect */
+    transform: translateY(0); /* Remove lift effect when clicked */
+}
+
+/* Tab styles */
+.tabs {
+    display: flex;
+    cursor: pointer;
+    border-bottom: 2px solid #B3B4BD; 
+    margin-bottom: 20px; 
+}
+
+.tab {
+    padding: 12px 20px;
+    margin-right: 5px;
+    border: 1px solid #E0E0E0; 
+    border-radius: 5px 5px 0 0; 
+    background-color: #F9F9F9;
+    text-align: center;
+    font-weight: bold;
+    color: #141619; 
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.tab:hover {
+    background-color: #E0E0E0; /* Light gray background on hover */
+}
+
+.tab.active {
+    background-color: #FFFFFF; 
+    border-bottom: 2px solid #FF6F61; 
+}
+
+.tab-content {
+    display: none;
+    padding: 20px;
+    border: 1px solid #E0E0E0;
+    border-radius: 0 0 5px 5px; 
+    border-top: none; 
+    background-color: #FFFFFF; 
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Support Ticket Success Page */
+.success-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh; 
+    text-align: center;
+}
+
+.success-section img {
+    max-width: 100px; 
+    margin-bottom: 20px;
+}
+
+.success-section h1 {
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+.success-section p {
+    color: #141619;
+    margin-bottom: 30px;
+}
+
+.success-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+thead th {
+    background-color: #333333;
+    color: #fff;
+    padding: 15px;
+    text-align: left;
+}
+
+tbody td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    vertical-align: top;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.ticket-details {
+    padding: 20px;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.ticket-info {
+    margin-bottom: 20px;
+}
+
+.ticket-field {
+    margin-bottom: 15px;
+}
+
+.ticket-field label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.ticket-field span, .ticket-field p {
+    color: #333333;
+}
+
+.ticket-actions {
+    text-align: center;
+}
+
+.ticket-actions .button {
+    background-color: #FF6F61;
+    color: #FFFFFF;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.ticket-actions .button:hover {
+    background-color: #e04b47;
+}
+
+.chat-section {
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.chat-history {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.chat-message {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.message-user {
+    font-weight: bold;
+    margin: 0 10px;
+}
+
+.message-text {
+    border-radius: 10px;
+    padding: 10px 15px;
+    max-width: 60%;
+    word-wrap: break-word;
+    background-color: #f0f0f0;
+    margin: 0;
+}
+
+.chat-message.you {
+    justify-content: flex-end;
+}
+
+.chat-message.you .message-text {
+    background-color: #d1e7dd;
+}
+
+.chat-message.support {
+    justify-content: flex-start;
+}
+
+.chat-message.support .message-text {
+    background-color: #e9ecef;
+}
+
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+main .animated {
+    opacity: 0;
+    animation: fadeIn 0.5s ease-in-out forwards;
+}
+

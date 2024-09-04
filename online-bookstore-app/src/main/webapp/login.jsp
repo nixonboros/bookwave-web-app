@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
     <title>Login - Bookstore</title>
 </head>
 <body>
@@ -15,7 +15,7 @@
             <form action="" method="POST" class="form">
                 <div class="form-group">
                     <label class="formLabel" for="email">Email</label>
-                    <input type="text" id="email" name="email" required>
+                    <input type="email" id="email" name="email" required>
                 </div>
                 <div class="form-group">
                     <label class="formLabel" for="password">Password</label>
@@ -23,8 +23,8 @@
                 </div>
                 <input type="hidden" id="submitted" name="submitted" value="yes">
                 <div class="centerDiv">
-                    <button type="submit" class="submitButton" id="submit" name="submit">Login</button><br>
-                    <a href="register.jsp">Create a new account</a>
+                    <button type="submit" class="button" id="submit" name="submit">Login</button><br>
+                    <a href="register.jsp" class="register-link">Create a new account</a>
                 </div>
             </form>
         </section>
