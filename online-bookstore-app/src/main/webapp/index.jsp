@@ -12,9 +12,9 @@
         <div class="logo">Bookstore</div>
         <ul class="nav-links">
             <li><a href="index">Home</a></li>
-            <li><a href="product/products">Products</a></li>
-                <li><a href="#">Orders</a></li>
-                <li><a href="#">Payments</a></li>
+            <li><a href="product">Products</a></li>
+                <li><a href="order">Orders</a></li>
+                <li><a href="payment">Payments</a></li>
             
         </ul>
 
