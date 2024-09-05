@@ -10,7 +10,7 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-# RUN MAVEN TO BUILD PROJECT
+# RUN MAVEN TO BUILD PROJECT AND RUN TESTS 
 - task: Maven@3
   inputs:
     mavenPomFile: 'online-bookstore-app/pom.xml'
@@ -21,7 +21,7 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
-  displayName: 'Build Project with Maven'
+  displayName: 'Build and Run Tests with Maven'
 
 # PUBLISH TEST RESULTS
 - task: PublishTestResults@2
@@ -38,8 +38,9 @@ steps:
 
 # PUBLISH ARTIFACT STEP
 - task: PublishPipelineArtifact@1
+  condition: succeeded() # publish only if build succeeds
   inputs:
     targetPath: '$(Build.ArtifactStagingDirectory)'
     artifact: drop
     publishLocation: 'pipeline'
-  displayName: 'Publish Pipeline Artifact'
+  displayName: 'Publish Pipeline Artifact: drop'

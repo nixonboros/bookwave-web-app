@@ -21,6 +21,7 @@
 
             </div>
             
+            <!-- DASHBOARD TAB -->
             <div id="dashboard" class="tab-content active">
                 <h2>Your Support Tickets</h2>
                 <p>Here you can view and manage all your support tickets. Click on a ticket to view its details.</p>
@@ -53,7 +54,8 @@
                     </tbody>
                 </table>
             </div>
-
+            
+            <!-- CREATE NEW TICKET TAB -->
             <div id="submitTicket" class="tab-content">
                 <h2>Submit Your Support Request</h2>
                 <form id="submitTicketForm" action="supportTicket_success.jsp" method="post">
