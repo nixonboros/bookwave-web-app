@@ -15,7 +15,6 @@
 
         <div class="user-actions">
             <a href="login.jsp">Login</a>
-            <a href="register.jsp">Register</a>
         </div>
     </nav>
 </header>
