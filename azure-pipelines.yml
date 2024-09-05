@@ -10,7 +10,7 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-# RUN MAVEN TO BUILD PROJECT
+# RUN MAVEN TO BUILD PROJECT AND RUN TESTS 
 - task: Maven@3
   inputs:
     mavenPomFile: 'online-bookstore-app/pom.xml'
@@ -21,7 +21,7 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
-  displayName: 'Build Project with Maven'
+  displayName: 'Build and Run Tests with Maven'
 
 # PUBLISH TEST RESULTS
 - task: PublishTestResults@2
@@ -33,7 +33,7 @@ steps:
 
 # ZIP BUILD ARTIFACTS
 - script: |
-    zip -r $(Build.ArtifactStagingDirectory)/Release/online-bookstore-app.zip $(Build.SourcesDirectory)/online-bookstore-app/target/*.war
+    zip -r $(Build.ArtifactStagingDirectory)/online-bookstore-app.zip $(Build.SourcesDirectory)/online-bookstore-app/target
   displayName: 'Zip Build Artifacts'
 
 # PUBLISH ARTIFACT STEP
