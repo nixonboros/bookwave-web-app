@@ -25,11 +25,12 @@
             <div id="dashboard" class="tab-content active">
                 <h2>Your Support Tickets</h2>
                 <p>Here you can view and manage all your support tickets. Click on a ticket to view its details.</p>
-                <!-- Example table, TO BE REPLACED W DATABASE-->
+                <!-- Example information, TO BE REPLACED W DATABASE-->
                 <table>
                     <thead>
                         <tr>
                             <th>Ticket ID</th>
+                            <th>Subject Title</th>
                             <th>Type</th>
                             <th>Status</th>
                             <th>Date Submitted</th>
@@ -39,6 +40,7 @@
                     <tbody>
                         <tr>
                             <td>12345</td>
+                            <td>Incorrect Billing Amount charged</td>
                             <td>Billing Issues</td>
                             <td>Open</td>
                             <td>2024-09-01</td>
@@ -46,6 +48,7 @@
                         </tr>
                         <tr>
                             <td>67890</td>
+                            <td>Issue with Updating Payment Method Details</td>
                             <td>Technical Support</td>
                             <td>Closed</td>
                             <td>2024-08-20</td>
@@ -61,14 +64,19 @@
                 <form id="submitTicketForm" action="supportTicket_success.jsp" method="post">
                     <div class="form-group">
                         <label for="name">Full Name:</label>
-                        <input type="text" id="name" name="name" required>
+                        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
                     </div>
-
+                    
                     <div class="form-group">
                         <label for="email">Email Address:</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
                     </div>
-
+                    
+                    <div class="form-group">
+                        <label for="subjectTitle">Subject Title:</label>
+                        <input type="text" id="subjectTitle" name="subjectTitle" placeholder="Enter a brief title for your issue" required>
+                    </div>
+                    
                     <div class="form-group">
                         <label for="typeOfEnquiry">Type of Enquiry:</label>
                         <select id="typeOfEnquiry" name="typeOfEnquiry" required>
@@ -78,12 +86,12 @@
                             <option value="billing">Billing Issues</option>
                         </select>
                     </div>
-
+                    
                     <div class="form-group">
                         <label for="issue">Issue Description:</label>
-                        <textarea id="issue" name="issue" rows="5" required></textarea>
+                        <textarea id="issue" name="issue" rows="5" placeholder="Describe your issue in detail" required></textarea>
                     </div>
-
+                    
                     <div class="form-group">
                         <button type="submit" id="submitTicketButton" disabled>Submit Ticket</button>
                     </div>

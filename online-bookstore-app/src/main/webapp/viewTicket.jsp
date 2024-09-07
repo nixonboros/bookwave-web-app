@@ -14,12 +14,17 @@
             <a href="contact.jsp" class="back-arrow">
                 <img src="images/back-arrow.png" alt="Back" />
             </a>
+             <!-- Example information, TO BE REPLACED W DATABASE-->
             <h1>Support Ticket Details</h1>
             <div class="ticket-info">
                 <!-- Ticket Details Section -->
                 <div class="ticket-field">
                     <label for="ticketID">Ticket ID:</label>
                     <span id="ticketID">12345</span>
+                </div>
+                <div class="ticket-field">
+                    <label for="subjectTitle">Subject Title:</label>
+                    <span id="subjectTitle">Incorrect Billing Amount charged</span>
                 </div>
                 <div class="ticket-field">
                     <label for="type">Type:</label>
