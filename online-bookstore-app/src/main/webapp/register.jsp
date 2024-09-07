@@ -34,9 +34,19 @@
                     <input type="password" id="password2" name="password2" required>
                 </div>
                 <input type="hidden" id="submitted" name="submitted" value="yes">
+                
                 <div class="centerDiv">
-                    <button type="submit" class="button" id="submit" name="submit">Register</button>
-                </div>
+                    <label for ="staffCheckbox" class="formLabel">Staff Member?</label>
+                    <input type="checkbox" id="staffCheckbox" name="staffCheckbox"
+                           onchange="document.getElementById('staffIDField').style.display = this.checked ? 'block' : 'none'">
+                    <div id="staffIDField" style="display: none;"><br>
+                        <label class="formLabel" for="staff_id">Staff ID</label>
+                        <input type="text" id="staff_id" name="staff_id">
+                    </div>
+                    
+                </div><div class="centerDiv">
+                        <button type="submit" class="button" id="submit" name="submit">Register</button>
+                    </div>
             </form>
         </section>
         <script>
