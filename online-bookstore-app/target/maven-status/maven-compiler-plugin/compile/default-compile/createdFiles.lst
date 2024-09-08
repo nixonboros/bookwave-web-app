@@ -1,4 +1,2 @@
-com\g3app\controller\SupportController.class
-com\g3app\dao\SupportTicketDAO.class
-com\g3app\model\SupportTicket.class
-com\g3app\controller\CheckTicketStatusServlet.class
+com\g3app\controller\edit_controllerName.class
+com\g3app\model\edit_modelName.class
