@@ -13,8 +13,9 @@
             <li><a href="contact.jsp">Contact</a></li>
         </ul>
 
-        <div class="user-actions">
+        <div class="user-actions"> 
             <a href="login.jsp">Login</a>
+            <a href="cart.jsp">Cart</a>
         </div>
     </nav>
 </header>
