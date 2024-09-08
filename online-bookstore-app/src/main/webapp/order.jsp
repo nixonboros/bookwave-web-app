@@ -7,13 +7,45 @@
     <title>Orders - Bookstore</title>
 </head>
 <body>
+
     <jsp:include page="nav-header.jsp"/>
 
     <main>
-        <section class="form-section animated">
-            <h1>sample heading</h1>
-            <p>sample text.</p>
+        <section class="order-section animated">
+            <h1 class="formTitle">Your Orders</h1>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Books Ordered</th>
+                        <th>Status</th>
+                        <th>Shipping Details</th>
+                        <th>Date Placed</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>10001</td>
+                        <td>Book 1, Book 2</td>
+                        <td>Shipped</td>
+                        <td>address1</td>
+                        <td>2024-09-01</td>
+                        <td><button class="button">Track</button></td>
+                    </tr>
+                    <tr>
+                        <td>10002</td>
+                        <td>Book 3</td>
+                        <td>Processing</td>
+                        <td>address2</td>
+                        <td>2024-09-03</td>
+                        <td><button class="button">Cancel</button></td>
+                    </tr>
+                </tbody>
+            </table>
         </section>
     </main>
+
 </body>
 </html>
