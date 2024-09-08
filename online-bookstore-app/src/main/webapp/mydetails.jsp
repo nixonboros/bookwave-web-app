@@ -60,7 +60,7 @@
             <!-- CREATE NEW TICKET TAB -->
             <div id="submitTicket" class="tab-content">
                 <h2>Edit Account Details</h2>
-                <form id="submitTicketForm" action="supportTicket_success.jsp" method="post">
+                <form id="submitTicketForm" action="detailUpdate_success.jsp" method="post">
                     
                     <div class="form-group">
                         <label for="email">Email Address:</label>
