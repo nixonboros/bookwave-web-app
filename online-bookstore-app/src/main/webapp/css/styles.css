@@ -398,6 +398,42 @@ main .animated {
     animation: fadeIn 0.5s ease-in-out forwards;
 }
 
+/*SK CSS*/
+ 
+/* Adjust spacing for checkbox and radio buttons */
+.form-group label {
+    margin-left: 4px;
+}
+
+.form-group input[type="checkbox"], 
+.form-group input[type="radio"] {
+    margin-right: 2px;
+}
+
+/* Grey out organisational email field when disabled */
+input:disabled {
+    background-color: #e9ecef;
+}
+
+/* Hide personal email input by default */
+#personalEmailGroup {
+    display: none;
+}
+
+.phone-group {
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+}
+
+#countryCode {
+    width: 100px; 
+}
+
+#phone {
+    flex: 1; 
+}
+/*SK Finish*/
 
 /*start edit*/
 
