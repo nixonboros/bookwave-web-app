@@ -6,17 +6,18 @@
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
-    <title>Products - Bookstore</title>
+    <title>Shipment Tracking - Bookstore</title>
 </head>
 <body>
     <jsp:include page="nav-header.jsp"/>
-    <a href="order.jsp" class="back-arrow">
-        <img src="images/back-arrow.png" alt="Back" />
-    </a>
     <main>
         <section class="form-section animated">
+            <a href="order.jsp" class="back-arrow">
+                <img src="images/back-arrow.png" alt="Back" />
+            </a>
+
             <h1>Shipment Tracking</h1>
-            <p>Order number</p>
+            <p>Order Number: 100001</p>
             <p>Expected Delivery time : 3 Days</p>
 
             <ul>
