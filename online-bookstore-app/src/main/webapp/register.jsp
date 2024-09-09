@@ -11,7 +11,7 @@
     
     <main>
         <section class="form-section animated">
-            <h1 class="formTitle">Staff Registration</h1>
+            <h1 class="formTitle">Customer Registration</h1>
             <form class="form" id="registrationForm">
                 <div class="form-group">
                     <label class="formLabel" for="firstName">First Name</label>
