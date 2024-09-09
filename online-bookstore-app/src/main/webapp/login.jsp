@@ -11,7 +11,7 @@
     
     <main>
         <section class="form-section animated">
-            <h1 class="formTitle">Log In</h1>
+            <h1 class="formTitle">Bookstore Log In</h1>
             <form action="" method="POST" class="form">
                 <div class="form-group">
                     <label class="formLabel" for="email">Email</label>
