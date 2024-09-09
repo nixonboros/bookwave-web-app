@@ -22,7 +22,7 @@
                     <input type="text" id="lastName" name="lastName" required>
                 </div>
                 <div class="form-group">
-                    <label class="formLabel" for="email">Organisation Email</label>
+                    <label class="formLabel" for="email">Email</label>
                     <input type="email" id="email" name="email" required>
                 </div>
 
