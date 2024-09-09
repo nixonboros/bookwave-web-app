@@ -25,6 +25,7 @@
                 <div class="centerDiv">
                     <button type="submit" class="button" id="submit" name="submit">Login</button><br>
                     <a href="register.jsp" class="register-link">Create a new account</a>
+                    <a href="staffLogin.jsp" class="register-link">Login as staff</a>
                 </div>
             </form>
         </section>
