@@ -26,7 +26,7 @@
                                 <td>000000</td>
                                 <td>000000</td>
                                 <td>2024-09-02</td>
-                                <td><a href="shipment_tracking.jsp">View</a></td>
+                                <td><a href="#" class="button">Edit</a></td>
                                 <td>Completed</td>
 
                             </tr>
@@ -34,7 +34,7 @@
                                 <td>000001</td>
                                 <td>000001</td>
                                 <td>2024-09-05</td>
-                                <td><a href="shipment_tracking.jsp">View</a></td>
+                                <td><a href="#" class="button">Edit</a></td>
                                 <td>In Progress</td>
 
                             </tr>

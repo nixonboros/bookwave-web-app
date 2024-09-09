@@ -463,7 +463,7 @@ ul li .progress{
     place-items: center;
     color: #fff;
     position: relative;
-    cursor: pointer;
+    pointer-events: none;
 }
 .progress::after{
     content: " ";

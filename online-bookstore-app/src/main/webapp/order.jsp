@@ -32,7 +32,7 @@
                         <td>Shipped</td>
                         <td>address1</td>
                         <td>2024-09-01</td>
-                        <td><button class="button">Track</button></td>
+                        <td><a href="shipment_tracking.jsp" class="button">Track</a></td>
                     </tr>
                     <tr>
                         <td>10002</td>

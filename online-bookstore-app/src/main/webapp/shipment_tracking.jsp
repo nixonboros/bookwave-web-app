@@ -10,14 +10,14 @@
 </head>
 <body>
     <jsp:include page="nav-header.jsp"/>
-    <a href="shipment_table.jsp" class="back-arrow">
+    <a href="order.jsp" class="back-arrow">
         <img src="images/back-arrow.png" alt="Back" />
     </a>
     <main>
         <section class="form-section animated">
             <h1>Shipment Tracking</h1>
             <p>Order number</p>
-        </section>
+            <p>Expected Delivery time : 3 Days</p>
 
             <ul>
                 <li>
@@ -57,51 +57,18 @@
                 </li>
             </ul>
     
+        </section>
+
     </main>
 
    <script>
         const one = document.querySelector(".one");
         const two = document.querySelector(".two");
         const three = document.querySelector(".three");
-        const four = document.querySelector(".four");
-        const five = document.querySelector(".five");
 
-        one.onclick = function() {
-            one.classList.add("active");
-            two.classList.remove("active");
-            three.classList.remove("active");
-            four.classList.remove("active");
-            five.classList.remove("active");
-        }
-
-        two.onclick = function() {
-            one.classList.add("active");
-            two.classList.add("active");
-            three.classList.remove("active");
-            four.classList.remove("active");
-            five.classList.remove("active");
-        }
-        three.onclick = function() {
-            one.classList.add("active");
-            two.classList.add("active");
-            three.classList.add("active");
-            four.classList.remove("active");
-            five.classList.remove("active");
-        }
-        four.onclick = function() {
-            one.classList.add("active");
-            two.classList.add("active");
-            three.classList.add("active");
-            four.classList.add("active");
-            five.classList.remove("active");
-        }
-        five.onclick = function() {
-            one.classList.add("active");
-            two.classList.add("active");
-            three.classList.add("active");
-            four.classList.add("active");
-            five.classList.add("active");
-        }
+        one.classList.add("active");
+        two.classList.add("active");
+        three.classList.add("active");
    </script>
 </body>
 </html>
