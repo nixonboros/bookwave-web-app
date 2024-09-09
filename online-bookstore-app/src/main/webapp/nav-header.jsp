@@ -26,8 +26,8 @@
                         <button class="mark-all-read">Mark All as Read</button>
                     </div>
                     <ul>
-                        <li><a href="#">Customer support ticket #12345 updated</a></li>
-                        <li><a href="#">Your password was successfully changed</a></li>
+                        <li><a href="#">Your order #12345 has been shipped.</a></li>
+                        <li><a href="#">Your payment for order #67890 was successful.</a></li>
                     </ul>
                     <a href="notification_dashboard.jsp" class="view-all">View All Notifications</a>
                 </div>
