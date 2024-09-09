@@ -10,7 +10,9 @@
 </head>
 <body>
     <jsp:include page="nav-header.jsp"/>
-
+    <a href="shipment_table.jsp" class="back-arrow">
+        <img src="images/back-arrow.png" alt="Back" />
+    </a>
     <main>
         <section class="form-section animated">
             <h1>Shipment Tracking</h1>

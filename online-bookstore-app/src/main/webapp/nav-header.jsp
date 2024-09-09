@@ -10,7 +10,7 @@
             <li><a href="product.jsp">Products</a></li>
             <li><a href="order.jsp">Orders</a></li>
             <li><a href="contact.jsp">Contact</a></li>
-            <li><a href="shipment_tracking.jsp">Shipment</a></li>
+            <li><a href="shipment_table.jsp">Shipment</a></li>
         </ul>
 
         <div class="user-actions"> 
