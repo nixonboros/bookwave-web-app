@@ -41,9 +41,10 @@
                     </div>
                 </div>
                 
-                <button type="button" onclick="window.location.href='edit-payment-methods.jsp'" class="button">Edit Payment Methods</button>
+                <button type="button" onclick="window.location.href='editPayment.jsp'" class="button">Edit</button>
 
-                <button type="submit" class="button">Proceed to Checkout</button>
+                <button type="submit" formaction="checkout.jsp" class="button">Proceed to Checkout</button>
+                
             </div>
         </section>
     </main>
