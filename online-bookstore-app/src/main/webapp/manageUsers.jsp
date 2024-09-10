@@ -84,7 +84,7 @@
         </div>
 
         <!-- Placeholder message for no users -->
-        <p>No staff users found.</p>
+        <p>No users found.</p>
     </div>
 </body>
 </html>
