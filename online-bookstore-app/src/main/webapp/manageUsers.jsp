@@ -29,7 +29,7 @@
             <label for="role">Role:</label>
             <select name="role" required>
                 <option value="admin">Admin</option>
-                <option value="customer">Moderator</option>
+                <option value="customer">Customer</option>
                 <option value="staff">Staff</option>
             </select>
 
@@ -43,7 +43,7 @@
         </form>
 
         <!-- Manage Existing Staff Users Section -->
-        <h2>Manage Existing Staff Users</h2>
+        <h2>Manage Existing Staff and Customer Users</h2>
         <div class="styled-table-admin">
             <form class="form-admin">
                 <div class="form-field">
