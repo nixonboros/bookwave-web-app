@@ -41,9 +41,9 @@
                     </div>
                 </div>
                 
-                <div class="centerDiv">
-                    <button class="button">Proceed to Checkout</button>
-                </div>
+                <button type="button" onclick="window.location.href='edit-payment-methods.jsp'" class="button">Edit Payment Methods</button>
+
+                <button type="submit" class="button">Proceed to Checkout</button>
             </div>
         </section>
     </main>
