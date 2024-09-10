@@ -29,7 +29,7 @@
             <label for="role">Role:</label>
             <select name="role" required>
                 <option value="admin">Admin</option>
-                <option value="moderator">Moderator</option>
+                <option value="customer">Moderator</option>
                 <option value="staff">Staff</option>
             </select>
 
@@ -60,7 +60,7 @@
                     <label>Role:</label>
                     <select name="role" required>
                         <option value="admin">Admin</option>
-                        <option value="moderator">Customer</option>
+                        <option value="customer">Customer</option>
                         <option value="staff" selected>Staff</option>
                     </select>
                 </div>
