@@ -19,8 +19,8 @@
             <button type="submit">Search</button>
         </form>
 
-        <!-- Create New Staff User Form -->
-        <h2>Create New Staff User</h2>
+        <!-- Create New User Form -->
+        <h2>Create New User</h2>
         <form>
             <input type="text" name="name" placeholder="Name" required>
             <input type="email" name="email" placeholder="Email" required>
