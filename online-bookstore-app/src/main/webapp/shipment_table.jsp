@@ -20,6 +20,7 @@
                                     <th>Shipping Date</th>
                                     <th>Shipping Progress</th>
                                     <th>Shipping Status</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -29,6 +30,7 @@
                                     <td>2024-09-02</td>
                                     <td>In Progress</td>
                                     <td><a href="#" class="button">Edit</a></td>
+                                    <td><a href="#" class="button">Cancel</a></td>
                                 </tr>
                                 <tr>
                                     <td>10002</td>
@@ -36,7 +38,7 @@
                                     <td>2024-09-01</td>
                                     <td>Completed</td>
                                     <td><a href="#" class="button">Edit</a></td>
-
+                                    <td><a href="#" class="button">Cancel</a></td>
                                 </tr>
                             </tbody>
                         </table>
