@@ -7,7 +7,7 @@
         <title>Shipping Table - Bookstore</title>
     </head>
     <body>
-        <jsp:include page="nav-header.jsp"/>
+        <jsp:include page="staff-nav-header.jsp"/>
 
         <main>
             <section class="form-section animated">

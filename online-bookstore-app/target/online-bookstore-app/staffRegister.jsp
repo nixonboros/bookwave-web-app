@@ -12,7 +12,7 @@
     <main>
         <section class="form-section animated">
             <h1 class="formTitle">Staff Registration</h1>
-            <form class="form" id="registrationForm">
+            <form action="StaffRegisterServlet" method="POST" class="form">
                 <div class="form-group">
                     <label class="formLabel" for="firstName">First Name</label>
                     <input type="text" id="firstName" name="firstName" required>
@@ -26,7 +26,6 @@
                     <input type="email" id="email" name="email" required>
                 </div>
 
-                <!-- Staff ID Field -->
                 <div class="form-group">
                     <label class="formLabel" for="staffId">Staff ID</label>
                     <input type="text" id="staffId" name="staffId" required>

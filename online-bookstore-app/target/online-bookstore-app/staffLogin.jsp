@@ -12,7 +12,7 @@
     <main>
         <section class="form-section animated">
             <h1 class="formTitle">Staff Log In</h1>
-            <form action="staffDashboard.jsp" method="POST" class="form">
+            <form action="StaffLoginServlet" method="POST" class="form">
                 <div class="form-group">
                     <label class="formLabel" for="staffEmail">Staff Email</label>
                     <input type="email" id="staffEmail" name="staffEmail" required>

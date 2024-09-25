@@ -1,6 +1,7 @@
 package com.g3app.dao;
 
 import com.g3app.model.User;
+import com.g3app.model.StaffUser;
 import java.sql.*;
 
 public class DBManager {
@@ -47,6 +48,49 @@ public class DBManager {
         pstmt.setString(9, user.getPostcode());
         pstmt.setString(10, user.getCountry());
         pstmt.executeUpdate();
+    }
+   
+    // add staff user
+    public void addStaffUser(StaffUser staffUser) throws SQLException {
+        String query = "INSERT INTO staffusers (firstName, lastName, email, password, dob, phone, address, city, postcode, country, staffId) " +
+                       "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+        pstmt.setString(1, staffUser.getFirstName());
+        pstmt.setString(2, staffUser.getLastName());
+        pstmt.setString(3, staffUser.getEmail());
+        pstmt.setString(4, staffUser.getPassword()); // Hash passwords in production
+        pstmt.setString(5, staffUser.getDob());
+        pstmt.setString(6, staffUser.getPhone());
+        pstmt.setString(7, staffUser.getAddress());
+        pstmt.setString(8, staffUser.getCity());
+        pstmt.setString(9, staffUser.getPostcode());
+        pstmt.setString(10, staffUser.getCountry());
+        pstmt.setString(11, staffUser.getStaffId()); // New field
+        pstmt.executeUpdate();
+    }
+    
+    // find staff user
+    public User findStaffUser(String email, String password) throws SQLException {
+        String query = "SELECT * FROM staffusers WHERE email = ? AND password = ?";
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+        pstmt.setString(1, email);
+        pstmt.setString(2, password);
+        ResultSet rs = pstmt.executeQuery();
+        if (rs.next()) {
+            return new User(
+                rs.getString("firstName"),
+                rs.getString("lastName"),
+                rs.getString("email"),
+                rs.getString("password"),
+                rs.getString("dob"),
+                rs.getString("phone"),
+                rs.getString("address"),
+                rs.getString("city"),
+                rs.getString("postcode"),
+                rs.getString("country")
+            );
+        }
+        return null; // No staff user found
     }
 
     // Other methods (updateUser, deleteUser) can be added similarly

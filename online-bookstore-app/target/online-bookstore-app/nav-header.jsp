@@ -25,10 +25,10 @@
         <div class="user-actions"> 
             <%
                 if (user != null) {
-                    // Display account info, log out, cart, and notifications if logged in
+                    // Display tabs if logged in
                     String email = user.getEmail();
             %>
-                <a href="mydetails.jsp">Account (Logged in as <%= email %>)</a>
+                <a href="mydetails.jsp">My Account (<%= email %>)</a>
                 <a href="LogoutServlet">Log Out</a>
                 <a href="cart.jsp">
                     <img src="images/shopping-cart.png" alt="Cart" class="cart-icon">
