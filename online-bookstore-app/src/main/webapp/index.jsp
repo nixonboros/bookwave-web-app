@@ -21,6 +21,9 @@
                     String welcomeMessage = "Welcome, " + user.getFirstName() + "!";
                     out.println("<h1>" + welcomeMessage + "</h1>");
                 }
+                else {
+                    out.println("<h1> Welcome to the Bookstore </h1>");
+                }
             %>
             <p>Your one-stop shop for all your reading needs.</p>
         </section>

@@ -30,6 +30,12 @@ header {
     margin-right: 10px; 
 }
 
+.cart-icon {
+    width: 24px; /* Adjust size as needed */
+    height: 24px;
+    vertical-align: middle;
+}
+
 .back-arrow img{
     display: block;
     width: 35px;
@@ -109,6 +115,7 @@ nav {
     width: 24px; 
     height: auto;
     cursor: pointer;
+    vertical-align: middle;
 }
 
 .dropdown-menu {
