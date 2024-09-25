@@ -4,30 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
-    <title>Login - Bookstore</title>
+    <title>Staff Login - Bookstore</title>
 </head>
 <body>
     <jsp:include page="nav-header.jsp"/>
     
     <main>
         <section class="form-section animated">
-            <h1 class="formTitle">Bookstore Log In</h1>
-            <form action="LoginServlet" method="POST" class="form">
+            <h1 class="formTitle">Staff Log In</h1>
+            <form action="staffDashboard.jsp" method="POST" class="form">
                 <div class="form-group">
-                    <label class="formLabel" for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
+                    <label class="formLabel" for="staffEmail">Staff Email</label>
+                    <input type="email" id="staffEmail" name="staffEmail" required>
                 </div>
                 <div class="form-group">
-                    <label class="formLabel" for="password">Password</label>
-                    <input type="password" id="password" name="password" required>
+                    <label class="formLabel" for="staffPassword">Password</label>
+                    <input type="password" id="staffPassword" name="staffPassword" required>
                 </div>
                 <input type="hidden" id="submitted" name="submitted" value="yes">
                 <div class="centerDiv">
                     <button type="submit" class="button" id="submit" name="submit">Login</button><br>
-                    <a href="register.jsp" class="register-link">Create a new account</a>
-                    <a href="staffLogin.jsp" class="register-link">Login as staff</a>
+                    <a href="staffRegister.jsp" class="register-link">Register Staff</a> 
                 </div>
             </form>
+            <p class="note">*Note: For now, clicking login will take you to the <strong>Staff Dashboard</strong> directly.</p>
         </section>
     </main>
 </body>

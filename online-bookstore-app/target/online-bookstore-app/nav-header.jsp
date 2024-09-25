@@ -9,13 +9,29 @@
             <li><a href="index.jsp">Home</a></li>
             <li><a href="product.jsp">Products</a></li>
             <li><a href="order.jsp">Orders</a></li>
-            <li><a href="payment.jsp">Payment</a></li>
-            <li><a href="shipment_tracking.jsp">Shipping</a></li>
             <li><a href="contact.jsp">Contact</a></li>
+            <li><a href="shipment_table.jsp">Shipment (STAFF)</a></li>
         </ul>
 
-        <div class="user-actions">
+        <div class="user-actions"> 
             <a href="login.jsp">Login</a>
+            <a href="mydetails.jsp">My Details (ON LOGIN)</a>
+            <a href="cart.jsp">Cart</a>
+
+            <div class="notification">
+                <img src="images/notification-bell.png" alt="Notifications" class="notification-bell">
+                <div class="dropdown-menu animated">
+                    <div class="dropdown-header">
+                        <h4>Notifications</h4>
+                        <button class="mark-all-read">Mark All as Read</button>
+                    </div>
+                    <ul>
+                        <li><a href="#">Your order #12345 has been shipped.</a></li>
+                        <li><a href="#">Your payment for order #67890 was successful.</a></li>
+                    </ul>
+                    <a href="notification_dashboard.jsp" class="view-all">View All Notifications</a>
+                </div>
+            </div>
         </div>
     </nav>
 </header>

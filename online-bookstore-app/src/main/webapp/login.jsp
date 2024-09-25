@@ -12,7 +12,7 @@
     <main>
         <section class="form-section animated">
             <h1 class="formTitle">Bookstore Log In</h1>
-            <form action="" method="POST" class="form">
+            <form action="LoginServlet" method="POST" class="form">
                 <div class="form-group">
                     <label class="formLabel" for="email">Email</label>
                     <input type="email" id="email" name="email" required>

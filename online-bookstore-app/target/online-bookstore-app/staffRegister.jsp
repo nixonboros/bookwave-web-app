@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
-    <title>Register - Bookstore</title>
+    <title>Staff Registration - Bookstore</title>
 </head>
 <body>
     <jsp:include page="nav-header.jsp"/>
-    
+
     <main>
         <section class="form-section animated">
-            <h1 class="formTitle">Customer Registration</h1>
-            <form action="RegisterServlet" method="POST" class="form">
+            <h1 class="formTitle">Staff Registration</h1>
+            <form class="form" id="registrationForm">
                 <div class="form-group">
                     <label class="formLabel" for="firstName">First Name</label>
                     <input type="text" id="firstName" name="firstName" required>
@@ -22,10 +22,15 @@
                     <input type="text" id="lastName" name="lastName" required>
                 </div>
                 <div class="form-group">
-                    <label class="formLabel" for="email">Email</label>
+                    <label class="formLabel" for="email">Organisation Email</label>
                     <input type="email" id="email" name="email" required>
                 </div>
 
+                <!-- Staff ID Field -->
+                <div class="form-group">
+                    <label class="formLabel" for="staffId">Staff ID</label>
+                    <input type="text" id="staffId" name="staffId" required>
+                </div>
 
                 <div class="form-group">
                     <label class="formLabel" for="dob">Date of Birth</label>
@@ -83,7 +88,7 @@
                 </div>
             </form>
         </section>
-    
+    </main>
 
     <!-- Password validation script -->
     <script>
@@ -101,6 +106,5 @@
         password.onchange = validatePassword;
         confirmPassword.onkeyup = validatePassword;
     </script>
-    </main>
 </body>
 </html>

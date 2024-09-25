@@ -12,7 +12,7 @@
     <main>
         <section class="form-section animated">
             <h1 class="formTitle">Customer Registration</h1>
-            <form class="form" id="registrationForm">
+            <form action="RegisterServlet" method="POST" class="form">
                 <div class="form-group">
                     <label class="formLabel" for="firstName">First Name</label>
                     <input type="text" id="firstName" name="firstName" required>
