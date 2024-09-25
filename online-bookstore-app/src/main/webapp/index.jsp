@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="com.g3app.model.User" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +14,14 @@
 
     <main>
         <section class="form-section animated">
-            <h1>Welcome to the Bookstore</h1>
+            <%
+                // Retrieve user from session
+                User user = (User) request.getSession().getAttribute("user");
+                if (user != null) {
+                    String welcomeMessage = "Welcome, " + user.getFirstName() + "!";
+                    out.println("<h1>" + welcomeMessage + "</h1>");
+                }
+            %>
             <p>Your one-stop shop for all your reading needs.</p>
         </section>
     </main>
