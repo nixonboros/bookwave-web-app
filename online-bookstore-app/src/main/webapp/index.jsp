@@ -13,7 +13,7 @@
     <jsp:include page="nav-header.jsp"/>
 
     <main>
-        <section class="form-section animated">
+        <section class="form-section animated" style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 50px;">
             <%
                 // Retrieve user from session
                 User user = (User) request.getSession().getAttribute("user");
@@ -22,11 +22,39 @@
                     out.println("<h1>" + welcomeMessage + "</h1>");
                 }
                 else {
-                    out.println("<h1> Welcome to the Bookstore </h1>");
+                    String guestWelcome = "Welcome to Bookstore!";
+                    out.println("<h1>" + guestWelcome + "</h1>");
                 }
             %>
-            <p>Your one-stop shop for all your reading needs.</p>
+            <p>Your one-stop shop for all your reading needs, with a wide range of non-fiction, fiction and all your favourite writers. Niche or famous, we've got them all.</p>
         </section>
+        
+        <!-- Book Selection Section -->
+        <div class="center"><h1>BEST SELLERS</h1></div>
+        
+        <section class="book-selection">
+            <div class="book">
+                <a href="book-details.jsp?id=1">
+                    <img src="images/book1.jpg" alt="Book 1">
+                </a>
+            </div>
+            <div class="book">
+                <a href="book-details.jsp?id=2">
+                    <img src="images/book2.jpg" alt="Book 2">
+                </a>
+            </div>
+            <div class="book">
+                <a href="book-details.jsp?id=3">
+                    <img src="images/book3.jpg" alt="Book 3">
+                </a>
+            </div>
+        </section>
+
+        <div class="see-more">
+            <a href="product.jsp">See All Books</a>
+        </div>
+        
     </main>
+            <jsp:include page="footer.jsp"/>
 </body>
 </html>

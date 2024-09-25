@@ -19,6 +19,6 @@
                 <a href="mydetails.jsp" class="button">My Account</a>
             </div>
         </section>
-    </main>
+    </main><jsp:include page="footer.jsp"/>
 </body>
 </html>
