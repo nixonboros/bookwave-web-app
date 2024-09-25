@@ -1,4 +1,4 @@
-<%@ page import="com.g3app.model.User" %>
+<%@ page import="com.g3app.model.StaffUser" %>
 <html>
 <header>
     <nav>
@@ -16,12 +16,12 @@
 
         <div class="user-actions">
             <%
-                User user = (User) request.getSession().getAttribute("user");
-                if (user != null) {
+                StaffUser staffUser = (StaffUser) request.getSession().getAttribute("user");
+                if (staffUser != null) {
                     // If the user is logged in, display My Account and Log Out
-                    String email = user.getEmail();
+                    String email = staffUser.getEmail();
             %>
-                <a href="mydetails.jsp">My Account (<%= email %>)</a>
+                <a href="mystaffdetails.jsp">My Account (<%= email %>)</a>
                 <a href="LogoutServlet">Log Out</a>
             <%
                 } else {

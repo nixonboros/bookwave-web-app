@@ -1,6 +1,6 @@
 package com.g3app.controller;
 
-import com.g3app.model.User;
+import com.g3app.model.StaffUser;
 import com.g3app.dao.DBConnector;
 import com.g3app.dao.DBManager;
 import jakarta.servlet.ServletException;
@@ -21,12 +21,12 @@ public class StaffLoginServlet extends HttpServlet {
             DBConnector connector = new DBConnector();
             Connection conn = connector.openConnection();
             DBManager dbManager = new DBManager(conn);
-            User user = dbManager.findUser(email, password); // This needs to check staffusers table
+            StaffUser staffUser = dbManager.findStaffUser(email, password);
             connector.closeConnection();
 
-            if (user != null) {
+            if (staffUser  != null) {
                 // Successful login
-                request.getSession().setAttribute("user", user);
+                request.getSession().setAttribute("user", staffUser);
                 response.sendRedirect("staffDashboard.jsp"); // Redirect to staff dashboard
             } else {
                 // Failed login

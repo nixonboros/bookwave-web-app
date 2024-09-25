@@ -1,9 +1,10 @@
+E:\Github\AdvSoftwareDevG3\online-bookstore-app\src\main\java\com\g3app\controller\StaffLoginServlet.java
 E:\Github\AdvSoftwareDevG3\online-bookstore-app\src\main\java\com\g3app\controller\RegisterServlet.java
 E:\Github\AdvSoftwareDevG3\online-bookstore-app\src\main\java\com\g3app\controller\LoginServlet.java
 E:\Github\AdvSoftwareDevG3\online-bookstore-app\src\main\java\com\g3app\controller\LogoutServlet.java
-E:\Github\AdvSoftwareDevG3\online-bookstore-app\src\main\java\com\g3app\model\edit_modelName.java
+E:\Github\AdvSoftwareDevG3\online-bookstore-app\src\main\java\com\g3app\model\StaffUser.java
 E:\Github\AdvSoftwareDevG3\online-bookstore-app\src\main\java\com\g3app\model\User.java
-E:\Github\AdvSoftwareDevG3\online-bookstore-app\src\main\java\com\g3app\controller\edit_controllerName.java
+E:\Github\AdvSoftwareDevG3\online-bookstore-app\src\main\java\com\g3app\controller\StaffRegisterServlet.java
 E:\Github\AdvSoftwareDevG3\online-bookstore-app\src\main\java\com\g3app\dao\DBManager.java
 E:\Github\AdvSoftwareDevG3\online-bookstore-app\src\main\java\com\g3app\dao\DB.java
 E:\Github\AdvSoftwareDevG3\online-bookstore-app\src\main\java\com\g3app\dao\DBConnector.java

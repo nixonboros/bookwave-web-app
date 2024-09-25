@@ -70,14 +70,14 @@ public class DBManager {
     }
     
     // find staff user
-    public User findStaffUser(String email, String password) throws SQLException {
+    public StaffUser findStaffUser(String email, String password) throws SQLException {
         String query = "SELECT * FROM staffusers WHERE email = ? AND password = ?";
         PreparedStatement pstmt = st.getConnection().prepareStatement(query);
         pstmt.setString(1, email);
         pstmt.setString(2, password);
         ResultSet rs = pstmt.executeQuery();
         if (rs.next()) {
-            return new User(
+            return new StaffUser(
                 rs.getString("firstName"),
                 rs.getString("lastName"),
                 rs.getString("email"),
@@ -87,11 +87,13 @@ public class DBManager {
                 rs.getString("address"),
                 rs.getString("city"),
                 rs.getString("postcode"),
-                rs.getString("country")
+                rs.getString("country"),
+                rs.getString("staffId") // Include staffId
             );
         }
         return null; // No staff user found
     }
+
 
     // Other methods (updateUser, deleteUser) can be added similarly
 }
