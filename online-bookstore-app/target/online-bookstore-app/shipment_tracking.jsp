@@ -9,7 +9,7 @@
     <title>Shipment Tracking - Bookstore</title>
 </head>
 <body>
-    <jsp:include page="staff-nav-header.jsp"/>
+    <jsp:include page="nav-header.jsp"/>
     <main>
         <section class="form-section animated">
             <a href="order.jsp" class="back-arrow">

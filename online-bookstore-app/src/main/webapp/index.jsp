@@ -13,7 +13,7 @@
     <jsp:include page="nav-header.jsp"/>
 
     <main>
-        <section class="form-section animated" style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 50px;">
+        <section class="animated" style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 50px;">
             <%
                 // Retrieve user from session
                 User user = (User) request.getSession().getAttribute("user");
@@ -27,9 +27,8 @@
                 }
             %>
             <p>Your one-stop shop for all your reading needs, with a wide range of non-fiction, fiction and all your favourite writers. Niche or famous, we've got them all.</p>
-        </section>
-        
-        <!-- Book Selection Section -->
+            
+            <!-- Book Selection Section -->
         <div class="center"><h1>BEST SELLERS</h1></div>
         
         <section class="book-selection">
@@ -52,9 +51,10 @@
 
         <div class="see-more">
             <a href="product.jsp">See All Books</a>
-        </div>
+        </div
         
+        </section>
     </main>
-            <jsp:include page="footer.jsp"/>
+    <jsp:include page="footer.jsp"/>
 </body>
 </html>

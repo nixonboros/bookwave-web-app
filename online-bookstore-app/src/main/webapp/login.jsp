@@ -13,9 +13,6 @@
         <section class="form-section animated">
             <h1 class="formTitle">Bookstore Log In</h1>
 
-            <!-- Display error message if login fails -->
-            
-
             <form action="LoginServlet" method="POST" class="form">
                 <div class="form-group">
                     <label class="formLabel" for="email">Email</label>
@@ -28,11 +25,11 @@
                 <%
                 String errorMessage = request.getParameter("error");
                 if (errorMessage != null) {
-            %>
-                <p class="error-message" style="color: red;">Invalid email or password. Please try again.</p>
-            <% 
-                }
-            %>
+                %>
+                    <p class="error-message" style="color: red;">Invalid email or password. Please try again.</p>
+                <% 
+                    }
+                %>
                 <input type="hidden" id="submitted" name="submitted" value="yes">
                 <div class="centerDiv">
                     <button type="submit" class="button" id="submit" name="submit">Login</button><br>

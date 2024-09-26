@@ -38,7 +38,7 @@
                     <div class="dropdown-menu animated">
                         <div class="dropdown-header">
                             <h4>Notifications</h4>
-                            <button class="mark-all-read">Mark All as Read</button>
+                            <a class="mark-all-read">Mark All as Read</a>
                         </div>
                         <ul>
                             <li><a href="#">Your order #12345 has been shipped.</a></li>

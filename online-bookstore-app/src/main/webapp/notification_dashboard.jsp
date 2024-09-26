@@ -74,6 +74,8 @@
                 });
             });
         });
-    </script><jsp:include page="footer.jsp"/>
+    </script>
+    
+    <jsp:include page="footer.jsp"/>
 </body>
 </html>

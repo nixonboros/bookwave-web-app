@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="com.g3app.model.User" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +11,7 @@
 </head>
 <body>
     <jsp:include page="nav-header.jsp"/>
-
+    <% User user = (User) request.getSession().getAttribute("user");%>
     <main>
         <section class="contact-section animated">
             <h1>My Details</h1>
@@ -26,29 +29,57 @@
             <div class="ticket-info">
                 <!-- Ticket Details Section -->
                 <div class="ticket-field">
-                    <label for="ticketID">First Name:</label>
-                    <span id="ticketID">John</span>
+                    <label>First Name:<% 
+                    if (user != null) {
+                    String firstName = user.getFirstName();
+                    out.println("<a>" + " " + firstName);
+                }
+                    %></label>
                 </div>
                 <div class="ticket-field">
-                    <label>Surname:</label>
-                    <span id="subjectTitle">Book</span>
+                    <label>Surname:<% 
+                    if (user != null) {
+                    String lastName = user.getLastName();
+                    out.println("<a>" + " " + lastName);
+                }
+                    %></label>
                 </div>
                 <div class="ticket-field">
-                    <label>Email:</label>
-                    <span id="subjectTitle">johnbook@ilovebooks.com</span>
+                    <label>Email:<%
+                    if (user != null) 
+                    {
+                        String lastName = user.getEmail();
+                        out.println("<a>" + " " + lastName);
+                    }%></label>
                 </div>
                 <div class="ticket-field">
-                    <label for="type">Address:</label>
-                    <span id="type">123 Bookstore</span>
+                    <label for="dateSubmitted">Date of Birth:<%
+                    if (user != null) 
+                    {
+                        String dob = user.getDob();
+                        out.println("<a>" + " " + dob);
+                    }%></label>
                 </div>
                 <div class="ticket-field">
-                    <label for="status">Phone Number:</label>
-                    <span id="status">04123 456 789</span>
+                    <label for="status">Phone Number:<%
+                    if (user != null) 
+                    {
+                        String phone = user.getPhone();
+                        out.println("<a>" + " " + phone);
+                    }%>
                 </div>
                 <div class="ticket-field">
-                    <label for="dateSubmitted">Account Created:</label>
-                    <span id="dateSubmitted">2024-09-01</span>
+                    <label for="type">Address:<%
+                    if (user != null) 
+                    {
+                        String address = user.getAddress();
+                        String city = user.getCity();
+                        String postcode = user.getPostcode();
+                        String country = user.getCountry();
+                        out.println("<a>" + " " + address + " " + city + " " + postcode + " " + country);
+                    }%>
                 </div>
+                
                 <div class="ticket-field">
                     <label for="description">Membership:</label>
                     <span id="status">None.</span>

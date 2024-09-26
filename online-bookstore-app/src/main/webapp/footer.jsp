@@ -12,20 +12,20 @@
     </head>
     <body>
        <footer>
-    <div class="footer-content">
-        <div class="footer-logo">
-            <img src="images/book-logo.png" alt="Bookstore Logo" class="footer-logo-img">
-            <span>Bookstore</span>
-        </div>
-        <div class="footer-links">
-            <p>&copy; 2024 Your Bookstore Name. All rights reserved.</p>
-            <p>
-                <a href="privacy-policy.jsp">Privacy Policy</a> | 
-                <a href="terms-of-service.jsp">Terms of Service</a>
-            </p>
-        </div>
-    </div>
-</footer>
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/book-logo.png" alt="Bookstore Logo" class="footer-logo-img">
+                    <span>Bookstore</span>
+                </div>
+                <div class="footer-links">
+                    <p>&copy; 2024 Your Bookstore Name. All rights reserved.</p>
+                    <p>
+                        <a href="privacy-policy.jsp">Privacy Policy</a> | 
+                        <a href="terms-of-service.jsp">Terms of Service</a>
+                    </p>
+                </div>
+            </div>
+        </footer>
 
     </body>
 </html>

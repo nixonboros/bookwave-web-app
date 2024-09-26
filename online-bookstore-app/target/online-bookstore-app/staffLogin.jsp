@@ -21,14 +21,23 @@
                     <label class="formLabel" for="staffPassword">Password</label>
                     <input type="password" id="staffPassword" name="staffPassword" required>
                 </div>
+                <%
+                String errorMessage = request.getParameter("error");
+                if (errorMessage != null) {
+                %>
+                    <p class="error-message" style="color: red;">Invalid email or password. Please try again.</p>
+                <% 
+                    }
+                %>
                 <input type="hidden" id="submitted" name="submitted" value="yes">
                 <div class="centerDiv">
                     <button type="submit" class="button" id="submit" name="submit">Login</button><br>
-                    <a href="staffRegister.jsp" class="register-link">Register Staff</a> 
+                    <a href="staffRegister.jsp" class="register-link">Create a staff account</a> 
                 </div>
             </form>
-            <p class="note">*Note: For now, clicking login will take you to the <strong>Staff Dashboard</strong> directly.</p>
         </section>
     </main>
+    
+    <jsp:include page="footer.jsp"/>
 </body>
 </html>

@@ -163,15 +163,10 @@ nav {
 }
 
 .mark-all-read {
-    background-color: transparent;
-    border: none;
-    color: #FF6F61; 
     cursor: pointer;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 0;
-    text-align: center;
     transition: color 0.3s ease;
+    white-space: nowrap; /* Prevents text from wrapping */
+    text-align: right;
 }
 
 .mark-all-read:hover {
@@ -188,7 +183,7 @@ nav {
 }
 
 .view-all {
-    padding: 10px;
+    padding: 100px;
     text-align: center; 
 }
 
@@ -213,15 +208,6 @@ main h1, main h2, main p {
 
 section {
     margin-bottom: 20px;
-}
-
-footer {
-    background: #FFFFFF; /* White footer for consistency */
-    padding: 10px; /* Adjusted padding for a clean look */
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    color: #333333; /* Dark gray text for footer */
-    margin: 0; 
 }
 
 form {
@@ -878,22 +864,28 @@ footer {
 }
 
 .footer-logo {
-    margin-bottom: 10px; /* Space below logo */
+    display: flex;
+    align-items: center; /* Vertically align items */
+    font-size: 18px;
 }
 
 .footer-logo-img {
-    width: 50px; /* Set logo size */
+    width: 30px; /* Set logo size */
     height: auto; /* Maintain aspect ratio */
+    margin-right: 10px;
 }
 
+.footer-links p,
 .footer-links a {
     color: #fff; /* Link color */
     text-decoration: none; /* No underline */
-    margin: 0 10px; /* Space between links */
+    margin: 12px; /* Space between links */
     transition: color 0.3s; /* Smooth transition for hover effect */
 }
 
 .footer-links a:hover {
-    color: #ffcc00; /* Change link color on hover */
+    color: #FF6F61; /* Change link color on hover */
 }
+
+
 

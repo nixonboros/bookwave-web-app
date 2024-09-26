@@ -13,6 +13,7 @@
     <jsp:include page="nav-header.jsp"/>
 
     <main>
+        <section class="animated">
             <h1 class="formTitle">Book Catalog</h1>
             <p>Explore our collection of books from various genres.</p>
 
@@ -48,6 +49,7 @@
                     </a>
                 </div>
             </div>
+        </section>
     </main>
     <jsp:include page="footer.jsp"/>
 </body>
