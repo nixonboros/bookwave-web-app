@@ -47,7 +47,7 @@
             <div class="chat-section">
                 <h2>Chat with Support</h2>
                 <div class="chat-history" id="chatHistory">
-                    <div class="chat-message support">
+                    <div class="chat-message otheruser">
                         <div class="message-user">Support:</div>
                         <div class="message-text">We have reviewed your billing issue and will provide an update shortly.</div>
                     </div>
@@ -55,7 +55,7 @@
                         <div class="message-user">You:</div>
                         <div class="message-text">Thanks for the update. Could you provide an estimated time for when this will be resolved?</div>
                     </div>
-                    <div class="chat-message support">
+                    <div class="chat-message otheruser">
                         <div class="message-user">Support:</div>
                         <div class="message-text">We expect to have this resolved within the next 48 hours. We will notify you once the correction has been made.</div>
                     </div>

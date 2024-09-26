@@ -463,11 +463,11 @@ tbody tr:hover {
     background-color: #d1e7dd;
 }
 
-.chat-message.support {
+.chat-message.otheruser {
     justify-content: flex-start;
 }
 
-.chat-message.support .message-text {
+.chat-message.otheruser .message-text {
     background-color: #e9ecef;
 }
 
