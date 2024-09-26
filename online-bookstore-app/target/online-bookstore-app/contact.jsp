@@ -61,10 +61,10 @@
             <!-- CREATE NEW TICKET TAB -->
             <div id="submitTicket" class="tab-content">
                 <h2>Submit Your Support Request</h2>
-                <form id="submitTicketForm" action="supportTicket_success.jsp" method="post">
+                <form id="submitTicketForm" action="SubmitTicketServlet" method="post">
                     <div class="form-group">
-                        <label for="name">Full Name:</label>
-                        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                        <label for="customer_name">Full Name:</label>
+                        <input type="text" id="customer_name" name="customer_name" placeholder="Enter your full name" required>
                     </div>
                     
                     <div class="form-group">
@@ -73,13 +73,13 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="subjectTitle">Subject Title:</label>
-                        <input type="text" id="subjectTitle" name="subjectTitle" placeholder="Enter a brief title for your issue" required>
+                        <label for="subject_title">Subject Title:</label>
+                        <input type="text" id="subject_title" name="subject_title" placeholder="Enter a brief title for your issue" required>
                     </div>
                     
                     <div class="form-group">
-                        <label for="typeOfEnquiry">Type of Enquiry:</label>
-                        <select id="typeOfEnquiry" name="typeOfEnquiry" required>
+                        <label for="type_of_enquiry">Type of Enquiry:</label>
+                        <select id="type_of_enquiry" name="type_of_enquiry" required>
                             <option value="">Select an option</option>
                             <option value="general">General Inquiry</option>
                             <option value="technical">Technical Support</option>
@@ -88,8 +88,8 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="issue">Issue Description:</label>
-                        <textarea id="issue" name="issue" rows="5" placeholder="Describe your issue in detail" required></textarea>
+                        <label for="issue_description">Issue Description:</label>
+                        <textarea id="issue_description" name="issue_description" rows="5" placeholder="Describe your issue in detail" required></textarea>
                     </div>
                     
                     <div class="form-group">

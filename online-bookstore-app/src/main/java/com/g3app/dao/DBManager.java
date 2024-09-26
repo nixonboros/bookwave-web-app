@@ -1,8 +1,9 @@
 package com.g3app.dao;
 
-import com.g3app.model.User;
-import com.g3app.model.StaffUser;
+import com.g3app.model.*;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBManager {
     public Statement st;
@@ -11,7 +12,7 @@ public class DBManager {
         st = conn.createStatement();
     }
 
-    // Find user by email and password
+    // find customer user
     public User findUser(String email, String password) throws SQLException {
         String query = "SELECT * FROM users WHERE email = '" + email + "' AND password = '" + password + "'";
         ResultSet rs = st.executeQuery(query);
@@ -32,7 +33,7 @@ public class DBManager {
         return null; // No user found
     }
 
-    // Add a user to the database
+    // add customer user
     public void addUser(User user) throws SQLException {
         String query = "INSERT INTO users (firstName, lastName, email, password, dob, phone, address, city, postcode, country) " +
                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -93,7 +94,56 @@ public class DBManager {
         }
         return null; // No staff user found
     }
+    
+    public void createSupportTicket(SupportTicket ticket) throws SQLException {
+        String query = "INSERT INTO support_tickets (customer_name, email, subject_title, type_of_enquiry, issue_description, status, date_submitted) " +
+                        "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+        pstmt.setString(1, ticket.getCustomerName());
+        pstmt.setString(2, ticket.getEmail());
+        pstmt.setString(3, ticket.getSubjectTitle());
+        pstmt.setString(4, ticket.getTypeOfEnquiry());
+        pstmt.setString(5, ticket.getIssueDescription());
+        pstmt.setString(6, ticket.getStatus());
+        pstmt.setDate(7, new java.sql.Date(ticket.getDateSubmitted().getTime()));
+        pstmt.executeUpdate();
+    }
+    
+    public SupportTicket getSupportTicketById(int ticketId) throws SQLException {
+        String query = "SELECT * FROM support_tickets WHERE ticket_id = " + ticketId;
+        ResultSet rs = st.executeQuery(query);
+        if (rs.next()) {
+            SupportTicket ticket = new SupportTicket();
+            ticket.setTicketId(rs.getInt("ticket_id"));
+            ticket.setCustomerName(rs.getString("customer_name"));
+            ticket.setEmail(rs.getString("email"));
+            ticket.setSubjectTitle(rs.getString("subject_title"));
+            ticket.setTypeOfEnquiry(rs.getString("type_of_enquiry"));
+            ticket.setIssueDescription(rs.getString("issue_description"));
+            ticket.setStatus(rs.getString("status"));
+            ticket.setDateSubmitted(rs.getDate("date_submitted"));
+            return ticket;
+        }
+        return null; // No ticket found
+    }
+    
+    public List<SupportTicket> getAllSupportTickets() throws SQLException {
+        String query = "SELECT * FROM supporttickets";
+        ResultSet rs = st.executeQuery(query);
+        List<SupportTicket> tickets = new ArrayList<>();
+        while (rs.next()) {
+            SupportTicket ticket = new SupportTicket();
+            ticket.setTicketId(rs.getInt("ticketId"));
+            ticket.setCustomerName(rs.getString("customerName"));
+            ticket.setEmail(rs.getString("email"));
+            ticket.setSubjectTitle(rs.getString("subjectTitle"));
+            ticket.setTypeOfEnquiry(rs.getString("typeOfEnquiry"));
+            ticket.setIssueDescription(rs.getString("issueDescription"));
+            ticket.setStatus(rs.getString("status"));
+            ticket.setDateSubmitted(rs.getDate("dateSubmitted"));
+            tickets.add(ticket);
+        }
+        return tickets;
+    }
 
-
-    // Other methods (updateUser, deleteUser) can be added similarly
 }
