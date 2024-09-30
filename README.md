@@ -11,4 +11,4 @@ Sarneet - Staff Login/Registration, Catalogue
 
 Nicolas - Orders Management, Orders Tracking
 
-Yuri - Checkout, Pages
+Yuri - Checkout, Product Pages
