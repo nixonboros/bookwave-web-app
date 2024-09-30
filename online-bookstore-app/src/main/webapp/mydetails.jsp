@@ -19,7 +19,8 @@
 
             <div class="tabs">
                 <div class="tab active" data-target="dashboard">My Account Details</div>
-                <div class="tab" data-target="submitTicket">Edit my Account</div>
+                <div class="tab" data-target="editAccount">Edit my Account</div>
+                <div class="tab" data-target="deleteAccount">Delete my Account</div>
 
             </div>
             
@@ -88,8 +89,8 @@
 
             </div>
             
-            <!-- CREATE NEW TICKET TAB -->
-            <div id="submitTicket" class="tab-content">
+            <!-- EDIT ACCOUNT TAB -->
+            <div id="editAccount" class="tab-content">
                 <h2>Edit Account Details</h2>
                 <form id="submitTicketForm" action="detailUpdate_success.jsp" method="post">
                     
@@ -112,6 +113,16 @@
                         <button type="submit" id="submitTicketButton" disabled>Submit New Details</button>
                     </div>
                 </form>
+            </div>
+            <!-- DELETE ACCOUNT TAB -->
+            <div id="deleteAccount" class="tab-content">
+                <!-- DELETE ACCOUNT BUTTON -->
+    <div class="form-group">
+        <form action="DeleteAccountServlet" method="post" onsubmit="return confirm('Are you sure you want to delete your account? This action is irreversible.');">
+            <button type="submit" class="delete-button">Delete Account</button>
+        </form>
+    </div>
+
             </div>
         </section>
     </main>
