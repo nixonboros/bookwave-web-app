@@ -14,8 +14,9 @@
     <% User user = (User) request.getSession().getAttribute("user");%>
     <main>
         <section class="contact-section animated">
-            <h1>My Details</h1>
-            <p>Welcome to My Details. Here you can view your details as well as change them if you want.</p>
+            <%String name = user.getFirstName();%>
+            <h1><% out.println(name + "'s"); %> Details </h1>
+            <p>Here you can view your details as well as change them if you want.</p>
 
             <div class="tabs">
                 <div class="tab active" data-target="dashboard">My Account Details</div>
@@ -27,50 +28,50 @@
             <!-- DASHBOARD TAB -->
             <div id="dashboard" class="tab-content active">
                 <h1>My Account Details</h1>
-            <div class="ticket-info">
-                <!-- Ticket Details Section -->
-                <div class="ticket-field">
-                    <label>First Name:<% 
+            <div class="account-info">
+                <!-- Account Details Section -->
+                <div class="account-field">
+                    <label><b>First Name:</b><% 
                     if (user != null) {
                     String firstName = user.getFirstName();
                     out.println("<a>" + " " + firstName);
                 }
                     %></label>
                 </div>
-                <div class="ticket-field">
-                    <label>Surname:<% 
+                <div class="account-field">
+                    <label><b>Surname:</b><% 
                     if (user != null) {
                     String lastName = user.getLastName();
                     out.println("<a>" + " " + lastName);
                 }
                     %></label>
                 </div>
-                <div class="ticket-field">
-                    <label>Email:<%
+                <div class="account-field">
+                    <label><b>Email:</b><%
                     if (user != null) 
                     {
                         String lastName = user.getEmail();
                         out.println("<a>" + " " + lastName);
                     }%></label>
                 </div>
-                <div class="ticket-field">
-                    <label for="dateSubmitted">Date of Birth:<%
+                <div class="account-field">
+                    <label for="dateSubmitted"><b>Date of Birth:</b><%
                     if (user != null) 
                     {
                         String dob = user.getDob();
                         out.println("<a>" + " " + dob);
                     }%></label>
                 </div>
-                <div class="ticket-field">
-                    <label for="status">Phone Number:<%
+                <div class="account-field">
+                    <label for="status"><b>Phone Number:</b><%
                     if (user != null) 
                     {
                         String phone = user.getPhone();
                         out.println("<a>" + " " + phone);
                     }%>
                 </div>
-                <div class="ticket-field">
-                    <label for="type">Address:<%
+                <div class="account-field">
+                    <label for="type"><b>Address:</b><%
                     if (user != null) 
                     {
                         String address = user.getAddress();
@@ -81,8 +82,8 @@
                     }%>
                 </div>
                 
-                <div class="ticket-field">
-                    <label for="description">Membership:</label>
+                <div class="account-field">
+                    <label for="description"><b>Membership:</b></label>
                     <span id="status">None.</span>
                 </div>
             </div>
@@ -92,7 +93,7 @@
             <!-- EDIT ACCOUNT TAB -->
             <div id="editAccount" class="tab-content">
                 <h2>Edit Account Details</h2>
-                <form id="submitTicketForm" action="detailUpdate_success.jsp" method="post">
+                <form id="editAccountForm" action="detailUpdate_success.jsp" method="post">
                     
                     <div class="form-group">
                         <label for="email">Email Address:</label>
@@ -110,7 +111,7 @@
                     </div>                           
                     
                     <div class="form-group">
-                        <button type="submit" id="submitTicketButton" disabled>Submit New Details</button>
+                        <button type="submit" id="editAccountButton" disabled>Submit New Details</button>
                     </div>
                 </form>
             </div>
@@ -118,7 +119,7 @@
             <div id="deleteAccount" class="tab-content">
                 <!-- DELETE ACCOUNT BUTTON -->
     <div class="form-group">
-        <form action="DeleteAccountServlet" method="post" onsubmit="return confirm('Are you sure you want to delete your account? This action is irreversible.');">
+        <form action="DeleteAccountServlet" method="post" onsubmit="return confirm('Are you sure you want to delete your account? This can not be undone.');">
             <button type="submit" class="delete-button">Delete Account</button>
         </form>
     </div>
@@ -160,8 +161,8 @@
                 updateButtonState(); // Initial check
             }
 
-            // Validate the submit ticket form
-            validateForm('submitTicketForm', 'submitTicketButton');
+            // Validate the edit account form
+            validateForm('editAccountForm', 'editAccountButton');
 
             // Tab functionality
             const tabs = document.querySelectorAll('.tab');
