@@ -93,6 +93,48 @@ public class DBManager {
         }
         return null; // No staff user found
     }
+    
+    public boolean deleteUserByEmail(String email) throws SQLException {
+    String query = "DELETE FROM users WHERE email = ?";
+    PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+
+    try {
+        pstmt.setString(1, email);
+        int rowsAffected = pstmt.executeUpdate();
+
+        return rowsAffected > 0; // returns true assuming at least one row was deleted
+    } finally {
+        if (pstmt != null) {
+            pstmt.close(); // close statement to release resources
+        }
+    }
+}
+    
+    public boolean updateUserDetails(String oldEmail, String firstName, String lastName, String email, String dob, String phone, String address, String city, String postcode, String country) throws SQLException {
+    String query = "UPDATE users SET firstName = ?, lastName = ?, email = ?, dob = ?, phone = ?, address = ?, city = ?, postcode = ?, country = ? WHERE email = ?";
+    PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+    
+    try{
+        pstmt.setString(1, firstName);
+        pstmt.setString(2, lastName);
+        pstmt.setString(3, email);
+        pstmt.setString(4, dob);
+        pstmt.setString(5, phone);
+        pstmt.setString(6, address);
+        pstmt.setString(7, city);
+        pstmt.setString(8, postcode);
+        pstmt.setString(9, country);
+        pstmt.setString(10, oldEmail); // identify user by old email
+        
+        int rowsAffected = pstmt.executeUpdate();
+        return rowsAffected > 0; // returns true if one row was updated
+    }
+    finally {
+        if (pstmt != null) {
+            pstmt.close(); // close statement to release resources
+        }
+    }
+    }
 
 
     // Other methods (updateUser, deleteUser) can be added similarly
