@@ -26,11 +26,11 @@ public class LoginServlet extends HttpServlet {
             connector.closeConnection();
 
             if (user != null) {
-                // Successful login
+                // successful login
                 request.getSession().setAttribute("user", user);
                 response.sendRedirect("index.jsp"); // Redirect to welcome page or dashboard
             } else {
-                // Failed login
+                // failed login
                 response.sendRedirect("login.jsp?error=invalid_credentials");
             }
         } catch (Exception e) {
