@@ -91,9 +91,9 @@
                         <label for="type_of_enquiry">Type of Enquiry:</label>
                         <select id="type_of_enquiry" name="type_of_enquiry" required>
                             <option value="">Select an option</option>
-                            <option value="general">General Inquiry</option>
-                            <option value="technical">Technical Support</option>
-                            <option value="billing">Billing Issues</option>
+                            <option value="General">General Inquiry</option>
+                            <option value="Technical">Technical Support</option>
+                            <option value="Billing">Billing Issues</option>
                         </select>
                     </div>
                     

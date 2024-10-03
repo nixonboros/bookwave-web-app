@@ -1,3 +1,6 @@
+<%@ page import="com.g3app.model.SupportTicket" %>
+<%@ page import="java.util.List" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,30 +30,33 @@
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <!-- Example ticket data; this should be replaced with data from your database -->
+                <%
+                        // Retrieve the list of support tickets from the request attribute
+                        List<SupportTicket> tickets = (List<SupportTicket>) request.getAttribute("allTickets");
+                        if (tickets != null && !tickets.isEmpty()) {
+                            for (SupportTicket ticket : tickets) {
+                    %>
                     <tr>
-                        <td>12345</td>
-                        <td>Jane Doe</td>
-                        <td>Incorrect Billing Amount Charged</td>
-                        <td>Billing Issues</td>
-                        <td>Open</td>
-                        <td>2024-09-01</td>
+                        <td><%= ticket.getTicketId() %></td>
+                        <td><%= ticket.getCustomerName() %></td>
+                        <td><%= ticket.getSubjectTitle() %></td>
+                        <td><%= ticket.getTypeOfEnquiry() %></td>
+                        <td><%= ticket.getStatus() %></td>
+                        <td><%= ticket.getDateSubmitted() %></td>
                         <td>
-                            <a href="staffSupportTicketDetails.jsp?ticketId=12345" class="button view-ticket">View</a>
+                            <a href="staffSupportTicketDetails.jsp?ticketId=<%= ticket.getTicketId() %>" class="button view-ticket">View</a>
                         </td>
                     </tr>
+                    <%
+                            }
+                        } else {
+                    %>
                     <tr>
-                        <td>67890</td>
-                        <td>John Smith</td>
-                        <td>Issue with Updating Payment Method Details</td>
-                        <td>Technical Support</td>
-                        <td>Closed</td>
-                        <td>2024-08-20</td>
-                        <td>
-                            <a href="staffSupportTicketDetails.jsp?ticketId=67890" class="button view-ticket">View</a>
-                        </td>
+                        <td colspan="7">No support tickets found.</td>
                     </tr>
+                    <%
+                        }
+                    %>
                 </tbody>
             </table>
         </section>

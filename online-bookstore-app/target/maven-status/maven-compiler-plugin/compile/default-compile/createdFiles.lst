@@ -2,6 +2,7 @@ com\g3app\controller\StaffRegisterServlet.class
 com\g3app\controller\RegisterServlet.class
 com\g3app\controller\LoginServlet.class
 com\g3app\dao\DB.class
+com\g3app\controller\StaffSupportDashboardServlet.class
 com\g3app\dao\DBManager.class
 com\g3app\controller\StaffLoginServlet.class
 com\g3app\controller\ViewTicketServlet.class

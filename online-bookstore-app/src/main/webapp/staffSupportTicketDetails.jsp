@@ -12,7 +12,7 @@
 
     <main>
         <section class="ticket-details animated">
-            <a href="staffSupportDashboard.jsp" class="back-arrow">
+            <a href="StaffSupportDashboardServlet" class="back-arrow">
                 <img src="images/back-arrow.png" alt="Back" />
             </a>
             <h1>Support Ticket Details</h1>

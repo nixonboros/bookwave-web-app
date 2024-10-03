@@ -110,19 +110,19 @@ public class DBManager {
     }
     
     public List<SupportTicket> getAllSupportTickets() throws SQLException {
-        String query = "SELECT * FROM supporttickets";
+        String query = "SELECT * FROM support_tickets";
         ResultSet rs = st.executeQuery(query);
         List<SupportTicket> tickets = new ArrayList<>();
         while (rs.next()) {
             SupportTicket ticket = new SupportTicket();
-            ticket.setTicketId(rs.getInt("ticketId"));
-            ticket.setCustomerName(rs.getString("customerName"));
+            ticket.setTicketId(rs.getInt("ticket_id"));
+            ticket.setCustomerName(rs.getString("customer_name"));
             ticket.setEmail(rs.getString("email"));
-            ticket.setSubjectTitle(rs.getString("subjectTitle"));
-            ticket.setTypeOfEnquiry(rs.getString("typeOfEnquiry"));
-            ticket.setIssueDescription(rs.getString("issueDescription"));
+            ticket.setSubjectTitle(rs.getString("subject_title"));
+            ticket.setTypeOfEnquiry(rs.getString("type_of_enquiry"));
+            ticket.setIssueDescription(rs.getString("issue_description"));
             ticket.setStatus(rs.getString("status"));
-            ticket.setDateSubmitted(rs.getDate("dateSubmitted"));
+            ticket.setDateSubmitted(rs.getDate("date_submitted"));
             tickets.add(ticket);
         }
         return tickets;
