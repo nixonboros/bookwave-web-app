@@ -11,3 +11,4 @@ com\g3app\dao\DBConnector.class
 com\g3app\model\SupportTicket.class
 com\g3app\model\StaffUser.class
 com\g3app\dao\DBTest.class
+com\g3app\controller\ViewTicketsServlet.class

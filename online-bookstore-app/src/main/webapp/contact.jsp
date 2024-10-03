@@ -1,3 +1,6 @@
+<%@ page import="com.g3app.model.SupportTicket" %>
+<%@ page import="java.util.List" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +28,7 @@
             <div id="dashboard" class="tab-content active">
                 <h2>Your Support Tickets</h2>
                 <p>Here you can view and manage all your support tickets. Click on a ticket to view its details.</p>
-                <!-- Example information, TO BE REPLACED W DATABASE-->
+
                 <table>
                     <thead>
                         <tr>
@@ -38,22 +41,29 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <%
+                            List<SupportTicket> tickets = (List<SupportTicket>) request.getAttribute("tickets");
+                            if (tickets != null && !tickets.isEmpty()) {
+                                for (SupportTicket ticket : tickets) {
+                        %>
                         <tr>
-                            <td>12345</td>
-                            <td>Incorrect Billing Amount charged</td>
-                            <td>Billing Issues</td>
-                            <td>Open</td>
-                            <td>2024-09-01</td>
-                            <td><a href="viewTicket.jsp?id=12345" class="button">View</a></td>
+                            <td><%= ticket.getTicketId() %></td>
+                            <td><%= ticket.getSubjectTitle() %></td>
+                            <td><%= ticket.getTypeOfEnquiry() %></td>
+                            <td><%= ticket.getStatus() %></td>
+                            <td><%= ticket.getDateSubmitted() %></td>
+                            <td><a href="viewTicket.jsp?id=<%= ticket.getTicketId() %>" class="button">View</a></td>
                         </tr>
+                        <%
+                                }
+                            } else {
+                        %>
                         <tr>
-                            <td>67890</td>
-                            <td>Issue with Updating Payment Method Details</td>
-                            <td>Technical Support</td>
-                            <td>Closed</td>
-                            <td>2024-08-20</td>
-                            <td><a href="viewTicket.jsp?id=67890" class="button">View</a></td>
+                            <td colspan="6">No support tickets found.</td>
                         </tr>
+                        <%
+                            }
+                        %>
                     </tbody>
                 </table>
             </div>
