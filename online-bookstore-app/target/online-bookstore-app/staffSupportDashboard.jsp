@@ -23,6 +23,7 @@
                     <tr>
                         <th>Ticket ID</th>
                         <th>Customer Name</th>
+                        <th>Customer Email Address</th>
                         <th>Subject Title</th>
                         <th>Type</th>
                         <th>Status</th>
@@ -39,6 +40,7 @@
                     <tr>
                         <td><%= ticket.getTicketId() %></td>
                         <td><%= ticket.getCustomerName() %></td>
+                        <td><%= ticket.getEmail() %></td>
                         <td><%= ticket.getSubjectTitle() %></td>
                         <td><%= ticket.getTypeOfEnquiry() %></td>
                         <td><%= ticket.getStatus() %></td>

@@ -20,7 +20,6 @@
             <a href="UserSupportDashboardServlet" class="back-arrow">
                 <img src="images/back-arrow.png" alt="Back" />
             </a>
-             <!-- Example information, TO BE REPLACED W DATABASE-->
             <h1>Support Ticket Details</h1>
             <div class="ticket-info">
                 <div class="ticket-field">
