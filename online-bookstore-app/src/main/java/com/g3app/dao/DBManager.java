@@ -41,7 +41,7 @@ public class DBManager {
         pstmt.setString(1, user.getFirstName());
         pstmt.setString(2, user.getLastName());
         pstmt.setString(3, user.getEmail());
-        pstmt.setString(4, user.getPassword()); // Hash passwords in production
+        pstmt.setString(4, user.getPassword());
         pstmt.setString(5, user.getDob());
         pstmt.setString(6, user.getPhone());
         pstmt.setString(7, user.getAddress());
@@ -59,14 +59,14 @@ public class DBManager {
         pstmt.setString(1, staffUser.getFirstName());
         pstmt.setString(2, staffUser.getLastName());
         pstmt.setString(3, staffUser.getEmail());
-        pstmt.setString(4, staffUser.getPassword()); // Hash passwords in production
+        pstmt.setString(4, staffUser.getPassword()); 
         pstmt.setString(5, staffUser.getDob());
         pstmt.setString(6, staffUser.getPhone());
         pstmt.setString(7, staffUser.getAddress());
         pstmt.setString(8, staffUser.getCity());
         pstmt.setString(9, staffUser.getPostcode());
         pstmt.setString(10, staffUser.getCountry());
-        pstmt.setString(11, staffUser.getStaffId()); // New field
+        pstmt.setString(11, staffUser.getStaffId()); 
         pstmt.executeUpdate();
     }
     
@@ -89,7 +89,7 @@ public class DBManager {
                 rs.getString("city"),
                 rs.getString("postcode"),
                 rs.getString("country"),
-                rs.getString("staffId") // Include staffId
+                rs.getString("staffId") 
             );
         }
         return null; // No staff user found
@@ -109,24 +109,6 @@ public class DBManager {
         pstmt.executeUpdate();
     }
     
-    public SupportTicket getSupportTicketById(int ticketId) throws SQLException {
-        String query = "SELECT * FROM support_tickets WHERE ticket_id = " + ticketId;
-        ResultSet rs = st.executeQuery(query);
-        if (rs.next()) {
-            SupportTicket ticket = new SupportTicket();
-            ticket.setTicketId(rs.getInt("ticket_id"));
-            ticket.setCustomerName(rs.getString("customer_name"));
-            ticket.setEmail(rs.getString("email"));
-            ticket.setSubjectTitle(rs.getString("subject_title"));
-            ticket.setTypeOfEnquiry(rs.getString("type_of_enquiry"));
-            ticket.setIssueDescription(rs.getString("issue_description"));
-            ticket.setStatus(rs.getString("status"));
-            ticket.setDateSubmitted(rs.getDate("date_submitted"));
-            return ticket;
-        }
-        return null; // No ticket found
-    }
-    
     public List<SupportTicket> getAllSupportTickets() throws SQLException {
         String query = "SELECT * FROM supporttickets";
         ResultSet rs = st.executeQuery(query);
@@ -144,6 +126,26 @@ public class DBManager {
             tickets.add(ticket);
         }
         return tickets;
+    }
+    
+    public SupportTicket getSupportTicketById(int ticketId) throws SQLException {
+        String query = "SELECT * FROM support_tickets WHERE ticket_id = ?";
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+        pstmt.setInt(1, ticketId);
+        ResultSet rs = pstmt.executeQuery();
+        if (rs.next()) {
+            SupportTicket ticket = new SupportTicket();
+            ticket.setTicketId(rs.getInt("ticket_id"));
+            ticket.setCustomerName(rs.getString("customer_name"));
+            ticket.setEmail(rs.getString("email"));
+            ticket.setSubjectTitle(rs.getString("subject_title"));
+            ticket.setTypeOfEnquiry(rs.getString("type_of_enquiry"));
+            ticket.setIssueDescription(rs.getString("issue_description"));
+            ticket.setStatus(rs.getString("status"));
+            ticket.setDateSubmitted(rs.getDate("date_submitted"));
+            return ticket;
+        }
+        return null; // No ticket found
     }
     
     public List<SupportTicket> getTicketsByEmail(String email) throws SQLException {

@@ -52,7 +52,7 @@
                             <td><%= ticket.getTypeOfEnquiry() %></td>
                             <td><%= ticket.getStatus() %></td>
                             <td><%= ticket.getDateSubmitted() %></td>
-                            <td><a href="viewTicket.jsp?id=<%= ticket.getTicketId() %>" class="button">View</a></td>
+                            <td><a href="ViewTicketServlet?ticketId=<%= ticket.getTicketId() %>" class="button">View</a></td>
                         </tr>
                         <%
                                 }

@@ -16,7 +16,7 @@
             <p>Thank you for submitting your request. We will get back to you shortly.</p>
             <div class="success-buttons">
                 <a href="viewTicket.jsp" class="button">View ticket details</a>
-                <a href="contact.jsp" class="button">Go to dashboard</a>
+                <a href="UserSupportDashboardServlet" class="button">Go to dashboard</a>
             </div>
         </section>
     </main>
