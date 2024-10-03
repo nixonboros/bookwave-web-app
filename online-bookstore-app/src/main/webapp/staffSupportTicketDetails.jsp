@@ -2,6 +2,7 @@
 
 <%
     SupportTicket ticket = (SupportTicket) request.getAttribute("ticket");
+    String status = ticket.getStatus();  // Assuming status returns "open" or "closed"
 %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -22,6 +23,20 @@
                 <img src="images/back-arrow.png" alt="Back" />
             </a>
             <h1>Support Ticket Details</h1>
+            
+            <!-- Open Ticket Button -->
+            <button class="button" 
+                    style="margin-bottom: 10px;" 
+                    <%= "Open".equals(status) ? "disabled" : "" %>>
+                Open Ticket
+            </button>
+
+            <!-- Close Ticket Button -->
+            <button class="button" 
+                    style="margin-bottom: 10px;" 
+                    <%= "Closed".equals(status) ? "disabled" : "" %>>
+                Close Ticket
+            </button>
 
             <div class="ticket-info">
                 <div class="ticket-field">

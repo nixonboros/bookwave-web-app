@@ -245,8 +245,12 @@ button {
 }
 
 button:disabled {
-    background-color: #E0E0E0; /* Light gray for disabled buttons */
+    background-color: #E0E0E0;
     cursor: not-allowed;
+}
+
+button:disabled:hover {
+    background-color: #E0E0E0;        
 }
 
 /* General button styling */
