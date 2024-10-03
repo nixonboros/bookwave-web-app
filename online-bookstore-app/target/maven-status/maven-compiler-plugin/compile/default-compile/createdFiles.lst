@@ -1,3 +1,4 @@
+com\g3app\controller\StaffViewTicketDetailsServlet.class
 com\g3app\controller\StaffRegisterServlet.class
 com\g3app\controller\RegisterServlet.class
 com\g3app\controller\LoginServlet.class

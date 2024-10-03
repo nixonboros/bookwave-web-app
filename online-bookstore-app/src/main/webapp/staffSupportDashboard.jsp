@@ -46,7 +46,7 @@
                         <td><%= ticket.getStatus() %></td>
                         <td><%= ticket.getDateSubmitted() %></td>
                         <td>
-                            <a href="staffSupportTicketDetails.jsp?ticketId=<%= ticket.getTicketId() %>" class="button view-ticket">View</a>
+                            <a href="StaffViewTicketDetailsServlet?ticketId=<%= ticket.getTicketId() %>" class="button view-ticket">View</a>
                         </td>
                     </tr>
                     <%

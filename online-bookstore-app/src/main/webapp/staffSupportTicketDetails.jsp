@@ -1,3 +1,9 @@
+<%@ page import="com.g3app.model.SupportTicket" %>
+
+<%
+    SupportTicket ticket = (SupportTicket) request.getAttribute("ticket");
+%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,38 +22,42 @@
                 <img src="images/back-arrow.png" alt="Back" />
             </a>
             <h1>Support Ticket Details</h1>
+
             <div class="ticket-info">
-                <!-- Ticket Details Section -->
                 <div class="ticket-field">
                     <label for="ticketID">Ticket ID:</label>
-                    <span id="ticketID">12345</span> <!-- Replace with dynamic data -->
+                    <span id="ticketID"><%= ticket.getTicketId() %></span>
                 </div>
                 <div class="ticket-field">
                     <label for="customerName">Customer Name:</label>
-                    <span id="customerName">Jane Doe</span> <!-- Replace with dynamic data -->
+                    <span id="customerName"><%= ticket.getCustomerName() %></span>
+                </div>
+                <div class="ticket-field">
+                    <label for="email">Customer Email Address:</label>
+                    <span id="email"><%= ticket.getEmail() %></span>
                 </div>
                 <div class="ticket-field">
                     <label for="subjectTitle">Subject Title:</label>
-                    <span id="subjectTitle">Incorrect Billing Amount Charged</span> <!-- Replace with dynamic data -->
+                    <span id="subjectTitle"><%= ticket.getSubjectTitle() %></span>
                 </div>
                 <div class="ticket-field">
                     <label for="type">Type:</label>
-                    <span id="type">Billing Issues</span> <!-- Replace with dynamic data -->
+                    <span id="type"><%= ticket.getTypeOfEnquiry() %></span>
                 </div>
                 <div class="ticket-field">
                     <label for="status">Status:</label>
-                    <span id="status">Open</span> <!-- Replace with dynamic data -->
+                    <span id="status"><%= ticket.getStatus() %></span>
                 </div>
                 <div class="ticket-field">
                     <label for="dateSubmitted">Date Submitted:</label>
-                    <span id="dateSubmitted">2024-09-01</span> <!-- Replace with dynamic data -->
+                    <span id="dateSubmitted"><%= ticket.getDateSubmitted() %></span>
                 </div>
                 <div class="ticket-field">
                     <label for="description">Issue Description:</label>
-                    <p id="description">There seems to be an error with the billing amount charged to my account. Please review and correct the amount.</p> <!-- Replace with dynamic data -->
+                    <p id="description"><%= ticket.getIssueDescription() %></p>
                 </div>
             </div>
-
+                
             <div class="chat-section">
                 <h2>Chat with Customer</h2>
                 <div class="chat-history" id="chatHistory">
