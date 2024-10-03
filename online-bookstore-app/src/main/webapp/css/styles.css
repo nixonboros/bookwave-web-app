@@ -465,7 +465,6 @@ input:disabled {
 }
 
 
-
 /* -*sk*- Custom Styles for Staff User Management Page */
 
 /* Container */
@@ -476,6 +475,12 @@ input:disabled {
     background-color: #fff; /* White background for better contrast */
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Soft shadow for depth */
+    
+    max-width: 600px; /* Maintain the form's width */
+    margin-left: 20px; /* Align it to the left of the screen */
+    background-color: transparent; /* Remove white backdrop */
+    border-radius: 0; /* Remove rounded corners */
+    box-shadow: none; /* Remove shadow */
 }
 
 /* Headings */
@@ -545,14 +550,6 @@ form select:focus {
 
 /* Buttons */
 
-button {
-    padding: 10px 20px;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
 button:disabled {
     background-color: #E0E0E0; /* Light gray for disabled buttons */
     cursor: not-allowed;
@@ -560,26 +557,16 @@ button:disabled {
 
 /* General button styling */
 .button {
-    padding: 10px 20px;
-    color: #FFFFFF;
-    background-color: #FF6F61; /* Coral button color */
-    border: none;
-    border-radius: 5px;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
-    text-align: center;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    cursor: pointer;
 }
 
 .button:hover {
-    background-color: #e04b47; /* Slightly darker coral for hover effect */
     transform: translateY(-2px); /* Lift effect on hover */
 }
 
 .button:active {
-    background-color: #c83c36; /* Even darker coral for active effect */
     transform: translateY(0); /* Remove lift effect when clicked */
 }
 
@@ -670,15 +657,6 @@ p + button {
         padding: 10px 16px;
         font-size: 14px;
     }
-}
-
-.container {
-    max-width: 600px; /* Maintain the form's width */
-    margin-left: 20px; /* Align it to the left of the screen */
-    padding: 40px;
-    background-color: transparent; /* Remove white backdrop */
-    border-radius: 0; /* Remove rounded corners */
-    box-shadow: none; /* Remove shadow */
 }
 
 .styled-table-admin {
@@ -807,6 +785,3 @@ footer {
 .footer-links a:hover {
     color: #FF6F61; /* Change link color on hover */
 }
-
-
-
