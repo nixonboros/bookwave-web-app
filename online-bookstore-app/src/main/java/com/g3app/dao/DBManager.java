@@ -171,4 +171,16 @@ public class DBManager {
         }
         return tickets;
     }
+    
+    public boolean updateTicketStatus(String ticketId, String status) throws SQLException {
+        String query = "UPDATE support_tickets SET status = ? WHERE ticket_id = ?";
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+
+        pstmt.setString(1, status);
+        pstmt.setInt(2, Integer.parseInt(ticketId)); // Convert ticketId to integer if needed
+
+        int rowsAffected = pstmt.executeUpdate(); // Execute the update
+
+        return rowsAffected > 0; // Return true if the update was successful
+    }   
 }

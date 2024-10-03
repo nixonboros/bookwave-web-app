@@ -25,18 +25,22 @@
             <h1>Support Ticket Details</h1>
             
             <!-- Open Ticket Button -->
-            <button class="button" 
-                    style="margin-bottom: 10px;" 
-                    <%= "Open".equals(status) ? "disabled" : "" %>>
-                Open Ticket
-            </button>
+            <form action="OpenTicketServlet" method="POST" style="display: inline;">
+                <input type="hidden" name="ticketId" value="<%= ticket.getTicketId() %>">
+                <button type="submit" class="button" style="margin-bottom: 10px;" 
+                        <%= "Open".equals(status) ? "disabled" : "" %>>
+                    Open Ticket
+                </button>
+            </form>
 
             <!-- Close Ticket Button -->
-            <button class="button" 
-                    style="margin-bottom: 10px;" 
-                    <%= "Closed".equals(status) ? "disabled" : "" %>>
-                Close Ticket
-            </button>
+            <form action="CloseTicketServlet" method="POST" style="display: inline;">
+                <input type="hidden" name="ticketId" value="<%= ticket.getTicketId() %>">
+                <button type="submit" class="button" style="margin-bottom: 10px;" 
+                        <%= "Closed".equals(status) ? "disabled" : "" %>>
+                    Close Ticket
+                </button>
+            </form>
 
             <div class="ticket-info">
                 <div class="ticket-field">
