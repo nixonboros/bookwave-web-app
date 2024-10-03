@@ -11,7 +11,7 @@
 
     <main>
         <section class="ticket-details animated">
-            <a href="ViewTicketsServlet" class="back-arrow">
+            <a href="UserSupportDashboardServlet" class="back-arrow">
                 <img src="images/back-arrow.png" alt="Back" />
             </a>
              <!-- Example information, TO BE REPLACED W DATABASE-->
