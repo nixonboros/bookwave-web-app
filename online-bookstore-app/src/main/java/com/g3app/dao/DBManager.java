@@ -182,5 +182,34 @@ public class DBManager {
         int rowsAffected = pstmt.executeUpdate(); // Execute the update
 
         return rowsAffected > 0; // Return true if the update was successful
-    }   
+    }
+
+    public void addMessage(Message message) throws SQLException {
+        String query = "INSERT INTO ticket_messages (ticket_id, sender, message) VALUES (?, ?, ?)";
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+        pstmt.setInt(1, message.getTicketId());
+        pstmt.setString(2, message.getSender());
+        pstmt.setString(3, message.getMessage());
+        pstmt.executeUpdate();
+}
+
+    public List<Message> getMessagesByTicketId(int ticketId) throws SQLException {
+        String query = "SELECT * FROM ticket_messages WHERE ticket_id = ?";
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+        pstmt.setInt(1, ticketId);
+        ResultSet rs = pstmt.executeQuery();
+
+        List<Message> messages = new ArrayList<>();
+        while (rs.next()) {
+            Message message = new Message(
+                rs.getInt("message_id"),
+                rs.getInt("ticket_id"),
+                rs.getString("sender"),
+                rs.getString("message"),
+                rs.getTimestamp("timestamp")
+            );
+            messages.add(message);
+        }
+        return messages;
+    }
 }

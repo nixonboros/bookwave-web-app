@@ -1,14 +1,17 @@
 package com.g3app.controller;
 
 import com.g3app.model.SupportTicket;
+import com.g3app.model.Message;
 import com.g3app.dao.DBConnector;
 import com.g3app.dao.DBManager;
+
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -35,6 +38,7 @@ public class ViewTicketServlet extends HttpServlet {
         }
 
         SupportTicket ticket = null;
+        List<Message> messages = null; // Declare a list for messages
 
         try {
             // Establish database connection
@@ -44,6 +48,7 @@ public class ViewTicketServlet extends HttpServlet {
 
             // Retrieve the support ticket details by ticket ID
             ticket = dbManager.getSupportTicketById(ticketId);
+            messages = dbManager.getMessagesByTicketId(ticketId); // Retrieve messages by ticket ID
 
             // Close connection
             connector.closeConnection();
@@ -55,8 +60,9 @@ public class ViewTicketServlet extends HttpServlet {
 
         // Check if the ticket exists
         if (ticket != null) {
-            // Set the ticket object in the request scope
+            // Set the ticket object and messages in the request scope
             request.setAttribute("ticket", ticket);
+            request.setAttribute("messages", messages); // Set the messages
 
             // Forward to viewTicket.jsp
             request.getRequestDispatcher("viewTicket.jsp").forward(request, response);
@@ -66,3 +72,4 @@ public class ViewTicketServlet extends HttpServlet {
         }
     }
 }
+
