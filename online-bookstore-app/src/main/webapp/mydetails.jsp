@@ -21,7 +21,6 @@
             <div class="tabs">
                 <div class="tab active" data-target="dashboard">My Account Details</div>
                 <div class="tab" data-target="editAccount">Edit my Account</div>
-                <div class="tab" data-target="deleteAccount">Delete my Account</div>
             </div>
             
             <!-- DASHBOARD TAB -->
@@ -30,19 +29,14 @@
                 <div class="account-info">
                     <!-- Account Details Section -->
                     <div class="account-field">
-                        <label><b>First Name:</b>
+                        <label><b>Name:</b>
                         <% if (user != null) {
                             String firstName = user.getFirstName();
-                            out.println("<a>" + " " + firstName);
-                        } %></label>
-                    </div>
-                    <div class="account-field">
-                        <label><b>Surname:</b>
-                        <% if (user != null) {
                             String lastName = user.getLastName();
-                            out.println("<a>" + " " + lastName);
+                            out.println("<a>" + " " + firstName + " " + lastName);
                         } %></label>
                     </div>
+
                     <div class="account-field">
                         <label><b>Email:</b>
                         <% if (user != null) {
@@ -62,7 +56,7 @@
                         <% if (user != null) {
                             String phone = user.getPhone();
                             out.println("<a>" + " " + phone);
-                        } %>
+                        } %></label>
                     </div>
                     <div class="account-field">
                         <label for="type"><b>Address:</b>
@@ -72,11 +66,18 @@
                             String postcode = user.getPostcode();
                             String country = user.getCountry();
                             out.println("<a>" + " " + address + " " + city + " " + postcode + " " + country);
-                        } %>
+                        } %></label>
                     </div>
                     <div class="account-field">
                         <label for="description"><b>Membership:</b></label>
                         <span id="status">None.</span>
+                    </div>
+                    
+                    <!-- Move Delete Account button here -->
+                    <div class="form-group">
+                        <form action="DeleteAccountServlet" method="post" onsubmit="return confirm('Are you sure you want to delete your account? This cannot be undone.');">
+                            <button type="submit" class="delete-button">Delete Account</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -129,25 +130,18 @@
                         <label for="country">Country:</label>
                         <input type="text" id="country" name="country" value="<%= user.getCountry() %>" required>
                     </div>                   
-                     <% String status = request.getParameter("status"); %>
-    <% if ("error".equals(status)) { %>
-        <div class="error-message">
-            <p style="color: red;">An error occurred while processing your request. Please try again.</p>
-        </div>
-    <% } %>
+
+                    <% String status = request.getParameter("status"); %>
+                    <% if ("error".equals(status)) { %>
+                        <div class="error-message">
+                            <p style="color: red;">An error occurred while processing your request. Please try again.</p>
+                        </div>
+                    <% } %>
+                    
                     <div class="form-group">
                         <button type="submit" id="editAccountButton" disabled>Update</button>
                     </div>
                 </form>
-            </div>
-            
-            <!-- DELETE ACCOUNT TAB -->
-            <div id="deleteAccount" class="tab-content">
-                <div class="form-group">
-                    <form action="DeleteAccountServlet" method="post" onsubmit="return confirm('Are you sure you want to delete your account? This cannot be undone.');">
-                        <button type="submit" class="delete-button">Delete Account</button>
-                    </form>
-                </div>
             </div>
         </section>
     </main>
