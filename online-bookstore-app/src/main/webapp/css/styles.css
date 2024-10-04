@@ -8,8 +8,8 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    display: block;
     width: 100%;
-    overflow-x: hidden;
 }
 
 header {
@@ -465,6 +465,7 @@ input:disabled {
 }
 
 
+
 /* -*sk*- Custom Styles for Staff User Management Page */
 
 /* Container */
@@ -475,12 +476,6 @@ input:disabled {
     background-color: #fff; /* White background for better contrast */
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Soft shadow for depth */
-    
-    max-width: 600px; /* Maintain the form's width */
-    margin-left: 20px; /* Align it to the left of the screen */
-    background-color: transparent; /* Remove white backdrop */
-    border-radius: 0; /* Remove rounded corners */
-    box-shadow: none; /* Remove shadow */
 }
 
 /* Headings */
@@ -550,6 +545,14 @@ form select:focus {
 
 /* Buttons */
 
+button {
+    padding: 10px 20px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
 button:disabled {
     background-color: #E0E0E0; /* Light gray for disabled buttons */
     cursor: not-allowed;
@@ -557,16 +560,26 @@ button:disabled {
 
 /* General button styling */
 .button {
+    padding: 10px 20px;
+    color: #FFFFFF;
+    background-color: #FF6F61; /* Coral button color */
+    border: none;
+    border-radius: 5px;
     text-decoration: none;
     display: inline-block;
+    font-size: 16px;
+    text-align: center;
     transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
 }
 
 .button:hover {
+    background-color: #e04b47; /* Slightly darker coral for hover effect */
     transform: translateY(-2px); /* Lift effect on hover */
 }
 
 .button:active {
+    background-color: #c83c36; /* Even darker coral for active effect */
     transform: translateY(0); /* Remove lift effect when clicked */
 }
 
@@ -659,6 +672,15 @@ p + button {
     }
 }
 
+.container {
+    max-width: 600px; /* Maintain the form's width */
+    margin-left: 20px; /* Align it to the left of the screen */
+    padding: 40px;
+    background-color: transparent; /* Remove white backdrop */
+    border-radius: 0; /* Remove rounded corners */
+    box-shadow: none; /* Remove shadow */
+}
+
 .styled-table-admin {
     margin-left: 20px;
 }
@@ -671,21 +693,21 @@ p + button {
 .book-selection {
     display: flex;
     justify-content: center;
-    gap: 20px; /* Space between books */
+    gap: 20px;
     padding: 20px 0;
-    flex-wrap: nowrap; /* Prevent stacking */
+    flex-wrap: nowrap;
 }
 
 .book {
     position: relative;
     text-align: center;
-    width: 250px; /* Adjust container width */
-    flex: 0 0 150px; /* Fix the width of each book container */
+    width: 250px;
+    flex: 0 0 150px;
 }
 
 .book img {
-    width: auto; /* Full width of the container */
-    height: 350px; /* Maintain aspect ratio */
+    width: auto;
+    height: 350px;
     object-fit: cover;
     transition: transform 0.3s ease-in-out;
 }
@@ -713,7 +735,7 @@ p + button {
 }
 
 .book:hover img {
-    transform: scale(1.1); /* Zoom effect on hover */
+    transform: scale(1.1);
 }
 
 .book:hover .book-details {
@@ -722,65 +744,140 @@ p + button {
 }
 
 .see-more {
-    text-align: center; /* Center the See More link */
-    margin: 20px 0; /* Space above and below */
+    text-align: center;
+    margin: 20px 0;
 }
 
 .see-more a {
-    display: inline-block; /* Make the link a block element for button effect */
-    padding: 10px 20px; /* Add padding for button size */
-    font-size: 18px; /* Increase font size */
-    color: white; /* Text color */
-    background-color: red; /* Button background color */
-    border: none; /* Remove border */
-    border-radius: 5px; /* Rounded corners */
-    text-decoration: none; /* Remove underline from link */
-    transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 18px;
+    color: white; 
+    background-color: red; 
+    border: none; 
+    border-radius: 5px; 
+    text-decoration: none; 
+    transition: background-color 0.3s, transform 0.3s; 
 }
 
 .see-more a:hover {
-    background-color: darkred; /* Change background color on hover */
-    transform: scale(1.05); /* Slightly scale up the button */
+    background-color: darkred;
+    transform: scale(1.05);
 }
 
 .center {
-    text-align: center; /* Center text */
-    margin: 20px 0; /* Space above and below */
+    text-align: center;
+    margin: 20px 0;
 }
 
 footer {
-    background-color: #808080; 
-    text-align: center; /* Center the text */
-    position:relative;
-    padding-top: 1em; /* Space above footer */
-    width: 100vw;
-    height:7em;
-    bottom: 0;
+    background-color: #808080;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+}
 
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .footer-logo {
-    gap: 10px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    color: #ffffff;
     font-size: 18px;
 }
 
 .footer-logo-img {
-    width: 30px; /* Set logo size */
-    height: auto; /* Maintain aspect ratio */
+    width: 30px;
+    height: auto;
+    margin-right: 10px;
 }
 
 .footer-links p,
 .footer-links a {
-    color: #fff; /* Link color */
-    text-decoration: none; /* No underline */
-    margin: 12px; /* Space between links */
-    transition: color 0.3s; /* Smooth transition for hover effect */
+    color: #fff;
+    text-decoration: none;
+    margin: 12px;
+    transition: color 0.3s;
 }
 
 .footer-links a:hover {
-    color: #FF6F61; /* Change link color on hover */
+    color: #FF6F61;
+}
+
+.individual-book-details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.book-img {
+    width: 300px;
+    height: auto;
+    margin-right: 20px;
+}
+
+.book-info {
+    max-width: 400px;
+    text-align: left;
+}
+
+.book-description {
+    margin-top: 20px;
+    font-size: 1em;
+    text-align: left;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 600px;
+    padding: 0 10px;
+}
+
+.add-to-cart {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn-add-to-cart {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-add-to-cart:hover {
+    background-color: #0056b3;
+}
+
+.delete-button {
+    background-color: #f44336; /* Red color for delete button */
+    color: white; /* Text color */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    padding: 10px 15px; /* Vertical and horizontal padding */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px; /* Font size */
+    transition: background-color 0.3s ease; /* Transition effect */
+}
+
+.delete-button:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+}
+
+.form-group {
+    margin-bottom: 15px; /* Space between form fields */
+    text-align: left; /* Align text to the left */
+}
+
+/* Center the button within the form group */
+.form-group form {
+    display: inline-block; /* Align the form as inline-block */
+    text-align: center; /* Center the button */
 }
