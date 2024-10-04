@@ -12,7 +12,6 @@
     </head>
     <body>
        <footer>
-            <div class="footer-content">
                 <div class="footer-logo">
                     <img src="images/book-logo.png" alt="Bookstore Logo" class="footer-logo-img">
                     <span>Bookstore</span>
@@ -24,7 +23,6 @@
                         <a> Terms of Service</a>
                     </p>
                 </div>
-            </div>
         </footer>
 
     </body>

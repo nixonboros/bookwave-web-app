@@ -8,8 +8,8 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    display: block;
     width: 100%;
+    overflow-x: hidden;
 }
 
 header {
@@ -749,29 +749,28 @@ p + button {
 }
 
 footer {
-    background-color: #808080; /* Dark background color */
-    color: white; /* Text color */
+    background-color: #808080; 
     text-align: center; /* Center the text */
-    padding: 20px; /* Padding inside the footer */
-    margin-top: 20px; /* Space above footer */
-}
+    position:relative;
+    padding-top: 1em; /* Space above footer */
+    width: 100vw;
+    height:7em;
+    bottom: 0;
 
-.footer-content {
-    display: flex;
-    flex-direction: column; /* Stack elements vertically */
-    align-items: center; /* Center align items */
 }
 
 .footer-logo {
+    gap: 10px;
     display: flex;
-    align-items: center; /* Vertically align items */
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
     font-size: 18px;
 }
 
 .footer-logo-img {
     width: 30px; /* Set logo size */
     height: auto; /* Maintain aspect ratio */
-    margin-right: 10px;
 }
 
 .footer-links p,
