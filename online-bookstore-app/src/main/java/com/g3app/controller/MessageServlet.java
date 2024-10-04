@@ -18,7 +18,7 @@ public class MessageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Get the message and ticket ID from the request
         String messageText = request.getParameter("message");
-        String ticketIdStr = request.getParameter("ticketId"); // Ensure ticketId is being sent
+        String ticketIdStr = request.getParameter("ticketId"); 
 
         // Validate parameters
         if (messageText == null || messageText.isEmpty() || ticketIdStr == null || ticketIdStr.isEmpty()) {
@@ -35,7 +35,6 @@ public class MessageServlet extends HttpServlet {
             return;
         }
 
-        // Assuming you have a way to get the sender's name (e.g., from the session or request)
         String sender = "User"; // Replace with actual logic to get the sender's name
 
         // Create a new Message object
