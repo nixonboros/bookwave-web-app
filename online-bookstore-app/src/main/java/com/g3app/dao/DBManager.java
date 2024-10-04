@@ -2,6 +2,8 @@ package com.g3app.dao;
 
 import com.g3app.model.User;
 import com.g3app.model.StaffUser;
+import com.g3app.model.Book;
+import java.util.*;
 import java.sql.*;
 
 public class DBManager {
@@ -109,6 +111,24 @@ public class DBManager {
         }
     }
 }
+    public boolean deleteBookByTitle(String title) throws SQLException {
+    String query = "DELETE FROM books WHERE title = ?";
+    PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+
+    try {
+         pstmt.setString(1, title); // Set the title parameter
+
+        // Execute the update
+        int rowsAffected = pstmt.executeUpdate();
+        return rowsAffected > 0; // Returns true if a book was deleted
+    } finally {
+        // Close the PreparedStatement if it was initialized
+        if (pstmt != null) {
+            pstmt.close();
+        }
+    }
+}
+
     
     public boolean updateUserDetails(String oldEmail, String firstName, String lastName, String email, String dob, String phone, String address, String city, String postcode, String country) throws SQLException {
     String query = "UPDATE users SET firstName = ?, lastName = ?, email = ?, dob = ?, phone = ?, address = ?, city = ?, postcode = ?, country = ? WHERE email = ?";
@@ -135,6 +155,80 @@ public class DBManager {
         }
     }
     }
+    
+public void addBook(Book book) throws SQLException {
+    String query = "INSERT INTO books (title, author, price, publishedDate, description, imgUrl, genre, medium) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+    
+    try {
+        pstmt.setString(1, book.getTitle());
+        pstmt.setString(2, book.getAuthor());
+        pstmt.setDouble(3, book.getPrice());
+        pstmt.setString(4, book.getPublishedDate());
+        pstmt.setString(5, book.getDescription());
+        pstmt.setString(6, book.getImgUrl());
+        pstmt.setString(7, book.getGenre());
+        pstmt.setString(8, book.getMedium());
+
+        pstmt.executeUpdate(); // Execute the insert statement
+    } finally {
+        if (pstmt != null) {
+            pstmt.close(); // Close statement to release resources
+        }
+    }
+}
+
+    
+    public ArrayList<Book> getAllBooks() throws SQLException {
+    ArrayList<Book> books = new ArrayList<>();
+    String query = "SELECT * FROM books"; // Ensure your table structure includes genre and medium
+    PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+    ResultSet rs = pstmt.executeQuery();
+
+    while (rs.next()) {
+        int id = rs.getInt("id");
+        String title = rs.getString("title");
+        String author = rs.getString("author");
+        double price = rs.getDouble("price");
+        String publishedDate = rs.getString("publishedDate");
+        String description = rs.getString("description");
+        String imgUrl = rs.getString("imgUrl");
+        String genre = rs.getString("genre"); // New line to get genre
+        String medium = rs.getString("medium"); // Change the variable name to medium
+
+        Book book = new Book(id, title, author, price, publishedDate, description, imgUrl, genre, medium); // Use medium
+        books.add(book);
+    }
+    return books;
+}
+
+    
+    public Book getBookById(int id) throws SQLException {
+    Book book = null;
+    String query = "SELECT * FROM books WHERE id = ?"; // Use parameterized query for security
+    PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+    pstmt.setInt(1, id); // Set the ID parameter
+    ResultSet rs = pstmt.executeQuery();
+
+        if (rs.next()) {
+            // Create a book object from the result set
+            book = new Book(
+                rs.getInt("id"),
+                rs.getString("title"),
+                rs.getString("author"),
+                rs.getDouble("price"),
+                rs.getString("publishedDate"),
+                rs.getString("description"),
+                rs.getString("imgUrl"),
+                rs.getString("genre"),
+                rs.getString("medium")
+            );
+        } else {
+            System.out.println("No book found with ID: " + id); // Debug message
+        }
+    
+    return book; // Return the book object or null if not found
+}
 
 
     // Other methods (updateUser, deleteUser) can be added similarly
