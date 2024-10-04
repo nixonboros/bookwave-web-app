@@ -58,6 +58,6 @@ public class StaffMessageServlet extends HttpServlet {
         }
 
         // Redirect back to the staff ticket details page after successful message submission
-        response.sendRedirect("StaffMessageServlet?ticketId=" + ticketId);
+        response.sendRedirect("StaffViewTicketDetailsServlet?ticketId=" + ticketId);
     }
 }
