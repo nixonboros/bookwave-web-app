@@ -20,8 +20,8 @@
                 <div class="footer-links">
                     <p>&copy; 2024 Your Bookstore Name. All rights reserved.</p>
                     <p>
-                        <a href="privacy-policy.jsp">Privacy Policy</a> | 
-                        <a href="terms-of-service.jsp">Terms of Service</a>
+                        <a> Privacy Policy</a> | 
+                        <a> Terms of Service</a>
                     </p>
                 </div>
             </div>
