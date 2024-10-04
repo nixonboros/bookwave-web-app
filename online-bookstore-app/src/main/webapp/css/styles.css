@@ -1,8 +1,11 @@
 /* General styles */
+*{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #F5F5F5; /* Light background for a bookstore */
     color: #333333; /* Dark gray text for readability */
     display: flex;
@@ -340,22 +343,8 @@ tbody tr:hover {
     color: #333333;
 }
 
-.ticket-actions {
-    text-align: center;
-}
-
 .ticket-actions .button {
-    background-color: #FF6F61;
-    color: #FFFFFF;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
     font-weight: bold;
-    transition: background-color 0.3s ease;
-}
-
-.ticket-actions .button:hover {
-    background-color: #e04b47;
 }
 
 .chat-section {
@@ -431,10 +420,6 @@ tbody tr:hover {
 /*SK CSS*/
  
 /* Adjust spacing for checkbox and radio buttons */
-.form-group label {
-    margin-left: 4px;
-}
-
 .form-group input[type="checkbox"], 
 .form-group input[type="radio"] {
     margin-right: 2px;
@@ -463,8 +448,6 @@ input:disabled {
 #phone {
     flex: 1; 
 }
-
-
 
 /* -*sk*- Custom Styles for Staff User Management Page */
 
@@ -503,11 +486,20 @@ form {
 .form-group {
     display: flex;
     flex-direction: column;
+    margin-bottom: 15px; /* Space between form fields */
+    text-align: left; /* Align text to the left */
+}
+
+/* Center the button within the form group */
+.form-group form {
+    display: inline-block; /* Align the form as inline-block */
+    text-align: center; /* Center the button */
 }
 
 .form-group label {
     font-size: 16px;
     margin-bottom: 5px;
+    margin-left: 4px;
 }
 
 .form-group input,
@@ -551,51 +543,43 @@ button:disabled {
 }
 
 /* General button styling */
-.button {
-    text-decoration: none;
-    display: inline-block;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.button:hover {
-    transform: translateY(-2px); /* Lift effect on hover */
-}
-
-.button:active {
-    transform: translateY(0); /* Remove lift effect when clicked */
-}
-
 button, .button {
+    display: inline-block;
     background-color: #FF6F61;
     border: none;
     color: white;
     padding: 12px 20px;
     text-align: center;
+    text-decoration: none;
     font-size: 16px;
-    border-radius: 6px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s, box-shadow 0.3s;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 button:hover, .button:hover {
     background-color: #e04b47;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px); /* Lift effect on hover */
 }
 
 button:active, .button:active {
     background-color: #c83c36;
     box-shadow: none;
+    transform: translateY(0); /* Remove lift effect when clicked */
 }
 
 /* Delete Button Styling */
 .delete-button {
-    background-color: #ff4d4d;
+    background-color: #f44336; /* Red color for delete button */
+    padding: 10px 15px; /* Vertical and horizontal padding */
     transition: background-color 0.3s ease;
 }
 
 .delete-button:hover {
-    background-color: #e03b3b;
+    background-color: #d32f2f; /* Darker red on hover */
 }
+
 
 /* Form Field Styling */
 .form-field {
@@ -726,20 +710,13 @@ p + button {
 }
 
 .see-more {
-    text-align: center;
     margin: 20px 0;
 }
 
 .see-more a {
-    display: inline-block;
-    padding: 10px 20px;
     font-size: 18px;
     color: white; 
     background-color: red; 
-    border: none; 
-    border-radius: 5px; 
-    text-decoration: none; 
-    transition: background-color 0.3s, transform 0.3s; 
 }
 
 .see-more a:hover {
@@ -753,6 +730,7 @@ p + button {
 }
 
 footer {
+    margin-top:auto;
     background-color: #808080; 
     text-align: center;
     position:relative;
@@ -822,42 +800,11 @@ footer {
 }
 
 .btn-add-to-cart {
-    padding: 10px 20px;
     font-size: 1em;
-    color: white;
     background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .btn-add-to-cart:hover {
     background-color: #0056b3;
-}
-
-.delete-button {
-    background-color: #f44336; /* Red color for delete button */
-    color: white; /* Text color */
-    border: none; /* No border */
-    border-radius: 4px; /* Rounded corners */
-    padding: 10px 15px; /* Vertical and horizontal padding */
-    cursor: pointer; /* Pointer cursor on hover */
-    font-size: 16px; /* Font size */
-    transition: background-color 0.3s ease; /* Transition effect */
-}
-
-.delete-button:hover {
-    background-color: #d32f2f; /* Darker red on hover */
-}
-
-.form-group {
-    margin-bottom: 15px; /* Space between form fields */
-    text-align: left; /* Align text to the left */
-}
-
-/* Center the button within the form group */
-.form-group form {
-    display: inline-block; /* Align the form as inline-block */
-    text-align: center; /* Center the button */
 }

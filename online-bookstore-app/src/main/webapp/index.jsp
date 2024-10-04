@@ -50,7 +50,7 @@
         </section>
 
         <div class="see-more">
-            <a href="product.jsp">See All Books</a>
+            <a href="product.jsp" class="button">See All Books</a>
         </div
         
         </section>
