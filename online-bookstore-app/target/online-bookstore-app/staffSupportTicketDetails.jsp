@@ -89,7 +89,7 @@
                         for (Message msg : messages) {
                             String userType = msg.getSender(); // Assume Message has a sender attribute (e.g., "Support" or "User")
                             String messageText = msg.getMessage(); // Get the message text
-                            String messageClass = userType.equals("Support") ? "otheruser" : "you"; // Determine class based on user type
+                            String messageClass = userType.equals("Support") ? "you" : "otheruser"; // Determine class based on user type
                     %>
                             <div class="chat-message <%= messageClass %>">
                                 <div class="message-user"><%= userType %>:</div>
