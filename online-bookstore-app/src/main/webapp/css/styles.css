@@ -545,14 +545,6 @@ form select:focus {
 
 /* Buttons */
 
-button {
-    padding: 10px 20px;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
 button:disabled {
     background-color: #E0E0E0; /* Light gray for disabled buttons */
     cursor: not-allowed;
@@ -560,26 +552,16 @@ button:disabled {
 
 /* General button styling */
 .button {
-    padding: 10px 20px;
-    color: #FFFFFF;
-    background-color: #FF6F61; /* Coral button color */
-    border: none;
-    border-radius: 5px;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
-    text-align: center;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    cursor: pointer;
 }
 
 .button:hover {
-    background-color: #e04b47; /* Slightly darker coral for hover effect */
     transform: translateY(-2px); /* Lift effect on hover */
 }
 
 .button:active {
-    background-color: #c83c36; /* Even darker coral for active effect */
     transform: translateY(0); /* Remove lift effect when clicked */
 }
 
