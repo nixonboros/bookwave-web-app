@@ -13,7 +13,7 @@
     <jsp:include page="nav-header.jsp"/>
 
     <main>
-        <section class="animated" style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 50px;">
+        <section class="animated">
             <%
                 // Retrieve user from session
                 User user = (User) request.getSession().getAttribute("user");
@@ -51,7 +51,7 @@
 
         <div class="see-more">
             <a href="product.jsp" class="button">See All Books</a>
-        </div
+        </div>
         
         </section>
     </main>
