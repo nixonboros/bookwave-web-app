@@ -28,8 +28,8 @@ public class UserTest {
         dbManager = new DBManager(connection);
 
         // ensure the user does not exist before adding
-        dbManager.deleteUserByEmail(user.getEmail()); // Clean up any existing user
-        dbManager.addUser(user); // Add the user to the database
+        dbManager.deleteUserByEmail(user.getEmail()); // clean up any existing users
+        dbManager.addUser(user); // add the new user to the database
     }
 
     // verify that the user is created correctly
@@ -45,16 +45,7 @@ public class UserTest {
     public void testUpdateUserDetails() throws Exception {
         // update user details
         String newEmail = "john.bigbooks@books.com";
-        boolean updated = dbManager.updateUserDetails(user.getEmail(), 
-                                                       "John", 
-                                                       "Book", 
-                                                       newEmail, 
-                                                       "1990-01-01", 
-                                                       "9876543210", 
-                                                       "456 Book St", 
-                                                       "Book", 
-                                                       "1", 
-                                                       "Book");
+        boolean updated = dbManager.updateUserDetails(user.getEmail(), "John", "Book", newEmail, "1990-01-01", "9876543210", "456 Book St", "Book", "1", "Book");
 
         // ensure the update method returned true
         Assert.assertTrue("User details should be updated successfully.", updated);
@@ -63,12 +54,12 @@ public class UserTest {
         updatedUser = dbManager.findUser(newEmail, "password");
 
         // verify the details were updated correctly
-        Assert.assertNotNull("Updated user should not be null.", updatedUser);
+        Assert.assertNotNull("Updated user can not be null.", updatedUser);
         Assert.assertEquals("John", updatedUser.getFirstName());
         Assert.assertEquals("Book", updatedUser.getLastName());
         Assert.assertEquals(newEmail, updatedUser.getEmail());
-        Assert.assertEquals("9876543210", updatedUser.getPhone()); // Verify the phone number
-        Assert.assertEquals("456 Book St", updatedUser.getAddress()); // Verify the address
+        Assert.assertEquals("9876543210", updatedUser.getPhone());
+        Assert.assertEquals("456 Book St", updatedUser.getAddress());
     }
 
     @Test
