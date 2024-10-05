@@ -65,5 +65,3 @@ steps:
     artifact: drop
     publishLocation: 'pipeline'
   displayName: 'Publish Pipeline Artifact: drop'
-    publishLocation: 'pipeline'
-  displayName: 'Publish Pipeline Artifact: drop'
