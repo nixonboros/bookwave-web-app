@@ -73,7 +73,6 @@
                         <span id="status">None.</span>
                     </div>
                     
-                    <!-- Move Delete Account button here -->
                     <div class="form-group">
                         <form action="DeleteAccountServlet" method="post" onsubmit="return confirm('Are you sure you want to delete your account? This cannot be undone.');">
                             <button type="submit" class="delete-button">Delete Account</button>
@@ -179,7 +178,7 @@
 
             validateForm('editAccountForm', 'editAccountButton');
 
-            // Tab functionality
+            // tab functionality
             const tabs = document.querySelectorAll('.tab');
             const tabContents = document.querySelectorAll('.tab-content');
 
