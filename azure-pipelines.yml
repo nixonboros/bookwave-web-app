@@ -4,12 +4,33 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
 trigger:
-- main
+- JerryBranch
 
 pool:
   vmImage: ubuntu-latest
 
 steps:
+# Install MySQL on the build agent
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.x'
+    addToPath: true
+
+# Start MySQL service
+- script: |
+    sudo apt-get update
+    sudo apt-get install -y mysql-server
+    sudo service mysql start
+  displayName: 'Install and Start MySQL'
+
+# Set up MySQL Database and User
+- script: |
+    sudo mysql -e "CREATE DATABASE bookstoredb;"
+    sudo mysql -e "CREATE USER 'root'@'localhost' IDENTIFIED BY 'root';"
+    sudo mysql -e "GRANT ALL PRIVILEGES ON bookstoredb.* TO 'root'@'localhost';"
+    sudo mysql -e "FLUSH PRIVILEGES;"
+  displayName: 'Set up MySQL Database and User'
+
 # RUN MAVEN TO BUILD PROJECT AND RUN TESTS 
 - task: Maven@3
   inputs:
@@ -19,15 +40,15 @@ steps:
     jdkVersionOption: '21'
     jdkArchitectureOption: 'x64'
     publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'package'
+    testResultsFiles: '**/target/surefire-reports/TEST-*.xml'
+    goals: 'verify'
   displayName: 'Build and Run Tests with Maven'
 
 # PUBLISH TEST RESULTS
 - task: PublishTestResults@2
   inputs:
     testResultsFormat: 'JUnit'
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    testResultsFiles: '**/target/surefire-reports/TEST-*.xml'
     failTaskOnFailedTests: true
   displayName: 'Publish Test Results'
 
@@ -42,5 +63,7 @@ steps:
   inputs:
     targetPath: '$(Build.ArtifactStagingDirectory)'
     artifact: drop
+    publishLocation: 'pipeline'
+  displayName: 'Publish Pipeline Artifact: drop'
     publishLocation: 'pipeline'
   displayName: 'Publish Pipeline Artifact: drop'
