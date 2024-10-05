@@ -23,12 +23,6 @@ steps:
     sudo service mysql start
   displayName: 'Install and Start MySQL'
 
-# Set MySQL Root Password (If Not Already Set)
-- script: |
-    sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH 'mysql_native_password' BY 'root';"
-    sudo mysql -e "FLUSH PRIVILEGES;"
-  displayName: 'Set MySQL Root Password'
-
 # Set up MySQL Database and User
 - script: |
     mysql -u root -proot -e "CREATE DATABASE bookstoredb;"
