@@ -673,21 +673,17 @@ p + button {
 }
 
 .container {
-    max-width: 600px; /* Maintain the form's width */
-    margin-left: 20px; /* Align it to the left of the screen */
+    max-width: 600px;
+    margin-left: 20px;
     padding: 40px;
-    background-color: transparent; /* Remove white backdrop */
-    border-radius: 0; /* Remove rounded corners */
-    box-shadow: none; /* Remove shadow */
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
 }
 
 .styled-table-admin {
     margin-left: 20px;
 }
-
-/* -*sk*- End of Custom Styles */
-
-/*SK Finish*/
 
 /* Book Selection Styles */
 .book-selection {
@@ -856,3 +852,28 @@ footer {
     background-color: #0056b3;
 }
 
+.delete-button {
+    background-color: #f44336; 
+    color: white;
+    border: none; 
+    border-radius: 4px; 
+    padding: 10px 15px; 
+    cursor: pointer; 
+    font-size: 16px; 
+    transition: background-color 0.3s ease; 
+}
+
+.delete-button:hover {
+    background-color: #d32f2f;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+/* Center the button within the form group */
+.form-group form {
+    display: inline-block;
+    text-align: center;
+}

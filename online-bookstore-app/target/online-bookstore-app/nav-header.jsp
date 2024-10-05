@@ -1,4 +1,5 @@
 <%@ page import="com.g3app.model.User" %>
+<%@ page import="com.g3app.model.Book" %>
 <html>
 <header>
     <nav>

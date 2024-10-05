@@ -1,11 +1,3 @@
-com\g3app\controller\StaffRegisterServlet.class
-com\g3app\controller\RegisterServlet.class
+com\g3app\controller\BookAddServlet.class
+com\g3app\controller\BookDeleteServlet.class
 com\g3app\controller\LoginServlet.class
-com\g3app\dao\DB.class
-com\g3app\dao\DBManager.class
-com\g3app\controller\StaffLoginServlet.class
-com\g3app\model\User.class
-com\g3app\controller\LogoutServlet.class
-com\g3app\dao\DBConnector.class
-com\g3app\model\StaffUser.class
-com\g3app\dao\DBTest.class
