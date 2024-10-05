@@ -10,6 +10,40 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+# INSTALL MYSQL ON BUILD AGENT
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.x'
+    addToPath: true
+
+# INSTALL MYSQL
+- script: |
+    sudo apt-get update
+    sudo apt-get install -y mysql-server
+    sudo service mysql start
+  displayName: 'Install and Start MySQL'
+
+# SET UP DATABASE AND USER
+- script: |
+    mysql -u root -proot -e "CREATE DATABASE IF NOT EXISTS bookstoredb;"
+    mysql -u root -proot -e "GRANT ALL PRIVILEGES ON bookstoredb.* TO 'root'@'localhost';"
+    mysql -u root -proot -e "FLUSH PRIVILEGES;"
+
+    mysql -u root -proot -D bookstoredb -e "CREATE TABLE IF NOT EXISTS users (
+        firstName VARCHAR(255) NOT NULL,
+        lastName VARCHAR(255) NOT NULL,
+        email VARCHAR(255) UNIQUE NOT NULL,
+        password VARCHAR(255) COLLATE utf8mb4_bin NOT NULL,
+        dob DATE,
+        phone VARCHAR(20),
+        address VARCHAR(255),
+        city VARCHAR(100),
+        postcode VARCHAR(20),
+        country VARCHAR(100)
+    );"
+  displayName: 'Set up MySQL Database and User'
+
+
 # RUN MAVEN TO BUILD PROJECT AND RUN TESTS 
 - task: Maven@3
   inputs:
@@ -19,15 +53,15 @@ steps:
     jdkVersionOption: '21'
     jdkArchitectureOption: 'x64'
     publishJUnitResults: true
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
-    goals: 'package'
+    testResultsFiles: '**/target/surefire-reports/TEST-*.xml'
+    goals: 'verify'
   displayName: 'Build and Run Tests with Maven'
 
 # PUBLISH TEST RESULTS
 - task: PublishTestResults@2
   inputs:
     testResultsFormat: 'JUnit'
-    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    testResultsFiles: '**/target/surefire-reports/TEST-*.xml'
     failTaskOnFailedTests: true
   displayName: 'Publish Test Results'
 
