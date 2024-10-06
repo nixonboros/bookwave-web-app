@@ -129,21 +129,22 @@ public class DBManager {
 }
 
     
-    public boolean updateUserDetails(String oldEmail, String firstName, String lastName, String email, String dob, String phone, String address, String city, String postcode, String country) throws SQLException {
-    String query = "UPDATE users SET firstName = ?, lastName = ?, email = ?, dob = ?, phone = ?, address = ?, city = ?, postcode = ?, country = ? WHERE email = ?";
+  public boolean updateUserDetails(String oldEmail, String firstName, String lastName, String email, String password, String dob, String phone, String address, String city, String postcode, String country) throws SQLException {
+    String query = "UPDATE users SET firstName = ?, lastName = ?, email = ?, password = ?, dob = ?, phone = ?, address = ?, city = ?, postcode = ?, country = ? WHERE email = ?";
     PreparedStatement pstmt = st.getConnection().prepareStatement(query);
     
     try{
         pstmt.setString(1, firstName);
         pstmt.setString(2, lastName);
         pstmt.setString(3, email);
-        pstmt.setString(4, dob);
-        pstmt.setString(5, phone);
-        pstmt.setString(6, address);
-        pstmt.setString(7, city);
-        pstmt.setString(8, postcode);
-        pstmt.setString(9, country);
-        pstmt.setString(10, oldEmail); // identify user by old email
+        pstmt.setString(4, password);
+        pstmt.setString(5, dob);
+        pstmt.setString(6, phone);
+        pstmt.setString(7, address);
+        pstmt.setString(8, city);
+        pstmt.setString(9, postcode);
+        pstmt.setString(10, country);
+        pstmt.setString(11, oldEmail); // identify user by old email
         
         int rowsAffected = pstmt.executeUpdate();
         return rowsAffected > 0; // returns true if one row was updated
