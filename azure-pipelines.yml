@@ -54,10 +54,10 @@ steps:
         status VARCHAR(50) NOT NULL,
         date_submitted DATETIME DEFAULT CURRENT_TIMESTAMP
     );"
-  displayName: 'Set up MySQL Database '
+  displayName: 'Set up MySQL Database and Create Tables'
 
 
-# RUN MAVEN TO BUILD PROJECT AND RUN TESTS 
+# RUN MAVEN TO BUILD PROJECT AND RUN UNIT TESTS 
 - task: Maven@3
   inputs:
     mavenPomFile: 'online-bookstore-app/pom.xml'
@@ -67,7 +67,7 @@ steps:
     jdkArchitectureOption: 'x64'
     publishJUnitResults: true
     testResultsFiles: '**/target/surefire-reports/TEST-*.xml'
-    goals: 'verify'
+    goals: 'verify' # triggers execution of unit tests
   displayName: 'Build and Run Tests with Maven'
 
 # PUBLISH TEST RESULTS
