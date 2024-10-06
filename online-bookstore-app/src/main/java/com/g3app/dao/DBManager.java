@@ -361,5 +361,4 @@ public SupportTicket getSupportTicketById(int ticketId) throws SQLException {
 
         return rowsAffected > 0; // Return true if the ticket was deleted successfully
     }
-
 }

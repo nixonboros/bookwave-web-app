@@ -1,19 +1,22 @@
 /* General styles */
+*{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #F5F5F5; /* Light background for a bookstore */
-    color: #333333; /* Dark gray text for readability */
+    background-color: #F5F5F5;
+    color: #333333;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    display: block;
+    overflow-x: hidden;
     width: 100%;
 }
 
 header {
-    background-color: #FFFFFF; /* White header for a clean look */
+    background-color: #FFFFFF;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -33,7 +36,7 @@ header {
 }
 
 .cart-icon {
-    width: 24px; /* Adjust size as needed */
+    width: 24px;
     height: 24px;
     vertical-align: middle;
 }
@@ -65,7 +68,7 @@ nav {
 }
 
 .nav-links a {
-    color: #333333; /* Dark gray text for nav links */
+    color: #333333;
     text-decoration: none;
     font-size: 16px;
     font-weight: 500;
@@ -75,7 +78,7 @@ nav {
 
 .nav-links a:hover,
 .nav-links a.active {
-    color: #FF6F61; /* Coral color for active and hover state */
+    color: #FF6F61;
 }
 
 .nav-links a.active::after {
@@ -85,7 +88,7 @@ nav {
     left: 0;
     width: 100%;
     height: 2px;
-    background-color: #FF6F61; /* Coral underline for active link */
+    background-color: #FF6F61;
 }
 
 .user-actions {
@@ -167,7 +170,7 @@ nav {
 .mark-all-read {
     cursor: pointer;
     transition: color 0.3s ease;
-    white-space: nowrap; /* Prevents text from wrapping */
+    white-space: nowrap;
     text-align: right;
 }
 
@@ -202,7 +205,7 @@ main {
     padding: 20px;
     box-sizing: border-box;
     flex: 1; 
-    width: 100%; /* Full width */
+    width: 100%;
     padding: 20px;
 }
 
@@ -213,8 +216,6 @@ main h1, main h2, main p {
 section {
     margin-bottom: 20px;
 }
-
-
 /* Tab styles */
 .tabs {
     display: flex;
@@ -236,7 +237,7 @@ section {
 }
 
 .tab:hover {
-    background-color: #E0E0E0; /* Light gray background on hover */
+    background-color: #E0E0E0;
 }
 
 .tab.active {
@@ -340,22 +341,8 @@ tbody tr:hover {
     color: #333333;
 }
 
-.ticket-actions {
-    text-align: center;
-}
-
 .ticket-actions .button {
-    background-color: #FF6F61;
-    color: #FFFFFF;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
     font-weight: bold;
-    transition: background-color 0.3s ease;
-}
-
-.ticket-actions .button:hover {
-    background-color: #e04b47;
 }
 
 .chat-section {
@@ -404,11 +391,11 @@ tbody tr:hover {
     background-color: #d1e7dd;
 }
 
-.chat-message.support {
+.chat-message.otheruser {
     justify-content: flex-start;
 }
 
-.chat-message.support .message-text {
+.chat-message.otheruser .message-text {
     background-color: #e9ecef;
 }
 
@@ -431,10 +418,6 @@ tbody tr:hover {
 /*SK CSS*/
  
 /* Adjust spacing for checkbox and radio buttons */
-.form-group label {
-    margin-left: 4px;
-}
-
 .form-group input[type="checkbox"], 
 .form-group input[type="radio"] {
     margin-right: 2px;
@@ -464,8 +447,6 @@ input:disabled {
     flex: 1; 
 }
 
-
-
 /* -*sk*- Custom Styles for Staff User Management Page */
 
 /* Container */
@@ -473,9 +454,9 @@ input:disabled {
     max-width: 900px;
     margin: 0 auto;
     padding: 40px;
-    background-color: #fff; /* White background for better contrast */
+    background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Soft shadow for depth */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 /* Headings */
@@ -496,18 +477,27 @@ form {
     flex-direction: column;
     gap: 15px;
     margin-bottom: 30px;
-    width: 100%; /* Full width of the form container */
+    width: 100%;
     margin-bottom: 30px;
 }
 
 .form-group {
     display: flex;
     flex-direction: column;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+/* Center the button within the form group */
+.form-group form {
+    display: inline-block;
+    text-align: center;
 }
 
 .form-group label {
     font-size: 16px;
     margin-bottom: 5px;
+    margin-left: 4px;
 }
 
 .form-group input,
@@ -515,7 +505,7 @@ form {
 .form-group select {
     width: 100%;
     padding: 8px;
-    border: 1px solid #E0E0E0; /* Light gray border for input fields */
+    border: 1px solid #E0E0E0;
     border-radius: 4px;
     box-sizing: border-box;
 }
@@ -529,7 +519,7 @@ form select {
     margin-bottom: 15px;
     border: 1px solid #ddd;
     border-radius: 6px;
-    background-color: #f9f9f9; /* Light background for inputs */
+    background-color: #f9f9f9;
     box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
@@ -538,82 +528,56 @@ form input[type="text"]:focus,
 form input[type="email"]:focus,
 form input[type="password"]:focus,
 form select:focus {
-    border-color: #FF6F61; /* Coral color for focus */
-    box-shadow: 0 0 5px rgba(255, 111, 97, 0.5); /* Glow on focus */
+    border-color: #FF6F61;
+    box-shadow: 0 0 5px rgba(255, 111, 97, 0.5);
     outline: none;
 }
 
 /* Buttons */
 
-button {
-    padding: 10px 20px;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
 button:disabled {
-    background-color: #E0E0E0; /* Light gray for disabled buttons */
+    background-color: #E0E0E0;
     cursor: not-allowed;
 }
 
 /* General button styling */
-.button {
-    padding: 10px 20px;
-    color: #FFFFFF;
-    background-color: #FF6F61; /* Coral button color */
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    text-align: center;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    cursor: pointer;
-}
-
-.button:hover {
-    background-color: #e04b47; /* Slightly darker coral for hover effect */
-    transform: translateY(-2px); /* Lift effect on hover */
-}
-
-.button:active {
-    background-color: #c83c36; /* Even darker coral for active effect */
-    transform: translateY(0); /* Remove lift effect when clicked */
-}
-
 button, .button {
+    display: inline-block;
     background-color: #FF6F61;
     border: none;
     color: white;
     padding: 12px 20px;
     text-align: center;
+    text-decoration: none;
     font-size: 16px;
-    border-radius: 6px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s, box-shadow 0.3s;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 button:hover, .button:hover {
     background-color: #e04b47;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
 }
 
 button:active, .button:active {
     background-color: #c83c36;
     box-shadow: none;
+    transform: translateY(0);
 }
 
 /* Delete Button Styling */
 .delete-button {
-    background-color: #ff4d4d;
+    background-color: #f44336;
+    padding: 10px 15px;
     transition: background-color 0.3s ease;
 }
 
 .delete-button:hover {
-    background-color: #e03b3b;
+    background-color: #d32f2f;
 }
+
 
 /* Form Field Styling */
 .form-field {
@@ -673,21 +637,17 @@ p + button {
 }
 
 .container {
-    max-width: 600px; /* Maintain the form's width */
-    margin-left: 20px; /* Align it to the left of the screen */
+    max-width: 600px;
+    margin-left: 20px;
     padding: 40px;
-    background-color: transparent; /* Remove white backdrop */
-    border-radius: 0; /* Remove rounded corners */
-    box-shadow: none; /* Remove shadow */
+    background-color: transparent;
+    border-radius: 0;
+    box-shadow: none;
 }
 
 .styled-table-admin {
     margin-left: 20px;
 }
-
-/* -*sk*- End of Custom Styles */
-
-/*SK Finish*/
 
 /* Book Selection Styles */
 .book-selection {
@@ -744,20 +704,14 @@ p + button {
 }
 
 .see-more {
-    text-align: center;
+    display: flex;  
+    justify-content: center;
     margin: 20px 0;
 }
 
 .see-more a {
-    display: inline-block;
-    padding: 10px 20px;
     font-size: 18px;
-    color: white; 
     background-color: red; 
-    border: none; 
-    border-radius: 5px; 
-    text-decoration: none; 
-    transition: background-color 0.3s, transform 0.3s; 
 }
 
 .see-more a:hover {
@@ -771,29 +725,28 @@ p + button {
 }
 
 footer {
-    background-color: #808080;
-    color: white;
+    margin-top:auto;
+    background-color: #808080; 
     text-align: center;
-    padding: 20px;
-    margin-top: 20px;
-}
-
-.footer-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    position:relative;
+    padding-top: 1em;
+    width: 100vw;
+    height:7em;
+    bottom: 0;
 }
 
 .footer-logo {
+    gap: 10px;
     display: flex;
+    justify-content: center;
     align-items: center;
+    color: #ffffff;
     font-size: 18px;
 }
 
 .footer-logo-img {
     width: 30px;
     height: auto;
-    margin-right: 10px;
 }
 
 .footer-links p,
@@ -842,17 +795,11 @@ footer {
 }
 
 .btn-add-to-cart {
-    padding: 10px 20px;
     font-size: 1em;
-    color: white;
     background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .btn-add-to-cart:hover {
     background-color: #0056b3;
 }
-

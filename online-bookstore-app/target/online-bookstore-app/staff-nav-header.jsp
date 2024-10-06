@@ -8,10 +8,11 @@
         </div>
         <ul class="nav-links">
             <li><a href="manageUsers.jsp">Manage Users</a></li>
+            <li><a href="staffCatalogue.jsp">Manage Catalogue</a></li>
             <li><a href="manageOrders.jsp">Manage Orders</a></li>
             <li><a href="managePayments.jsp">Manage Payments</a></li>
             <li><a href="shipment_table.jsp">Manage Shipping</a></li>
-            <li><a href="manageSupportTickets.jsp">Support Tickets</a></li>
+            <li><a href="StaffSupportDashboardServlet">Support Tickets</a></li>
         </ul>
 
         <div class="user-actions">

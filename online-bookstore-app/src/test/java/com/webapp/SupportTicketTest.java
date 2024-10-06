@@ -6,11 +6,13 @@ import org.junit.Assert;
 
 import com.g3app.dao.DBManager;
 import com.g3app.model.SupportTicket;
+import com.g3app.model.Message;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
+import java.sql.Timestamp;
 
 public class SupportTicketTest {
 
@@ -42,10 +44,10 @@ public class SupportTicketTest {
 
     // Verify that the support ticket is created correctly
     @Test
-    public void testSupportTicketCreation() throws SQLException {
+    public void testCreateSupportTicket() throws SQLException {
         List<SupportTicket> tickets = dbManager.getTicketsByEmail(ticket.getEmail());
         Assert.assertNotNull(tickets);
-        Assert.assertTrue(tickets.size() > 0);
+        Assert.assertTrue(!tickets.isEmpty());
         SupportTicket retrievedTicket = tickets.get(0);
 
         // Validate the details of the ticket
@@ -61,7 +63,7 @@ public class SupportTicketTest {
     @Test
     public void testGetSupportTicketById() throws SQLException {
         List<SupportTicket> tickets = dbManager.getTicketsByEmail(ticket.getEmail());
-        Assert.assertTrue(tickets.size() > 0);
+        Assert.assertTrue(!tickets.isEmpty());
         SupportTicket retrievedTicket = tickets.get(0);
 
         SupportTicket fetchedTicket = dbManager.getSupportTicketById(retrievedTicket.getTicketId());
@@ -69,7 +71,34 @@ public class SupportTicketTest {
         Assert.assertEquals(retrievedTicket.getTicketId(), fetchedTicket.getTicketId());
         Assert.assertEquals("Jane Doe", fetchedTicket.getCustomerName());
     }
+    
+    @Test
+    public void testAddMessage() throws SQLException {
+        // Retrieve the ticket ID from the database
+        List<SupportTicket> tickets = dbManager.getTicketsByEmail(ticket.getEmail());
+        Assert.assertTrue(!tickets.isEmpty());
+        SupportTicket retrievedTicket = tickets.get(0);
 
+        // Create a new message for this support ticket
+        Message message = new Message(0, retrievedTicket.getTicketId(), "Jane Doe", "I need help with my login issue", new Timestamp(new java.util.Date().getTime()));
+
+        // Add the message to the database
+        dbManager.addMessage(message);
+
+        // Retrieve the messages for this ticket from the database
+        List<Message> messages = dbManager.getMessagesByTicketId(retrievedTicket.getTicketId());
+
+        // Assert that the message was added correctly
+        Assert.assertNotNull(messages);
+        Assert.assertTrue(!messages.isEmpty());
+        Message retrievedMessage = messages.get(0);
+
+        // Validate message details
+        Assert.assertEquals(retrievedTicket.getTicketId(), retrievedMessage.getTicketId());
+        Assert.assertEquals("Jane Doe", retrievedMessage.getSender());
+        Assert.assertEquals("I need help with my login issue", retrievedMessage.getMessage());
+    }
+    
     // Clean up the database after each test
     @org.junit.After
     public void tearDown() throws SQLException {
