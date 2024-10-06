@@ -216,75 +216,6 @@ main h1, main h2, main p {
 section {
     margin-bottom: 20px;
 }
-
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-}
-
-.form-group label {
-    font-size: 16px;
-    margin-bottom: 5px;
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #E0E0E0; /* Light gray border for input fields */
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-button {
-    padding: 10px 20px;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-button:disabled {
-    background-color: #E0E0E0;
-    cursor: not-allowed;
-}
-
-button:disabled:hover {
-    background-color: #E0E0E0;        
-}
-
-/* General button styling */
-.button {
-    padding: 10px 20px;
-    color: #FFFFFF;
-    background-color: #FF6F61; /* Coral button color */
-    border: none;
-    border-radius: 5px;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    text-align: center;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    cursor: pointer;
-}
-
-.button:hover {
-    background-color: #e04b47; /* Slightly darker coral for hover effect */
-    transform: translateY(-2px); /* Lift effect on hover */
-}
-
-.button:active {
-    background-color: #c83c36; /* Even darker coral for active effect */
-    transform: translateY(0); /* Remove lift effect when clicked */
-}
-
 /* Tab styles */
 .tabs {
     display: flex;
@@ -780,7 +711,6 @@ p + button {
 
 .see-more a {
     font-size: 18px;
-    color: white; 
     background-color: red; 
 }
 
