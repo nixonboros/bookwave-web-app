@@ -12,6 +12,18 @@ public class SupportTicket {
     private String status;
     private Date dateSubmitted;
 
+    // Constructor to initialize all fields
+    public SupportTicket(int ticketId, String customerName, String email, String subjectTitle, String typeOfEnquiry, String issueDescription, String status, Date dateSubmitted) {
+        this.ticketId = ticketId;
+        this.customerName = customerName;
+        this.email = email;
+        this.subjectTitle = subjectTitle;
+        this.typeOfEnquiry = typeOfEnquiry;
+        this.issueDescription = issueDescription;
+        this.status = status;
+        this.dateSubmitted = dateSubmitted;
+    }
+    
     // Getters and Setters
     public int getTicketId() {
         return ticketId; 
@@ -76,5 +88,4 @@ public class SupportTicket {
     public void setDateSubmitted(Date dateSubmitted) { 
         this.dateSubmitted = dateSubmitted; 
     }
-    
 }

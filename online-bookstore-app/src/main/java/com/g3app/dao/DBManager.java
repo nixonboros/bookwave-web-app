@@ -228,6 +228,7 @@ public void addBook(Book book) throws SQLException {
     
     return book; // Return the book object or null if not found
 }
+    
     public void createSupportTicket(SupportTicket ticket) throws SQLException {
         String query = "INSERT INTO support_tickets (customer_name, email, subject_title, type_of_enquiry, issue_description, status, date_submitted) " +
                         "VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -242,45 +243,48 @@ public void addBook(Book book) throws SQLException {
         pstmt.executeUpdate();
     }
     
-    public List<SupportTicket> getAllSupportTickets() throws SQLException {
-        String query = "SELECT * FROM support_tickets";
-        ResultSet rs = st.executeQuery(query);
-        List<SupportTicket> tickets = new ArrayList<>();
-        while (rs.next()) {
-            SupportTicket ticket = new SupportTicket();
-            ticket.setTicketId(rs.getInt("ticket_id"));
-            ticket.setCustomerName(rs.getString("customer_name"));
-            ticket.setEmail(rs.getString("email"));
-            ticket.setSubjectTitle(rs.getString("subject_title"));
-            ticket.setTypeOfEnquiry(rs.getString("type_of_enquiry"));
-            ticket.setIssueDescription(rs.getString("issue_description"));
-            ticket.setStatus(rs.getString("status"));
-            ticket.setDateSubmitted(rs.getDate("date_submitted"));
-            tickets.add(ticket);
-        }
-        return tickets;
+public List<SupportTicket> getAllSupportTickets() throws SQLException {
+    String query = "SELECT * FROM support_tickets";
+    ResultSet rs = st.executeQuery(query);
+    List<SupportTicket> tickets = new ArrayList<>();
+    while (rs.next()) {
+        // Use the constructor with parameters
+        SupportTicket ticket = new SupportTicket(
+            rs.getInt("ticket_id"),
+            rs.getString("customer_name"),
+            rs.getString("email"),
+            rs.getString("subject_title"),
+            rs.getString("type_of_enquiry"),
+            rs.getString("issue_description"),
+            rs.getString("status"),
+            rs.getDate("date_submitted") // This can be converted to Date if necessary
+        );
+        tickets.add(ticket);
     }
-    
-    public SupportTicket getSupportTicketById(int ticketId) throws SQLException {
-        String query = "SELECT * FROM support_tickets WHERE ticket_id = ?";
-        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
-        pstmt.setInt(1, ticketId);
-        ResultSet rs = pstmt.executeQuery();
-        if (rs.next()) {
-            SupportTicket ticket = new SupportTicket();
-            ticket.setTicketId(rs.getInt("ticket_id"));
-            ticket.setCustomerName(rs.getString("customer_name"));
-            ticket.setEmail(rs.getString("email"));
-            ticket.setSubjectTitle(rs.getString("subject_title"));
-            ticket.setTypeOfEnquiry(rs.getString("type_of_enquiry"));
-            ticket.setIssueDescription(rs.getString("issue_description"));
-            ticket.setStatus(rs.getString("status"));
-            ticket.setDateSubmitted(rs.getDate("date_submitted"));
-            return ticket;
-        }
-        return null; // No ticket found
+    return tickets;
+}
+
+public SupportTicket getSupportTicketById(int ticketId) throws SQLException {
+    String query = "SELECT * FROM support_tickets WHERE ticket_id = ?";
+    PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+    pstmt.setInt(1, ticketId);
+    ResultSet rs = pstmt.executeQuery();
+    if (rs.next()) {
+        // Use the constructor with parameters
+        return new SupportTicket(
+            rs.getInt("ticket_id"),
+            rs.getString("customer_name"),
+            rs.getString("email"),
+            rs.getString("subject_title"),
+            rs.getString("type_of_enquiry"),
+            rs.getString("issue_description"),
+            rs.getString("status"),
+            rs.getDate("date_submitted")
+        );
     }
-    
+    return null; // No ticket found
+}
+
     public List<SupportTicket> getTicketsByEmail(String email) throws SQLException {
         String query = "SELECT * FROM support_tickets WHERE email = ?";
         PreparedStatement pstmt = st.getConnection().prepareStatement(query);
@@ -291,15 +295,17 @@ public void addBook(Book book) throws SQLException {
         List<SupportTicket> tickets = new ArrayList<>();
 
         while (rs.next()) {
-            SupportTicket ticket = new SupportTicket();
-            ticket.setTicketId(rs.getInt("ticket_id"));
-            ticket.setCustomerName(rs.getString("customer_name"));
-            ticket.setEmail(rs.getString("email"));
-            ticket.setSubjectTitle(rs.getString("subject_title"));
-            ticket.setTypeOfEnquiry(rs.getString("type_of_enquiry"));
-            ticket.setIssueDescription(rs.getString("issue_description"));
-            ticket.setStatus(rs.getString("status"));
-            ticket.setDateSubmitted(rs.getDate("date_submitted"));
+            // Use the constructor with parameters
+            SupportTicket ticket = new SupportTicket(
+                rs.getInt("ticket_id"),
+                rs.getString("customer_name"),
+                rs.getString("email"),
+                rs.getString("subject_title"),
+                rs.getString("type_of_enquiry"),
+                rs.getString("issue_description"),
+                rs.getString("status"),
+                rs.getDate("date_submitted")
+            );
             tickets.add(ticket);
         }
         return tickets;
@@ -345,4 +351,15 @@ public void addBook(Book book) throws SQLException {
         }
         return messages;
     }
+    
+    public boolean deleteTicketById(int ticketId) throws SQLException {
+        String query = "DELETE FROM support_tickets WHERE ticket_id = ?";
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+        pstmt.setInt(1, ticketId);
+
+        int rowsAffected = pstmt.executeUpdate(); // Execute the deletion
+
+        return rowsAffected > 0; // Return true if the ticket was deleted successfully
+    }
+
 }
