@@ -24,6 +24,7 @@ public class UpdateAccountServlet extends HttpServlet {
             String firstName = request.getParameter("firstName");
             String lastName = request.getParameter("lastName");
             String email = request.getParameter("email");
+            String password = request.getParameter("password");            
             String dob = request.getParameter("dob");
             String phone = request.getParameter("phone");
             String address = request.getParameter("address");
@@ -40,7 +41,7 @@ public class UpdateAccountServlet extends HttpServlet {
                 // Update the user details
                 boolean success = dbManager.updateUserDetails(
                     user.getEmail(), // Identify the user by the email
-                    firstName, lastName, email, dob, phone, address, city, postcode, country
+                    firstName, lastName, email, password, dob, phone, address, city, postcode, country
                 );
 
                 // Close database connection
@@ -51,6 +52,7 @@ public class UpdateAccountServlet extends HttpServlet {
                     user.setFirstName(firstName);
                     user.setLastName(lastName);
                     user.setEmail(email);
+                    user.setPassword(password);
                     user.setDob(dob);
                     user.setPhone(phone);
                     user.setAddress(address);
