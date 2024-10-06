@@ -1,3 +1,6 @@
+<%@ page import="com.g3app.model.SupportTicket" %>
+<%@ page import="java.util.List" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +28,7 @@
             <div id="dashboard" class="tab-content active">
                 <h2>Your Support Tickets</h2>
                 <p>Here you can view and manage all your support tickets. Click on a ticket to view its details.</p>
-                <!-- Example information, TO BE REPLACED W DATABASE-->
+
                 <table>
                     <thead>
                         <tr>
@@ -38,22 +41,29 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <%
+                            List<SupportTicket> tickets = (List<SupportTicket>) request.getAttribute("tickets");
+                            if (tickets != null && !tickets.isEmpty()) {
+                                for (SupportTicket ticket : tickets) {
+                        %>
                         <tr>
-                            <td>12345</td>
-                            <td>Incorrect Billing Amount charged</td>
-                            <td>Billing Issues</td>
-                            <td>Open</td>
-                            <td>2024-09-01</td>
-                            <td><a href="viewTicket.jsp?id=12345" class="button">View</a></td>
+                            <td><%= ticket.getTicketId() %></td>
+                            <td><%= ticket.getSubjectTitle() %></td>
+                            <td><%= ticket.getTypeOfEnquiry() %></td>
+                            <td><%= ticket.getStatus() %></td>
+                            <td><%= ticket.getDateSubmitted() %></td>
+                            <td><a href="ViewTicketServlet?ticketId=<%= ticket.getTicketId() %>" class="button">View</a></td>
                         </tr>
+                        <%
+                                }
+                            } else {
+                        %>
                         <tr>
-                            <td>67890</td>
-                            <td>Issue with Updating Payment Method Details</td>
-                            <td>Technical Support</td>
-                            <td>Closed</td>
-                            <td>2024-08-20</td>
-                            <td><a href="viewTicket.jsp?id=67890" class="button">View</a></td>
+                            <td colspan="6">No support tickets found.</td>
                         </tr>
+                        <%
+                            }
+                        %>
                     </tbody>
                 </table>
             </div>
@@ -61,10 +71,10 @@
             <!-- CREATE NEW TICKET TAB -->
             <div id="submitTicket" class="tab-content">
                 <h2>Submit Your Support Request</h2>
-                <form id="submitTicketForm" action="supportTicket_success.jsp" method="post">
+                <form id="submitTicketForm" action="SubmitTicketServlet" method="post">
                     <div class="form-group">
-                        <label for="name">Full Name:</label>
-                        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                        <label for="customer_name">Full Name:</label>
+                        <input type="text" id="customer_name" name="customer_name" placeholder="Enter your full name" required>
                     </div>
                     
                     <div class="form-group">
@@ -73,23 +83,23 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="subjectTitle">Subject Title:</label>
-                        <input type="text" id="subjectTitle" name="subjectTitle" placeholder="Enter a brief title for your issue" required>
+                        <label for="subject_title">Subject Title:</label>
+                        <input type="text" id="subject_title" name="subject_title" placeholder="Enter a brief title for your issue" required>
                     </div>
                     
                     <div class="form-group">
-                        <label for="typeOfEnquiry">Type of Enquiry:</label>
-                        <select id="typeOfEnquiry" name="typeOfEnquiry" required>
+                        <label for="type_of_enquiry">Type of Enquiry:</label>
+                        <select id="type_of_enquiry" name="type_of_enquiry" required>
                             <option value="">Select an option</option>
-                            <option value="general">General Inquiry</option>
-                            <option value="technical">Technical Support</option>
-                            <option value="billing">Billing Issues</option>
+                            <option value="General">General Inquiry</option>
+                            <option value="Technical">Technical Support</option>
+                            <option value="Billing">Billing Issues</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
-                        <label for="issue">Issue Description:</label>
-                        <textarea id="issue" name="issue" rows="5" placeholder="Describe your issue in detail" required></textarea>
+                        <label for="issue_description">Issue Description:</label>
+                        <textarea id="issue_description" name="issue_description" rows="5" placeholder="Describe your issue in detail" required></textarea>
                     </div>
                     
                     <div class="form-group">

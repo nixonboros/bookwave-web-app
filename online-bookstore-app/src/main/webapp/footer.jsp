@@ -17,7 +17,7 @@
                     <span>Bookstore</span>
                 </div>
                 <div class="footer-links">
-                    <p>&copy; 2024 Your Bookstore Name. All rights reserved.</p>
+                    <p>&copy; 2024 Bookstore. All rights reserved.</p>
                     <p>
                         <a> Privacy Policy</a> | 
                         <a> Terms of Service</a>

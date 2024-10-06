@@ -1,6 +1,5 @@
 package com.g3app.controller;
 
-import com.g3app.model.User;
 import com.g3app.dao.DBConnector;
 import com.g3app.dao.DBManager;
 
@@ -12,31 +11,30 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 
-@WebServlet("/LoginServlet")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/OpenTicketServlet")
+public class OpenTicketServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
+        String ticketId = request.getParameter("ticketId"); // Retrieve the ticket ID from the request
 
         try {
             DBConnector connector = new DBConnector();
             Connection conn = connector.openConnection();
             DBManager dbManager = new DBManager(conn);
-            User user = dbManager.findUser(email, password);
+            
+            // Update the ticket status to "Open"
+            boolean isUpdated = dbManager.updateTicketStatus(ticketId, "Open");
             connector.closeConnection();
 
-            if (user != null) {
-                // successful login
-                request.getSession().setAttribute("user", user);
-                request.getSession().setAttribute("email", user.getEmail());
-                response.sendRedirect("index.jsp"); // Redirect to welcome page or dashboard
+            if (isUpdated) {
+                // Redirect to the dashboard or show a success message
+                response.sendRedirect("StaffSupportDashboardServlet?success=open");
             } else {
-                // failed login
-                response.sendRedirect("login.jsp?error=invalid_credentials");
+                // Handle the case where the ticket status could not be updated
+                response.sendRedirect("StaffSupportDashboardServlet?error=update_failed");
             }
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Login failed.");
+            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Failed to open the ticket.");
         }
     }
 }
