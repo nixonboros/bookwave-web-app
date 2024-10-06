@@ -54,6 +54,16 @@ steps:
         status VARCHAR(50) NOT NULL,
         date_submitted DATETIME DEFAULT CURRENT_TIMESTAMP
     );"
+
+    # MESSAGES TABLE
+    mysql -u root -proot -D bookstoredb -e "CREATE TABLE IF NOT EXISTS ticket_messages (
+        message_id INT AUTO_INCREMENT PRIMARY KEY,
+        ticket_id INT NOT NULL,
+        sender VARCHAR(50) NOT NULL,
+        message TEXT NOT NULL,
+        timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (ticket_id) REFERENCES support_tickets(ticket_id) ON DELETE CASCADE
+    );"
   displayName: 'Set up MySQL Database and Create Tables'
 
 
