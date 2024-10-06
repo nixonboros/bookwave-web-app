@@ -45,13 +45,14 @@ public class UserTest {
     public void testUpdateUserDetails() throws Exception {
         // update user details
         String newEmail = "john.bigbooks@books.com";
-        boolean updated = dbManager.updateUserDetails(user.getEmail(), "John", "Book", newEmail, "1990-01-01", "9876543210", "456 Book St", "Book", "1", "Book");
+        String newPassword = "newSecurePassword123"; // New password
+        boolean updated = dbManager.updateUserDetails(user.getEmail(), "John", "Book", newEmail, newPassword, "1990-01-01", "9876543210", "456 Book St", "Book", "1", "Book");
 
         // ensure the update method returned true
         Assert.assertTrue("User details should be updated successfully.", updated);
 
         // fetch the updated user from the database
-        updatedUser = dbManager.findUser(newEmail, "password");
+         updatedUser = dbManager.findUser(newEmail, newPassword);  // Use new password to fetch the user
 
         // verify the details were updated correctly
         Assert.assertNotNull("Updated user can not be null.", updatedUser);
