@@ -19,7 +19,7 @@ Online Bookstore System
   - UserTest
 
 - **Nixon**
-  - Customer Support Feature (support chat, viewing and opening and closing tickets) 
+  - Customer Support Feature (user/staff support chat, viewing and opening/closing tickets)
   - Notifications Feature
   - Tomcat server setup 
   - Database setup (tables and contents)
