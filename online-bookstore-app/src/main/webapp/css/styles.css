@@ -475,6 +475,17 @@ tbody tr:hover {
     background-color: #e9ecef;
 }
 
+.closed-ticket {
+    background-color: #f9e5e5;
+    color: #666; 
+    text-decoration: line-through; 
+}
+
+.closed-ticket:hover {
+    background-color: #f2c6c6;
+}
+
+
 
 /* Animation */
 @keyframes fadeIn {

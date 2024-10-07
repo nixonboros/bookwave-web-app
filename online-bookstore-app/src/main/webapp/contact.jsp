@@ -45,8 +45,10 @@
                             List<SupportTicket> tickets = (List<SupportTicket>) request.getAttribute("tickets");
                             if (tickets != null && !tickets.isEmpty()) {
                                 for (SupportTicket ticket : tickets) {
+                                    // Determine the class based on the ticket status
+                                    String statusClass = ticket.getStatus().equals("Closed") ? "closed-ticket" : "opened-ticket";
                         %>
-                        <tr>
+                        <tr class="<%= statusClass %>">
                             <td><%= ticket.getTicketId() %></td>
                             <td><%= ticket.getSubjectTitle() %></td>
                             <td><%= ticket.getTypeOfEnquiry() %></td>
