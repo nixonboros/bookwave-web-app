@@ -97,7 +97,7 @@ steps:
     );"
 
     # STAFF USERS TABLE 
-    mysql -u root -proot -D bookstoredb -e "CREATE TABLE staffusers (
+    mysql -u root -proot -D bookstoredb -e "CREATE TABLE IF NOT EXISTS staffusers (
       staffId INT PRIMARY KEY AUTO_INCREMENT,
       firstName VARCHAR(255) NOT NULL,
       lastName VARCHAR(255) NOT NULL,
@@ -112,6 +112,7 @@ steps:
       role VARCHAR(255) DEFAULT 'staff',
       accountStatus VARCHAR(20) NOT NULL DEFAULT 'active'
   );"
+  
   displayName: 'Set up MySQL Database and Create Tables'
 
 
