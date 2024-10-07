@@ -3,7 +3,7 @@
 AdvSoftwareDev Group 3
 Repo for an Online Bookstore System
 
-Jerry - Login/Register, User Dashboard (Edit, delete, view account details), Page Footer, helped with catalogue (add book, delete book, display book in Manage Catalogue menu (staff))
+Jerry - Login/Register, User Dashboard (Edit, delete, view account details), Page Footer, helped with catalogue (add book, delete book, display book(s) in catalogue and Manage Catalogue menu (staff))
 
 Nixon - Notifications, Customer Support (support chat, viewing, opening and closing tickets), Database setup, Helped with Login/Registration (Both staff & user), Page Navbar
 
