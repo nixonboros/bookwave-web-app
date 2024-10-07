@@ -30,16 +30,12 @@ public class StaffRegisterServlet extends HttpServlet {
         String accountStatus = request.getParameter("accountStatus"); // New field for account status
 
         // Hash the password for security before saving
-        String hashedPassword = hashPassword(password); // Implement a secure hashing function
+        String hashedPassword = hashPassword(password);
 
         DBConnector connector = null;
         Connection conn = null;
         try {
-            // Convert staffId from String to int (validate input if needed)
-            int staffId = Integer.parseInt(request.getParameter("staffId"));
-
-            // Create a new StaffUser with the hashed password, role, and accountStatus
-            StaffUser newStaffUser = new StaffUser(firstName, lastName, email, hashedPassword, dob, phone, address, city, postcode, country, role, accountStatus, staffId);
+            StaffUser newStaffUser = new StaffUser(firstName, lastName, email, hashedPassword, dob, phone, address, city, postcode, country, role, accountStatus);
 
             // Manually manage the DB connection
             connector = new DBConnector();
@@ -47,8 +43,6 @@ public class StaffRegisterServlet extends HttpServlet {
             DBManager dbManager = new DBManager(conn);
             dbManager.addStaffUser(newStaffUser); // Call the method for staff
             response.sendRedirect("staffLogin.jsp"); // Redirect to login after successful registration
-        } catch (NumberFormatException e) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid staff ID");
         } catch (Exception e) {
             e.printStackTrace();
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Registration failed.");
@@ -66,7 +60,6 @@ public class StaffRegisterServlet extends HttpServlet {
 
     // Placeholder for a password hashing function
     private String hashPassword(String password) {
-        // Implement password hashing here (e.g., using bcrypt)
-        return password; // Replace with actual hashed password
+        return password;
     }
 }
