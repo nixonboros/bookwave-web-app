@@ -3,9 +3,9 @@
 AdvSoftwareDev Group 3
 Repo for an Online Bookstore System
 
-Jerry - Login/Register, Delete Account, Edit Account Details, Page Footer, helped with catalogue
+Jerry - Login/Register, User Dashboard (Edit, delete, view account details), Page Footer, helped with catalogue
 
-Nixon - Notifications, Customer Support, Database setup, Helped with Login/Registration (Both staff & user), Page Navbar
+Nixon - Notifications, Customer Support (support chat, viewing, opening and closing tickets), Database setup, Helped with Login/Registration (Both staff & user), Page Navbar
 
 Sarneet - Staff Login/Registration, Catalogue
 
