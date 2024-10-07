@@ -45,8 +45,18 @@ public class ShipmentTest {
     
     @Test
     public void readShipment() throws SQLException{
+        if(dbManager.getShipmentByID(1000)!=null){dbManager.deleteShipment(dbManager.getShipmentByID(1000));}
+        Shipment shipment = new Shipment();
+        shipment.setID(1000);
+        shipment.setDate("2024-01-01");
+        shipment.setProgress("Completed");
+        shipment.setStatus("Delivered");
+        dbManager.createShipment(shipment);
+        
         boolean isRead = dbManager.readShipment();
         Assert.assertTrue(isRead);
+        
+        dbManager.deleteShipment(shipment);
     }
     
     @Test
