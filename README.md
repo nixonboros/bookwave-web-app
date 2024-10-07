@@ -56,9 +56,9 @@ Online Bookstore System
 - After adding the Tomcat server, go to the **Projects** tab > Right-click **online-bookstore-app** > **Properties** > **Run** > Change the server to **Tomcat**.
 
 ### 4. Set Up Database
-- Download MySQL: [MySQL Download](https://dev.mysql.com/downloads/file/?id=532677) (server only). Message any questions on installing.
+- Download MySQL: [MySQL Download](https://dev.mysql.com/downloads/file/?id=532677) (server only).
 - Download MySQL Connector: [MySQL Connector](https://downloads.mysql.com/archives/get/p/3/file/mysql-connector-j-8.0.32.zip)
-- Go to the **Services** tab > Right-click **Databases** > **New Connection** > Choose **MySQL** > Add > Select the `mysql-connector-j-8.0.32.jar` file > Enter **Password**: root
+- Go to the **Services** tab > Right-click **Databases** > **New Connection** > Choose **MySQL** > Add > Select the `mysql-connector-j-8.0.32.jar` file > Enter **Password**: root.
 - Start the MySQL server > Right-click > Create database > Name it **`bookstoredb`** exactly.
 
 ## Repository Structure
