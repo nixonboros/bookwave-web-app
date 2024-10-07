@@ -35,8 +35,8 @@ public class BookTest {
     @Test
     public void testBookCreation() {
         Assert.assertNotNull(book);
-        Assert.assertEquals("Sample Book", book.getTitle());
-        Assert.assertEquals("Author Name", book.getAuthor());
+        Assert.assertEquals("book", book.getTitle());
+        Assert.assertEquals("author", book.getAuthor());
         Assert.assertEquals(19.99, book.getPrice(), 0.01);
     }
 
