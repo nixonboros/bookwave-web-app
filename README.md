@@ -1,57 +1,103 @@
 # AdvSoftwareDevG3
 
-AdvSoftwareDev Group 3
-Repo for an Online Bookstore System
+AdvSoftwareDev Group 3  
+Online Bookstore System
 
-FEATURES
+**GitHub Repository**: https://github.com/nixonboros/AdvSoftwareDevG3
 
-Jerry 
-- Cleaned up index.jsp (added Best Sellers section)
-- Login/Register
-- User Dashboard (Edit and view account details, delete account) 
-- Page Footer
-- General data validation
-- Helped with catalogue features (add book, delete book, display book(s) in catalogue and best sellers in index.jsp, individual product pages and Manage Catalogue menu (staff))
-- Helped setup database
-- Set up testing and linked to Azure
-- UserTest
+## Team Member Responsibilities
 
-Nixon 
-- Notifications
-- Customer Support (support chat, viewing and opening and closing tickets) 
-- Database setup (tables and contents)
-- General data validation
-- Server setup 
-- Helped with Login/Registration
-- Page Navbar
-- SupportTicketTest
+- **Jerry** 
+  - Cleaned up index.jsp (added Best Sellers section)
+  - Login/Register
+  - User Dashboard (Edit and view account details, delete account) 
+  - Page Footer
+  - General data validation
+  - Helped with catalogue features (add book, delete book, display book(s) in catalogue and best sellers in index.jsp, individual product pages and Manage Catalogue menu (staff))
+  - Helped setup database
+  - Set up testing and linked to Azure
+  - UserTest
 
-Sarneet 
-- Staff Login/Registration 
-- Catalogue
+- **Nixon**
+  - Customer Support Feature (support chat, viewing and opening and closing tickets) 
+  - Notifications Feature
+  - Tomcat server setup 
+  - Database setup (tables and contents)
+  - General data validation
+  - Helped with User/Staff login and registration
+  - User/Staff page navigation bar
+  - SupportTicketTest
 
-Nicolas 
-- Orders Management 
-- Orders Tracking
+- **Sarneet** 
+  - Staff Login/Registration 
+  - Catalogue
 
-Yuri 
-- Checkout
-- Product Pages
+- **Nicolas** 
+  - Orders Management 
+  - Orders Tracking
 
-HOW TO SETUP
+- **Yuri** 
+  - Checkout
+  - Product Pages
 
-install netbeans 23 (latest)
-open online-bookstore-app project directory (wherever u have it saved)
+## Setup Instructions
 
-tomcat server 
+### 1. Install NetBeans
+- Install **NetBeans 23** (latest version).
 
-download tomcat server zip file (https://dlcdn.apache.org/tomcat/tomcat-11/v11.0.0-M26/bin/apache-tomcat-11.0.0-M26-windows-x64.zip)
-inside netbeans, go to services tab > add server > choose tomcat and select the directory to the tomcat server folder > username: admin, password: admin
-after adding the tomcat server > go projects tab > right click online-bookstore-app > properties > run > and change the server to tomcat
+### 2. Open Project
+- Open the **online-bookstore-app** project directory
 
-database
+### 3. Set Up Tomcat Server
+- Download the Tomcat server zip file: [Tomcat Server](https://dlcdn.apache.org/tomcat/tomcat-11/v11.0.0-M26/bin/apache-tomcat-11.0.0-M26-windows-x64.zip)
+- Inside NetBeans, go to the **Services** tab > **Add Server** > Choose **Tomcat** and select the directory to the Tomcat server folder. Use:
+  - **Username**: admin
+  - **Password**: admin
+- After adding the Tomcat server, go to the **Projects** tab > Right-click **online-bookstore-app** > **Properties** > **Run** > Change the server to **Tomcat**.
 
-download mysql (https://dev.mysql.com/downloads/file/?id=532677) (server only, msg any questions on installing)
-download my-sql-connector-j-8.0.32.jar (https://downloads.mysql.com/archives/get/p/3/file/mysql-connector-j-8.0.32.zip)
-go to services tab > right cllick 'databases' > new connection > go to mysql > add > select the mysql-connector jar FILE > enter password: root > (can ignore the database it creates after, its just a sample)
-start the mysql server > right click > create database > name it 'bookstoredb' exactly
+### 4. Set Up Database
+- Download MySQL: [MySQL Download](https://dev.mysql.com/downloads/file/?id=532677) (server only). Message any questions on installing.
+- Download MySQL Connector: [MySQL Connector](https://downloads.mysql.com/archives/get/p/3/file/mysql-connector-j-8.0.32.zip)
+- Go to the **Services** tab > Right-click **Databases** > **New Connection** > Choose **MySQL** > Add > Select the `mysql-connector-j-8.0.32.jar` file > Enter **Password**: root
+- Start the MySQL server > Right-click > Create database > Name it **`bookstoredb`** exactly.
+
+## Repository Structure
+
+The repository is organized as follows:
+```
+AdvSoftwareDevG3
+├── online-bookstore-app
+│   ├── src
+│   │   ├── main
+│   │   │   ├── webapp                   # Contains all web-related files
+│   │   │   │   ├── css                  # Stylesheets for the application
+│   │   │   │   ├── images               # Images used in the application
+│   │   │   └── java                     # Contains Java source code
+│   │   │       └── com
+│   │   │           └── g3app
+│   │   │               ├── controller   # Servlet and controller classes
+│   │   │               ├── dao          # Data Access Objects
+│   │   │               └── model        # Model classes representing data
+│   │   └── test                         # Contains test classes
+│   ├── target                           # Compiled output and artifacts
+│   └── pom.xml                          # Maven Project Object Model file
+├── azure-pipelines.yml                  # Configuration for Azure DevOps pipeline
+└── README.md                            # Documentation file for the project
+```
+
+### Explanation of the Structure
+
+- **AdvSoftwareDevG3**: The root folder of the project containing all necessary files and folders.
+- **online-bookstore-app**: The main application directory that contains the source code and resources for the online bookstore system.
+  - **src**: Contains the source code for the application.
+    - **main**: Main source set where the application code resides.
+      - **webapp**: This folder holds all web-related files such as JSP files, stylesheets (CSS), and images.
+      - **java**: Contains Java source code organized under the package `com.g3app`, which includes:
+        - **controller**: Contains servlet and controller classes that handle requests and responses.
+        - **dao**: Contains Data Access Object classes that interact with the database.
+        - **model**: Contains model classes that represent the application's data structures.
+    - **test**: Contains test classes for the application to ensure the functionality of various components.
+  - **target**: Directory where compiled output and artifacts from the build process are stored.
+  - **pom.xml**: The Maven Project Object Model (POM) file, which defines project dependencies, build configurations, and other project settings.
+- **azure-pipelines.yml**: A configuration file for setting up continuous integration and deployment using Azure DevOps.
+- **README.md**: A documentation file that provides an overview of the project, setup instructions, and other relevant information.
