@@ -7,19 +7,22 @@ FEATURES
 
 Jerry 
 - Cleaned up index.jsp (added Best Sellers section)
-- Login/Register 
+- Login/Register
 - User Dashboard (Edit and view account details, delete account) 
-- Page Footer 
-- Helped with catalogue features (add book, delete book, display book(s) in catalogue, individual product pages and Manage Catalogue menu (staff))
+- Page Footer
+- General data validation
+- Helped with catalogue features (add book, delete book, display book(s) in catalogue and best sellers in index.jsp, individual product pages and Manage Catalogue menu (staff))
 - Helped setup database
 - Set up testing and linked to Azure
 - UserTest
 
 Nixon 
 - Notifications
-- Customer Support (support chat, viewing, opening and closing tickets) 
-- Database setup 
-- Helped with Login/Registration (Both staff & user)
+- Customer Support (support chat, viewing and opening and closing tickets) 
+- Database setup (tables and contents)
+- General data validation
+- Server setup 
+- Helped with Login/Registration
 - Page Navbar
 - SupportTicketTest
 
@@ -31,9 +34,11 @@ Nicolas
 - Orders Management 
 - Orders Tracking
 
-Yuri - Checkout, Product Pages
+Yuri 
+- Checkout
+- Product Pages
 
-SETUP
+HOW TO SETUP
 
 install netbeans 23 (latest)
 open online-bookstore-app project directory (wherever u have it saved)
