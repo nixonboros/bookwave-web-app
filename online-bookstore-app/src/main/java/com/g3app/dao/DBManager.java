@@ -362,4 +362,47 @@ public SupportTicket getSupportTicketById(int ticketId) throws SQLException {
 
         return rowsAffected > 0; // Return true if the ticket was deleted successfully
     }
+
+    public List<SupportTicket> getOpenedSupportTickets() throws SQLException {
+        String query = "SELECT * FROM support_tickets WHERE status = 'Open'";
+        List<SupportTicket> openedTickets = new ArrayList<>();
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+        ResultSet rs = pstmt.executeQuery();
+        while (rs.next()) {
+            SupportTicket ticket = new SupportTicket(
+                rs.getInt("ticket_id"),
+                rs.getString("customer_name"),
+                rs.getString("email"),
+                rs.getString("subject_title"),
+                rs.getString("type_of_enquiry"),
+                rs.getString("issue_description"),
+                rs.getString("status"),
+                rs.getDate("date_submitted")
+            );
+            openedTickets.add(ticket);
+        }
+        return openedTickets;
+    }
+
+    public List<SupportTicket> getClosedSupportTickets() throws SQLException {
+        String query = "SELECT * FROM support_tickets WHERE status = 'Closed'";
+        List<SupportTicket> closedTickets = new ArrayList<>();
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+        ResultSet rs = pstmt.executeQuery();
+        while (rs.next()) {
+            SupportTicket ticket = new SupportTicket(
+                rs.getInt("ticket_id"),
+                rs.getString("customer_name"),
+                rs.getString("email"),
+                rs.getString("subject_title"),
+                rs.getString("type_of_enquiry"),
+                rs.getString("issue_description"),
+                rs.getString("status"),
+                rs.getDate("date_submitted")
+            );
+            closedTickets.add(ticket);
+        }
+        return closedTickets;
+    }
+
 }
