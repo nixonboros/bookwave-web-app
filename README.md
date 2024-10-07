@@ -16,7 +16,7 @@ Online Bookstore System
   - Helped with catalogue features (add book, delete book, display book(s) in catalogue and best sellers in index.jsp, individual product pages and Manage Catalogue menu (staff))
   - Helped setup database
   - Set up testing and linked to Azure
-  - UserTest
+  - UserTest test class (Testing: creating, updating and deleting of users in database)
 
 - **Nixon**
   - Customer Support Feature (user/staff support chat, viewing and opening/closing tickets)
@@ -26,7 +26,7 @@ Online Bookstore System
   - General data validation
   - Helped with User/Staff login and registration
   - User/Staff page navigation bar
-  - SupportTicketTest
+  - SupportTicketTest test class (Testing: creating, retrieving and adding messages to support tickets in database)
 
 - **Sarneet** 
   - Staff Login/Registration 
