@@ -131,7 +131,7 @@
 
                     <div class="form-group">
                         <label for="password">New Password:</label>
-                        <input type="password" id="password" name="password" required>
+                        <input type="password" id="password" name="password">
                     </div>
 
                     <% String status = request.getParameter("status"); %>
