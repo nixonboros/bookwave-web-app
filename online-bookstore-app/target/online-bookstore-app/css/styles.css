@@ -216,6 +216,7 @@ main h1, main h2, main p {
 section {
     margin-bottom: 20px;
 }
+
 /* Tab styles */
 .tabs {
     display: flex;
@@ -397,6 +398,15 @@ tbody tr:hover {
 
 .chat-message.otheruser .message-text {
     background-color: #e9ecef;
+}
+
+table tbody tr.closed-ticket {
+    background-color: #f9e5e5 !important;
+    text-decoration: line-through !important; 
+}
+
+table tbody tr.closed-ticket:hover {
+    background-color: #f2c6c6 !important;
 }
 
 

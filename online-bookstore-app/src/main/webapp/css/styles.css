@@ -400,16 +400,14 @@ tbody tr:hover {
     background-color: #e9ecef;
 }
 
-.closed-ticket {
-    background-color: #f9e5e5;
-    color: #666; 
-    text-decoration: line-through; 
+table tbody tr.closed-ticket {
+    background-color: #f9e5e5 !important;
+    text-decoration: line-through !important; 
 }
 
-.closed-ticket:hover {
-    background-color: #f2c6c6;
+table tbody tr.closed-ticket:hover {
+    background-color: #f2c6c6 !important;
 }
-
 
 
 /* Animation */
