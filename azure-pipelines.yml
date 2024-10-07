@@ -99,7 +99,7 @@ steps:
     # SHIPMENT TABLE
     mysql -u root -proot -D bookstoredb -e "CREATE TABLE IF NOT EXISTS shipments (
         ShipmentID INT AUTO_INCREMENT PRIMARY KEY,
-        ShipmentDate DATETIME NOT NULL,
+        ShipmentDate DATE NOT NULL,
         ShipmentProgress VARCHAR(25) NOT NULL,
         ShipmentStatus VARCHAR(25) NOT NULL
     );"
