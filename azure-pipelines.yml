@@ -95,6 +95,14 @@ steps:
         timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (ticket_id) REFERENCES support_tickets(ticket_id) ON DELETE CASCADE
     );"
+
+    # SHIPMENT TABLE
+    mysql -u root -proot -D bookstoredb -e "CREATE TABLE IF NOT EXISTS shipments (
+        ShipmentID INT AUTO_INCREMENT PRIMARY KEY,
+        ShipmentDate DATETIME NOT NULL,
+        ShipmentProgress VARCHAR(25) NOT NULL,
+        ShipmentStatus VARCHAR(25) NOT NULL
+    );"
   
   displayName: 'Set up MySQL Database and Create Tables'
 
