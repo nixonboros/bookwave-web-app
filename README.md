@@ -3,13 +3,33 @@
 AdvSoftwareDev Group 3
 Repo for an Online Bookstore System
 
-Jerry - Login/Register, User Dashboard (Edit, delete, view account details), Page Footer, helped with catalogue (add book, delete book, display book(s) in catalogue and Manage Catalogue menu (staff))
+FEATURES
 
-Nixon - Notifications, Customer Support (support chat, viewing, opening and closing tickets), Database setup, Helped with Login/Registration (Both staff & user), Page Navbar
+Jerry 
+- Cleaned up index.jsp (added Best Sellers section)
+- Login/Register 
+- User Dashboard (Edit and view account details, delete account) 
+- Page Footer 
+- Helped with catalogue features (add book, delete book, display book(s) in catalogue, individual product pages and Manage Catalogue menu (staff))
+- Helped setup database
+- Set up testing and linked to Azure
+- UserTest
 
-Sarneet - Staff Login/Registration, Catalogue
+Nixon 
+- Notifications
+- Customer Support (support chat, viewing, opening and closing tickets) 
+- Database setup 
+- Helped with Login/Registration (Both staff & user)
+- Page Navbar
+- SupportTicketTest
 
-Nicolas - Orders Management, Orders Tracking
+Sarneet 
+- Staff Login/Registration 
+- Catalogue
+
+Nicolas 
+- Orders Management 
+- Orders Tracking
 
 Yuri - Checkout, Product Pages
 
