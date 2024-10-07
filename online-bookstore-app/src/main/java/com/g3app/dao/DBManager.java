@@ -492,5 +492,60 @@ public SupportTicket getSupportTicketById(int ticketId) throws SQLException {
         }
         return closedTickets;
     }
-
+    
+    //SHIPMENTS CRUD
+    
+    public void createShipment(Shipment shipment) throws SQLException{
+    String query = "INSERT INTO shipments (ShipmentID,ShipmentDate, ShipmentProgress, ShipmentStatus)" +
+                       "VALUES (?,?, ?, ?)";
+        PreparedStatement statement = st.getConnection().prepareStatement(query);
+        statement.setInt(1, shipment.getID());
+        statement.setString(2, shipment.getDate());
+        statement.setString(3, shipment.getProgress());
+        statement.setString(4, shipment.getStatus());
+        statement.executeUpdate();
+    }
+    public boolean readShipment() throws SQLException{
+        String query="SELECT * FROM shipments";
+        PreparedStatement statement = st.getConnection().prepareStatement(query);
+        ResultSet rs = statement.executeQuery();
+        int shipmentNum = 0;
+        while (rs.next()) {
+            shipmentNum++;
+        }
+        return shipmentNum > 0;
+    }
+    
+    public void updateShipment(Shipment shipment) throws SQLException{
+        String query = "UPDATE shipments SET ShipmentDate = ?, ShipmentProgress = ?, ShipmentStatus = ? WHERE ShipmentID = ?";
+        PreparedStatement statement = st.getConnection().prepareStatement(query);
+        statement.setString(1, shipment.getDate());
+        statement.setString(2, shipment.getProgress());
+        statement.setString(3, shipment.getStatus());
+        statement.setInt(4, shipment.getID());
+        statement.executeUpdate();
+    }
+    
+    public void deleteShipment(Shipment shipment) throws SQLException{
+        String query = "DELETE FROM shipments WHERE ShipmentID = ?";
+        PreparedStatement statement = st.getConnection().prepareStatement(query);
+        statement.setInt(1, shipment.getID());
+        statement.executeUpdate();
+    }
+    
+    public Shipment getShipmentByID(int id) throws SQLException{
+        String query = "SELECT * FROM shipments WHERE ShipmentID = ?";
+        PreparedStatement statement = st.getConnection().prepareStatement(query);
+        statement.setInt(1, id);
+        ResultSet rs = statement.executeQuery();
+        if(rs.next()){
+            Shipment shipment = new Shipment();
+            shipment.setID(rs.getInt("ShipmentID"));
+            shipment.setDate(rs.getString("ShipmentDate"));
+            shipment.setProgress(rs.getString("ShipmentProgress"));
+            shipment.setStatus(rs.getString("ShipmentStatus"));
+            return shipment;
+            }
+        return null;
+    }
 }
