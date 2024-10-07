@@ -6,10 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DBManager {
+    private Connection conn;  // Ensure this is properly initialized
     public Statement st;
 
     public DBManager(Connection conn) throws SQLException {
-        st = conn.createStatement();
+        this.conn = conn; // Assign the passed connection to this.conn
+        if (this.conn != null) {
+            st = conn.createStatement();
+        } else {
+            throw new SQLException("Database connection is null!");
+        }
     }
 
     // find customer user
@@ -51,26 +57,25 @@ public class DBManager {
         pstmt.executeUpdate();
     }
    
-    // add staff user
+    // Add staff user (without manually providing staffId)
     public void addStaffUser(StaffUser staffUser) throws SQLException {
-        String query = "INSERT INTO staffusers (firstName, lastName, email, password, dob, phone, address, city, postcode, country, staffId) " +
-                       "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO staffusers (firstName, lastName, email, password, dob, phone, address, city, postcode, country, role, accountStatus) " +
+                       "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement pstmt = st.getConnection().prepareStatement(query);
         pstmt.setString(1, staffUser.getFirstName());
         pstmt.setString(2, staffUser.getLastName());
         pstmt.setString(3, staffUser.getEmail());
-        pstmt.setString(4, staffUser.getPassword()); 
+        pstmt.setString(4, staffUser.getPassword());
         pstmt.setString(5, staffUser.getDob());
         pstmt.setString(6, staffUser.getPhone());
         pstmt.setString(7, staffUser.getAddress());
         pstmt.setString(8, staffUser.getCity());
         pstmt.setString(9, staffUser.getPostcode());
         pstmt.setString(10, staffUser.getCountry());
-        pstmt.setString(11, staffUser.getStaffId()); 
+        pstmt.setString(11, staffUser.getRole());
+        pstmt.setString(12, staffUser.getAccountStatus());
         pstmt.executeUpdate();
     }
-    
-    // find staff user
     public StaffUser findStaffUser(String email, String password) throws SQLException {
         String query = "SELECT * FROM staffusers WHERE email = ? AND password = ?";
         PreparedStatement pstmt = st.getConnection().prepareStatement(query);
@@ -78,6 +83,7 @@ public class DBManager {
         pstmt.setString(2, password);
         ResultSet rs = pstmt.executeQuery();
         if (rs.next()) {
+            int staffId = rs.getInt("staffId");
             return new StaffUser(
                 rs.getString("firstName"),
                 rs.getString("lastName"),
@@ -89,11 +95,93 @@ public class DBManager {
                 rs.getString("city"),
                 rs.getString("postcode"),
                 rs.getString("country"),
-                rs.getString("staffId") 
+                rs.getString("role"),
+                rs.getString("accountStatus"),
+                staffId
             );
         }
-        return null; // No staff user found
+        return null;
     }
+
+    // Get all staff users
+    public List<StaffUser> getAllStaffUsers() throws SQLException {
+        List<StaffUser> staffUsers = new ArrayList<>();
+        String query = "SELECT * FROM staffusers";
+        ResultSet rs = st.executeQuery(query);
+
+        while (rs.next()) {
+            StaffUser staffUser = new StaffUser(
+                rs.getString("firstName"),
+                rs.getString("lastName"),
+                rs.getString("email"),
+                rs.getString("password"),
+                rs.getString("dob"),
+                rs.getString("phone"),
+                rs.getString("address"),
+                rs.getString("city"),
+                rs.getString("postcode"),
+                rs.getString("country"),
+                rs.getString("role"),
+                rs.getString("accountStatus"),
+                rs.getInt("staffId")
+            );
+            staffUsers.add(staffUser);
+        }
+        return staffUsers;
+    }
+
+    // Delete staff user
+    public void deleteStaffUser(int staffId) throws SQLException {
+        String query = "DELETE FROM staffusers WHERE staffId = ?";
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+        pstmt.setInt(1, staffId);
+        pstmt.executeUpdate();
+    }
+
+    // Update staff user
+    public void updateStaffUser(StaffUser staffUser) throws SQLException {
+        String query = "UPDATE staffusers SET firstName = ?, email = ?, password = ?, role = ?, accountStatus = ? WHERE staffId = ?";
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+        pstmt.setString(1, staffUser.getFirstName());
+        pstmt.setString(2, staffUser.getEmail());
+        pstmt.setString(3, staffUser.getPassword());
+        pstmt.setString(4, staffUser.getRole());
+        pstmt.setString(5, staffUser.getAccountStatus());
+        pstmt.setInt(6, staffUser.getStaffId());
+        pstmt.executeUpdate();
+    }
+
+    // Search staff users by name
+    public List<StaffUser> searchStaffUsers(String name) throws SQLException {
+        List<StaffUser> staffUsers = new ArrayList<>();
+        String query = "SELECT * FROM staffusers WHERE firstName LIKE ? OR lastName LIKE ?";
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+        pstmt.setString(1, "%" + name + "%");
+        pstmt.setString(2, "%" + name + "%");
+        ResultSet rs = pstmt.executeQuery();
+
+        while (rs.next()) {
+            StaffUser staffUser = new StaffUser(
+                rs.getString("firstName"),
+                rs.getString("lastName"),
+                rs.getString("email"),
+                rs.getString("password"),
+                rs.getString("dob"),
+                rs.getString("phone"),
+                rs.getString("address"),
+                rs.getString("city"),
+                rs.getString("postcode"),
+                rs.getString("country"),
+                rs.getString("role"),
+                rs.getString("accountStatus"),
+                rs.getInt("staffId")
+            );
+            staffUsers.add(staffUser);
+        }
+        return staffUsers;
+    }
+
+        
     
     public boolean deleteUserByEmail(String email) throws SQLException {
     String query = "DELETE FROM users WHERE email = ?";
