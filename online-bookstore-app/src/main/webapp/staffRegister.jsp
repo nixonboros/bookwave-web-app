@@ -27,11 +27,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="formLabel" for="staffId">Staff ID</label>
-                    <input type="text" id="staffId" name="staffId" required>
-                </div>
-
-                <div class="form-group">
                     <label class="formLabel" for="dob">Date of Birth</label>
                     <input type="date" id="dob" name="dob" required>
                 </div>
@@ -41,9 +36,9 @@
                     <label class="formLabel" for="phone">Phone Number</label>
                     <div class="phone-group">
                         <select id="countryCode" name="countryCode" required>
-                            <option value="+1">+1 (USA)</option>
-                            <option value="+44">+44 (UK)</option>
                             <option value="+61">+61 (Australia)</option>
+                            <option value="+44">+44 (UK)</option>
+                            <option value="+1">+1 (USA)</option>
                             <option value="+91">+91 (India)</option>
                             <option value="+81">+81 (Japan)</option>
                             <option value="+49">+49 (Germany)</option>
