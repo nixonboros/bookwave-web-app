@@ -95,6 +95,23 @@ steps:
         timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (ticket_id) REFERENCES support_tickets(ticket_id) ON DELETE CASCADE
     );"
+
+    # STAFF USERS TABLE 
+    mysql -u root -proot -D bookstoredb -e "CREATE TABLE staffusers (
+      staffId INT PRIMARY KEY AUTO_INCREMENT,
+      firstName VARCHAR(255) NOT NULL,
+      lastName VARCHAR(255) NOT NULL,
+      email VARCHAR(255) UNIQUE NOT NULL,
+      password VARCHAR(255) COLLATE utf8mb4_bin NOT NULL,
+      dob DATE,
+      phone VARCHAR(20),
+      address VARCHAR(255),
+      city VARCHAR(100),
+      postcode VARCHAR(20),
+      country VARCHAR(100),
+      role VARCHAR(255) DEFAULT 'staff',
+      accountStatus VARCHAR(20) NOT NULL DEFAULT 'active'
+  );"
   displayName: 'Set up MySQL Database and Create Tables'
 
 
