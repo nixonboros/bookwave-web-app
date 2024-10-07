@@ -17,6 +17,7 @@ Online Bookstore System
   - Helped setup database
   - Set up testing and linked to Azure
   - UserTest test class (Testing: creating, updating and deleting of users in database)
+  - BookTest test class (Testing: creating and deleting of books in database)
 
 - **Nixon**
   - Customer Support Feature (user/staff support chat, viewing and opening/closing tickets)
