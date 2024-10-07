@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 @WebServlet("/StaffRegisterServlet")
 public class StaffRegisterServlet extends HttpServlet {
@@ -25,20 +26,47 @@ public class StaffRegisterServlet extends HttpServlet {
         String city = request.getParameter("city");
         String postcode = request.getParameter("postcode");
         String country = request.getParameter("country");
-        String staffId = request.getParameter("staffId"); 
+        String role = request.getParameter("role"); // New field for role
+        String accountStatus = request.getParameter("accountStatus"); // New field for account status
 
-        StaffUser newStaffUser = new StaffUser(firstName, lastName, email, password, dob, phone, address, city, postcode, country, staffId);
+        // Hash the password for security before saving
+        String hashedPassword = hashPassword(password); // Implement a secure hashing function
 
+        DBConnector connector = null;
+        Connection conn = null;
         try {
-            DBConnector connector = new DBConnector();
-            Connection conn = connector.openConnection();
+            // Convert staffId from String to int (validate input if needed)
+            int staffId = Integer.parseInt(request.getParameter("staffId"));
+
+            // Create a new StaffUser with the hashed password, role, and accountStatus
+            StaffUser newStaffUser = new StaffUser(firstName, lastName, email, hashedPassword, dob, phone, address, city, postcode, country, role, accountStatus, staffId);
+
+            // Manually manage the DB connection
+            connector = new DBConnector();
+            conn = connector.openConnection();
             DBManager dbManager = new DBManager(conn);
             dbManager.addStaffUser(newStaffUser); // Call the method for staff
-            connector.closeConnection();
             response.sendRedirect("staffLogin.jsp"); // Redirect to login after successful registration
+        } catch (NumberFormatException e) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid staff ID");
         } catch (Exception e) {
             e.printStackTrace();
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Registration failed.");
+        } finally {
+            // Ensure that the connection is closed properly
+            if (connector != null) {
+                try {
+                    connector.closeConnection(); // Close the connection manually
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
+    }
+
+    // Placeholder for a password hashing function
+    private String hashPassword(String password) {
+        // Implement password hashing here (e.g., using bcrypt)
+        return password; // Replace with actual hashed password
     }
 }
