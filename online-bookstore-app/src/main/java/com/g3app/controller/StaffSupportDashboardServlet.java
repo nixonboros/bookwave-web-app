@@ -23,11 +23,13 @@ public class StaffSupportDashboardServlet extends HttpServlet {
             Connection conn = connector.openConnection();
             DBManager dbManager = new DBManager(conn);
 
-            // Retrieve all support tickets
-            List<SupportTicket> allTickets = dbManager.getAllSupportTickets(); // Ensure this method is implemented
+            // Retrieve opened and closed support tickets
+            List<SupportTicket> openedTickets = dbManager.getOpenedSupportTickets();
+            List<SupportTicket> closedTickets = dbManager.getClosedSupportTickets();
 
-            // Set the tickets list in the request scope
-            request.setAttribute("allTickets", allTickets);
+            // Set the tickets lists in the request scope
+            request.setAttribute("openedTickets", openedTickets);
+            request.setAttribute("closedTickets", closedTickets);
 
             // Close connection
             connector.closeConnection();

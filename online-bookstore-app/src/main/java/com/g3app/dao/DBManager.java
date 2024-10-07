@@ -212,4 +212,44 @@ public class DBManager {
         }
         return messages;
     }
+    
+    public List<SupportTicket> getOpenedSupportTickets() throws SQLException {
+        String query = "SELECT * FROM support_tickets WHERE status = 'Open'";
+        List<SupportTicket> openedTickets = new ArrayList<>();
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+        ResultSet rs = pstmt.executeQuery();
+        while (rs.next()) {
+            SupportTicket ticket = new SupportTicket();
+            ticket.setTicketId(rs.getInt("ticket_id"));
+            ticket.setCustomerName(rs.getString("customer_name"));
+            ticket.setEmail(rs.getString("email"));
+            ticket.setSubjectTitle(rs.getString("subject_title"));
+            ticket.setTypeOfEnquiry(rs.getString("type_of_enquiry"));
+            ticket.setIssueDescription(rs.getString("issue_description"));
+            ticket.setStatus(rs.getString("status"));
+            ticket.setDateSubmitted(rs.getDate("date_submitted"));
+            openedTickets.add(ticket);
+        }
+        return openedTickets;
+    }
+
+    public List<SupportTicket> getClosedSupportTickets() throws SQLException {
+        String query = "SELECT * FROM support_tickets WHERE status = 'Closed'";
+        List<SupportTicket> closedTickets = new ArrayList<>();
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+        ResultSet rs = pstmt.executeQuery();
+        while (rs.next()) {
+            SupportTicket ticket = new SupportTicket();
+            ticket.setTicketId(rs.getInt("ticket_id"));
+            ticket.setCustomerName(rs.getString("customer_name"));
+            ticket.setEmail(rs.getString("email"));
+            ticket.setSubjectTitle(rs.getString("subject_title"));
+            ticket.setTypeOfEnquiry(rs.getString("type_of_enquiry"));
+            ticket.setIssueDescription(rs.getString("issue_description"));
+            ticket.setStatus(rs.getString("status"));
+            ticket.setDateSubmitted(rs.getDate("date_submitted"));
+            closedTickets.add(ticket);
+        }
+        return closedTickets;
+    }
 }
