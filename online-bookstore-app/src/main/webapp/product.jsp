@@ -18,6 +18,58 @@
             <h1 class="formTitle">FULL CATALOGUE</h1>
             <p>Explore our collection of books from various genres.</p>
 
+            <!-- Multi-filter search bar -->
+            <div class="search-bar">
+                <form action="products.jsp" method="get">
+                    <!-- Search by title or keyword -->
+                    <input type="text" name="search" placeholder="Search for books..." class="search-input">
+
+                    <!-- Filter by genre -->
+                    <select name="genre" class="filter-dropdown">
+                        <option value="">All Genres</option>
+                        <option value="fiction">Fiction</option>
+                        <option value="nonfiction">Non-fiction</option>
+                        <option value="mystery">Mystery</option>
+                        <option value="fantasy">Fantasy</option>
+                        <option value="sci-fi">Sci-Fi</option>
+                        <option value="biography">Biography</option>
+                        <!-- Add more genres as needed -->
+                    </select>
+
+                    <!-- Filter by price range -->
+                    <select name="priceRange" class="filter-dropdown">
+                        <option value="">All Prices</option>
+                        <option value="0-10">$0 - $10</option>
+                        <option value="10-20">$10 - $20</option>
+                        <option value="20-50">$20 - $50</option>
+                        <option value="50-100">$50 - $100</option>
+                        <option value="100+">$100+</option>
+                    </select>
+
+                    <!-- Filter by author -->
+                    <input type="text" name="author" placeholder="Author name..." class="filter-input">
+
+                    <!-- Filter by format -->
+                    <select name="format" class="filter-dropdown">
+                        <option value="">All Formats</option>
+                        <option value="hardcover">Hardcover</option>
+                        <option value="paperback">Paperback</option>
+                        <option value="ebook">eBook</option>
+                        <option value="audiobook">Audiobook</option>
+                    </select>
+
+                    <!-- Filter by availability -->
+                    <select name="availability" class="filter-dropdown">
+                        <option value="">All Availability</option>
+                        <option value="in-stock">In Stock</option>
+                        <option value="out-of-stock">Out of Stock</option>
+                        <option value="preorder">Preorder</option>
+                    </select>
+
+                    <button type="submit" class="search-button">Search</button>
+                </form>
+            </div>
+
             <div class="book-selection">
                 <%
                     // Create a new instance of Catalogue and fetch all books
