@@ -548,4 +548,29 @@ public SupportTicket getSupportTicketById(int ticketId) throws SQLException {
             }
         return null;
     }
+public void addPaymentMethod(Payment payment) throws SQLException {
+        String query = "INSERT INTO payments (cardNumber, expiryDate, cardHolderName) VALUES (?, ?, ?)";
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+        pstmt.setString(1, payment.getCardNumber());
+        pstmt.setString(2, payment.getExpiryDate());
+        pstmt.setString(3, payment.getCardHolderName());
+        pstmt.executeUpdate();
+    }
+
+    public void updatePaymentMethod(Payment payment) throws SQLException {
+        String query = "UPDATE payments SET cardNumber = ?, expiryDate = ?, cardHolderName = ? WHERE paymentId = ?";
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+        pstmt.setString(1, payment.getCardNumber());
+        pstmt.setString(2, payment.getExpiryDate());
+        pstmt.setString(3, payment.getCardHolderName());
+        pstmt.setInt(4, payment.getPaymentId());
+        pstmt.executeUpdate();
+    }
+
+    public void deletePaymentMethod(int paymentId) throws SQLException {
+        String query = "DELETE FROM payments WHERE paymentId = ?";
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+        pstmt.setInt(1, paymentId);
+        pstmt.executeUpdate();
+}
 }
