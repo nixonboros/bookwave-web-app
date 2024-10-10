@@ -1,9 +1,9 @@
 # AdvSoftwareDevG3
 
-AdvSoftwareDev Group 3  
+AdvSoftwareDev Group 3 (to be updated)
 Online Bookstore System
 
-**GitHub Repository**: https://github.com/nixonboros/AdvSoftwareDevG3
+**GitHub Repository**: https://github.com/nixonboros/AdvSoftwareDev_Bookstore
 
 ## Team Member Responsibilities
 
@@ -27,19 +27,7 @@ Online Bookstore System
   - General data validation
   - Helped with User/Staff login and registration
   - User/Staff page navigation bar
-  - SupportTicketTest test class (Testing: creating, retrieving and adding messages to support tickets in database)
-
-- **Sarneet** 
-  - Staff Login/Registration 
-  - Catalogue
-
-- **Nicolas** 
-  - Orders Management 
-  - Orders Tracking
-
-- **Yuri** 
-  - Checkout
-  - Product Pages
+  - SupportTicketTest test class (Testing: creating, retrieving and adding messages to support tickets in databas
 
 ## Setup Instructions
 
