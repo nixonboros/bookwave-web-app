@@ -1,6 +1,6 @@
-# AdvSoftwareDevG3
+# AdvSoftwareDev_Bookstore
 
-AdvSoftwareDev Group 3 (to be updated)
+AdvSoftwareDev Group 3 (TO BE UPDATED) 
 Online Bookstore System
 
 **GitHub Repository**: https://github.com/nixonboros/AdvSoftwareDev_Bookstore
@@ -54,7 +54,7 @@ Online Bookstore System
 
 The repository is organized as follows:
 ```
-AdvSoftwareDevG3
+AdvSoftwareDev_Bookstore
 ├── online-bookstore-app
 │   ├── src
 │   │   ├── main
@@ -76,7 +76,7 @@ AdvSoftwareDevG3
 
 ### Explanation of the Structure
 
-- **AdvSoftwareDevG3**: The root folder of the project containing all necessary files and folders.
+- **AdvSoftwareDev_Bookstore**: The root folder of the project containing all necessary files and folders.
 - **online-bookstore-app**: The main application directory that contains the source code and resources for the online bookstore system.
   - **src**: Contains the source code for the application.
     - **main**: Main source set where the application code resides.
