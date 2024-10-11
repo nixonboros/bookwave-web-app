@@ -1,6 +1,6 @@
 # AdvSoftwareDev_Bookstore
 
-AdvSoftwareDev Group 3 (TO BE UPDATED) 
+AdvSoftwareDev Group 3 (TO BE UPDATED)  
 Online Bookstore System
 
 **GitHub Repository**: https://github.com/nixonboros/AdvSoftwareDev_Bookstore
