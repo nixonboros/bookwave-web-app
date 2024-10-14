@@ -1,6 +1,7 @@
 package com.g3app.controller;
 
 import com.g3app.model.User;
+import com.g3app.model.Cart;
 import com.g3app.dao.DBConnector;
 import com.g3app.dao.DBManager;
 
@@ -26,12 +27,11 @@ public class LoginServlet extends HttpServlet {
             connector.closeConnection();
 
             if (user != null) {
-                // successful login
                 request.getSession().setAttribute("user", user);
                 request.getSession().setAttribute("email", user.getEmail());
-                response.sendRedirect("index.jsp"); // Redirect to welcome page or dashboard
+                request.getSession().setAttribute("cart", new Cart());  // Create cart on login
+                response.sendRedirect("index.jsp");
             } else {
-                // failed login
                 response.sendRedirect("login.jsp?error=invalid_credentials");
             }
         } catch (Exception e) {
