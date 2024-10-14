@@ -1,7 +1,7 @@
 package com.g3app.controller;
 
 import com.g3app.model.User;
-import com.g3app.model.Cart;
+import com.g3app.model.Cart; // Import Cart class
 import com.g3app.dao.DBConnector;
 import com.g3app.dao.DBManager;
 
@@ -10,6 +10,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession; // Import HttpSession
 import java.io.IOException;
 import java.sql.Connection;
 
@@ -27,11 +28,21 @@ public class LoginServlet extends HttpServlet {
             connector.closeConnection();
 
             if (user != null) {
-                request.getSession().setAttribute("user", user);
-                request.getSession().setAttribute("email", user.getEmail());
-                request.getSession().setAttribute("cart", new Cart());  // Create cart on login
-                response.sendRedirect("index.jsp");
+                // successful login
+                HttpSession session = request.getSession();
+                
+                // clear guest cart
+                Cart guestCart = (Cart) session.getAttribute("cart");
+                if (guestCart != null) {
+                    session.removeAttribute("cart"); // clear the guest cart
+                }
+                
+                // set user information in the session
+                session.setAttribute("user", user);
+                session.setAttribute("email", user.getEmail());
+                response.sendRedirect("index.jsp"); // redirect to welcome page or dashboard
             } else {
+                // failed login
                 response.sendRedirect("login.jsp?error=invalid_credentials");
             }
         } catch (Exception e) {
