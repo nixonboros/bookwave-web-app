@@ -18,72 +18,7 @@
             <h1 class="formTitle">FULL CATALOGUE</h1>
             <p>Explore our collection of books from various genres.</p>
 
-            <!-- Multi-filter search bar -->
-            <div class="search-bar">
-                <form action="products.jsp" method="get" class="filter-form">
-                    <div class="filter-container">
-                        <!-- Search by title or keyword -->
-                        <div class="filter-item">
-                            <input type="text" name="search" placeholder="Search for books..." class="search-input">
-                        </div>
-
-                        <!-- Filter by genre -->
-                        <div class="filter-item">
-                            <select name="genre" class="filter-dropdown">
-                                <option value="">All Genres</option>
-                                <option value="fiction">Fiction</option>
-                                <option value="nonfiction">Non-fiction</option>
-                                <option value="mystery">Mystery</option>
-                                <option value="fantasy">Fantasy</option>
-                                <option value="sci-fi">Sci-Fi</option>
-                                <option value="biography">Biography</option>
-                            </select>
-                        </div>
-
-                        <!-- Filter by price range -->
-                        <div class="filter-item">
-                            <select name="priceRange" class="filter-dropdown">
-                                <option value="">All Prices</option>
-                                <option value="0-10">$0 - $10</option>
-                                <option value="10-20">$10 - $20</option>
-                                <option value="20-50">$20 - $50</option>
-                                <option value="50-100">$50 - $100</option>
-                                <option value="100+">$100+</option>
-                            </select>
-                        </div>
-
-                        <!-- Filter by author -->
-                        <div class="filter-item">
-                            <input type="text" name="author" placeholder="Author name..." class="filter-input">
-                        </div>
-
-                        <!-- Filter by format -->
-                        <div class="filter-item">
-                            <select name="format" class="filter-dropdown">
-                                <option value="">All Formats</option>
-                                <option value="hardcover">Hardcover</option>
-                                <option value="paperback">Paperback</option>
-                                <option value="ebook">eBook</option>
-                                <option value="audiobook">Audiobook</option>
-                            </select>
-                        </div>
-
-                        <!-- Filter by availability -->
-                        <div class="filter-item">
-                            <select name="availability" class="filter-dropdown">
-                                <option value="">All Availability</option>
-                                <option value="in-stock">In Stock</option>
-                                <option value="out-of-stock">Out of Stock</option>
-                                <option value="preorder">Preorder</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="submit-container">
-                        <button type="submit" class="search-button">Search</button>
-                    </div>
-                </form>
-            </div>
+            
 
             <div class="book-selection">
                 <%
