@@ -29,13 +29,11 @@ public class StaffRegisterServlet extends HttpServlet {
         String role = request.getParameter("role"); // New field for role
         String accountStatus = request.getParameter("accountStatus"); // New field for account status
 
-        // Hash the password for security before saving
-        String hashedPassword = hashPassword(password);
 
         DBConnector connector = null;
         Connection conn = null;
         try {
-            StaffUser newStaffUser = new StaffUser(firstName, lastName, email, hashedPassword, dob, phone, address, city, postcode, country, role, accountStatus);
+            StaffUser newStaffUser = new StaffUser(firstName, lastName, email, password, dob, phone, address, city, postcode, country);
 
             // Manually manage the DB connection
             connector = new DBConnector();
@@ -56,10 +54,5 @@ public class StaffRegisterServlet extends HttpServlet {
                 }
             }
         }
-    }
-
-    // Placeholder for a password hashing function
-    private String hashPassword(String password) {
-        return password;
     }
 }
