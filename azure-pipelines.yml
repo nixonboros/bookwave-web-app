@@ -32,7 +32,6 @@ steps:
     
     #STAFF TABLE
     mysql -u root -proot -D bookstoredb -e "CREATE TABLE IF NOT EXISTS staffusers (
-      staffId INT PRIMARY KEY AUTO_INCREMENT,
       firstName VARCHAR(255) NOT NULL,
       lastName VARCHAR(255) NOT NULL,
       email VARCHAR(255) UNIQUE NOT NULL,
@@ -42,9 +41,7 @@ steps:
       address VARCHAR(255),
       city VARCHAR(100),
       postcode VARCHAR(20),
-      country VARCHAR(100),
-      role VARCHAR(255) DEFAULT 'staff',
-      accountStatus VARCHAR(20) NOT NULL DEFAULT 'active'
+      country VARCHAR(100)
     );"
 
     # USERS TABLE
