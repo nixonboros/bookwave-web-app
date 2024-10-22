@@ -57,7 +57,7 @@ public class DBManager {
         pstmt.executeUpdate();
     }
    
-    // Add staff user
+    // add staff user
     public void addStaffUser(StaffUser staffUser) throws SQLException {
         String query = "INSERT INTO staffusers (firstName, lastName, email, password, dob, phone, address, city, postcode, country) " +
                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -75,7 +75,7 @@ public class DBManager {
         pstmt.executeUpdate();
     }
 
-    // Find staff user
+    // find staff user
     public StaffUser findStaffUser(String email, String password) throws SQLException {
         String query = "SELECT * FROM staffusers WHERE email = ? AND password = ?";
         PreparedStatement pstmt = st.getConnection().prepareStatement(query);
@@ -99,7 +99,7 @@ public class DBManager {
         return null;
     }
 
-    // Get all staff users
+    // get all staff users
     public ArrayList<StaffUser> getAllStaffUsers() throws SQLException {
     ArrayList<StaffUser> staffUsers = new ArrayList<>();
     String query = "SELECT * FROM staffusers"; // Ensure your table structure matches
@@ -126,7 +126,7 @@ public class DBManager {
 }
 
 
-    // Delete staff user
+    // delete staff user
     public void deleteStaffUser(String email) throws SQLException {
         String query = "DELETE FROM staffusers WHERE email = ?";
         PreparedStatement pstmt = st.getConnection().prepareStatement(query);
@@ -134,7 +134,7 @@ public class DBManager {
         pstmt.executeUpdate();
     }
 
-    // Update staff user
+    // update staff user
     public void updateStaffUser(StaffUser staffUser) throws SQLException {
         String query = "UPDATE staffusers SET firstName = ?, email = ?, password = ? WHERE email = ?";
         PreparedStatement pstmt = st.getConnection().prepareStatement(query);
@@ -145,7 +145,7 @@ public class DBManager {
         pstmt.executeUpdate();
     }
 
-    // Search staff users by name
+    // search staff users by name
     public List<StaffUser> searchStaffUsers(String search) throws SQLException {
         List<StaffUser> staffUsers = new ArrayList<>();
         String query = "SELECT * FROM staffusers WHERE firstName LIKE ? OR lastName LIKE ? OR email LIKE ?";
@@ -195,13 +195,13 @@ public class DBManager {
     PreparedStatement pstmt = st.getConnection().prepareStatement(query);
 
     try {
-         pstmt.setString(1, title); // Set the title parameter
+         pstmt.setString(1, title); // set the title parameter
 
         // Execute the update
         int rowsAffected = pstmt.executeUpdate();
-        return rowsAffected > 0; // Returns true if a book was deleted
+        return rowsAffected > 0; // returns true if a book was deleted
     } finally {
-        // Close the PreparedStatement if it was initialized
+        // close the PreparedStatement if it was initialized
         if (pstmt != null) {
             pstmt.close();
         }
@@ -213,14 +213,14 @@ public class DBManager {
         String query = "SELECT * FROM books WHERE title LIKE ?"; // Use LIKE for partial matches
         PreparedStatement pstmt = conn.prepareStatement(query);
         
-        // Add wildcard characters for partial matching
+        // add wildcard characters for partial matching
         String titleWithWildcards = "%" + title + "%"; 
         pstmt.setString(1, titleWithWildcards); // Set the parameter
         
         ResultSet rs = pstmt.executeQuery();
         
         while (rs.next()) {
-            // Assuming Book has an appropriate constructor
+            // assuming Book has an appropriate constructor
             Book book = new Book(
                 rs.getInt("id"),
                 rs.getString("title"),
@@ -241,19 +241,16 @@ public class DBManager {
 }
 
 
-
-
-
 public boolean deleteBookById(int id) throws SQLException {
     String query = "DELETE FROM books WHERE id = ?";
     
-    try (PreparedStatement pstmt = conn.prepareStatement(query)) { // Use try-with-resources
+    try (PreparedStatement pstmt = conn.prepareStatement(query)) { // use try-with-resources
         pstmt.setInt(1, id);
         int rowsAffected = pstmt.executeUpdate();
-        return rowsAffected > 0; // Return true if at least one row was deleted
+        return rowsAffected > 0; // return true if at least one row was deleted
     } catch (SQLException e) {
         e.printStackTrace();
-        throw e; // Rethrow exception to handle it in the calling method if needed
+        throw e; // rethrow exception to handle it in the calling method if needed
     }
 }
 
@@ -615,5 +612,6 @@ public void addPaymentMethod(Payment payment) throws SQLException {
         PreparedStatement pstmt = st.getConnection().prepareStatement(query);
         pstmt.setInt(1, paymentId);
         pstmt.executeUpdate();
-}
+
+    }
 }
