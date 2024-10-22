@@ -57,10 +57,10 @@ public class DBManager {
         pstmt.executeUpdate();
     }
    
-    // Add staff user (without manually providing staffId)
+    // Add staff user
     public void addStaffUser(StaffUser staffUser) throws SQLException {
-        String query = "INSERT INTO staffusers (firstName, lastName, email, password, dob, phone, address, city, postcode, country, role, accountStatus) " +
-                       "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO staffusers (firstName, lastName, email, password, dob, phone, address, city, postcode, country) " +
+                       "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement pstmt = st.getConnection().prepareStatement(query);
         pstmt.setString(1, staffUser.getFirstName());
         pstmt.setString(2, staffUser.getLastName());
@@ -72,10 +72,10 @@ public class DBManager {
         pstmt.setString(8, staffUser.getCity());
         pstmt.setString(9, staffUser.getPostcode());
         pstmt.setString(10, staffUser.getCountry());
-        pstmt.setString(11, staffUser.getRole());
-        pstmt.setString(12, staffUser.getAccountStatus());
         pstmt.executeUpdate();
     }
+
+    // Find staff user
     public StaffUser findStaffUser(String email, String password) throws SQLException {
         String query = "SELECT * FROM staffusers WHERE email = ? AND password = ?";
         PreparedStatement pstmt = st.getConnection().prepareStatement(query);
@@ -83,7 +83,6 @@ public class DBManager {
         pstmt.setString(2, password);
         ResultSet rs = pstmt.executeQuery();
         if (rs.next()) {
-            int staffId = rs.getInt("staffId");
             return new StaffUser(
                 rs.getString("firstName"),
                 rs.getString("lastName"),
@@ -94,70 +93,66 @@ public class DBManager {
                 rs.getString("address"),
                 rs.getString("city"),
                 rs.getString("postcode"),
-                rs.getString("country"),
-                rs.getString("role"),
-                rs.getString("accountStatus"),
-                staffId
+                rs.getString("country")
             );
         }
         return null;
     }
 
     // Get all staff users
-    public List<StaffUser> getAllStaffUsers() throws SQLException {
-        List<StaffUser> staffUsers = new ArrayList<>();
-        String query = "SELECT * FROM staffusers";
-        ResultSet rs = st.executeQuery(query);
+    public ArrayList<StaffUser> getAllStaffUsers() throws SQLException {
+    ArrayList<StaffUser> staffUsers = new ArrayList<>();
+    String query = "SELECT * FROM staffusers"; // Ensure your table structure matches
+    PreparedStatement pstmt = st.getConnection().prepareStatement(query); // Use prepared statement
+    ResultSet rs = pstmt.executeQuery();
 
-        while (rs.next()) {
-            StaffUser staffUser = new StaffUser(
-                rs.getString("firstName"),
-                rs.getString("lastName"),
-                rs.getString("email"),
-                rs.getString("password"),
-                rs.getString("dob"),
-                rs.getString("phone"),
-                rs.getString("address"),
-                rs.getString("city"),
-                rs.getString("postcode"),
-                rs.getString("country"),
-                rs.getString("role"),
-                rs.getString("accountStatus"),
-                rs.getInt("staffId")
-            );
-            staffUsers.add(staffUser);
-        }
-        return staffUsers;
+    while (rs.next()) {
+        String firstName = rs.getString("firstName");
+        String lastName = rs.getString("lastName");
+        String email = rs.getString("email");
+        String password = rs.getString("password");
+        String dob = rs.getString("dob");
+        String phone = rs.getString("phone");
+        String address = rs.getString("address");
+        String city = rs.getString("city");
+        String postcode = rs.getString("postcode");
+        String country = rs.getString("country");
+
+        StaffUser staffUser = new StaffUser(firstName, lastName, email, password, dob, phone, address, city, postcode, country);
+        staffUsers.add(staffUser);
     }
 
+    return staffUsers;
+}
+
+
     // Delete staff user
-    public void deleteStaffUser(int staffId) throws SQLException {
-        String query = "DELETE FROM staffusers WHERE staffId = ?";
+    public void deleteStaffUser(String email) throws SQLException {
+        String query = "DELETE FROM staffusers WHERE email = ?";
         PreparedStatement pstmt = st.getConnection().prepareStatement(query);
-        pstmt.setInt(1, staffId);
+        pstmt.setString(1, email);
         pstmt.executeUpdate();
     }
 
     // Update staff user
     public void updateStaffUser(StaffUser staffUser) throws SQLException {
-        String query = "UPDATE staffusers SET firstName = ?, email = ?, password = ?, role = ?, accountStatus = ? WHERE staffId = ?";
+        String query = "UPDATE staffusers SET firstName = ?, email = ?, password = ? WHERE email = ?";
         PreparedStatement pstmt = st.getConnection().prepareStatement(query);
         pstmt.setString(1, staffUser.getFirstName());
         pstmt.setString(2, staffUser.getEmail());
         pstmt.setString(3, staffUser.getPassword());
-        pstmt.setString(4, staffUser.getRole());
-        pstmt.setString(5, staffUser.getAccountStatus());
-        pstmt.setInt(6, staffUser.getStaffId());
+        pstmt.setString(4, staffUser.getEmail());
         pstmt.executeUpdate();
     }
 
     // Search staff users by name
-    public List<StaffUser> searchStaffUsers(String name) throws SQLException {
+    public List<StaffUser> searchStaffUsers(String search) throws SQLException {
         List<StaffUser> staffUsers = new ArrayList<>();
-        String query = "SELECT * FROM staffusers WHERE firstName LIKE ? OR lastName LIKE ?";
+        String query = "SELECT * FROM staffusers WHERE firstName LIKE ? OR lastName LIKE ? OR email LIKE ?";
         PreparedStatement pstmt = st.getConnection().prepareStatement(query);
-        pstmt.setString(1, "%" + name + "%");
-        pstmt.setString(2, "%" + name + "%");
+        pstmt.setString(1, "%" + search + "%");
+        pstmt.setString(2, "%" + search + "%");
+        pstmt.setString(3, "%" + search + "%");
         ResultSet rs = pstmt.executeQuery();
 
         while (rs.next()) {
@@ -171,10 +166,7 @@ public class DBManager {
                 rs.getString("address"),
                 rs.getString("city"),
                 rs.getString("postcode"),
-                rs.getString("country"),
-                rs.getString("role"),
-                rs.getString("accountStatus"),
-                rs.getInt("staffId")
+                rs.getString("country")
             );
             staffUsers.add(staffUser);
         }
@@ -215,6 +207,57 @@ public class DBManager {
         }
     }
 }
+    public List<Book> searchBooksByTitle(String title) {
+    List<Book> books = new ArrayList<>();
+    try {
+        String query = "SELECT * FROM books WHERE title LIKE ?"; // Use LIKE for partial matches
+        PreparedStatement pstmt = conn.prepareStatement(query);
+        
+        // Add wildcard characters for partial matching
+        String titleWithWildcards = "%" + title + "%"; 
+        pstmt.setString(1, titleWithWildcards); // Set the parameter
+        
+        ResultSet rs = pstmt.executeQuery();
+        
+        while (rs.next()) {
+            // Assuming Book has an appropriate constructor
+            Book book = new Book(
+                rs.getInt("id"),
+                rs.getString("title"),
+                rs.getString("author"),
+                rs.getDouble("price"),
+                rs.getString("publishedDate"),
+                rs.getString("description"),
+                rs.getString("imgUrl"),
+                rs.getString("genre"),
+                rs.getString("medium")
+            );
+            books.add(book); // Add book to the list
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return books; // Return the list of found books
+}
+
+
+
+
+
+public boolean deleteBookById(int id) throws SQLException {
+    String query = "DELETE FROM books WHERE id = ?";
+    
+    try (PreparedStatement pstmt = conn.prepareStatement(query)) { // Use try-with-resources
+        pstmt.setInt(1, id);
+        int rowsAffected = pstmt.executeUpdate();
+        return rowsAffected > 0; // Return true if at least one row was deleted
+    } catch (SQLException e) {
+        e.printStackTrace();
+        throw e; // Rethrow exception to handle it in the calling method if needed
+    }
+}
+
+
 
     
   public boolean updateUserDetails(String oldEmail, String firstName, String lastName, String email, String password, String dob, String phone, String address, String city, String postcode, String country) throws SQLException {
