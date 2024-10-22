@@ -21,122 +21,148 @@
 
             <div class="tabs">
                 <div class="tab active" data-target="addStaff">Add Staff User</div>
-                <div class="tab" data-target="deleteStaff">Delete Staff User</div>
+                <div class="tab" data-target="searchStaff">Search for Staff User</div>
             </div>
             
             <!-- ADD STAFF USER TAB -->
-            <div id="addStaff" class="tab-content active">
-                <h2>Add New Staff User</h2>
-                <form id="addStaffForm" action="StaffUserServlet" method="post">
-                    <div class="form-group">
-                        <label for="firstName">First Name:</label>
-                        <input type="text" id="firstName" name="firstName" required>
-                    </div>
+<div id="addStaff" class="tab-content active">
+    <h2>Add New Staff User</h2>
+    <form id="addStaffForm" action="StaffUserAddServlet" method="post">
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" required>
+        </div>
 
-                    <div class="form-group">
-                        <label for="lastName">Last Name:</label>
-                        <input type="text" id="lastName" name="lastName" required>
-                    </div>
+        <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" required>
+        </div>
 
-                    <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
 
-                    <div class="form-group">
-                        <label for="password">Password:</label>
-                        <input type="password" id="password" name="password" required>
-                    </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
 
-                    <div class="form-group">
-                        <button type="submit" id="addStaffButton">Add Staff User</button>
-                    </div>
-                </form>
+        <div class="form-group">
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+        </div>
 
-                <% 
-                String addStatus = request.getAttribute("status") != null ? request.getAttribute("status").toString() : ""; 
-                if ("success".equals(addStatus)) { 
-                %>
-                    <div class="success-message">
-                        <p style="color: green;"><%= request.getAttribute("successMessage") %></p>
-                    </div>
-                <% 
-                } else if ("error".equals(addStatus)) { 
-                %>
-                    <div class="error-message">
-                        <p style="color: red;"><%= request.getAttribute("errorMessage") %></p>
-                    </div>
-                <% 
-                } 
-                %>
-            </div>
+        <div class="form-group">
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" name="phone" required>
+        </div>
+
+        <div class="form-group">
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required>
+        </div>
+
+        <div class="form-group">
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city" required>
+        </div>
+
+        <div class="form-group">
+            <label for="postcode">Postcode:</label>
+            <input type="text" id="postcode" name="postcode" required>
+        </div>
+
+        <div class="form-group">
+            <label for="country">Country:</label>
+            <input type="text" id="country" name="country" required>
+        </div>
+
+        <div class="form-group">
+            <button type="submit" id="addStaffButton">Add Staff User</button>
+        </div>
+    </form>
+
+    <% 
+    String addStatus = request.getAttribute("status") != null ? request.getAttribute("status").toString() : ""; 
+    if ("success".equals(addStatus)) { 
+    %>
+        <div class="success-message">
+            <p style="color: green;"><%= request.getAttribute("successMessage") %></p>
+        </div>
+    <% 
+    } else if ("error".equals(addStatus)) { 
+    %>
+        <div class="error-message">
+            <p style="color: red;"><%= request.getAttribute("errorMessage") %></p>
+        </div>
+    <% 
+    } 
+    %>
+</div>
+
             
-            <!-- DELETE STAFF USER TAB -->
-            <div id="deleteStaff" class="tab-content">
-                <h2>Delete a Staff User</h2>
-                <form id="deleteStaffForm" action="StaffUserServlet" method="post" onsubmit="return confirm('Are you sure you want to delete this staff user? This cannot be undone.');">
-                    <div class="form-group">
-                        <label for="email">Enter Staff User Email to Delete:</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
+            <!-- SEARCH STAFF USER TAB -->
+<div id="searchStaff" class="tab-content">
+    <h2>Search for a Staff User</h2>
+    <form id="searchStaffForm" action="StaffUserSearchServlet" method="get">
+        <div class="form-group">
+            <label for="name">Enter Staff Name or Email:</label>
+            <input type="text" id="name" name="searchName" required>
+        </div>
 
-                    <div class="form-group">
-                        <button type="submit" id="deleteStaffButton">Delete Staff User</button>
-                    </div>
-                </form>
+        <div class="form-group">
+            <button type="submit" id="searchStaffButton">Search for Staff User</button>
+        </div>
+    </form>
 
-                <% 
-                String deleteStatus = request.getAttribute("deleteStatus") != null ? request.getAttribute("deleteStatus").toString() : ""; 
-                if ("deleted".equals(deleteStatus)) { 
-                %>
-                    <div class="success-message">
-                        <p style="color: green;">Staff user deleted successfully!</p>
-                    </div>
-                <% 
-                } else if ("error".equals(deleteStatus) || "notFound".equals(deleteStatus)) { 
-                %>
-                    <div class="error-message">
-                        <p style="color: red;"><%= request.getAttribute("errorMessage") != null ? request.getAttribute("errorMessage") : "An error occurred while deleting the staff user. Please try again." %></p>
-                    </div>
-                <% 
-                } 
-                %>
-
-                <h3>List of Staff Users</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Email</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% 
-            try {
-                DBConnector connector = new DBConnector();
-                Connection conn = connector.openConnection();
-                DBManager dbManager = new DBManager(conn);
-                List<StaffUser> staffUsers = dbManager.getAllStaffUsers(); // Assuming this method exists in DBManager
-                
-                for (StaffUser staffUser : staffUsers) {
-            %>
+    <% 
+    String searchStatus = request.getAttribute("searchStatus") != null ? request.getAttribute("searchStatus").toString() : ""; 
+    if ("found".equals(searchStatus)) { 
+    %>
+        <h3>Search Results</h3>
+        <table>
+            <thead>
                 <tr>
-                    <td><%= staffUser.getFirstName() %></td>
-                    <td><%= staffUser.getLastName() %></td>
-                    <td><%= staffUser.getEmail() %></td>
-                    <td><%= staffUser.getPhone() %></td>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
                 </tr>
-            <% 
+            </thead>
+            <tbody>
+                <%
+                List<StaffUser> searchedStaffUsers = (List<StaffUser>) request.getAttribute("searchedStaffUsers");
+                for (StaffUser staffUser : searchedStaffUsers) {
+                %>
+                    <tr>
+                        <td><%= staffUser.getFirstName() %></td>
+                        <td><%= staffUser.getLastName() %></td>
+                        <td><%= staffUser.getEmail() %></td>
+                        <td><%= staffUser.getPhone() %></td>
+                    </tr>
+                <% 
                 }
-                connector.closeConnection();
-            } catch (Exception e) {
-                e.printStackTrace();
-            } 
-            %>
-                    </tbody>
-                </table>
-            </div>
+                %>
+            </tbody>
+        </table>
+    <% 
+    } else if ("notFound".equals(searchStatus)) { 
+    %>
+        <div class="error-message">
+            <p style="color: red;">No staff users found with the given name.</p>
+        </div>
+    <% 
+    } else if ("error".equals(searchStatus)) { 
+    %>
+        <div class="error-message">
+            <p style="color: red;"><%= request.getAttribute("errorMessage") != null ? request.getAttribute("errorMessage") : "An error occurred while searching for the staff user. Please try again." %></p>
+        </div>
+    <% 
+    } 
+    %>
+</div>
+
 
         </section>
     </main>
