@@ -26,8 +26,6 @@ public class StaffRegisterServlet extends HttpServlet {
         String city = request.getParameter("city");
         String postcode = request.getParameter("postcode");
         String country = request.getParameter("country");
-        String role = request.getParameter("role"); // New field for role
-        String accountStatus = request.getParameter("accountStatus"); // New field for account status
 
 
         DBConnector connector = null;
