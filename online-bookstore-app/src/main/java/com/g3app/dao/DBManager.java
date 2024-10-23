@@ -6,10 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DBManager {
+    private Connection conn;  // Ensure this is properly initialized
     public Statement st;
 
     public DBManager(Connection conn) throws SQLException {
-        st = conn.createStatement();
+        this.conn = conn; // Assign the passed connection to this.conn
+        if (this.conn != null) {
+            st = conn.createStatement();
+        } else {
+            throw new SQLException("Database connection is null!");
+        }
     }
 
     // find customer user
@@ -53,23 +59,22 @@ public class DBManager {
    
     // add staff user
     public void addStaffUser(StaffUser staffUser) throws SQLException {
-        String query = "INSERT INTO staffusers (firstName, lastName, email, password, dob, phone, address, city, postcode, country, staffId) " +
-                       "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO staffusers (firstName, lastName, email, password, dob, phone, address, city, postcode, country) " +
+                       "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement pstmt = st.getConnection().prepareStatement(query);
         pstmt.setString(1, staffUser.getFirstName());
         pstmt.setString(2, staffUser.getLastName());
         pstmt.setString(3, staffUser.getEmail());
-        pstmt.setString(4, staffUser.getPassword()); 
+        pstmt.setString(4, staffUser.getPassword());
         pstmt.setString(5, staffUser.getDob());
         pstmt.setString(6, staffUser.getPhone());
         pstmt.setString(7, staffUser.getAddress());
         pstmt.setString(8, staffUser.getCity());
         pstmt.setString(9, staffUser.getPostcode());
         pstmt.setString(10, staffUser.getCountry());
-        pstmt.setString(11, staffUser.getStaffId()); 
         pstmt.executeUpdate();
     }
-    
+
     // find staff user
     public StaffUser findStaffUser(String email, String password) throws SQLException {
         String query = "SELECT * FROM staffusers WHERE email = ? AND password = ?";
@@ -88,12 +93,87 @@ public class DBManager {
                 rs.getString("address"),
                 rs.getString("city"),
                 rs.getString("postcode"),
-                rs.getString("country"),
-                rs.getString("staffId") 
+                rs.getString("country")
             );
         }
-        return null; // No staff user found
+        return null;
     }
+
+    // get all staff users
+    public ArrayList<StaffUser> getAllStaffUsers() throws SQLException {
+    ArrayList<StaffUser> staffUsers = new ArrayList<>();
+    String query = "SELECT * FROM staffusers"; // Ensure your table structure matches
+    PreparedStatement pstmt = st.getConnection().prepareStatement(query); // Use prepared statement
+    ResultSet rs = pstmt.executeQuery();
+
+    while (rs.next()) {
+        String firstName = rs.getString("firstName");
+        String lastName = rs.getString("lastName");
+        String email = rs.getString("email");
+        String password = rs.getString("password");
+        String dob = rs.getString("dob");
+        String phone = rs.getString("phone");
+        String address = rs.getString("address");
+        String city = rs.getString("city");
+        String postcode = rs.getString("postcode");
+        String country = rs.getString("country");
+
+        StaffUser staffUser = new StaffUser(firstName, lastName, email, password, dob, phone, address, city, postcode, country);
+        staffUsers.add(staffUser);
+    }
+
+    return staffUsers;
+}
+
+
+    // delete staff user
+    public void deleteStaffUser(String email) throws SQLException {
+        String query = "DELETE FROM staffusers WHERE email = ?";
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+        pstmt.setString(1, email);
+        pstmt.executeUpdate();
+    }
+
+    // update staff user
+    public void updateStaffUser(StaffUser staffUser) throws SQLException {
+        String query = "UPDATE staffusers SET firstName = ?, email = ?, password = ? WHERE email = ?";
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+        pstmt.setString(1, staffUser.getFirstName());
+        pstmt.setString(2, staffUser.getEmail());
+        pstmt.setString(3, staffUser.getPassword());
+        pstmt.setString(4, staffUser.getEmail());
+        pstmt.executeUpdate();
+    }
+
+    // search staff users by name
+    public List<StaffUser> searchStaffUsers(String search) throws SQLException {
+        List<StaffUser> staffUsers = new ArrayList<>();
+        String query = "SELECT * FROM staffusers WHERE firstName LIKE ? OR lastName LIKE ? OR email LIKE ?";
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+        pstmt.setString(1, "%" + search + "%");
+        pstmt.setString(2, "%" + search + "%");
+        pstmt.setString(3, "%" + search + "%");
+        ResultSet rs = pstmt.executeQuery();
+
+        while (rs.next()) {
+            StaffUser staffUser = new StaffUser(
+                rs.getString("firstName"),
+                rs.getString("lastName"),
+                rs.getString("email"),
+                rs.getString("password"),
+                rs.getString("dob"),
+                rs.getString("phone"),
+                rs.getString("address"),
+                rs.getString("city"),
+                rs.getString("postcode"),
+                rs.getString("country")
+            );
+            staffUsers.add(staffUser);
+        }
+        return staffUsers;
+    }
+
+        
     
     public boolean deleteUserByEmail(String email) throws SQLException {
     String query = "DELETE FROM users WHERE email = ?";
@@ -115,18 +195,66 @@ public class DBManager {
     PreparedStatement pstmt = st.getConnection().prepareStatement(query);
 
     try {
-         pstmt.setString(1, title); // Set the title parameter
+         pstmt.setString(1, title); // set the title parameter
 
         // Execute the update
         int rowsAffected = pstmt.executeUpdate();
-        return rowsAffected > 0; // Returns true if a book was deleted
+        return rowsAffected > 0; // returns true if a book was deleted
     } finally {
-        // Close the PreparedStatement if it was initialized
+        // close the PreparedStatement if it was initialized
         if (pstmt != null) {
             pstmt.close();
         }
     }
 }
+    public List<Book> searchBooksByTitle(String title) {
+    List<Book> books = new ArrayList<>();
+    try {
+        String query = "SELECT * FROM books WHERE title LIKE ?"; // Use LIKE for partial matches
+        PreparedStatement pstmt = conn.prepareStatement(query);
+        
+        // add wildcard characters for partial matching
+        String titleWithWildcards = "%" + title + "%"; 
+        pstmt.setString(1, titleWithWildcards); // Set the parameter
+        
+        ResultSet rs = pstmt.executeQuery();
+        
+        while (rs.next()) {
+            // assuming Book has an appropriate constructor
+            Book book = new Book(
+                rs.getInt("id"),
+                rs.getString("title"),
+                rs.getString("author"),
+                rs.getDouble("price"),
+                rs.getString("publishedDate"),
+                rs.getString("description"),
+                rs.getString("imgUrl"),
+                rs.getString("genre"),
+                rs.getString("medium")
+            );
+            books.add(book); // Add book to the list
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return books; // Return the list of found books
+}
+
+
+public boolean deleteBookById(int id) throws SQLException {
+    String query = "DELETE FROM books WHERE id = ?";
+    
+    try (PreparedStatement pstmt = conn.prepareStatement(query)) { // use try-with-resources
+        pstmt.setInt(1, id);
+        int rowsAffected = pstmt.executeUpdate();
+        return rowsAffected > 0; // return true if at least one row was deleted
+    } catch (SQLException e) {
+        e.printStackTrace();
+        throw e; // rethrow exception to handle it in the calling method if needed
+    }
+}
+
+
 
     
   public boolean updateUserDetails(String oldEmail, String firstName, String lastName, String email, String password, String dob, String phone, String address, String city, String postcode, String country) throws SQLException {
@@ -404,5 +532,86 @@ public SupportTicket getSupportTicketById(int ticketId) throws SQLException {
         }
         return closedTickets;
     }
+    
+    //SHIPMENTS CRUD
+    
+    public void createShipment(Shipment shipment) throws SQLException{
+    String query = "INSERT INTO shipments (ShipmentID,ShipmentDate, ShipmentProgress, ShipmentStatus)" +
+                       "VALUES (?,?, ?, ?)";
+        PreparedStatement statement = st.getConnection().prepareStatement(query);
+        statement.setInt(1, shipment.getID());
+        statement.setString(2, shipment.getDate());
+        statement.setString(3, shipment.getProgress());
+        statement.setString(4, shipment.getStatus());
+        statement.executeUpdate();
+    }
+    public boolean readShipment() throws SQLException{
+        String query="SELECT * FROM shipments";
+        PreparedStatement statement = st.getConnection().prepareStatement(query);
+        ResultSet rs = statement.executeQuery();
+        int shipmentNum = 0;
+        while (rs.next()) {
+            shipmentNum++;
+        }
+        return shipmentNum > 0;
+    }
+    
+    public void updateShipment(Shipment shipment) throws SQLException{
+        String query = "UPDATE shipments SET ShipmentDate = ?, ShipmentProgress = ?, ShipmentStatus = ? WHERE ShipmentID = ?";
+        PreparedStatement statement = st.getConnection().prepareStatement(query);
+        statement.setString(1, shipment.getDate());
+        statement.setString(2, shipment.getProgress());
+        statement.setString(3, shipment.getStatus());
+        statement.setInt(4, shipment.getID());
+        statement.executeUpdate();
+    }
+    
+    public void deleteShipment(Shipment shipment) throws SQLException{
+        String query = "DELETE FROM shipments WHERE ShipmentID = ?";
+        PreparedStatement statement = st.getConnection().prepareStatement(query);
+        statement.setInt(1, shipment.getID());
+        statement.executeUpdate();
+    }
+    
+    public Shipment getShipmentByID(int id) throws SQLException{
+        String query = "SELECT * FROM shipments WHERE ShipmentID = ?";
+        PreparedStatement statement = st.getConnection().prepareStatement(query);
+        statement.setInt(1, id);
+        ResultSet rs = statement.executeQuery();
+        if(rs.next()){
+            Shipment shipment = new Shipment();
+            shipment.setID(rs.getInt("ShipmentID"));
+            shipment.setDate(rs.getString("ShipmentDate"));
+            shipment.setProgress(rs.getString("ShipmentProgress"));
+            shipment.setStatus(rs.getString("ShipmentStatus"));
+            return shipment;
+            }
+        return null;
+    }
+public void addPaymentMethod(Payment payment) throws SQLException {
+        String query = "INSERT INTO payments (cardNumber, expiryDate, cardHolderName) VALUES (?, ?, ?)";
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+        pstmt.setString(1, payment.getCardNumber());
+        pstmt.setString(2, payment.getExpiryDate());
+        pstmt.setString(3, payment.getCardHolderName());
+        pstmt.executeUpdate();
+    }
 
+    public void updatePaymentMethod(Payment payment) throws SQLException {
+        String query = "UPDATE payments SET cardNumber = ?, expiryDate = ?, cardHolderName = ? WHERE paymentId = ?";
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+        pstmt.setString(1, payment.getCardNumber());
+        pstmt.setString(2, payment.getExpiryDate());
+        pstmt.setString(3, payment.getCardHolderName());
+        pstmt.setInt(4, payment.getPaymentId());
+        pstmt.executeUpdate();
+    }
+
+    public void deletePaymentMethod(int paymentId) throws SQLException {
+        String query = "DELETE FROM payments WHERE paymentId = ?";
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+        pstmt.setInt(1, paymentId);
+        pstmt.executeUpdate();
+
+    }
 }

@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.SQLException;
 
 @WebServlet("/StaffRegisterServlet")
 public class StaffRegisterServlet extends HttpServlet {
@@ -25,20 +26,31 @@ public class StaffRegisterServlet extends HttpServlet {
         String city = request.getParameter("city");
         String postcode = request.getParameter("postcode");
         String country = request.getParameter("country");
-        String staffId = request.getParameter("staffId"); 
 
-        StaffUser newStaffUser = new StaffUser(firstName, lastName, email, password, dob, phone, address, city, postcode, country, staffId);
 
+        DBConnector connector = null;
+        Connection conn = null;
         try {
-            DBConnector connector = new DBConnector();
-            Connection conn = connector.openConnection();
+            StaffUser newStaffUser = new StaffUser(firstName, lastName, email, password, dob, phone, address, city, postcode, country);
+
+            // Manually manage the DB connection
+            connector = new DBConnector();
+            conn = connector.openConnection();
             DBManager dbManager = new DBManager(conn);
             dbManager.addStaffUser(newStaffUser); // Call the method for staff
-            connector.closeConnection();
             response.sendRedirect("staffLogin.jsp"); // Redirect to login after successful registration
         } catch (Exception e) {
             e.printStackTrace();
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Registration failed.");
+        } finally {
+            // Ensure that the connection is closed properly
+            if (connector != null) {
+                try {
+                    connector.closeConnection(); // Close the connection manually
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 }

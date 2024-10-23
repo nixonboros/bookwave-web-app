@@ -3,21 +3,20 @@ package com.g3app.model;
 public class StaffUser {
     private String firstName;
     private String lastName;
-    private String email;
-    private String password;
-    private String dob;
-    private String phone;
-    private String address;
-    private String city;
-    private String postcode;
-    private String country;
-    private String staffId; // New field
+    private String email;   
+    private String password;  
+    private String dob;      
+    private String phone;    
+    private String address; 
+    private String city;     
+    private String postcode; 
+    private String country;  
 
-    // Constructor including staffId
-    public StaffUser(String firstName, String lastName, String email, String password, String dob, String phone, String address, String city, String postcode, String country, String staffId) {
+    // Constructor
+    public StaffUser(String firstName, String lastName, String email, String password, String dob, String phone, String address, String city, String postcode, String country) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
+        this.email = email; 
         this.password = password;
         this.dob = dob;
         this.phone = phone;
@@ -25,11 +24,9 @@ public class StaffUser {
         this.city = city;
         this.postcode = postcode;
         this.country = country;
-        this.staffId = staffId; // New field
     }
 
-    // Getters and Setters for all fields
-
+    // Getters and Setters
     public String getFirstName() {
         return firstName;
     }
@@ -108,13 +105,5 @@ public class StaffUser {
 
     public void setCountry(String country) {
         this.country = country;
-    }
-
-    public String getStaffId() { // Getter for staffId
-        return staffId;
-    }
-
-    public void setStaffId(String staffId) { // Setter for staffId
-        this.staffId = staffId;
     }
 }

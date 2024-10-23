@@ -28,6 +28,21 @@ steps:
     mysql -u root -proot -e "CREATE DATABASE IF NOT EXISTS bookstoredb;"
     mysql -u root -proot -e "GRANT ALL PRIVILEGES ON bookstoredb.* TO 'root'@'localhost';"
     mysql -u root -proot -e "FLUSH PRIVILEGES;"
+   
+    
+    #STAFF TABLE
+    mysql -u root -proot -D bookstoredb -e "CREATE TABLE IF NOT EXISTS staffusers (
+      firstName VARCHAR(255) NOT NULL,
+      lastName VARCHAR(255) NOT NULL,
+      email VARCHAR(255) UNIQUE NOT NULL,
+      password VARCHAR(255) COLLATE utf8mb4_bin NOT NULL,
+      dob DATE,
+      phone VARCHAR(20),
+      address VARCHAR(255),
+      city VARCHAR(100),
+      postcode VARCHAR(20),
+      country VARCHAR(100)
+    );"
 
     # USERS TABLE
     mysql -u root -proot -D bookstoredb -e "CREATE TABLE IF NOT EXISTS users (
@@ -41,6 +56,19 @@ steps:
         city VARCHAR(100),
         postcode VARCHAR(20),
         country VARCHAR(100)
+    );"
+
+    # BOOKS TABLE
+    mysql -u root -proot -D bookstoredb -e "CREATE TABLE books (
+      id INT AUTO_INCREMENT PRIMARY KEY,
+      title VARCHAR(255),
+      author VARCHAR(255),
+      price DECIMAL(10, 2),
+      publishedDate DATE,
+      description TEXT,
+      imgUrl VARCHAR(255),
+      genre VARCHAR(255),
+      medium VARCHAR(255)
     );"
 
     # SUPPORT_TICKETS TABLE
@@ -64,6 +92,15 @@ steps:
         timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (ticket_id) REFERENCES support_tickets(ticket_id) ON DELETE CASCADE
     );"
+
+    # SHIPMENT TABLE
+    mysql -u root -proot -D bookstoredb -e "CREATE TABLE IF NOT EXISTS shipments (
+        ShipmentID INT AUTO_INCREMENT PRIMARY KEY,
+        ShipmentDate DATE NOT NULL,
+        ShipmentProgress VARCHAR(25) NOT NULL,
+        ShipmentStatus VARCHAR(25) NOT NULL
+    );"
+  
   displayName: 'Set up MySQL Database and Create Tables'
 
 

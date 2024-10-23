@@ -18,6 +18,8 @@
             <h1 class="formTitle">FULL CATALOGUE</h1>
             <p>Explore our collection of books from various genres.</p>
 
+            
+
             <div class="book-selection">
                 <%
                     // Create a new instance of Catalogue and fetch all books
