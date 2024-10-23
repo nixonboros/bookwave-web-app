@@ -126,12 +126,19 @@ public class DBManager {
 }
 
 
-    // delete staff user
-    public void deleteStaffUser(String email) throws SQLException {
-        String query = "DELETE FROM staffusers WHERE email = ?";
-        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
-        pstmt.setString(1, email);
-        pstmt.executeUpdate();
+    // Method to delete a staff user by email
+    public boolean deleteStaffUserByEmail(String email) {
+        String query = "DELETE FROM staffusers WHERE email = ?"; // Assuming 'email' is unique in the staffusers table
+
+        try (PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, email); // Set the staff email in the query
+            int rowsAffected = ps.executeUpdate();
+
+            return rowsAffected > 0; // If rows were affected, return true (success)
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false; // Return false if any error occurs
+        }
     }
 
     // update staff user
