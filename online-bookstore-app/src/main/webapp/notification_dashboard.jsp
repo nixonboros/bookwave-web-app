@@ -1,5 +1,4 @@
 <%@ page import="com.g3app.model.Notification" %>
-
 <%@ page import="java.util.List" %>
 
 <html lang="en">
@@ -15,12 +14,16 @@
     <main>
         <section class="notification-section animated">
             <h1>Notification Dashboard</h1>
-            <p>Here you can view and manage all your notifications. Use the tabs below to navigate between viewing notifications and any other relevant sections.</p>
+            <p>Here you can view and manage all your notifications. Use the tabs below to navigate between viewing notifications.</p>
 
-            <div id="notifications" class="tab-content active">
-                <h2>Your Notifications</h2>
-                <p>Here you can view and manage all your notifications. Click on a notification to view its details.</p>
-                
+            <div class="tabs">
+                <div class="tab active" data-target="unreadNotifications">Unread Notifications</div>
+                <div class="tab" data-target="readNotifications">Read Notifications</div>
+            </div>
+
+            <!-- UNREAD NOTIFICATIONS TAB -->
+            <div id="unreadNotifications" class="tab-content active">
+                <h2>Unread Notifications</h2>
                 <table>
                     <thead>
                         <tr>
@@ -33,23 +36,67 @@
                     </thead>
                     <tbody>
                         <%
-                            List<Notification> notifications = (List<Notification>) request.getAttribute("notifications");
-                            if (notifications != null && !notifications.isEmpty()) {
-                                for (Notification notification : notifications) {
+                            List<Notification> unreadNotifications = (List<Notification>) request.getAttribute("unreadNotifications");
+                            if (unreadNotifications != null && !unreadNotifications.isEmpty()) {
+                                for (Notification notification : unreadNotifications) {
                         %>
                         <tr>
                             <td><%= notification.getNotificationId() %></td>
                             <td><%= notification.getMessage() %></td>
                             <td><%= notification.getDateSent() %></td>
                             <td><%= notification.getStatus() %></td>
-                            <td><a href="notification_detail.jsp?id=<%= notification.getNotificationId() %>" class="button">View</a></td>
+                            <td>
+                                <a href="UpdateNotificationStatusServlet?notificationId=<%= notification.getNotificationId() %>&ticketId=<%= notification.getTicketId() %>" class="button">View</a>
+                            </td>
                         </tr>
                         <%
                                 }
                             } else {
                         %>
                         <tr>
-                            <td colspan="7">No notifications available.</td>
+                            <td colspan="5">No unread notifications available.</td>
+                        </tr>
+                        <%
+                            }
+                        %>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- READ NOTIFICATIONS TAB -->
+            <div id="readNotifications" class="tab-content">
+                <h2>Read Notifications</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Notification ID</th>
+                            <th>Details</th>
+                            <th>Date Received</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%
+                            List<Notification> readNotifications = (List<Notification>) request.getAttribute("readNotifications");
+                            if (readNotifications != null && !readNotifications.isEmpty()) {
+                                for (Notification notification : readNotifications) {
+                        %>
+                        <tr>
+                            <td><%= notification.getNotificationId() %></td>
+                            <td><%= notification.getMessage() %></td>
+                            <td><%= notification.getDateSent() %></td>
+                            <td><%= notification.getStatus() %></td>
+                            <td>
+                                <a href="UpdateNotificationStatusServlet?notificationId=<%= notification.getNotificationId() %>&ticketId=<%= notification.getTicketId() %>" class="button">View</a>
+                            </td>
+                        </tr>
+                        <%
+                                }
+                            } else {
+                        %>
+                        <tr>
+                            <td colspan="5">No read notifications available.</td>
                         </tr>
                         <%
                             }

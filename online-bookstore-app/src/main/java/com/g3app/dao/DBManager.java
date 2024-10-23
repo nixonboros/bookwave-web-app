@@ -459,11 +459,13 @@ public SupportTicket getSupportTicketById(int ticketId) throws SQLException {
         pstmt.setString(2, message.getSender());
         pstmt.setString(3, message.getMessage());
         pstmt.executeUpdate();
-        
+
         // Only send notification if flag is true
         if (sendNotification) {
             SupportTicket ticket = getSupportTicketById(message.getTicketId());
-            addNotification(ticket.getEmail(), ticket.getTicketId(), "A new message has been added to your ticket.");
+            // Include the ticket ID in the notification message
+            String notificationMessage = "You have a new message in support ticket #" + message.getTicketId() + ".";
+            addNotification(ticket.getEmail(), ticket.getTicketId(), notificationMessage);
         }
     }
 
@@ -547,6 +549,48 @@ public SupportTicket getSupportTicketById(int ticketId) throws SQLException {
         pstmt.setString(3, message);
         pstmt.executeUpdate();
     }
+    
+    public List<Notification> getUnreadNotificationsByEmail(String email) throws SQLException {
+        String query = "SELECT * FROM notifications WHERE user_email = ? AND status = 'Unread'";
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+        pstmt.setString(1, email);
+        ResultSet rs = pstmt.executeQuery();
+
+        List<Notification> notifications = new ArrayList<>();
+        while (rs.next()) {
+            Notification notification = new Notification(
+                rs.getInt("notification_id"),
+                rs.getString("user_email"),
+                rs.getInt("ticket_id"),
+                rs.getString("message"),
+                rs.getString("status"),
+                rs.getDate("date_sent")
+            );
+            notifications.add(notification);
+        }
+        return notifications;
+    }
+
+    public List<Notification> getReadNotificationsByEmail(String email) throws SQLException {
+        String query = "SELECT * FROM notifications WHERE user_email = ? AND status = 'Read'";
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+        pstmt.setString(1, email);
+        ResultSet rs = pstmt.executeQuery();
+
+        List<Notification> notifications = new ArrayList<>();
+        while (rs.next()) {
+            Notification notification = new Notification(
+                rs.getInt("notification_id"),
+                rs.getString("user_email"),
+                rs.getInt("ticket_id"),
+                rs.getString("message"),
+                rs.getString("status"),
+                rs.getDate("date_sent")
+            );
+            notifications.add(notification);
+        }
+        return notifications;
+    }
 
     public List<Notification> getNotificationsByEmail(String email) throws SQLException {
         String query = "SELECT * FROM notifications WHERE user_email = ?";
@@ -568,6 +612,15 @@ public SupportTicket getSupportTicketById(int ticketId) throws SQLException {
         }
         return notifications;
     }
+    
+    public void updateNotificationStatus(int notificationId, String status) throws SQLException {
+        String query = "UPDATE notifications SET status = ? WHERE notification_id = ?";
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+        pstmt.setString(1, status);
+        pstmt.setInt(2, notificationId);
+        pstmt.executeUpdate();
+    }
+
 
     //SHIPMENTS CRUD
     public void createShipment(Shipment shipment) throws SQLException{

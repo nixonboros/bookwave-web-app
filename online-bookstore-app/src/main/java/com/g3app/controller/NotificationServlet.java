@@ -32,11 +32,13 @@ public class NotificationServlet extends HttpServlet {
             Connection conn = connector.openConnection();
             DBManager dbManager = new DBManager(conn);
 
-            // Retrieve notifications for the user based on email
-            List<Notification> notifications = dbManager.getNotificationsByEmail(userEmail);
+            // Retrieve unread and read notifications for the user based on email
+            List<Notification> unreadNotifications = dbManager.getUnreadNotificationsByEmail(userEmail);
+            List<Notification> readNotifications = dbManager.getReadNotificationsByEmail(userEmail);
 
-            // Set notifications as request attribute
-            request.setAttribute("notifications", notifications);
+            // Set notifications as request attributes
+            request.setAttribute("unreadNotifications", unreadNotifications);
+            request.setAttribute("readNotifications", readNotifications);
 
             // Close connection
             connector.closeConnection();
