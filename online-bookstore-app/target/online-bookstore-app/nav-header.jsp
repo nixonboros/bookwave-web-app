@@ -1,5 +1,8 @@
 <%@ page import="com.g3app.model.User" %>
 <%@ page import="com.g3app.model.Book" %>
+<%@ page import="com.g3app.model.Notification" %>
+
+<%@ page import="java.util.List" %>
 <html>
 <header>
     <nav>
@@ -39,15 +42,28 @@
                     <div class="dropdown-menu animated">
                         <div class="dropdown-header">
                             <h4>Notifications</h4>
-                            <a class="mark-all-read">Mark All as Read</a>
+                            <a class="mark-all-read" href="MarkAllNotificationsAsReadServlet">Mark All as Read</a>
                         </div>
                         <ul>
-                            <li><a href="#">Your order #12345 has been shipped.</a></li>
-                            <li><a href="#">Your payment for order #67890 was successful.</a></li>
+                            <%
+                                List<Notification> notifications = (List<Notification>) request.getAttribute("notifications");
+                                if (notifications != null && !notifications.isEmpty()) {
+                                    for (Notification notification : notifications) {
+                            %>
+                            <li><a href="ViewNotificationServlet?id=<%= notification.getNotificationId() %>"><%= notification.getMessage() %></a></li>
+                            <%
+                                    }
+                                } else {
+                            %>
+                            <li>No new notifications</li>
+                            <%
+                                }
+                            %>
                         </ul>
                         <a href="notification_dashboard.jsp" class="view-all">View All Notifications</a>
                     </div>
                 </div>
+
             <%
                 } else {
                     // Show login link if not logged in
