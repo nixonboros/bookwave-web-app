@@ -72,32 +72,32 @@ public class SupportTicketTest {
         Assert.assertEquals("Jane Doe", fetchedTicket.getCustomerName());
     }
     
-//    @Test
-//    public void testAddMessage() throws SQLException {
-//        // Retrieve the ticket ID from the database
-//        List<SupportTicket> tickets = dbManager.getTicketsByEmail(ticket.getEmail());
-//        Assert.assertTrue(!tickets.isEmpty());
-//        SupportTicket retrievedTicket = tickets.get(0);
-//
-//        // Create a new message for this support ticket
-//        Message message = new Message(0, retrievedTicket.getTicketId(), "Jane Doe", "I need help with my login issue", new Timestamp(new java.util.Date().getTime()));
-//
-//        // Add the message to the database
-//        dbManager.addMessage(message);
-//
-//        // Retrieve the messages for this ticket from the database
-//        List<Message> messages = dbManager.getMessagesByTicketId(retrievedTicket.getTicketId());
-//
-//        // Assert that the message was added correctly
-//        Assert.assertNotNull(messages);
-//        Assert.assertTrue(!messages.isEmpty());
-//        Message retrievedMessage = messages.get(0);
-//
-//        // Validate message details
-//        Assert.assertEquals(retrievedTicket.getTicketId(), retrievedMessage.getTicketId());
-//        Assert.assertEquals("Jane Doe", retrievedMessage.getSender());
-//        Assert.assertEquals("I need help with my login issue", retrievedMessage.getMessage());
-//    }
+    @Test
+    public void testAddMessage() throws SQLException {
+        // Retrieve the ticket ID from the database
+        List<SupportTicket> tickets = dbManager.getTicketsByEmail(ticket.getEmail());
+        Assert.assertTrue(!tickets.isEmpty());
+        SupportTicket retrievedTicket = tickets.get(0);
+
+        // Create a new message for this support ticket
+        Message message = new Message(0, retrievedTicket.getTicketId(), "Jane Doe", "I need help with my login issue", new Timestamp(new java.util.Date().getTime()));
+
+        // Add the message to the database
+        dbManager.addMessage(message, false);
+
+        // Retrieve the messages for this ticket from the database
+        List<Message> messages = dbManager.getMessagesByTicketId(retrievedTicket.getTicketId());
+
+        // Assert that the message was added correctly
+        Assert.assertNotNull(messages);
+        Assert.assertTrue(!messages.isEmpty());
+        Message retrievedMessage = messages.get(0);
+
+        // Validate message details
+        Assert.assertEquals(retrievedTicket.getTicketId(), retrievedMessage.getTicketId());
+        Assert.assertEquals("Jane Doe", retrievedMessage.getSender());
+        Assert.assertEquals("I need help with my login issue", retrievedMessage.getMessage());
+    }
     
     // Clean up the database after each test
     @org.junit.After

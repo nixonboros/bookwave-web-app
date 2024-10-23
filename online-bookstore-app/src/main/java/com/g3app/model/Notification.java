@@ -1,6 +1,6 @@
 package com.g3app.model;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class Notification {
     private int notificationId;
@@ -8,10 +8,10 @@ public class Notification {
     private int ticketId;
     private String message;
     private String status;
-    private Timestamp dateSent;
+    private Date dateSent;
 
     // Constructor
-    public Notification(int notificationId, String userEmail, int ticketId, String message, String status, Timestamp dateSent) {
+    public Notification(int notificationId, String userEmail, int ticketId, String message, String status, Date dateSent) {
         this.notificationId = notificationId;
         this.userEmail = userEmail;
         this.ticketId = ticketId;
@@ -41,7 +41,7 @@ public class Notification {
         return status;
     }
 
-    public Timestamp getDateSent() {
+    public Date getDateSent() {
         return dateSent;
     }
 
@@ -66,7 +66,7 @@ public class Notification {
         this.status = status;
     }
 
-    public void setDateSent(Timestamp dateSent) {
+    public void setDateSent(Date dateSent) {
         this.dateSent = dateSent;
     }
 }

@@ -60,7 +60,7 @@
                                 }
                             %>
                         </ul>
-                        <a href="notification_dashboard.jsp" class="view-all">View All Notifications</a>
+                        <a href="NotificationServlet" class="view-all">View All Notifications</a>
                     </div>
                 </div>
 

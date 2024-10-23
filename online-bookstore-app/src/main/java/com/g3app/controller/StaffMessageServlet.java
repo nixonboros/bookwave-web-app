@@ -47,7 +47,7 @@ public class StaffMessageServlet extends HttpServlet {
             DBManager dbManager = new DBManager(conn);
 
             // Add message to the database
-            dbManager.addMessage(message);
+            dbManager.addMessage(message, false);
 
             // Close connection
             connector.closeConnection();

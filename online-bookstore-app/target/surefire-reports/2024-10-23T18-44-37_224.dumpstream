@@ -1,4 +1,4 @@
-# Created at 2024-10-23T18:07:34.465
+# Created at 2024-10-23T18:44:37.472
 Boot Manifest-JAR contains absolute paths in classpath 'E:\Github\AdvSoftwareDev_Bookstore\online-bookstore-app\target\test-classes'
 Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
 

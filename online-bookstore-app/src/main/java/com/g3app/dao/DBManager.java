@@ -452,7 +452,7 @@ public SupportTicket getSupportTicketById(int ticketId) throws SQLException {
         return rowsAffected > 0; // Return true if the update was successful
     }
 
-    public void addMessage(Message message) throws SQLException {
+    public void addMessage(Message message, boolean sendNotification) throws SQLException {
         String query = "INSERT INTO ticket_messages (ticket_id, sender, message) VALUES (?, ?, ?)";
         PreparedStatement pstmt = st.getConnection().prepareStatement(query);
         pstmt.setInt(1, message.getTicketId());
@@ -460,9 +460,11 @@ public SupportTicket getSupportTicketById(int ticketId) throws SQLException {
         pstmt.setString(3, message.getMessage());
         pstmt.executeUpdate();
         
-        // Send notification to the user when a staff message is added
-        SupportTicket ticket = getSupportTicketById(message.getTicketId());
-        addNotification(ticket.getEmail(), ticket.getTicketId(), "A new message has been added to your ticket.");
+        // Only send notification if flag is true
+        if (sendNotification) {
+            SupportTicket ticket = getSupportTicketById(message.getTicketId());
+            addNotification(ticket.getEmail(), ticket.getTicketId(), "A new message has been added to your ticket.");
+        }
     }
 
     public List<Message> getMessagesByTicketId(int ticketId) throws SQLException {
@@ -547,7 +549,7 @@ public SupportTicket getSupportTicketById(int ticketId) throws SQLException {
     }
 
     public List<Notification> getNotificationsByEmail(String email) throws SQLException {
-        String query = "SELECT * FROM notifications WHERE user_email = ? ORDER BY date_sent DESC";
+        String query = "SELECT * FROM notifications WHERE user_email = ?";
         PreparedStatement pstmt = st.getConnection().prepareStatement(query);
         pstmt.setString(1, email);
         ResultSet rs = pstmt.executeQuery();
@@ -560,7 +562,7 @@ public SupportTicket getSupportTicketById(int ticketId) throws SQLException {
                 rs.getInt("ticket_id"),
                 rs.getString("message"),
                 rs.getString("status"),
-                rs.getTimestamp("date_sent")
+                rs.getDate("date_sent")
             );
             notifications.add(notification);
         }

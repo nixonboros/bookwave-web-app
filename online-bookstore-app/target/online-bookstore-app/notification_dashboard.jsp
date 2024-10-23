@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<%@ page import="com.g3app.model.Notification" %>
+
+<%@ page import="java.util.List" %>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,13 +21,10 @@
                 <h2>Your Notifications</h2>
                 <p>Here you can view and manage all your notifications. Click on a notification to view its details.</p>
                 
-                <!-- Example information, TO BE REPLACED WITH DATABASE CONTENT -->
                 <table>
                     <thead>
                         <tr>
                             <th>Notification ID</th>
-                            <th>Type</th> 
-                            <th>Title</th>
                             <th>Details</th>
                             <th>Date Received</th>
                             <th>Status</th>
@@ -32,24 +32,28 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <%
+                            List<Notification> notifications = (List<Notification>) request.getAttribute("notifications");
+                            if (notifications != null && !notifications.isEmpty()) {
+                                for (Notification notification : notifications) {
+                        %>
                         <tr>
-                            <td>1</td>
-                            <td>Order</td> 
-                            <td>Order Shipped</td>
-                            <td>Your order #12345 has been shipped.</td>
-                            <td>2024-09-01</td>
-                            <td>Unread</td>
-                            <td><a href="notification_detail.jsp?id=1" class="button">View</a></td>
+                            <td><%= notification.getNotificationId() %></td>
+                            <td><%= notification.getMessage() %></td>
+                            <td><%= notification.getDateSent() %></td>
+                            <td><%= notification.getStatus() %></td>
+                            <td><a href="notification_detail.jsp?id=<%= notification.getNotificationId() %>" class="button">View</a></td>
                         </tr>
+                        <%
+                                }
+                            } else {
+                        %>
                         <tr>
-                            <td>2</td>
-                            <td>Payment</td>
-                            <td>Payment Successful</td>
-                            <td>Your payment for order #67890 was successful.</td>
-                            <td>2024-08-25</td>
-                            <td>Read</td>
-                            <td><a href="notification_detail.jsp?id=2" class="button">View</a></td>
+                            <td colspan="7">No notifications available.</td>
                         </tr>
+                        <%
+                            }
+                        %>
                     </tbody>
                 </table>
             </div>
