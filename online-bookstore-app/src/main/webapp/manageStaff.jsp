@@ -23,8 +23,8 @@
             <p>Here you can add, update, and delete staff users.</p>
 
             <div class="tabs">
-                <div class="tab <%= "addStaff".equals(activeTab) ? "active" : "" %>" data-target="addStaff">Add Staff User</div>
-                <div class="tab <%= "searchStaff".equals(activeTab) ? "active" : "" %>" data-target="searchStaff">Search for Staff User</div>
+                <div class="tab <%= "addStaff".equals(activeTab) ? "active" : "" %>" data-target="addStaff">Add Staff</div>
+                <div class="tab <%= "searchStaff".equals(activeTab) ? "active" : "" %>" data-target="searchStaff">Search Staff</div>
                 <div class="tab <%= "allStaff".equals(activeTab) ? "active" : "" %>" data-target="allStaff">All Staff</div>
             </div>
 
@@ -96,8 +96,7 @@
             </div>
 
             <!-- SEARCH STAFF USER TAB -->
-             <div id="searchStaff" class="tab-content <%= "searchStaff".equals(activeTab) ? "active" : "" %>">
-
+            <div id="searchStaff" class="tab-content <%= "searchStaff".equals(activeTab) ? "active" : "" %>">
                 <h2>Search for a Staff User</h2>
                 <form id="searchStaffForm" action="StaffUserSearchServlet" method="get">
                     <div class="form-group">
@@ -108,6 +107,23 @@
                         <button type="submit" id="searchStaffButton">Search for Staff User</button>
                     </div>
                 </form>
+
+                <% 
+                String deletionStatus = request.getAttribute("deleteStatus") != null ? request.getAttribute("deleteStatus").toString() : ""; 
+                if ("success".equals(deletionStatus)) { 
+                %>
+                    <div class="success-message">
+                        <p style="color: green;"><%= request.getAttribute("successMessage") %></p>
+                    </div>
+                <% 
+                } else if ("error".equals(deletionStatus) || "notFound".equals(deletionStatus)) { 
+                %>
+                    <div class="error-message">
+                        <p style="color: red;"><%= request.getAttribute("errorMessage") != null ? request.getAttribute("errorMessage") : "No staff users found with the given name." %></p>
+                    </div>
+                <% 
+                } 
+                %>
 
                 <% 
                 String searchStatus = request.getAttribute("searchStatus") != null ? request.getAttribute("searchStatus").toString() : ""; 
@@ -162,6 +178,7 @@
                 } 
                 %>
             </div>
+
             <!-- ALL STAFF TAB -->
             <div id="allStaff" class="tab-content">
                 <h2>All Staff</h2>
@@ -187,18 +204,21 @@
                                 for (StaffUser staffUser : staffUsers) {
                         %>
                             <tr>
-                                <td><%= staffUser.getFirstName() + " " + staffUser.getLastName()%></td>
+                                <td><%= staffUser.getFirstName() + " " + staffUser.getLastName() %></td>
                                 <td><%= staffUser.getEmail() %></td>
                                 <td><%= staffUser.getPhone() %></td>
                                 <td><%= staffUser.getDob() %></td>
-                                <td><%= staffUser.getAddress() %></td>
+                                <td><%= staffUser.getAddress() + ", " + staffUser.getCity() + ", " + staffUser.getPostcode() + ", " + staffUser.getCountry() %></td>
                             </tr>
                         <%
                                 }
-                                connector.closeConnection();
                             } catch (Exception e) {
-                                e.printStackTrace();
-                            } 
+                        %>
+                            <tr>
+                                <td colspan="5" style="color: red;">Error retrieving staff users: <%= e.getMessage() %></td>
+                            </tr>
+                        <%
+                            }
                         %>
                     </tbody>
                 </table>
@@ -207,24 +227,6 @@
     </main>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Tab functionality
-            const tabs = document.querySelectorAll('.tab');
-            const tabContents = document.querySelectorAll('.tab-content');
-
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    const targetId = tab.getAttribute('data-target');
-
-                    tabs.forEach(t => t.classList.remove('active'));
-                    tabContents.forEach(content => content.classList.remove('active'));
-
-                    tab.classList.add('active');
-                    document.getElementById(targetId).classList.add('active');
-                });
-            });
-        });
-    </script> <script>
         document.addEventListener('DOMContentLoaded', () => {
             const tabs = document.querySelectorAll('.tab');
             const tabContents = document.querySelectorAll('.tab-content');

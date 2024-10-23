@@ -26,7 +26,7 @@
 
             <div class="tabs">
                 <div class="tab <%= "addBook".equals(activeTab) ? "active" : "" %>" data-target="addBook">Add Book</div>
-                <div class="tab <%= "deleteBook".equals(activeTab) ? "active" : "" %>" data-target="deleteBook">Delete Book</div>
+                <div class="tab <%= "deleteBook".equals(activeTab) ? "active" : "" %>" data-target="deleteBook">Search Book</div>
                 <div class="tab <%= "allBooks".equals(activeTab) ? "active" : "" %>" data-target="allBooks">All Books</div>
             </div>
 
@@ -89,7 +89,7 @@
                 %>
             </div>
 
-            <!-- DELETE BOOK TAB -->
+            <!-- SEARCH BOOK TAB -->
             <div id="deleteBook" class="tab-content <%= "deleteBook".equals(activeTab) ? "active" : "" %>">
                 <h2>Search and Delete a Book</h2>
                 <form id="searchBookForm" action="BookSearchServlet" method="get">
