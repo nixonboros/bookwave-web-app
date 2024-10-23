@@ -48,11 +48,11 @@
                 </div>
 
                 <!-- Password and Confirm Password -->
-                <div class="form-group">
+<!--                <div class="form-group">
                     <label class="formLabel" for="password">Password</label>
                     <input type="password" id="password" name="password" required placeholder="Password" minlength="8">
                     <small id="passwordError" style="color: red; display: none;">Password must be at least 8 characters long.</small>
-                </div>
+                </div>-->
                 <div class="form-group">
                     <label class="formLabel" for="confirmPassword">Confirm Password</label>
                     <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirm Password">
