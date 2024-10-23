@@ -1,6 +1,6 @@
 package com.g3app.controller;
 
-import com.g3app.model.StaffUser;
+import com.g3app.model.User;
 import com.g3app.dao.DBConnector;
 import com.g3app.dao.DBManager;
 
@@ -15,8 +15,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet("/StaffUserSearchServlet")
-public class StaffUserSearchServlet extends HttpServlet {
+@WebServlet("/UserSearchServlet")
+public class UserSearchServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,12 +29,12 @@ public class StaffUserSearchServlet extends HttpServlet {
             conn = connector.openConnection();
             DBManager dbManager = new DBManager(conn);
             
-            // Search for staff users by name
-            List<StaffUser> staffUsers = dbManager.searchStaffUsers(name);
+            // Search for users by name
+            List<User> Users = dbManager.searchUsers(name);
 
-            if (staffUsers != null && !staffUsers.isEmpty()) { // Check if staffUsers is not null and not empty
+            if (Users != null && !Users.isEmpty()) { // Check if Users is not null and not empty
                 request.setAttribute("searchStatus", "found");
-                request.setAttribute("searchedStaffUsers", staffUsers); // Set the list of staff users found
+                request.setAttribute("searchedUsers", Users); // Set the list of users found
             } else {
                 request.setAttribute("searchStatus", "notFound");
             }
@@ -60,7 +60,7 @@ public class StaffUserSearchServlet extends HttpServlet {
                 }
             }
         }
-        request.setAttribute("activeTab", "searchStaff"); 
-        request.getRequestDispatcher("manageStaff.jsp").forward(request, response);
+        request.setAttribute("activeTab", "searchUser"); 
+        request.getRequestDispatcher("manageUsers.jsp").forward(request, response);
     }
 }

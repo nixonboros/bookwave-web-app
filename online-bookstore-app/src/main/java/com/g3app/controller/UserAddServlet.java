@@ -2,7 +2,7 @@ package com.g3app.controller;
 
 import com.g3app.dao.DBConnector;
 import com.g3app.dao.DBManager;
-import com.g3app.model.StaffUser;
+import com.g3app.model.User;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,8 +13,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 
-@WebServlet("/StaffUserAddServlet")
-public class StaffUserAddServlet extends HttpServlet {
+@WebServlet("/UserAddServlet")
+public class UserAddServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -36,25 +36,25 @@ public class StaffUserAddServlet extends HttpServlet {
             Connection conn = connector.openConnection();
             DBManager dbManager = new DBManager(conn);
 
-            // Create a StaffUser object
-            StaffUser staffUser = new StaffUser(firstName, lastName, email, password, dob, phone, address, city, postcode, country);
+            // Create a User object
+            User User = new User(firstName, lastName, email, password, dob, phone, address, city, postcode, country);
 
-            // Add the staff user to the database
-            dbManager.addStaffUser(staffUser);
+            // Add the user to the database
+            dbManager.addUser(User);
 
             // Close the database connection
             connector.closeConnection();
 
             // Set success message and redirect to management page
             request.setAttribute("status", "success");
-            request.setAttribute("successMessage", "Staff user added successfully.");
-            request.getRequestDispatcher("manageStaff.jsp").forward(request, response);
+            request.setAttribute("successMessage", "User added successfully.");
+            request.getRequestDispatcher("manageUsers.jsp").forward(request, response);
 
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("status", "error");
-            request.setAttribute("errorMessage", "Failed to add staff user.");
-            request.getRequestDispatcher("manageStaff.jsp").forward(request, response);
+            request.setAttribute("errorMessage", "Email is already in use.");
+            request.getRequestDispatcher("manageUsers.jsp").forward(request, response);
         }
     }
 }
