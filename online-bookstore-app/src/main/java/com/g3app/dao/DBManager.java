@@ -197,6 +197,74 @@ public class DBManager {
         }
     }
 }
+    
+    // get all staff users
+    public ArrayList<User> getAllUsers() throws SQLException {
+    ArrayList<User> users = new ArrayList<>();
+    String query = "SELECT * FROM users"; // Ensure your table structure matches
+    PreparedStatement pstmt = st.getConnection().prepareStatement(query); // Use prepared statement
+    ResultSet rs = pstmt.executeQuery();
+
+    while (rs.next()) {
+        String firstName = rs.getString("firstName");
+        String lastName = rs.getString("lastName");
+        String email = rs.getString("email");
+        String password = rs.getString("password");
+        String dob = rs.getString("dob");
+        String phone = rs.getString("phone");
+        String address = rs.getString("address");
+        String city = rs.getString("city");
+        String postcode = rs.getString("postcode");
+        String country = rs.getString("country");
+
+        User user = new User(firstName, lastName, email, password, dob, phone, address, city, postcode, country);
+        users.add(user);
+    }
+
+    return users;
+}
+
+
+
+    // update user
+    public void updateUser(User user) throws SQLException {
+        String query = "UPDATE users SET firstName = ?, email = ?, password = ? WHERE email = ?";
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+        pstmt.setString(1, user.getFirstName());
+        pstmt.setString(2, user.getEmail());
+        pstmt.setString(3, user.getPassword());
+        pstmt.setString(4, user.getEmail());
+        pstmt.executeUpdate();
+    }
+
+    // search users by name
+    public List<User> searchUsers(String search) throws SQLException {
+        List<User> Users = new ArrayList<>();
+        String query = "SELECT * FROM users WHERE firstName LIKE ? OR lastName LIKE ? OR email LIKE ?";
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+        pstmt.setString(1, "%" + search + "%");
+        pstmt.setString(2, "%" + search + "%");
+        pstmt.setString(3, "%" + search + "%");
+        ResultSet rs = pstmt.executeQuery();
+
+        while (rs.next()) {
+            User user = new User(
+                rs.getString("firstName"),
+                rs.getString("lastName"),
+                rs.getString("email"),
+                rs.getString("password"),
+                rs.getString("dob"),
+                rs.getString("phone"),
+                rs.getString("address"),
+                rs.getString("city"),
+                rs.getString("postcode"),
+                rs.getString("country")
+            );
+            Users.add(user);
+        }
+        return Users;
+    }
+
     public boolean deleteBookByTitle(String title) throws SQLException {
     String query = "DELETE FROM books WHERE title = ?";
     PreparedStatement pstmt = st.getConnection().prepareStatement(query);
