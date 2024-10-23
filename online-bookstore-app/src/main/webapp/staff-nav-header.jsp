@@ -8,6 +8,7 @@
         </div>
         <ul class="nav-links">
             <li><a href="manageStaff.jsp">Manage Staff</a></li>
+            <li><a href="manageUsers.jsp">Manage User</a></li>
             <li><a href="staffCatalogue.jsp">Manage Catalogue</a></li>
             <li><a href="manageOrders.jsp">Manage Orders</a></li>
             <li><a href="managePayments.jsp">Manage Payments</a></li>
