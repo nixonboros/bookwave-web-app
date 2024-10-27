@@ -551,7 +551,7 @@ public SupportTicket getSupportTicketById(int ticketId) throws SQLException {
     }
     
     public List<Notification> getUnreadNotificationsByEmail(String email) throws SQLException {
-        String query = "SELECT * FROM notifications WHERE user_email = ? AND status = 'Unread'";
+        String query = "SELECT * FROM notifications WHERE user_email = ? AND status = 'Unread' ORDER BY notification_id DESC";
         PreparedStatement pstmt = st.getConnection().prepareStatement(query);
         pstmt.setString(1, email);
         ResultSet rs = pstmt.executeQuery();
@@ -572,7 +572,7 @@ public SupportTicket getSupportTicketById(int ticketId) throws SQLException {
     }
 
     public List<Notification> getReadNotificationsByEmail(String email) throws SQLException {
-        String query = "SELECT * FROM notifications WHERE user_email = ? AND status = 'Read'";
+        String query = "SELECT * FROM notifications WHERE user_email = ? AND status = 'Read' ORDER BY notification_id DESC";
         PreparedStatement pstmt = st.getConnection().prepareStatement(query);
         pstmt.setString(1, email);
         ResultSet rs = pstmt.executeQuery();
@@ -593,7 +593,7 @@ public SupportTicket getSupportTicketById(int ticketId) throws SQLException {
     }
 
     public List<Notification> getNotificationsByEmail(String email) throws SQLException {
-        String query = "SELECT * FROM notifications WHERE user_email = ?";
+        String query = "SELECT * FROM notifications WHERE user_email = ? ORDER BY notification_id DESC";
         PreparedStatement pstmt = st.getConnection().prepareStatement(query);
         pstmt.setString(1, email);
         ResultSet rs = pstmt.executeQuery();
@@ -612,7 +612,7 @@ public SupportTicket getSupportTicketById(int ticketId) throws SQLException {
         }
         return notifications;
     }
-    
+
     public void updateNotificationStatus(int notificationId, String status) throws SQLException {
         String query = "UPDATE notifications SET status = ? WHERE notification_id = ?";
         PreparedStatement pstmt = st.getConnection().prepareStatement(query);
