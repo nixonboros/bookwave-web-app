@@ -40,7 +40,9 @@
                     <img src="images/shopping-cart.png" alt="Cart" class="cart-icon">
                 </a>
                 <div class="notification">
-                    <img src="images/notification-bell.png" alt="Notifications" class="notification-bell">
+                    <a href="NotificationServlet">
+                        <img src="images/notification-bell.png" alt="Notifications" class="notification-bell">
+                    </a>
                     <div class="dropdown-menu animated">
                         <div class="dropdown-header">
                             <h4>Notifications</h4>
