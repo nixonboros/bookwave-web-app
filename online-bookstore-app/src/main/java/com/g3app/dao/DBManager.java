@@ -521,7 +521,19 @@ public class DBManager {
         pstmt.setInt(2, Integer.parseInt(ticketId)); // Convert ticketId to integer if needed
 
         int rowsAffected = pstmt.executeUpdate(); // Execute the update
+        
+        // If the update was successful, send a notification
+        if (rowsAffected > 0) {
+            // Retrieve the support ticket details
+            SupportTicket ticket = getSupportTicketById(Integer.parseInt(ticketId));
 
+            // Create the notification message
+            String notificationMessage = "Your support ticket #" + ticketId + " has been " + (status.equals("Open") ? "opened" : "closed") + ".";
+
+            // Add the notification for the user
+            addNotification(ticket.getEmail(), ticket.getTicketId(), notificationMessage);
+        }
+            
         return rowsAffected > 0; // Return true if the update was successful
     }
 
@@ -594,10 +606,11 @@ public class DBManager {
     }
 
     public List<SupportTicket> getClosedSupportTickets() throws SQLException {
-        String query = "SELECT * FROM support_tickets WHERE status = 'Closed'";
+        String query = "SELECT * FROM support_tickets WHERE status = 'Closed' ORDER BY ticket_id DESC";
         List<SupportTicket> closedTickets = new ArrayList<>();
         PreparedStatement pstmt = st.getConnection().prepareStatement(query);
         ResultSet rs = pstmt.executeQuery();
+
         while (rs.next()) {
             SupportTicket ticket = new SupportTicket(
                 rs.getInt("ticket_id"),
