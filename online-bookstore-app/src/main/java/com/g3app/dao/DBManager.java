@@ -101,29 +101,29 @@ public class DBManager {
 
     // get all staff users
     public ArrayList<StaffUser> getAllStaffUsers() throws SQLException {
-    ArrayList<StaffUser> staffUsers = new ArrayList<>();
-    String query = "SELECT * FROM staffusers"; // Ensure your table structure matches
-    PreparedStatement pstmt = st.getConnection().prepareStatement(query); // Use prepared statement
-    ResultSet rs = pstmt.executeQuery();
+        ArrayList<StaffUser> staffUsers = new ArrayList<>();
+        String query = "SELECT * FROM staffusers"; // Ensure your table structure matches
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query); // Use prepared statement
+        ResultSet rs = pstmt.executeQuery();
 
-    while (rs.next()) {
-        String firstName = rs.getString("firstName");
-        String lastName = rs.getString("lastName");
-        String email = rs.getString("email");
-        String password = rs.getString("password");
-        String dob = rs.getString("dob");
-        String phone = rs.getString("phone");
-        String address = rs.getString("address");
-        String city = rs.getString("city");
-        String postcode = rs.getString("postcode");
-        String country = rs.getString("country");
+        while (rs.next()) {
+            String firstName = rs.getString("firstName");
+            String lastName = rs.getString("lastName");
+            String email = rs.getString("email");
+            String password = rs.getString("password");
+            String dob = rs.getString("dob");
+            String phone = rs.getString("phone");
+            String address = rs.getString("address");
+            String city = rs.getString("city");
+            String postcode = rs.getString("postcode");
+            String country = rs.getString("country");
 
-        StaffUser staffUser = new StaffUser(firstName, lastName, email, password, dob, phone, address, city, postcode, country);
-        staffUsers.add(staffUser);
+            StaffUser staffUser = new StaffUser(firstName, lastName, email, password, dob, phone, address, city, postcode, country);
+            staffUsers.add(staffUser);
+        }
+
+        return staffUsers;
     }
-
-    return staffUsers;
-}
 
 
     // delete staff user
@@ -173,190 +173,189 @@ public class DBManager {
         return staffUsers;
     }
 
-        
-    
     public boolean deleteUserByEmail(String email) throws SQLException {
-    String query = "DELETE FROM users WHERE email = ?";
-    PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+        String query = "DELETE FROM users WHERE email = ?";
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
 
-    try {
-        pstmt.setString(1, email);
-        int rowsAffected = pstmt.executeUpdate();
+        try {
+            pstmt.setString(1, email);
+            int rowsAffected = pstmt.executeUpdate();
 
-        return rowsAffected > 0; // returns true assuming at least one row was deleted
-    } finally {
-        if (pstmt != null) {
-            pstmt.close(); // close statement to release resources
+            return rowsAffected > 0; // returns true assuming at least one row was deleted
+        } finally {
+            if (pstmt != null) {
+                pstmt.close(); // close statement to release resources
+            }
         }
     }
-}
-    public boolean deleteBookByTitle(String title) throws SQLException {
-    String query = "DELETE FROM books WHERE title = ?";
-    PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+        public boolean deleteBookByTitle(String title) throws SQLException {
+        String query = "DELETE FROM books WHERE title = ?";
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
 
-    try {
-         pstmt.setString(1, title); // set the title parameter
+        try {
+             pstmt.setString(1, title); // set the title parameter
 
-        // Execute the update
-        int rowsAffected = pstmt.executeUpdate();
-        return rowsAffected > 0; // returns true if a book was deleted
-    } finally {
-        // close the PreparedStatement if it was initialized
-        if (pstmt != null) {
-            pstmt.close();
+            // Execute the update
+            int rowsAffected = pstmt.executeUpdate();
+            return rowsAffected > 0; // returns true if a book was deleted
+        } finally {
+            // close the PreparedStatement if it was initialized
+            if (pstmt != null) {
+                pstmt.close();
+            }
         }
     }
-}
+    
     public List<Book> searchBooksByTitle(String title) {
-    List<Book> books = new ArrayList<>();
-    try {
-        String query = "SELECT * FROM books WHERE title LIKE ?"; // Use LIKE for partial matches
-        PreparedStatement pstmt = conn.prepareStatement(query);
-        
-        // add wildcard characters for partial matching
-        String titleWithWildcards = "%" + title + "%"; 
-        pstmt.setString(1, titleWithWildcards); // Set the parameter
-        
-        ResultSet rs = pstmt.executeQuery();
-        
-        while (rs.next()) {
-            // assuming Book has an appropriate constructor
-            Book book = new Book(
-                rs.getInt("id"),
-                rs.getString("title"),
-                rs.getString("author"),
-                rs.getDouble("price"),
-                rs.getString("publishedDate"),
-                rs.getString("description"),
-                rs.getString("imgUrl"),
-                rs.getString("genre"),
-                rs.getString("medium")
-            );
-            books.add(book); // Add book to the list
+        List<Book> books = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM books WHERE title LIKE ?"; // Use LIKE for partial matches
+            PreparedStatement pstmt = conn.prepareStatement(query);
+
+            // add wildcard characters for partial matching
+            String titleWithWildcards = "%" + title + "%"; 
+            pstmt.setString(1, titleWithWildcards); // Set the parameter
+
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                // assuming Book has an appropriate constructor
+                Book book = new Book(
+                    rs.getInt("id"),
+                    rs.getString("title"),
+                    rs.getString("author"),
+                    rs.getDouble("price"),
+                    rs.getString("publishedDate"),
+                    rs.getString("description"),
+                    rs.getString("imgUrl"),
+                    rs.getString("genre"),
+                    rs.getString("medium")
+                );
+                books.add(book); // Add book to the list
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-    } catch (SQLException e) {
-        e.printStackTrace();
+        return books; // Return the list of found books
     }
-    return books; // Return the list of found books
-}
 
 
-public boolean deleteBookById(int id) throws SQLException {
-    String query = "DELETE FROM books WHERE id = ?";
-    
-    try (PreparedStatement pstmt = conn.prepareStatement(query)) { // use try-with-resources
-        pstmt.setInt(1, id);
-        int rowsAffected = pstmt.executeUpdate();
-        return rowsAffected > 0; // return true if at least one row was deleted
-    } catch (SQLException e) {
-        e.printStackTrace();
-        throw e; // rethrow exception to handle it in the calling method if needed
-    }
-}
+    public boolean deleteBookById(int id) throws SQLException {
+        String query = "DELETE FROM books WHERE id = ?";
 
-
-
-    
-  public boolean updateUserDetails(String oldEmail, String firstName, String lastName, String email, String password, String dob, String phone, String address, String city, String postcode, String country) throws SQLException {
-    String query = "UPDATE users SET firstName = ?, lastName = ?, email = ?, password = ?, dob = ?, phone = ?, address = ?, city = ?, postcode = ?, country = ? WHERE email = ?";
-    PreparedStatement pstmt = st.getConnection().prepareStatement(query);
-    
-    try{
-        pstmt.setString(1, firstName);
-        pstmt.setString(2, lastName);
-        pstmt.setString(3, email);
-        pstmt.setString(4, password);
-        pstmt.setString(5, dob);
-        pstmt.setString(6, phone);
-        pstmt.setString(7, address);
-        pstmt.setString(8, city);
-        pstmt.setString(9, postcode);
-        pstmt.setString(10, country);
-        pstmt.setString(11, oldEmail); // identify user by old email
-        
-        int rowsAffected = pstmt.executeUpdate();
-        return rowsAffected > 0; // returns true if one row was updated
-    }
-    finally {
-        if (pstmt != null) {
-            pstmt.close(); // close statement to release resources
+        try (PreparedStatement pstmt = conn.prepareStatement(query)) { // use try-with-resources
+            pstmt.setInt(1, id);
+            int rowsAffected = pstmt.executeUpdate();
+            return rowsAffected > 0; // return true if at least one row was deleted
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e; // rethrow exception to handle it in the calling method if needed
         }
     }
-    }
-    
-public void addBook(Book book) throws SQLException {
-    String query = "INSERT INTO books (title, author, price, publishedDate, description, imgUrl, genre, medium) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-    PreparedStatement pstmt = st.getConnection().prepareStatement(query);
-    
-    try {
-        pstmt.setString(1, book.getTitle());
-        pstmt.setString(2, book.getAuthor());
-        pstmt.setDouble(3, book.getPrice());
-        pstmt.setString(4, book.getPublishedDate());
-        pstmt.setString(5, book.getDescription());
-        pstmt.setString(6, book.getImgUrl());
-        pstmt.setString(7, book.getGenre());
-        pstmt.setString(8, book.getMedium());
 
-        pstmt.executeUpdate(); // Execute the insert statement
-    } finally {
-        if (pstmt != null) {
-            pstmt.close(); // Close statement to release resources
+
+
+    
+    public boolean updateUserDetails(String oldEmail, String firstName, String lastName, String email, String password, String dob, String phone, String address, String city, String postcode, String country) throws SQLException {
+        String query = "UPDATE users SET firstName = ?, lastName = ?, email = ?, password = ?, dob = ?, phone = ?, address = ?, city = ?, postcode = ?, country = ? WHERE email = ?";
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+
+        try{
+            pstmt.setString(1, firstName);
+            pstmt.setString(2, lastName);
+            pstmt.setString(3, email);
+            pstmt.setString(4, password);
+            pstmt.setString(5, dob);
+            pstmt.setString(6, phone);
+            pstmt.setString(7, address);
+            pstmt.setString(8, city);
+            pstmt.setString(9, postcode);
+            pstmt.setString(10, country);
+            pstmt.setString(11, oldEmail); // identify user by old email
+
+            int rowsAffected = pstmt.executeUpdate();
+            return rowsAffected > 0; // returns true if one row was updated
+        }
+        finally {
+            if (pstmt != null) {
+                pstmt.close(); // close statement to release resources
+            }
         }
     }
-}
+    
+    public void addBook(Book book) throws SQLException {
+        String query = "INSERT INTO books (title, author, price, publishedDate, description, imgUrl, genre, medium) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+
+        try {
+            pstmt.setString(1, book.getTitle());
+            pstmt.setString(2, book.getAuthor());
+            pstmt.setDouble(3, book.getPrice());
+            pstmt.setString(4, book.getPublishedDate());
+            pstmt.setString(5, book.getDescription());
+            pstmt.setString(6, book.getImgUrl());
+            pstmt.setString(7, book.getGenre());
+            pstmt.setString(8, book.getMedium());
+
+            pstmt.executeUpdate(); // Execute the insert statement
+        } finally {
+            if (pstmt != null) {
+                pstmt.close(); // Close statement to release resources
+            }
+        }
+    }
 
     
     public ArrayList<Book> getAllBooks() throws SQLException {
-    ArrayList<Book> books = new ArrayList<>();
-    String query = "SELECT * FROM books"; // Ensure your table structure includes genre and medium
-    PreparedStatement pstmt = st.getConnection().prepareStatement(query);
-    ResultSet rs = pstmt.executeQuery();
+        ArrayList<Book> books = new ArrayList<>();
+        String query = "SELECT * FROM books"; // Ensure your table structure includes genre and medium
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+        ResultSet rs = pstmt.executeQuery();
 
-    while (rs.next()) {
-        int id = rs.getInt("id");
-        String title = rs.getString("title");
-        String author = rs.getString("author");
-        double price = rs.getDouble("price");
-        String publishedDate = rs.getString("publishedDate");
-        String description = rs.getString("description");
-        String imgUrl = rs.getString("imgUrl");
-        String genre = rs.getString("genre"); // New line to get genre
-        String medium = rs.getString("medium"); // Change the variable name to medium
+        while (rs.next()) {
+            int id = rs.getInt("id");
+            String title = rs.getString("title");
+            String author = rs.getString("author");
+            double price = rs.getDouble("price");
+            String publishedDate = rs.getString("publishedDate");
+            String description = rs.getString("description");
+            String imgUrl = rs.getString("imgUrl");
+            String genre = rs.getString("genre"); // New line to get genre
+            String medium = rs.getString("medium"); // Change the variable name to medium
 
-        Book book = new Book(id, title, author, price, publishedDate, description, imgUrl, genre, medium); // Use medium
-        books.add(book);
+            Book book = new Book(id, title, author, price, publishedDate, description, imgUrl, genre, medium); // Use medium
+            books.add(book);
+        }
+        return books;
     }
-    return books;
-}
 
     
     public Book getBookById(int id) throws SQLException {
-    Book book = null;
-    String query = "SELECT * FROM books WHERE id = ?"; // Use parameterized query for security
-    PreparedStatement pstmt = st.getConnection().prepareStatement(query);
-    pstmt.setInt(1, id); // Set the ID parameter
-    ResultSet rs = pstmt.executeQuery();
+        Book book = null;
+        String query = "SELECT * FROM books WHERE id = ?"; // Use parameterized query for security
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+        pstmt.setInt(1, id); // Set the ID parameter
+        ResultSet rs = pstmt.executeQuery();
 
-        if (rs.next()) {
-            // Create a book object from the result set
-            book = new Book(
-                rs.getInt("id"),
-                rs.getString("title"),
-                rs.getString("author"),
-                rs.getDouble("price"),
-                rs.getString("publishedDate"),
-                rs.getString("description"),
-                rs.getString("imgUrl"),
-                rs.getString("genre"),
-                rs.getString("medium")
-            );
-        } else {
-            System.out.println("No book found with ID: " + id); // Debug message
-        }
-    
-    return book; // Return the book object or null if not found
-}
+            if (rs.next()) {
+                // Create a book object from the result set
+                book = new Book(
+                    rs.getInt("id"),
+                    rs.getString("title"),
+                    rs.getString("author"),
+                    rs.getDouble("price"),
+                    rs.getString("publishedDate"),
+                    rs.getString("description"),
+                    rs.getString("imgUrl"),
+                    rs.getString("genre"),
+                    rs.getString("medium")
+                );
+            } else {
+                System.out.println("No book found with ID: " + id); // Debug message
+            }
+
+        return book; // Return the book object or null if not found
+    }
     
     public void createSupportTicket(SupportTicket ticket) throws SQLException {
         String query = "INSERT INTO support_tickets (customer_name, email, subject_title, type_of_enquiry, issue_description, status, date_submitted) " +
@@ -372,50 +371,51 @@ public void addBook(Book book) throws SQLException {
         pstmt.executeUpdate();
     }
     
-public List<SupportTicket> getAllSupportTickets() throws SQLException {
-    String query = "SELECT * FROM support_tickets";
-    ResultSet rs = st.executeQuery(query);
-    List<SupportTicket> tickets = new ArrayList<>();
-    while (rs.next()) {
-        // Use the constructor with parameters
-        SupportTicket ticket = new SupportTicket(
-            rs.getInt("ticket_id"),
-            rs.getString("customer_name"),
-            rs.getString("email"),
-            rs.getString("subject_title"),
-            rs.getString("type_of_enquiry"),
-            rs.getString("issue_description"),
-            rs.getString("status"),
-            rs.getDate("date_submitted") // This can be converted to Date if necessary
-        );
-        tickets.add(ticket);
+    public List<SupportTicket> getAllSupportTickets() throws SQLException {
+        String query = "SELECT * FROM support_tickets";
+        ResultSet rs = st.executeQuery(query);
+        List<SupportTicket> tickets = new ArrayList<>();
+        while (rs.next()) {
+            // Use the constructor with parameters
+            SupportTicket ticket = new SupportTicket(
+                rs.getInt("ticket_id"),
+                rs.getString("customer_name"),
+                rs.getString("email"),
+                rs.getString("subject_title"),
+                rs.getString("type_of_enquiry"),
+                rs.getString("issue_description"),
+                rs.getString("status"),
+                rs.getDate("date_submitted") // This can be converted to Date if necessary
+            );
+            tickets.add(ticket);
+        }
+        return tickets;
     }
-    return tickets;
-}
 
-public SupportTicket getSupportTicketById(int ticketId) throws SQLException {
-    String query = "SELECT * FROM support_tickets WHERE ticket_id = ?";
-    PreparedStatement pstmt = st.getConnection().prepareStatement(query);
-    pstmt.setInt(1, ticketId);
-    ResultSet rs = pstmt.executeQuery();
-    if (rs.next()) {
-        // Use the constructor with parameters
-        return new SupportTicket(
-            rs.getInt("ticket_id"),
-            rs.getString("customer_name"),
-            rs.getString("email"),
-            rs.getString("subject_title"),
-            rs.getString("type_of_enquiry"),
-            rs.getString("issue_description"),
-            rs.getString("status"),
-            rs.getDate("date_submitted")
-        );
+    public SupportTicket getSupportTicketById(int ticketId) throws SQLException {
+        String query = "SELECT * FROM support_tickets WHERE ticket_id = ?";
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+        pstmt.setInt(1, ticketId);
+        ResultSet rs = pstmt.executeQuery();
+        if (rs.next()) {
+            // Use the constructor with parameters
+            return new SupportTicket(
+                rs.getInt("ticket_id"),
+                rs.getString("customer_name"),
+                rs.getString("email"),
+                rs.getString("subject_title"),
+                rs.getString("type_of_enquiry"),
+                rs.getString("issue_description"),
+                rs.getString("status"),
+                rs.getDate("date_submitted")
+            );
+        }
+        return null; // No ticket found
     }
-    return null; // No ticket found
-}
 
     public List<SupportTicket> getTicketsByEmail(String email) throws SQLException {
-        String query = "SELECT * FROM support_tickets WHERE email = ?";
+        String query = "SELECT * FROM support_tickets WHERE email = ? " +
+                       "ORDER BY CASE WHEN status = 'Open' THEN 0 ELSE 1 END, ticket_id DESC";
         PreparedStatement pstmt = st.getConnection().prepareStatement(query);
         pstmt.setString(1, email);
 
@@ -439,7 +439,7 @@ public SupportTicket getSupportTicketById(int ticketId) throws SQLException {
         }
         return tickets;
     }
-    
+
     public boolean updateTicketStatus(String ticketId, String status) throws SQLException {
         String query = "UPDATE support_tickets SET status = ? WHERE ticket_id = ?";
         PreparedStatement pstmt = st.getConnection().prepareStatement(query);
@@ -684,7 +684,8 @@ public SupportTicket getSupportTicketById(int ticketId) throws SQLException {
             }
         return null;
     }
-public void addPaymentMethod(Payment payment) throws SQLException {
+    
+    public void addPaymentMethod(Payment payment) throws SQLException {
         String query = "INSERT INTO payments (cardNumber, expiryDate, cardHolderName) VALUES (?, ?, ?)";
         PreparedStatement pstmt = st.getConnection().prepareStatement(query);
         pstmt.setString(1, payment.getCardNumber());
