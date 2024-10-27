@@ -87,7 +87,10 @@
                 <div id="existing-address">
                     <label for="name">Full Customer Name:</label>
                     <input type="text" name="name" value="<%= user.getFirstName() + " " + user.getLastName() %>" readonly>
-
+                    
+                    <label for="email">Email:</label>
+                    <input type="text" name="email" value="<%= user.getEmail() %>" readonly>
+                   
                     <label for="address">Address:</label>
                     <input type="text" name="address" value="<%= user.getAddress() %>" readonly>
 
@@ -101,6 +104,9 @@
                 <div id="new-address" style="display: none;">
                     <label for="newName">Name:</label>
                     <input type="text" name="newName" required>
+                    
+                    <label for="newName">Email:</label>
+                    <input type="text" name="newEmail" required>
 
                     <label for="newAddress">Address:</label>
                     <input type="text" name="newAddress" required>
@@ -114,8 +120,8 @@
 
                 <label for="paymentMethod">Payment Method:</label>
                 <select name="paymentMethod" required>
-                    <option value="creditCard">Credit Card</option>
-                    <option value="paypal">PayPal</option>
+                    <option value="Credit Card">Credit Card</option>
+                    <option value="Paypal">PayPal</option>
                 </select>
             </form>
 
