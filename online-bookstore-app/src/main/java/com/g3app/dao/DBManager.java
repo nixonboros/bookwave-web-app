@@ -797,4 +797,21 @@ public class DBManager {
         pstmt.executeUpdate();
 
     }
+    
+public void addOrder(Order order) throws SQLException {
+    String query = "INSERT INTO orders (firstName, lastName, address, city, zip, paymentMethod, totalAmount, order_date, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    try (PreparedStatement pstmt = st.getConnection().prepareStatement(query)) {
+        pstmt.setString(1, order.getFirstName());
+        pstmt.setString(2, order.getLastName());
+        pstmt.setString(3, order.getAddress());
+        pstmt.setString(4, order.getCity());
+        pstmt.setString(5, order.getZip());
+        pstmt.setString(6, order.getPaymentMethod());
+        pstmt.setDouble(7, order.getTotalAmount());
+        pstmt.setDate(8, java.sql.Date.valueOf(order.getOrderDate())); // Adjust this if you're using LocalDate
+        pstmt.setString(9, order.getEmail()); // Set the email
+        pstmt.executeUpdate();
+    }
+}
+
 }
