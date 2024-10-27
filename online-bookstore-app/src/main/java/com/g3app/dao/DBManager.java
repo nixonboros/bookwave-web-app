@@ -620,6 +620,14 @@ public SupportTicket getSupportTicketById(int ticketId) throws SQLException {
         pstmt.setInt(2, notificationId);
         pstmt.executeUpdate();
     }
+    
+    public void markAllNotificationsAsRead(String email) throws SQLException {
+        String query = "UPDATE notifications SET status = 'Read' WHERE user_email = ? AND status = 'Unread'";
+        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+        pstmt.setString(1, email);
+        pstmt.executeUpdate();
+    }
+
 
 
     //SHIPMENTS CRUD

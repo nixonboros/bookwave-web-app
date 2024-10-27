@@ -153,6 +153,7 @@ nav {
     border-bottom: 1px solid #ddd;
     display: block;
     display: block !important;
+    padding: 10px;
 }
 
 .dropdown-menu a {
@@ -161,10 +162,15 @@ nav {
     color: #141619; 
     text-decoration: none;
     font-weight: normal;
+    margin-left: -10px;
+    margin-right: -10px;
+    margin-top: -5px;
+    margin-bottom: -5px;
 }
 
 .dropdown-header h4 {
     margin: 0;
+    margin-left: -10px;
 }
 
 .mark-all-read {
