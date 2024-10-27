@@ -1,6 +1,5 @@
 package com.g3app.controller;
 
-import com.g3app.model.SupportTicket;
 import com.g3app.dao.DBConnector;
 import com.g3app.dao.DBManager;
 
