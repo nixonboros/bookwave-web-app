@@ -1,5 +1,8 @@
 <%@ page import="com.g3app.model.User" %>
 <%@ page import="com.g3app.model.Book" %>
+<%@ page import="com.g3app.model.Notification" %>
+<%@ page import="java.util.List" %>
+
 <html>
 <header>
     <nav>
@@ -28,6 +31,8 @@
                 if (user != null) {
                     // Display tabs if logged in
                     String email = user.getEmail();
+                    // Retrieve unread notifications from session
+                    List<Notification> unreadNotifications = (List<Notification>) request.getSession().getAttribute("unreadNotifications");
             %>
                 <a href="mydetails.jsp">My Account (<%= email %>)</a>
                 <a href="LogoutServlet">Log Out</a>
@@ -35,19 +40,38 @@
                     <img src="images/shopping-cart.png" alt="Cart" class="cart-icon">
                 </a>
                 <div class="notification">
-                    <img src="images/notification-bell.png" alt="Notifications" class="notification-bell">
+                    <a href="NotificationServlet">
+                        <img src="images/notification-bell.png" alt="Notifications" class="notification-bell">
+                    </a>
                     <div class="dropdown-menu animated">
                         <div class="dropdown-header">
                             <h4>Notifications</h4>
-                            <a class="mark-all-read">Mark All as Read</a>
+                            <a class="mark-all-read" href="MarkAllNotificationsAsReadServlet">Mark All as Read</a>
                         </div>
                         <ul>
-                            <li><a href="#">Your order #12345 has been shipped.</a></li>
-                            <li><a href="#">Your payment for order #67890 was successful.</a></li>
+                            <%
+                                // Check if there are unread notifications
+                                if (unreadNotifications != null && !unreadNotifications.isEmpty()) {
+                                    for (Notification notification : unreadNotifications) {
+                            %>
+                            <li>
+                                <a href="UpdateNotificationStatusServlet?notificationId=<%= notification.getNotificationId() %>&ticketId=<%= notification.getTicketId() %>">
+                                    <%= notification.getMessage() %>
+                                </a>
+                            </li>
+                            <%
+                                    }
+                                } else {
+                            %>
+                            <li>No new notifications</li>
+                            <%
+                                }
+                            %>
                         </ul>
-                        <a href="notification_dashboard.jsp" class="view-all">View All Notifications</a>
+                        <a href="NotificationServlet" class="view-all">View All Notifications</a>
                     </div>
                 </div>
+
             <%
                 } else {
                     // Show login link if not logged in

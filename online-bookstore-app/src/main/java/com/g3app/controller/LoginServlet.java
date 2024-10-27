@@ -2,8 +2,11 @@ package com.g3app.controller;
 
 import com.g3app.model.User;
 import com.g3app.model.Cart; // Import Cart class
+import com.g3app.model.Notification;
 import com.g3app.dao.DBConnector;
 import com.g3app.dao.DBManager;
+
+import java.util.List;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -25,28 +28,35 @@ public class LoginServlet extends HttpServlet {
             Connection conn = connector.openConnection();
             DBManager dbManager = new DBManager(conn);
             User user = dbManager.findUser(email, password);
-            connector.closeConnection();
 
             if (user != null) {
-                // successful login
+                // Successful login
                 HttpSession session = request.getSession();
-                
-                // clear guest cart
+
+                // Clear guest cart
                 Cart guestCart = (Cart) session.getAttribute("cart");
                 if (guestCart != null) {
-                    session.removeAttribute("cart"); // clear the guest cart
+                    session.removeAttribute("cart"); // Clear the guest cart
                 }
-                
-                // set user information in the session
+
+                // Set user information in the session
                 session.setAttribute("user", user);
                 session.setAttribute("email", user.getEmail());
-                response.sendRedirect("index.jsp"); // redirect to welcome page or dashboard
+                
+                // Fetch unread notifications
+                List<Notification> unreadNotifications = dbManager.getUnreadNotificationsByEmail(user.getEmail());
+                session.setAttribute("unreadNotifications", unreadNotifications);
+
+                response.sendRedirect("index.jsp"); // Redirect to welcome page or dashboard
             } else {
-                // failed login
+                // Failed login
                 response.sendRedirect("login.jsp?error=invalid_credentials");
             }
+
+            // Close the connection after processing
+            connector.closeConnection();
         } catch (Exception e) {
-            e.printStackTrace();
+            e.printStackTrace(); // Log the exception
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Login failed.");
         }
     }

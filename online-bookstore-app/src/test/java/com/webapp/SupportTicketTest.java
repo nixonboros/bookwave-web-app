@@ -83,7 +83,7 @@ public class SupportTicketTest {
         Message message = new Message(0, retrievedTicket.getTicketId(), "Jane Doe", "I need help with my login issue", new Timestamp(new java.util.Date().getTime()));
 
         // Add the message to the database
-        dbManager.addMessage(message);
+        dbManager.addMessage(message, false);
 
         // Retrieve the messages for this ticket from the database
         List<Message> messages = dbManager.getMessagesByTicketId(retrievedTicket.getTicketId());
