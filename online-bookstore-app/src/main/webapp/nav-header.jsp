@@ -1,8 +1,8 @@
 <%@ page import="com.g3app.model.User" %>
 <%@ page import="com.g3app.model.Book" %>
 <%@ page import="com.g3app.model.Notification" %>
-
 <%@ page import="java.util.List" %>
+
 <html>
 <header>
     <nav>
@@ -31,6 +31,8 @@
                 if (user != null) {
                     // Display tabs if logged in
                     String email = user.getEmail();
+                    // Retrieve unread notifications from session
+                    List<Notification> unreadNotifications = (List<Notification>) request.getSession().getAttribute("unreadNotifications");
             %>
                 <a href="mydetails.jsp">My Account (<%= email %>)</a>
                 <a href="LogoutServlet">Log Out</a>
@@ -46,11 +48,15 @@
                         </div>
                         <ul>
                             <%
-                                List<Notification> notifications = (List<Notification>) request.getAttribute("notifications");
-                                if (notifications != null && !notifications.isEmpty()) {
-                                    for (Notification notification : notifications) {
+                                // Check if there are unread notifications
+                                if (unreadNotifications != null && !unreadNotifications.isEmpty()) {
+                                    for (Notification notification : unreadNotifications) {
                             %>
-                            <li><a href="ViewNotificationServlet?id=<%= notification.getNotificationId() %>"><%= notification.getMessage() %></a></li>
+                            <li>
+                                <a href="UpdateNotificationStatusServlet?notificationId=<%= notification.getNotificationId() %>&ticketId=<%= notification.getTicketId() %>">
+                                    <%= notification.getMessage() %>
+                                </a>
+                            </li>
                             <%
                                     }
                                 } else {
