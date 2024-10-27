@@ -108,4 +108,9 @@ public class Book {
     public void setMedium(String medium) {
         this.medium = medium;
     }
+    
+    @Override
+    public String toString() {
+        return title;
+    }
 }

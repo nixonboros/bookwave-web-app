@@ -1,18 +1,20 @@
 package com.g3app.model;
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.List;
 
 public class Order {
     private int id;
     private String firstName;
     private String lastName;
+    private String email;
     private String address;
     private String city;
     private String zip;
     private String paymentMethod;
     private double totalAmount;
     private LocalDate order_date;
+    private List<CartItem> items;
 
     // Getters and Setters
     public int getId() { 
@@ -36,6 +38,14 @@ public class Order {
         this.lastName = lastName; 
     }
 
+    public String getEmail() {
+        return email;
+    }
+    
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
     public String getAddress() { 
         return address; 
     }
@@ -77,5 +87,13 @@ public class Order {
     
     public void setOrderDate(LocalDate order_date) {
         this.order_date = order_date;
+    }
+
+    public List<CartItem> getItems() {
+        return items;
+    }
+
+    public void setItems(List<CartItem> items) {
+        this.items = items;
     }
 }
