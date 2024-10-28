@@ -7,30 +7,39 @@ Online Bookstore System
 
 ## Team Member Responsibilities
 
-- **Jerry** 
+- **Jerry**
+    Release 0 & 1:
   - Cleaned up index.jsp (added Best Sellers section)
   - Login/Register
   - User Dashboard (Edit and view account details, delete account) 
   - Page Footer
   - General data validation
   - Helped with catalogue features (add book, delete book, display book(s) in catalogue and best sellers in index.jsp, individual product pages and Manage Catalogue menu (staff))
-  - Started Cart and Orders (Adding items to cart, initial checkout page)
-  - Added staff details (viewing, editing and deleting personal staff account)
-  - User and Staff Management (Batch Delete, search function, edit pages)
   - Helped setup database
   - Set up testing and linked to Azure
   - UserTest test class (Testing: creating, updating and deleting of users in database)
   - BookTest test class (Testing: creating and deleting of books in database)
 
+    Release 2:
+  - Started Cart and Orders (Adding items to cart, initial checkout page)
+  - Added staff details (viewing, editing and deleting personal staff account)
+  - User and Staff Management (Batch Delete, search function, edit pages)
+
 - **Nixon**
+    Release 0 & 1:
   - Customer Support Feature (user/staff support chat, viewing and opening/closing tickets)
-  - Notifications Feature
+  - Notifications dropdown menu
   - Tomcat server setup 
   - Database setup (tables and contents)
   - General data validation
   - Helped with User/Staff login and registration
   - User/Staff page navigation bar
-  - SupportTicketTest test class (Testing: creating, retrieving and adding messages to support tickets in databas
+  - SupportTicketTest test class (Testing: creating, retrieving and adding messages to support tickets in database
+
+    Release 2:
+  - Notification Feature (user notification dashboard, mark all as read functionality, staff adding messages or opening/closing support tickets sends notifications to user)
+  - Helped with Order feature (user side)
+  - Refining Customer Support Feature (ordering of tickets in dashboard - recent shows up at top)
 
 ## Setup Instructions
 
