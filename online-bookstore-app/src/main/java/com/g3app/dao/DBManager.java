@@ -837,37 +837,7 @@ public class DBManager {
 }   
 
 
-    public List<Order> getOrdersByUserEmail(String email) throws SQLException {
-    List<Order> orders = new ArrayList<>();
-    String query = "SELECT * FROM orders WHERE email = ?";
-    
-    try (PreparedStatement pstmt = st.getConnection().prepareStatement(query)) {
-        pstmt.setString(1, email);
-        ResultSet rs = pstmt.executeQuery();
-        
-        while (rs.next()) {
-            Order order = new Order();
-            order.setId(rs.getInt("id")); 
-            order.setFirstName(rs.getString("firstName"));
-            order.setLastName(rs.getString("lastName"));
-            order.setAddress(rs.getString("address"));
-            order.setCity(rs.getString("city"));
-            order.setZip(rs.getString("zip"));
-            order.setPaymentMethod(rs.getString("paymentMethod"));
-            order.setTotalAmount(rs.getDouble("totalAmount"));
-            order.setOrderDate(rs.getDate("order_date").toLocalDate());
-            order.setEmail(rs.getString("email"));
-            
-            // Fetch order items
-            List<OrderItem> orderItems = getOrderItemsByOrderId(order.getId());
-            order.setProducts(orderItems); // Changed to setProducts
-            
-            orders.add(order);
-        }
-    }
-    
-    return orders;
-}
+
 
 private List<OrderItem> getOrderItemsByOrderId(int orderId) throws SQLException {
     List<OrderItem> items = new ArrayList<>();
