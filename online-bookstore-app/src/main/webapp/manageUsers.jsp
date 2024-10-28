@@ -15,6 +15,7 @@
 <body>
     <%
         String activeTab = request.getAttribute("activeTab") != null ? request.getAttribute("activeTab").toString() : "addUser";
+        
     %>
     <jsp:include page="staff-nav-header.jsp"/>
     <main>
@@ -184,56 +185,68 @@
             </div>
 
             <!-- ALL USERS TAB -->
-            <div id="allUser" class="tab-content <%= "allUser".equals(activeTab) ? "active" : "" %>">
-                <h2>All Users</h2>
-                <h3>List of Users</h3>
-                <form id="deleteSelectedForm" action="BatchDeleteUserServlet" method="post" onsubmit="return confirm('Are you sure you want to delete the selected users?');">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Select</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Date of Birth</th>
-                                <th>Address</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <%
-                                try {
-                                    DBConnector connector = new DBConnector();
-                                    Connection conn = connector.openConnection();
-                                    DBManager dbManager = new DBManager(conn);
-                                    List<User> allUsers = dbManager.getAllUsers();
-                                    for (User user : allUsers) {
-                            %>
-                                <tr>
-                                    <td><input type="checkbox" name="selectedUsers" value="<%= user.getEmail() %>"></td>
-                                    <td><%= user.getFirstName() + " " + user.getLastName() %></td>
-                                    <td><%= user.getEmail() %></td>
-                                    <td><%= user.getPhone() %></td>
-                                    <td><%= user.getDob() %></td>
-                                    <td><%= user.getAddress() %></td>
-                                </tr>
-                            <% 
-                                    }
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                            %>
-                                <tr>
-                                    <td colspan="6">Error fetching users: <%= e.getMessage() %></td>
-                                </tr>
-                            <% 
-                                }
-                            %>
-                        </tbody>
-                    </table>
-                    <div class="form-group">
-                        <button type="submit">Delete Selected Users</button>
-                    </div>
-                </form>
-            </div>
+<div id="allUser" class="tab-content <%= "allUser".equals(activeTab) ? "active" : "" %>">
+   
+    <%
+        // Fetch the user count and list from DBManager before displaying
+        DBConnector connector = new DBConnector();
+        Connection conn = connector.openConnection();
+        DBManager dbManager = new DBManager(conn);
+
+        // Get the user count and store it as an attribute
+        int userCount = dbManager.getUserCount();
+        request.setAttribute("userCount", userCount);
+
+        // Fetch all users to display in the table
+        List<User> allUsers = dbManager.getAllUsers();
+    %>
+     <h2>All Users</h2>
+     <p>Total Users: <%= userCount %></p>
+    <h3>List of Users</h3>
+    
+    <form id="deleteSelectedForm" action="BatchDeleteUserServlet" method="post" onsubmit="return confirm('Are you sure you want to delete the selected users?');">
+        <table>
+            <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Date of Birth</th>
+                    <th>Address</th>
+                </tr>
+                
+            </thead>
+            <tbody>
+                <% 
+                    for (User user : allUsers) {
+                %>
+                    <tr>
+                        <td><input type="checkbox" name="selectedUsers" value="<%= user.getEmail() %>"></td>
+                        <td><%= user.getFirstName() + " " + user.getLastName() %></td>
+                        <td><%= user.getEmail() %></td>
+                        <td><%= user.getPhone() %></td>
+                        <td><%= user.getDob() %></td>
+                        <td><%= user.getAddress() %></td>
+                        
+                    </tr>
+                    
+                <% 
+                    }
+                    conn.close(); // Close the connection once done
+                %>
+            </tbody>
+        </table>
+            
+        <div class="form-group">
+            <button type="submit">Delete Selected Users</button>
+        </div>
+    </form>
+</div>
+
+    </form>
+</div>
+
         </section>
     </main>
     <jsp:include page="footer.jsp"/>
