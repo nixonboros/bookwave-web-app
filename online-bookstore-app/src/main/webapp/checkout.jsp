@@ -102,7 +102,7 @@
                 </div>
 
                 <div id="new-address" style="display: none;">
-                    <label for="newName">Name:</label>
+                    <label for="newName">Full Customer Name:</label>
                     <input type="text" name="newName" required>
                     
                     <label for="newName">Email:</label>
