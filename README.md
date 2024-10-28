@@ -14,6 +14,9 @@ Online Bookstore System
   - Page Footer
   - General data validation
   - Helped with catalogue features (add book, delete book, display book(s) in catalogue and best sellers in index.jsp, individual product pages and Manage Catalogue menu (staff))
+  - Started Cart and Orders (Adding items to cart, initial checkout page)
+  - Added staff details (viewing, editing and deleting personal staff account)
+  - User and Staff Management (Batch Delete, search function, edit pages)
   - Helped setup database
   - Set up testing and linked to Azure
   - UserTest test class (Testing: creating, updating and deleting of users in database)
