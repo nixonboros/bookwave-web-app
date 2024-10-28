@@ -180,44 +180,55 @@
             </div>
 
             <!-- ALL USERS TAB -->
-            <div id="allUser" class="tab-content">
+            <div id="allUser" class="tab-content <%= "allUser".equals(activeTab) ? "active" : "" %>">
                 <h2>All Users</h2>
                 <h3>List of Users</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Date of Birth</th>
-                            <th>Address</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <%
-                            try {
-                                DBConnector connector = new DBConnector();
-                                Connection conn = connector.openConnection();
-                                DBManager dbManager = new DBManager(conn);
-                                List<User> users = dbManager.getAllUsers(); // Assuming this method exists in DBManager
-
-                                for (User user : users) {
-                        %>
+                <form id="deleteSelectedForm" action="BatchDeleteServlet" method="post" onsubmit="return confirm('Are you sure you want to delete the selected users?');">
+                    <table>
+                        <thead>
                             <tr>
-                                <td><%= user.getFirstName() + " " + user.getLastName() %></td>
-                                <td><%= user.getEmail() %></td>
-                                <td><%= user.getPhone() %></td>
-                                <td><%= user.getDob() %></td>
-                                <td><%= user.getAddress() %></td>
+                                <th>Select</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Date of Birth</th>
+                                <th>Address</th>
                             </tr>
-                        <%
+                        </thead>
+                        <tbody>
+                            <%
+                                try {
+                                    DBConnector connector = new DBConnector();
+                                    Connection conn = connector.openConnection();
+                                    DBManager dbManager = new DBManager(conn);
+                                    List<User> allUsers = dbManager.getAllUsers();
+                                    for (User user : allUsers) {
+                            %>
+                                <tr>
+                                    <td><input type="checkbox" name="selectedUsers" value="<%= user.getEmail() %>"></td>
+                                    <td><%= user.getFirstName() + " " + user.getLastName() %></td>
+                                    <td><%= user.getEmail() %></td>
+                                    <td><%= user.getPhone() %></td>
+                                    <td><%= user.getDob() %></td>
+                                    <td><%= user.getAddress() %></td>
+                                </tr>
+                            <% 
+                                    }
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                            %>
+                                <tr>
+                                    <td colspan="6">Error fetching users: <%= e.getMessage() %></td>
+                                </tr>
+                            <% 
                                 }
-                            } catch (Exception e) {
-                                out.println("<p style='color:red;'>Error fetching users.</p>");
-                            }
-                        %>
-                    </tbody>
-                </table>
+                            %>
+                        </tbody>
+                    </table>
+                    <div class="form-group">
+                        <button type="submit">Delete Selected Users</button>
+                    </div>
+                </form>
             </div>
         </section>
     </main>
