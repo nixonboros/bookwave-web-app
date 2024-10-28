@@ -838,14 +838,13 @@ public class DBManager {
 
 
 
-
-private List<OrderItem> getOrderItemsByOrderId(int orderId) throws SQLException {
-    List<OrderItem> items = new ArrayList<>();
-    String query = "SELECT * FROM order_items WHERE order_id = ?";
+    private List<OrderItem> getOrderItemsByOrderId(int orderId) throws SQLException {
+        List<OrderItem> items = new ArrayList<>();
+        String query = "SELECT * FROM order_items WHERE order_id = ?";
     
-    try (PreparedStatement pstmt = st.getConnection().prepareStatement(query)) {
-        pstmt.setInt(1, orderId);
-        ResultSet rs = pstmt.executeQuery();
+        try (PreparedStatement pstmt = st.getConnection().prepareStatement(query)) {
+            pstmt.setInt(1, orderId);
+            ResultSet rs = pstmt.executeQuery();
         
         while (rs.next()) {
             OrderItem item = new OrderItem();
@@ -855,10 +854,35 @@ private List<OrderItem> getOrderItemsByOrderId(int orderId) throws SQLException 
             item.setQuantity(rs.getInt("quantity"));
             items.add(item);
         }
+        }
+        return items;
     }
-    
-    return items;
-}
 
+    public User getUserByEmail(String email) throws SQLException {
+        User user = null;
+        String query = "SELECT * FROM users WHERE email = ?";
+        PreparedStatement pstmt = conn.prepareStatement(query);
+        pstmt.setString(1, email); // Set the email parameter
+        ResultSet rs = pstmt.executeQuery();
 
+        if (rs.next()) {
+            user = new User(
+                rs.getString("firstName"),
+                rs.getString("lastName"),
+                rs.getString("email"),
+                rs.getString("password"),
+                rs.getString("dob"),
+                rs.getString("phone"),
+                rs.getString("address"),
+                rs.getString("city"),
+                rs.getString("postcode"),
+                rs.getString("country")
+            );
+        } 
+        else {
+            System.out.println("No user found with email: " + email);
+        }
+
+        return user; // Return the user object or null if not found
+    }
 }
