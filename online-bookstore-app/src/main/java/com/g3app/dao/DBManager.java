@@ -224,14 +224,22 @@ public class DBManager {
 
     // update user
     public void updateUser(User user) throws SQLException {
-        String query = "UPDATE users SET firstName = ?, email = ?, password = ? WHERE email = ?";
-        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
-        pstmt.setString(1, user.getFirstName());
-        pstmt.setString(2, user.getEmail());
-        pstmt.setString(3, user.getPassword());
-        pstmt.setString(4, user.getEmail());
-        pstmt.executeUpdate();
-    }
+    String query = "UPDATE users SET firstName = ?, lastName = ?, email = ?, dob = ?, phone = ?, address = ?, city = ?, postcode = ?, country = ?, password = ? WHERE email = ?";
+    PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+    pstmt.setString(1, user.getFirstName());
+    pstmt.setString(2, user.getLastName());
+    pstmt.setString(3, user.getEmail());
+    pstmt.setString(4, user.getDob());
+    pstmt.setString(5, user.getPhone());
+    pstmt.setString(6, user.getAddress());
+    pstmt.setString(7, user.getCity());
+    pstmt.setString(8, user.getPostcode());
+    pstmt.setString(9, user.getCountry());
+    pstmt.setString(10, user.getPassword());
+    pstmt.setString(11, user.getEmail());
+    pstmt.executeUpdate();
+}
+
 
     // search users by name
     public List<User> searchUsers(String search) throws SQLException {
