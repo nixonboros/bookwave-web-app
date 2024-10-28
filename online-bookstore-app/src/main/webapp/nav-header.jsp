@@ -19,7 +19,7 @@
                 if (user != null) {
                     // If the user is logged in, display these links
             %>
-            <li><a href="order.jsp">Orders</a></li>
+            <li><a href="UserOrderDashboardServlet">Orders</a></li>
             <li><a href="UserSupportDashboardServlet">Contact</a></li>
             <%
                 }

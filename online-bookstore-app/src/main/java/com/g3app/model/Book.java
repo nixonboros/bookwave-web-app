@@ -11,6 +11,10 @@ public class Book {
     private String genre; // Property for genre
     private String medium; // Property for medium
 
+    // No-argument constructor
+    public Book() {
+    }
+    
     // Constructor for creating a new book (without ID)
     public Book(String title, String author, double price, String publishedDate, String description, String imgUrl, String genre, String medium) {
         this.title = title;
