@@ -22,7 +22,6 @@
             <p>Welcome to your order dashboard. Here you can view the details of your past orders and track their status. 
                 Use the options below to navigate through your orders and access more information about each transaction.</p>
 
-
             <table>
                 <thead>
                     <tr>
@@ -31,6 +30,7 @@
                         <th>Status</th>
                         <th>Shipping Details</th>
                         <th>Date Placed</th>
+                        <th>Total Amount</th> <!-- Added Total Amount column -->
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -57,6 +57,7 @@
                             <td>Processing</td>
                             <td><%= order.getAddress() %>, <%= order.getCity() %>, <%= order.getZip() %></td>
                             <td><%= order.getOrderDate() %></td>
+                            <td>$<%= order.getTotalAmount() %></td> <!-- Display total amount -->
                             <td><a href="shipment_tracking.jsp?id=<%= order.getId() %>" class="button">Track</a></td>
                         </tr>
                     <% 
@@ -64,7 +65,7 @@
                         } else {
                     %>
                         <tr>
-                            <td colspan="6">No orders found.</td>
+                            <td colspan="7">No orders found.</td> <!-- Adjusted colspan to 7 -->
                         </tr>
                     <% 
                         }
