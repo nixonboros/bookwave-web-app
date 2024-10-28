@@ -74,6 +74,24 @@ public class DBManager {
         pstmt.setString(10, staffUser.getCountry());
         pstmt.executeUpdate();
     }
+    
+       // update staff
+    public void updateStaff(StaffUser staffUser) throws SQLException {
+    String query = "UPDATE staffusers SET firstName = ?, lastName = ?, email = ?, dob = ?, phone = ?, address = ?, city = ?, postcode = ?, country = ?, password = ? WHERE email = ?";
+    PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+    pstmt.setString(1, staffUser.getFirstName());
+    pstmt.setString(2, staffUser.getLastName());
+    pstmt.setString(3, staffUser.getEmail());
+    pstmt.setString(4, staffUser.getDob());
+    pstmt.setString(5, staffUser.getPhone());
+    pstmt.setString(6, staffUser.getAddress());
+    pstmt.setString(7, staffUser.getCity());
+    pstmt.setString(8, staffUser.getPostcode());
+    pstmt.setString(9, staffUser.getCountry());
+    pstmt.setString(10, staffUser.getPassword());
+    pstmt.setString(11, staffUser.getEmail());
+    pstmt.executeUpdate();
+}
 
     // find staff user
     public StaffUser findStaffUser(String email, String password) throws SQLException {
@@ -892,5 +910,33 @@ public class DBManager {
         }
 
         return user; // Return the user object or null if not found
+    }
+    
+    public StaffUser getStaffUserByEmail(String email) throws SQLException {
+        StaffUser staffUser = null;
+        String query = "SELECT * FROM staffusers WHERE email = ?";
+        PreparedStatement pstmt = conn.prepareStatement(query);
+        pstmt.setString(1, email); // Set the email parameter
+        ResultSet rs = pstmt.executeQuery();
+
+        if (rs.next()) {
+            staffUser = new StaffUser(
+                rs.getString("firstName"),
+                rs.getString("lastName"),
+                rs.getString("email"),
+                rs.getString("password"),
+                rs.getString("dob"),
+                rs.getString("phone"),
+                rs.getString("address"),
+                rs.getString("city"),
+                rs.getString("postcode"),
+                rs.getString("country")
+            );
+        } 
+        else {
+            System.out.println("No user found with email: " + email);
+        }
+
+        return staffUser; // Return the user object or null if not found
     }
 }
