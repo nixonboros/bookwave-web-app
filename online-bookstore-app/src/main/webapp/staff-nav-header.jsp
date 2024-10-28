@@ -18,7 +18,7 @@
 
         <div class="user-actions">
             <%
-                StaffUser staffUser = (StaffUser) request.getSession().getAttribute("user");
+                StaffUser staffUser = (StaffUser) request.getSession().getAttribute("staffUser");
                 if (staffUser != null) {
                     // If the user is logged in, display My Account and Log Out
                     String email = staffUser.getEmail();
