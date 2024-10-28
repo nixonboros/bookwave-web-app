@@ -30,7 +30,7 @@
                         <th>Status</th>
                         <th>Shipping Details</th>
                         <th>Date Placed</th>
-                        <th>Total Amount</th> <!-- Added Total Amount column -->
+                        <th>Total Amount</th> 
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -57,7 +57,7 @@
                             <td>Processing</td>
                             <td><%= order.getAddress() %>, <%= order.getCity() %>, <%= order.getZip() %></td>
                             <td><%= order.getOrderDate() %></td>
-                            <td>$<%= order.getTotalAmount() %></td> <!-- Display total amount -->
+                            <td>$<%= order.getTotalAmount() %></td>
                             <td><a href="shipment_tracking.jsp?id=<%= order.getId() %>" class="button">Track</a></td>
                         </tr>
                     <% 
