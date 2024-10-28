@@ -939,4 +939,30 @@ public class DBManager {
 
         return staffUser; // Return the user object or null if not found
     }
+    
+    public int getUserCount() throws SQLException {
+    String query = "SELECT COUNT(*) AS total FROM users";
+    try (PreparedStatement stmt = conn.prepareStatement(query);
+         ResultSet rs = stmt.executeQuery()) {
+        if (rs.next()) {
+            return rs.getInt("total");
+        }
+    }
+    return 0;
+    }
+    
+    public int getTotalStaffCount() throws SQLException {
+    int count = 0;
+    String query = "SELECT COUNT(*) AS total FROM staffusers"; // Replace 'staffusers' with the correct table name if needed
+    try (PreparedStatement stmt = conn.prepareStatement(query);
+         ResultSet rs = stmt.executeQuery()) {
+        if (rs.next()) {
+            count = rs.getInt("total");
+        }
+    }
+    return count;
+}
+
+
+
 }
