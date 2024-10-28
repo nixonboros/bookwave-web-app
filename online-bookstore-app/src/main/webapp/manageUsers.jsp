@@ -187,7 +187,7 @@
             <div id="allUser" class="tab-content <%= "allUser".equals(activeTab) ? "active" : "" %>">
                 <h2>All Users</h2>
                 <h3>List of Users</h3>
-                <form id="deleteSelectedForm" action="BatchDeleteServlet" method="post" onsubmit="return confirm('Are you sure you want to delete the selected users?');">
+                <form id="deleteSelectedForm" action="BatchDeleteUserServlet" method="post" onsubmit="return confirm('Are you sure you want to delete the selected users?');">
                     <table>
                         <thead>
                             <tr>

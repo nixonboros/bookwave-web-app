@@ -96,133 +96,147 @@
             </div>
 
             <!-- SEARCH STAFF USER TAB -->
-            <div id="searchStaff" class="tab-content <%= "searchStaff".equals(activeTab) ? "active" : "" %>">
-                <h2>Search for a Staff User</h2>
-                <form id="searchStaffForm" action="StaffUserSearchServlet" method="get">
-                    <div class="form-group">
-                        <label for="name">Enter Staff Name or Email:</label>
-                        <input type="text" id="name" name="searchName" required>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" id="searchStaffButton">Search for Staff User</button>
-                    </div>
-                </form>
+<div id="searchStaff" class="tab-content <%= "searchStaff".equals(activeTab) ? "active" : "" %>">
+    <h2>Search for a Staff User</h2>
+    <form id="searchStaffForm" action="StaffUserSearchServlet" method="get">
+        <div class="form-group">
+            <label for="name">Enter Staff Name or Email:</label>
+            <input type="text" id="name" name="searchName" required>
+        </div>
+        <div class="form-group">
+            <button type="submit" id="searchStaffButton">Search for Staff User</button>
+        </div>
+    </form>
 
-                <% 
-                String deletionStatus = request.getAttribute("deleteStatus") != null ? request.getAttribute("deleteStatus").toString() : ""; 
-                if ("success".equals(deletionStatus)) { 
-                %>
-                    <div class="success-message">
-                        <p style="color: green;"><%= request.getAttribute("successMessage") %></p>
-                    </div>
-                <% 
-                } else if ("error".equals(deletionStatus) || "notFound".equals(deletionStatus)) { 
-                %>
-                    <div class="error-message">
-                        <p style="color: red;"><%= request.getAttribute("errorMessage") != null ? request.getAttribute("errorMessage") : "No staff users found with the given name." %></p>
-                    </div>
-                <% 
-                } 
-                %>
+    <% 
+    String deletionStatus = request.getAttribute("deleteStatus") != null ? request.getAttribute("deleteStatus").toString() : ""; 
+    if ("success".equals(deletionStatus)) { 
+    %>
+        <div class="success-message">
+            <p style="color: green;"><%= request.getAttribute("successMessage") %></p>
+        </div>
+    <% 
+    } else if ("error".equals(deletionStatus) || "notFound".equals(deletionStatus)) { 
+    %>
+        <div class="error-message">
+            <p style="color: red;"><%= request.getAttribute("errorMessage") != null ? request.getAttribute("errorMessage") : "No staff users found with the given name." %></p>
+        </div>
+    <% 
+    } 
+    %>
 
-                <% 
-                String searchStatus = request.getAttribute("searchStatus") != null ? request.getAttribute("searchStatus").toString() : ""; 
-                if ("found".equals(searchStatus)) { 
+    <% 
+    String searchStatus = request.getAttribute("searchStatus") != null ? request.getAttribute("searchStatus").toString() : ""; 
+    if ("found".equals(searchStatus)) { 
+    %>
+        <h3>Search Results</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Date of Birth</th>
+                    <th>Action(s)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%
+                List<StaffUser> searchedStaffUsers = (List<StaffUser>) request.getAttribute("searchedStaffUsers");
+                for (StaffUser staffUser : searchedStaffUsers) {
                 %>
-                    <h3>Search Results</h3>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Date of Birth</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <%
-                            List<StaffUser> searchedStaffUsers = (List<StaffUser>) request.getAttribute("searchedStaffUsers");
-                            for (StaffUser staffUser : searchedStaffUsers) {
-                            %>
-                                <tr>
-                                    <td><%= staffUser.getFirstName() + " " + staffUser.getLastName()%></td>
-                                    <td><%= staffUser.getEmail() %></td>
-                                    <td><%= staffUser.getPhone() %></td>
-                                    <td><%= staffUser.getDob() %></td>
-                                    <td>
-                                        <form action="StaffUserDeleteServlet" method="post" style="display:inline;">
-                                            <input type="hidden" name="email" value="<%= staffUser.getEmail() %>">
-                                            <button type="submit" onclick="return confirm('Are you sure you want to delete this staff user?');">Delete</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            <% 
-                            }
-                            %>
-                        </tbody>
-                    </table>
+                    <tr>
+                        <td><%= staffUser.getFirstName() + " " + staffUser.getLastName() %></td>
+                        <td><%= staffUser.getEmail() %></td>
+                        <td><%= staffUser.getPhone() %></td>
+                        <td><%= staffUser.getDob() %></td>
+                        <td>
+                            <form action="StaffUserDeleteServlet" method="post" style="display:inline;">
+                                <input type="hidden" name="email" value="<%= staffUser.getEmail() %>">
+                                <button type="submit" onclick="return confirm('Are you sure you want to delete this staff user?');">Delete</button>
+                            </form>
+                            <form action="staffEdit.jsp" method="post" style="display:inline;">
+                                <input type="hidden" name="email" value="<%= staffUser.getEmail() %>">
+                                <button type="submit">Edit</button>
+                            </form>
+                        </td>
+                    </tr>
                 <% 
-                } else if ("notFound".equals(searchStatus)) { 
+                }
                 %>
-                    <div class="error-message">
-                        <p style="color: red;">No staff users found with the given name.</p>
-                    </div>
-                <% 
-                } else if ("error".equals(searchStatus)) { 
-                %>
-                    <div class="error-message">
-                        <p style="color: red;"><%= request.getAttribute("errorMessage") != null ? request.getAttribute("errorMessage") : "An error occurred while searching for the staff user. Please try again." %></p>
-                    </div>
-                <% 
-                } 
-                %>
-            </div>
+            </tbody>
+        </table>
+    <% 
+    } else if ("notFound".equals(searchStatus)) { 
+    %>
+        <div class="error-message">
+            <p style="color: red;">No staff users found with the given name.</p>
+        </div>
+    <% 
+    } else if ("error".equals(searchStatus)) { 
+    %>
+        <div class="error-message">
+            <p style="color: red;"><%= request.getAttribute("errorMessage") != null ? request.getAttribute("errorMessage") : "An error occurred while searching for the staff user. Please try again." %></p>
+        </div>
+    <% 
+    } 
+    %>
+</div>
+
 
             <!-- ALL STAFF TAB -->
-            <div id="allStaff" class="tab-content">
-                <h2>All Staff</h2>
-                <h3>List of Staff Users</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Date of Birth</th>
-                            <th>Address</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <%
-                            try {
-                                DBConnector connector = new DBConnector();
-                                Connection conn = connector.openConnection();
-                                DBManager dbManager = new DBManager(conn);
-                                List<StaffUser> staffUsers = dbManager.getAllStaffUsers(); // Assuming this method exists in DBManager
+<div id="allStaff" class="tab-content <%= "allStaff".equals(activeTab) ? "active" : "" %>">
+    <h2>All Staff</h2>
+    <h3>List of Staff Members</h3>
+    <form id="deleteSelectedStaffForm" action="BatchDeleteStaffServlet" method="post" onsubmit="return confirm('Are you sure you want to delete the selected staff members?');">
+        <table>
+            <thead>
+                <tr>
+                    <th>Select</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Date of Birth</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%
+                    try {
+                        DBConnector connector = new DBConnector();
+                        Connection conn = connector.openConnection();
+                        DBManager dbManager = new DBManager(conn);
+                        List<StaffUser> allStaff = dbManager.getAllStaffUsers();
+                        for (StaffUser staff : allStaff) {
+                %>
+                    <tr>
+                        <td><input type="checkbox" name="selectedStaff" value="<%= staff.getEmail() %>"></td>
+                        <td><%= staff.getFirstName() + " " + staff.getLastName() %></td>
+                        <td><%= staff.getEmail() %></td>
+                        <td><%= staff.getPhone() %></td>
+                        <td><%= staff.getDob() %></td>
+                        <td><%= staff.getAddress() %></td>
+                    </tr>
+                <% 
+                        }
+                        connector.closeConnection(); // Ensure to close the connection after use
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                %>
+                    <tr>
+                        <td colspan="6">Error fetching staff members: <%= e.getMessage() %></td>
+                    </tr>
+                <% 
+                    }
+                %>
+            </tbody>
+        </table>
+        <div class="form-group">
+            <button type="submit">Delete Selected Staff</button>
+        </div>
+    </form>
+</div>
 
-                                for (StaffUser staffUser : staffUsers) {
-                        %>
-                            <tr>
-                                <td><%= staffUser.getFirstName() + " " + staffUser.getLastName() %></td>
-                                <td><%= staffUser.getEmail() %></td>
-                                <td><%= staffUser.getPhone() %></td>
-                                <td><%= staffUser.getDob() %></td>
-                                <td><%= staffUser.getAddress() + ", " + staffUser.getCity() + ", " + staffUser.getPostcode() + ", " + staffUser.getCountry() %></td>
-                            </tr>
-                        <%
-                                }
-                            } catch (Exception e) {
-                        %>
-                            <tr>
-                                <td colspan="5" style="color: red;">Error retrieving staff users: <%= e.getMessage() %></td>
-                            </tr>
-                        <%
-                            }
-                        %>
-                    </tbody>
-                </table>
-            </div>
         </section>
     </main>
 
