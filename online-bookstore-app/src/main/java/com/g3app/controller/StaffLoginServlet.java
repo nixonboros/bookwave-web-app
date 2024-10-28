@@ -26,7 +26,7 @@ public class StaffLoginServlet extends HttpServlet {
 
             if (staffUser  != null) {
                 // Successful login
-                request.getSession().setAttribute("user", staffUser);
+                request.getSession().setAttribute("staffUser", staffUser);
                 response.sendRedirect("staffDashboard.jsp"); // Redirect to staff dashboard
             } else {
                 // Failed login
