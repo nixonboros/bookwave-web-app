@@ -866,48 +866,53 @@ public class DBManager {
     
     public List<Order> getOrdersByEmail(String email) throws SQLException {
         String query = "SELECT * FROM orders WHERE email = ?";
-        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
-        pstmt.setString(1, email);
-        ResultSet rs = pstmt.executeQuery();
-
         List<Order> orders = new ArrayList<>();
-        while (rs.next()) {
-            Order order = new Order();
-            order.setId(rs.getInt("id"));
-            order.setFirstName(rs.getString("firstName"));
-            order.setLastName(rs.getString("lastName"));
-            order.setEmail(rs.getString("email"));
-            order.setAddress(rs.getString("address"));
-            order.setCity(rs.getString("city"));
-            order.setZip(rs.getString("zip"));
-            order.setPaymentMethod(rs.getString("paymentMethod"));
-            order.setTotalAmount(rs.getDouble("totalAmount"));
-            order.setOrderDate(rs.getDate("order_date").toLocalDate());
 
-            // Retrieve order items for this order
-            order.setItems(getOrderItems(order.getId()));
-            orders.add(order);
+        try (PreparedStatement pstmt = st.getConnection().prepareStatement(query)) {
+            pstmt.setString(1, email);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    Order order = new Order();
+                    order.setId(rs.getInt("id"));
+                    order.setFirstName(rs.getString("firstName"));
+                    order.setLastName(rs.getString("lastName"));
+                    order.setEmail(rs.getString("email"));
+                    order.setAddress(rs.getString("address"));
+                    order.setCity(rs.getString("city"));
+                    order.setZip(rs.getString("zip"));
+                    order.setPaymentMethod(rs.getString("paymentMethod"));
+                    order.setTotalAmount(rs.getDouble("totalAmount"));
+                    order.setOrderDate(rs.getDate("order_date").toLocalDate());
+
+                    // Retrieve order items for this order
+                    order.setItems(getOrderItems(order.getId()));
+                    orders.add(order);
+                }
+            }
         }
-        return orders;
+        return orders; 
     }
 
     private List<CartItem> getOrderItems(int orderId) throws SQLException {
         String query = "SELECT oi.*, b.title FROM order_items oi JOIN books b ON oi.product_id = b.id WHERE oi.order_id = ?";
-        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
-        pstmt.setInt(1, orderId);
-        ResultSet rs = pstmt.executeQuery();
-
         List<CartItem> items = new ArrayList<>();
-        while (rs.next()) {
-            Book book = new Book();
-            book.setId(rs.getInt("product_id"));
-            book.setTitle(rs.getString("title"));
-            double price = rs.getDouble("price");
-            int quantity = rs.getInt("quantity");
-            items.add(new CartItem(book, quantity));
+
+        try (PreparedStatement pstmt = st.getConnection().prepareStatement(query)) {
+            pstmt.setInt(1, orderId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    Book book = new Book();
+                    book.setId(rs.getInt("product_id"));
+                    book.setTitle(rs.getString("title"));
+                    double price = rs.getDouble("price");
+                    int quantity = rs.getInt("quantity");
+                    items.add(new CartItem(book, quantity));
+                }
+            }
         }
-        return items;
+        return items; 
     }
+
 
     public User getUserByEmail(String email) throws SQLException {
         User user = null;

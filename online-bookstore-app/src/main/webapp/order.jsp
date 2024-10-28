@@ -19,6 +19,9 @@
     <main>
         <section class="order-section animated">
             <h1 class="formTitle">Your Orders</h1>
+            <p>Welcome to your order dashboard. Here you can view the details of your past orders and track their status. 
+                Use the options below to navigate through your orders and access more information about each transaction.</p>
+
 
             <table>
                 <thead>

@@ -15,7 +15,7 @@
 
     <main>
         <section class="animated">
-            <h1 class="formTitle">FULL CATALOGUE</h1>
+            <h1 class="formTitle">Full Catalogue</h1>
             <p>Explore our collection of books from various genres.</p>
 
             
