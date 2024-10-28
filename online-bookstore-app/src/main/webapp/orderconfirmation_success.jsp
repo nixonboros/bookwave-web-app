@@ -15,7 +15,7 @@
             <h1>Thank you for your purchase!</h1>
             <p>Your order has been successfully placed and is being processed.</p>
             <div class="success-buttons">
-                <a href="order.jsp" class="button">View Orders</a>
+                <a href="UserOrderDashboardServlet" class="button">View Orders</a>
             </div>
         </section>
     </main>
