@@ -181,20 +181,20 @@ public class DBManager {
     }
 
     public boolean deleteUserByEmail(String email) throws SQLException {
-        String query = "DELETE FROM users WHERE email = ?";
-        PreparedStatement pstmt = st.getConnection().prepareStatement(query);
+    String query = "DELETE FROM users WHERE email = ?";
 
-        try {
-            pstmt.setString(1, email);
-            int rowsAffected = pstmt.executeUpdate();
+    // Ensure st.getConnection() provides an active connection
+    try (PreparedStatement pstmt = st.getConnection().prepareStatement(query)) {
+        pstmt.setString(1, email);
+        int rowsAffected = pstmt.executeUpdate();
 
-            return rowsAffected > 0; // returns true assuming at least one row was deleted
-        } finally {
-            if (pstmt != null) {
-                pstmt.close(); // close statement to release resources
-            }
-        }
+        System.out.println("Deleting user with email: " + email); // Debug line
+        System.out.println("Rows affected: " + rowsAffected); // Debug line
+
+        return rowsAffected > 0; // Returns true if at least one row was deleted
     }
+}
+
     
     // get all staff users
     public ArrayList<User> getAllUsers() throws SQLException {
@@ -795,50 +795,100 @@ public class DBManager {
         PreparedStatement pstmt = st.getConnection().prepareStatement(query);
         pstmt.setInt(1, paymentId);
         pstmt.executeUpdate();
+
     }
     
     public void addOrder(Order order) throws SQLException {
-        // Query to insert order details into the orders table
-        String orderQuery = "INSERT INTO orders (firstName, lastName, address, city, zip, paymentMethod, totalAmount, order_date, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-        try (Connection conn = st.getConnection();
-             PreparedStatement orderStmt = conn.prepareStatement(orderQuery, Statement.RETURN_GENERATED_KEYS)) {
-
-            // Set parameters for the orders table
-            orderStmt.setString(1, order.getFirstName());
-            orderStmt.setString(2, order.getLastName());
-            orderStmt.setString(3, order.getAddress());
-            orderStmt.setString(4, order.getCity());
-            orderStmt.setString(5, order.getZip());
-            orderStmt.setString(6, order.getPaymentMethod());
-            orderStmt.setDouble(7, order.getTotalAmount());
-            orderStmt.setDate(8, java.sql.Date.valueOf(order.getOrderDate())); 
-            orderStmt.setString(9, order.getEmail());
-
-            // Execute the insert and get the generated order ID
-            int rowsAffected = orderStmt.executeUpdate();
-
-            if (rowsAffected > 0) {
-                // Get the generated order ID
-                try (ResultSet generatedKeys = orderStmt.getGeneratedKeys()) {
-                    if (generatedKeys.next()) {
-                        int orderId = generatedKeys.getInt(1);
-
-                        // Now insert the order items into the order_items table
-                        String itemQuery = "INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)";
-                        try (PreparedStatement itemStmt = conn.prepareStatement(itemQuery)) {
-                            for (CartItem item : order.getItems()) {
-                                itemStmt.setInt(1, orderId); 
-                                itemStmt.setInt(2, item.getProductId()); 
-                                itemStmt.setInt(3, item.getQuantity()); 
-                                itemStmt.setDouble(4, item.getPrice()); 
-                                itemStmt.addBatch(); 
-                            }
-                            itemStmt.executeBatch();
-                        }
-                    }
+        String query = "INSERT INTO orders (firstName, lastName, address, city, zip, paymentMethod, totalAmount, order_date, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    
+        try (PreparedStatement pstmt = st.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+            pstmt.setString(1, order.getFirstName());
+            pstmt.setString(2, order.getLastName());
+            pstmt.setString(3, order.getAddress());
+            pstmt.setString(4, order.getCity());
+            pstmt.setString(5, order.getZip());
+            pstmt.setString(6, order.getPaymentMethod());
+            pstmt.setDouble(7, order.getTotalAmount());
+            pstmt.setDate(8, java.sql.Date.valueOf(order.getOrderDate())); // Adjust this if you're using LocalDate
+            pstmt.setString(9, order.getEmail()); // Set the email
+        
+            // Execute the insert
+            pstmt.executeUpdate();
+        
+            // Retrieve the generated keys
+            try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    order.setId(generatedKeys.getInt(1)); // Set the generated ID to the order object
+                } else {
+                    throw new SQLException("Creating order failed, no ID obtained.");
                 }
             }
         }
     }
+    
+    private void addOrderItem(int orderId, OrderItem item) throws SQLException {
+    String query = "INSERT INTO order_items (order_id, book_id, quantity) VALUES (?, ?, ?)";
+    try (PreparedStatement pstmt = st.getConnection().prepareStatement(query)) {
+        pstmt.setInt(1, orderId);
+        pstmt.setInt(2, item.getBookId());
+        pstmt.setInt(3, item.getQuantity());
+        pstmt.executeUpdate();
+    }
+}   
+
+
+    public List<Order> getOrdersByUserEmail(String email) throws SQLException {
+    List<Order> orders = new ArrayList<>();
+    String query = "SELECT * FROM orders WHERE email = ?";
+    
+    try (PreparedStatement pstmt = st.getConnection().prepareStatement(query)) {
+        pstmt.setString(1, email);
+        ResultSet rs = pstmt.executeQuery();
+        
+        while (rs.next()) {
+            Order order = new Order();
+            order.setId(rs.getInt("id")); 
+            order.setFirstName(rs.getString("firstName"));
+            order.setLastName(rs.getString("lastName"));
+            order.setAddress(rs.getString("address"));
+            order.setCity(rs.getString("city"));
+            order.setZip(rs.getString("zip"));
+            order.setPaymentMethod(rs.getString("paymentMethod"));
+            order.setTotalAmount(rs.getDouble("totalAmount"));
+            order.setOrderDate(rs.getDate("order_date").toLocalDate());
+            order.setEmail(rs.getString("email"));
+            
+            // Fetch order items
+            List<OrderItem> orderItems = getOrderItemsByOrderId(order.getId());
+            order.setProducts(orderItems); // Changed to setProducts
+            
+            orders.add(order);
+        }
+    }
+    
+    return orders;
+}
+
+private List<OrderItem> getOrderItemsByOrderId(int orderId) throws SQLException {
+    List<OrderItem> items = new ArrayList<>();
+    String query = "SELECT * FROM order_items WHERE order_id = ?";
+    
+    try (PreparedStatement pstmt = st.getConnection().prepareStatement(query)) {
+        pstmt.setInt(1, orderId);
+        ResultSet rs = pstmt.executeQuery();
+        
+        while (rs.next()) {
+            OrderItem item = new OrderItem();
+            item.setId(rs.getInt("id"));
+            item.setOrderId(rs.getInt("order_id"));
+            item.setBookId(rs.getInt("book_id"));
+            item.setQuantity(rs.getInt("quantity"));
+            items.add(item);
+        }
+    }
+    
+    return items;
+}
+
+
 }
