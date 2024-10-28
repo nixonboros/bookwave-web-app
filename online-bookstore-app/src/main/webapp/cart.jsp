@@ -85,7 +85,7 @@
             
         </section>
                 <%-- Separate Checkout Button Outside of the Form --%>
-            <div class="ticket-actions">
+            <div class="ticket-actions animated">
                 <button class="button" 
                         onclick="checkout()" 
                         <% if (cart == null || cart.getItems().isEmpty()) { %>disabled<% } %>
