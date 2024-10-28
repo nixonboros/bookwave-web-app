@@ -85,7 +85,7 @@
 
                     <div class="form-group">
                         <label for="password">New Password:</label>
-                        <input type="password" id="password" name="password">
+                        <input type="password" id="password" value="" name="password">
                     </div>
 
             <% String status = request.getParameter("status"); %>
