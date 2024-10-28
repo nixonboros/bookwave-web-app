@@ -992,7 +992,30 @@ public class DBManager {
     }
     return count;
 }
+    
+     public boolean updateStaffUserDetails(String oldEmail, String firstName, String lastName, String email, String password, 
+                                      String dob, String phone, String address, String city, String postcode, String country) 
+                                      throws SQLException {
+    String query = "UPDATE staffusers SET firstName = ?, lastName = ?, email = ?, password = ?, dob = ?, " +
+                   "phone = ?, address = ?, city = ?, postcode = ?, country = ? WHERE email = ?";
+    try (PreparedStatement statement = conn.prepareStatement(query)) {
+        statement.setString(1, firstName);
+        statement.setString(2, lastName);
+        statement.setString(3, email);
+        statement.setString(4, password);
+        statement.setString(5, dob);
+        statement.setString(6, phone);
+        statement.setString(7, address);
+        statement.setString(8, city);
+        statement.setString(9, postcode);
+        statement.setString(10, country);
+        statement.setString(11, oldEmail);
 
+        int rowsUpdated = statement.executeUpdate();
+        return rowsUpdated > 0; // Return true if at least one row was updated
+    }
+
+    } 
 
 
 }
