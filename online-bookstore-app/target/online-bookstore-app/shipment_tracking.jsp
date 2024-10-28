@@ -13,7 +13,7 @@
     <jsp:include page="nav-header.jsp"/>
     <main>
         <section class="form-section animated">
-            <a href="order.jsp" class="back-arrow">
+            <a href="UserOrderDashboardServlet" class="back-arrow">
                 <img src="images/back-arrow.png" alt="Back" />
             </a>
 
