@@ -36,6 +36,12 @@ public class UserEditServlet extends HttpServlet {
             Connection conn = connector.openConnection();
             DBManager dbManager = new DBManager(conn);
 
+            // Check if password is provided; if not, retain the existing password
+            if (password == null || password.isEmpty()) {
+                User existingUser = dbManager.getUserByEmail(email); // Fetch existing user details
+                password = existingUser.getPassword(); // Retain the current password if input is empty
+            }
+
             // Update the user details
             User user = new User(firstName, lastName, email, password, dob, phone, address, city, postcode, country);
             dbManager.updateUser(user);
