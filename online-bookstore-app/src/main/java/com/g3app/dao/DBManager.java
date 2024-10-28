@@ -795,23 +795,50 @@ public class DBManager {
         PreparedStatement pstmt = st.getConnection().prepareStatement(query);
         pstmt.setInt(1, paymentId);
         pstmt.executeUpdate();
-
     }
     
-public void addOrder(Order order) throws SQLException {
-    String query = "INSERT INTO orders (firstName, lastName, address, city, zip, paymentMethod, totalAmount, order_date, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    try (PreparedStatement pstmt = st.getConnection().prepareStatement(query)) {
-        pstmt.setString(1, order.getFirstName());
-        pstmt.setString(2, order.getLastName());
-        pstmt.setString(3, order.getAddress());
-        pstmt.setString(4, order.getCity());
-        pstmt.setString(5, order.getZip());
-        pstmt.setString(6, order.getPaymentMethod());
-        pstmt.setDouble(7, order.getTotalAmount());
-        pstmt.setDate(8, java.sql.Date.valueOf(order.getOrderDate())); // Adjust this if you're using LocalDate
-        pstmt.setString(9, order.getEmail()); // Set the email
-        pstmt.executeUpdate();
-    }
-}
+    public void addOrder(Order order) throws SQLException {
+        // Query to insert order details into the orders table
+        String orderQuery = "INSERT INTO orders (firstName, lastName, address, city, zip, paymentMethod, totalAmount, order_date, email) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
+        try (Connection conn = st.getConnection();
+             PreparedStatement orderStmt = conn.prepareStatement(orderQuery, Statement.RETURN_GENERATED_KEYS)) {
+
+            // Set parameters for the orders table
+            orderStmt.setString(1, order.getFirstName());
+            orderStmt.setString(2, order.getLastName());
+            orderStmt.setString(3, order.getAddress());
+            orderStmt.setString(4, order.getCity());
+            orderStmt.setString(5, order.getZip());
+            orderStmt.setString(6, order.getPaymentMethod());
+            orderStmt.setDouble(7, order.getTotalAmount());
+            orderStmt.setDate(8, java.sql.Date.valueOf(order.getOrderDate())); 
+            orderStmt.setString(9, order.getEmail());
+
+            // Execute the insert and get the generated order ID
+            int rowsAffected = orderStmt.executeUpdate();
+
+            if (rowsAffected > 0) {
+                // Get the generated order ID
+                try (ResultSet generatedKeys = orderStmt.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        int orderId = generatedKeys.getInt(1);
+
+                        // Now insert the order items into the order_items table
+                        String itemQuery = "INSERT INTO order_items (order_id, product_id, quantity, price) VALUES (?, ?, ?, ?)";
+                        try (PreparedStatement itemStmt = conn.prepareStatement(itemQuery)) {
+                            for (CartItem item : order.getItems()) {
+                                itemStmt.setInt(1, orderId); 
+                                itemStmt.setInt(2, item.getProductId()); 
+                                itemStmt.setInt(3, item.getQuantity()); 
+                                itemStmt.setDouble(4, item.getPrice()); 
+                                itemStmt.addBatch(); 
+                            }
+                            itemStmt.executeBatch();
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

@@ -66,7 +66,7 @@ public class CheckoutServlet extends HttpServlet {
 
         // redirect to a confirmation page
         request.setAttribute("order", order); // Set the order object as a request attribute
-        request.getRequestDispatcher("order-confirmation.jsp").forward(request, response);
+        request.getRequestDispatcher("orderconfirmation_success.jsp").forward(request, response);
     } catch (Exception e) {
         e.printStackTrace();
         response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Order placement failed.");

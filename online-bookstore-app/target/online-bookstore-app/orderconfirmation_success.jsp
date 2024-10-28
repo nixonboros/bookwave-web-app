@@ -12,10 +12,10 @@
     <main>
         <section class="success-section">
             <img src="images/success.png" alt="Success">
-            <h1>Request has been sent!</h1>
-            <p>Thank you for submitting your request. We will get back to you shortly.</p>
+            <h1>Thank you for your purchase!</h1>
+            <p>Your order has been successfully placed and is being processed.</p>
             <div class="success-buttons">
-                <a href="UserSupportDashboardServlet" class="button">Back to dashboard</a>
+                <a href="order.jsp" class="button">View Orders</a>
             </div>
         </section>
     </main>

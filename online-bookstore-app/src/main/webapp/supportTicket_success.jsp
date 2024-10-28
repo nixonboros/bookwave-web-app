@@ -15,7 +15,6 @@
             <h1>Request has been sent!</h1>
             <p>Thank you for submitting your request. We will get back to you shortly.</p>
             <div class="success-buttons">
-<!--                <a href="viewTicket.jsp" class="button">View ticket details</a> ticketid needs to be passed here IN PROGRESS-->
                 <a href="UserSupportDashboardServlet" class="button">Back to dashboard</a>
             </div>
         </section>
