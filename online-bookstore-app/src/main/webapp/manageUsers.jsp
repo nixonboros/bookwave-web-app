@@ -137,7 +137,7 @@
                                 <th>Email</th>
                                 <th>Phone</th>
                                 <th>Date of Birth</th>
-                                <th>Action</th>
+                                <th>Action(s)</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -154,6 +154,10 @@
                                         <form action="UserDeleteServlet" method="post" style="display:inline;">
                                             <input type="hidden" name="email" value="<%= user.getEmail() %>">
                                             <button type="submit" onclick="return confirm('Are you sure you want to delete this user?');">Delete</button>
+                                        </form>
+                                        <form action="userEdit.jsp" method="post" style="display:inline;">
+                                            <input type="hidden" name="email" value="<%= user.getEmail() %>">
+                                            <button type="submit">Edit</button>
                                         </form>
                                     </td>
                                 </tr>
