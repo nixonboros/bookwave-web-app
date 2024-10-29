@@ -26,7 +26,7 @@ Online Bookstore System
   - User and Staff Management (Batch Delete, search function, edit pages)
 
 - **Nixon**
-    Release 0 & 1:
+  - **Release 0 & 1:**
   - Customer Support Feature (user/staff support chat, viewing and opening/closing tickets)
   - Notifications dropdown menu
   - Tomcat server setup 
@@ -36,7 +36,7 @@ Online Bookstore System
   - User/Staff page navigation bar
   - SupportTicketTest test class (Testing: creating, retrieving and adding messages to support tickets in database
 
-    Release 2:
+  - **Release 2:**
   - Notification Feature (user notification dashboard, mark all as read functionality, staff adding messages or opening/closing support tickets sends notifications to user)
   - Helped with Order feature (user side)
   - Refining Customer Support Feature (ordering of tickets in dashboard - recent shows up at top)
