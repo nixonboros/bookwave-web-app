@@ -8,7 +8,7 @@ Online Bookstore System
 ## Team Member Responsibilities
 
 - **Jerry**
-    Release 0 & 1:
+  - **Release 0 & 1:**
   - Cleaned up index.jsp (added Best Sellers section)
   - Login/Register
   - User Dashboard (Edit and view account details, delete account) 
@@ -20,7 +20,7 @@ Online Bookstore System
   - UserTest test class (Testing: creating, updating and deleting of users in database)
   - BookTest test class (Testing: creating and deleting of books in database)
 
-    Release 2:
+  - **Release 2:**
   - Started Cart and Orders (Adding items to cart, initial checkout page)
   - Added staff details (viewing, editing and deleting personal staff account)
   - User and Staff Management (Batch Delete, search function, edit pages)
