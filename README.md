@@ -3,7 +3,7 @@
 Advanced Software Development - Group 9  
 Online Bookstore System
 
-**GitHub Repository**: https://github.com/nixonboros/AdvSoftwareDev_Bookstore
+**GitHub Repository**: https://github.com/nixonboros/bookwave-web-app
 
 ## Team Member Responsibilities
 
