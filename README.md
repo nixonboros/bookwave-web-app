@@ -1,6 +1,6 @@
-# AdvSoftwareDev_Bookstore
+# Bookwave
 
-AdvSoftwareDev Group 9  
+Advanced Software Development - Group 9  
 Online Bookstore System
 
 **GitHub Repository**: https://github.com/nixonboros/AdvSoftwareDev_Bookstore
