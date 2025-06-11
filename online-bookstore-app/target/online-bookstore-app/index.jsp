@@ -205,6 +205,39 @@
     <jsp:include page="footer.jsp" />
 
     <style>
+    :root {
+        --primary: #4A90E2;
+        --primary-dark: #357ABD;
+        --text-primary: #2C3E50;
+        --text-secondary: #7F8C8D;
+        --background: #F8FAFC;
+        --surface: #FFFFFF;
+        --radius-sm: 4px;
+        --radius-md: 8px;
+        --radius-lg: 16px;
+        --space-xs: 0.5rem;
+        --space-sm: 1rem;
+        --space-md: 1.5rem;
+        --space-lg: 2rem;
+        --space-xl: 3rem;
+        --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+        --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+        --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+        --transition: all 0.3s ease;
+    }
+
+    body {
+        font-family: 'Inter', sans-serif;
+        color: var(--text-primary);
+        background-color: var(--background);
+        line-height: 1.6;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+    }
+
     /* Hero Section */
     .hero {
         display: grid;
@@ -214,6 +247,20 @@
         padding: var(--space-xl) 0;
         max-width: 1200px;
         margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -20%;
+        width: 80%;
+        height: 200%;
+        background: linear-gradient(45deg, rgba(74, 144, 226, 0.1) 0%, rgba(74, 144, 226, 0) 100%);
+        transform: rotate(-15deg);
+        z-index: -1;
     }
 
     .book-spread {
@@ -229,15 +276,17 @@
         width: 200px;
         height: 300px;
         transform-style: preserve-3d;
-        transition: transform 0.5s ease;
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
     }
 
     .book img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        border-radius: 2px;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        border-radius: var(--radius-md);
+        box-shadow: var(--shadow-lg);
+        transition: var(--transition);
     }
 
     .book-1 {
@@ -255,20 +304,13 @@
         transform: rotateY(0deg) translateZ(60px);
     }
 
-    .book::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(45deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
-        pointer-events: none;
+    .book:hover {
+        transform: translateY(-15px) rotateY(-15deg) scale(1.05);
+        z-index: 2;
     }
 
-    .book:hover {
-        transform: translateY(-10px) rotateY(-15deg);
-        z-index: 1;
+    .book:hover img {
+        box-shadow: var(--shadow-lg), 0 0 20px rgba(74, 144, 226, 0.3);
     }
 
     .hero-content {
@@ -280,17 +322,57 @@
         line-height: 1.2;
         margin-bottom: var(--space-md);
         color: var(--text-primary);
+        background: linear-gradient(45deg, var(--text-primary), var(--primary));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: fadeInUp 0.8s ease-out;
     }
 
     .hero-content p {
         font-size: 1.25rem;
         color: var(--text-secondary);
         margin-bottom: var(--space-lg);
+        animation: fadeInUp 0.8s ease-out 0.2s backwards;
     }
 
     .hero-buttons {
         display: flex;
         gap: var(--space-md);
+        animation: fadeInUp 0.8s ease-out 0.4s backwards;
+    }
+
+    .button {
+        padding: 0.75rem 1.5rem;
+        border-radius: var(--radius-md);
+        font-weight: 500;
+        text-decoration: none;
+        transition: var(--transition);
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+    }
+
+    .button-primary {
+        background-color: var(--primary);
+        color: white;
+    }
+
+    .button-primary:hover {
+        background-color: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+    }
+
+    .button-secondary {
+        background-color: transparent;
+        color: var(--primary);
+        border: 2px solid var(--primary);
+    }
+
+    .button-secondary:hover {
+        background-color: var(--primary);
+        color: white;
+        transform: translateY(-2px);
     }
 
     .hero-image {
@@ -313,11 +395,13 @@
     .featured-categories h2 {
         text-align: center;
         margin-bottom: var(--space-xl);
+        font-size: 2.5rem;
+        color: var(--text-primary);
     }
 
     .category-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: var(--space-lg);
         max-width: 1200px;
         margin: 0 auto;
@@ -332,16 +416,34 @@
         color: var(--text-primary);
         transition: var(--transition);
         box-shadow: var(--shadow-sm);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .category-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, rgba(74, 144, 226, 0.1) 0%, rgba(74, 144, 226, 0) 100%);
+        opacity: 0;
+        transition: var(--transition);
     }
 
     .category-card:hover {
-        transform: translateY(-4px);
+        transform: translateY(-8px);
         box-shadow: var(--shadow-lg);
     }
 
+    .category-card:hover::before {
+        opacity: 1;
+    }
+
     .category-icon {
-        width: 48px;
-        height: 48px;
+        width: 56px;
+        height: 56px;
         background-color: var(--primary);
         border-radius: var(--radius-md);
         display: flex;
@@ -349,6 +451,11 @@
         justify-content: center;
         margin-bottom: var(--space-md);
         color: white;
+        transition: var(--transition);
+    }
+
+    .category-card:hover .category-icon {
+        transform: scale(1.1) rotate(5deg);
     }
 
     .category-card h3 {
@@ -364,80 +471,78 @@
     .featured-books {
         padding: var(--space-xl) 0;
         text-align: center;
+        background: linear-gradient(to bottom, var(--background), white);
     }
 
     .featured-books h2 {
         text-align: center;
         margin-bottom: var(--space-xl);
+        font-size: 2.5rem;
+        color: var(--text-primary);
     }
 
     .book-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: var(--space-lg);
-        background: #f7f8fa;
-        border-radius: 1.25rem;
-        padding: 2rem 1rem 2.5rem 1rem;
-        margin-bottom: 2.5rem;
-        margin-left: auto;
-        margin-right: auto;
-        justify-content: center;
         max-width: 1200px;
+        margin: 0 auto;
+        padding: var(--space-lg);
     }
 
     .book-card {
-        background: #fff;
-        border-radius: 1.25rem;
-        box-shadow: 0 2px 16px 0 rgba(60,72,88,0.10);
+        background: var(--surface);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
         overflow: hidden;
-        transition: box-shadow 0.2s, transform 0.2s;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        padding: 1.25rem 1rem 1.5rem 1rem;
-        height: 100%;
+        transition: var(--transition);
+        position: relative;
     }
 
     .book-card:hover {
-        box-shadow: 0 8px 32px 0 rgba(60,72,88,0.18);
-        transform: translateY(-4px) scale(1.02);
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-lg);
     }
 
     .book-image {
         width: 100%;
         aspect-ratio: 3/4;
-        background: #fff;
         overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
+        position: relative;
     }
 
     .book-image img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        display: block;
+        transition: var(--transition);
+    }
+
+    .book-card:hover .book-image img {
+        transform: scale(1.05);
     }
 
     .book-info {
+        padding: var(--space-md);
         text-align: center;
-        margin-top: 1rem;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        flex: 1 1 auto;
-        padding-bottom: 1rem;
     }
 
-    .book-info h3, .book-info .author, .book-info .price {
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
+    .book-info h3 {
+        font-size: 1.25rem;
+        margin-bottom: var(--space-xs);
+        color: var(--text-primary);
+    }
+
+    .book-info .author {
+        color: var(--text-secondary);
+        margin-bottom: var(--space-xs);
+    }
+
+    .book-info .price {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--primary);
+        margin-bottom: var(--space-md);
     }
 
     .book-info a, .book-info h3, .book-info .author, .book-info .price {
@@ -459,16 +564,27 @@
     .why-choose-us {
         padding: var(--space-xl) 0;
         background-color: var(--background);
+        position: relative;
+        overflow: hidden;
     }
 
-    .why-choose-us h2 {
-        text-align: center;
-        margin-bottom: var(--space-xl);
+    .why-choose-us::before {
+        content: '';
+        position: absolute;
+        bottom: -50%;
+        left: -20%;
+        width: 80%;
+        height: 200%;
+        background: linear-gradient(45deg, rgba(74, 144, 226, 0.1) 0%, rgba(74, 144, 226, 0) 100%);
+        transform: rotate(15deg);
+        z-index: 0;
     }
 
     .features-grid {
+        position: relative;
+        z-index: 1;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: var(--space-lg);
         max-width: 1200px;
         margin: 0 auto;
@@ -481,11 +597,17 @@
         border-radius: var(--radius-lg);
         text-align: center;
         box-shadow: var(--shadow-sm);
+        transition: var(--transition);
+    }
+
+    .feature-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-lg);
     }
 
     .feature-icon {
-        width: 48px;
-        height: 48px;
+        width: 56px;
+        height: 56px;
         background-color: var(--primary);
         border-radius: var(--radius-md);
         display: flex;
@@ -493,6 +615,11 @@
         justify-content: center;
         margin: 0 auto var(--space-md);
         color: white;
+        transition: var(--transition);
+    }
+
+    .feature-card:hover .feature-icon {
+        transform: scale(1.1) rotate(5deg);
     }
 
     .feature-card h3 {
@@ -506,12 +633,27 @@
 
     /* Newsletter Section */
     .newsletter-section {
-        padding: var(--space-xl) 0 var(--space-lg) 0;
-        background-color: var(--primary);
+        padding: var(--space-xl) 0;
+        background: linear-gradient(45deg, var(--primary), var(--primary-dark));
         color: white;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .newsletter-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="2" cy="2" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+        opacity: 0.1;
     }
 
     .newsletter-content {
+        position: relative;
+        z-index: 1;
         max-width: 600px;
         margin: 0 auto;
         text-align: center;
@@ -524,35 +666,63 @@
 
     .newsletter-content p {
         margin-bottom: var(--space-lg);
-        opacity: 0.9;
+        color: #fff;
+        font-weight: 500;
+        font-size: 1.1rem;
+        text-shadow: 0 2px 8px rgba(0,0,0,0.10);
     }
 
     .newsletter-form {
         display: flex;
         gap: var(--space-sm);
+        margin-top: var(--space-lg);
     }
 
     .newsletter-form input {
         flex: 1;
-        padding: 0.75rem;
+        padding: 1rem;
         border: none;
         border-radius: var(--radius-md);
         font-family: var(--font-sans);
+        font-size: 1rem;
+        box-shadow: var(--shadow-sm);
     }
 
     .newsletter-form button {
+        padding: 1rem 2rem;
         background-color: white;
         color: var(--primary);
+        border: none;
+        border-radius: var(--radius-md);
+        font-weight: 500;
+        cursor: pointer;
+        transition: var(--transition);
     }
 
     .newsletter-form button:hover {
         background-color: var(--background);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
     }
 
+    /* Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Responsive Design */
     @media (max-width: 768px) {
         .hero {
             grid-template-columns: 1fr;
             text-align: center;
+            padding: var(--space-lg) var(--space-md);
         }
 
         .hero-content h1 {
@@ -563,6 +733,11 @@
             justify-content: center;
         }
 
+        .book-spread {
+            height: 300px;
+            margin-top: var(--space-lg);
+        }
+
         .newsletter-form {
             flex-direction: column;
         }
@@ -570,6 +745,24 @@
         .newsletter-form button {
             width: 100%;
         }
+
+        .category-grid,
+        .book-grid,
+        .features-grid {
+            grid-template-columns: 1fr;
+            padding: 0 var(--space-md);
+        }
+    }
+
+    .why-choose-us h2 {
+        text-align: center !important;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: var(--space-xl);
+        font-size: 2.5rem;
+        color: var(--text-primary);
+        display: block;
+        width: 100%;
     }
     </style>
 
