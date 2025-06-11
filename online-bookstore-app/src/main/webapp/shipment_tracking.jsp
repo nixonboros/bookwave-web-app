@@ -16,55 +16,44 @@
 <body>
     <jsp:include page="nav-header.jsp"/>
     <main>
-        <section class="form-section animated">
-            <a href="UserOrderDashboardServlet" class="back-arrow">
-                <img src="images/back-arrow.png" alt="Back" />
-            </a>
-
-            <h1>Shipment Tracking</h1>
-            <p>Order Number: 100001</p>
-            <p>Expected Delivery time : 3 Days</p>
-
-            <ul>
-                <li>
-                    <div class="gap"></div>
-                    <div class="progress one">
-                        <i class="uil uil-check"></i>
+        <div class="shipment-boundary">
+            <div class="shipment-card">
+                <a href="UserOrderDashboardServlet" class="back-arrow">
+                    <img src="images/back-arrow.png" alt="Back" />
+                </a>
+                <h1 class="shipment-title">Shipment Tracking</h1>
+                <div class="shipment-info">
+                    <span>Order Number: <strong>100001</strong></span>
+                    <span>Expected Delivery: <strong>3 Days</strong></span>
+                </div>
+                <div class="shipment-stepper">
+                    <div class="step completed">
+                        <div class="circle"><span>&#10003;</span></div>
+                        <div class="label">Processing</div>
                     </div>
-                    <p>Shipping Soon</p>
-                </li>
-                <li>
-                    <div class="gap"></div>
-                    <div class="progress two">
-                        <i class="uil uil-check"></i>
+                    <div class="line completed"></div>
+                    <div class="step completed">
+                        <div class="circle"><span>&#10003;</span></div>
+                        <div class="label">Shipped</div>
                     </div>
-                    <p>Shipped</p>
-                </li>
-                <li>
-                    <div class="gap"></div>
-                    <div class="progress three">
-                        <i class="uil uil-check"></i>
+                    <div class="line completed"></div>
+                    <div class="step completed">
+                        <div class="circle"><span>&#10003;</span></div>
+                        <div class="label">On the way</div>
                     </div>
-                    <p>On the way</p>
-                </li>
-                <li>
-                    <div class="gap"></div>
-                    <div class="progress four">
-                        <i class="uil uil-check"></i>
+                    <div class="line"></div>
+                    <div class="step">
+                        <div class="circle"></div>
+                        <div class="label">Out for delivery</div>
                     </div>
-                    <p>Out for delivery</p>
-                </li>
-                <li>
-                    <div class="gap"></div>
-                    <div class="progress five">
-                        <i class="uil uil-check"></i>
+                    <div class="line"></div>
+                    <div class="step">
+                        <div class="circle"></div>
+                        <div class="label">Delivered</div>
                     </div>
-                    <p>Delivered</p>
-                </li>
-            </ul>
-    
-        </section>
-
+                </div>
+            </div>
+        </div>
     </main>
 
    <script>

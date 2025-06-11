@@ -18,23 +18,19 @@
     <jsp:include page="nav-header.jsp"/>
 
     <main>
-        <section class="contact-section animated">
-            <h1>Contact Support</h1>
-            <p>Welcome to the support dashboard. Here you can manage your existing support tickets and submit new requests. 
-                Use the tabs below to navigate between viewing your tickets and creating a new support request.</p>
-
-            <div class="tabs">
-                <div class="tab active" data-target="dashboard">Dashboard</div>
-                <div class="tab" data-target="submitTicket">Create New Ticket</div>
-
+        <div class="orders-boundary">
+            <div class="orders-header-card">
+                <h1 class="orders-title">Contact Support</h1>
+                <p class="orders-desc">Welcome to the support dashboard. Here you can manage your existing support tickets and submit new requests.</p>
+                <div class="contact-tabs">
+                    <button class="tab-btn active" data-target="dashboard">Dashboard</button>
+                    <button class="tab-btn" data-target="submitTicket">Create New Ticket</button>
+                </div>
             </div>
-            
-            <!-- DASHBOARD TAB -->
-            <div id="dashboard" class="tab-content active">
-                <h2>Your Support Tickets</h2>
-                <p>Here you can view and manage all your support tickets. Click on a ticket to view its details.</p>
-
-                <table>
+            <div class="orders-table-card contact-table-card" id="dashboard" style="display: block;">
+                <h2 class="section-title">Your Support Tickets</h2>
+                <p class="section-desc">Here you can view and manage all your support tickets. Click on a ticket to view its details.</p>
+                <table class="orders-table support-table">
                     <thead>
                         <tr>
                             <th>Ticket ID</th>
@@ -50,7 +46,6 @@
                             List<SupportTicket> tickets = (List<SupportTicket>) request.getAttribute("tickets");
                             if (tickets != null && !tickets.isEmpty()) {
                                 for (SupportTicket ticket : tickets) {
-                                    // Determine the class based on the ticket status
                                     String statusClass = ticket.getStatus().equals("Closed") ? "closed-ticket" : "opened-ticket";
                         %>
                         <tr class="<%= statusClass %>">
@@ -59,41 +54,34 @@
                             <td><%= ticket.getTypeOfEnquiry() %></td>
                             <td><%= ticket.getStatus() %></td>
                             <td><%= ticket.getDateSubmitted() %></td>
-                            <td><a href="ViewTicketServlet?ticketId=<%= ticket.getTicketId() %>" class="button">View</a></td>
+                            <td><a href="ViewTicketServlet?ticketId=<%= ticket.getTicketId() %>" class="button button-primary">View</a></td>
                         </tr>
                         <%
                                 }
                             } else {
                         %>
-                        <tr>
-                            <td colspan="6">No support tickets found.</td>
-                        </tr>
+                        <tr><td colspan="6">No support tickets found.</td></tr>
                         <%
                             }
                         %>
                     </tbody>
                 </table>
             </div>
-            
-            <!-- CREATE NEW TICKET TAB -->
-            <div id="submitTicket" class="tab-content">
-                <h2>Submit Your Support Request</h2>
-                <form id="submitTicketForm" action="SubmitTicketServlet" method="post">
+            <div class="orders-table-card contact-table-card" id="submitTicket" style="display: none;">
+                <h2 class="section-title">Submit Your Support Request</h2>
+                <form id="submitTicketForm" action="SubmitTicketServlet" method="post" class="support-form">
                     <div class="form-group">
                         <label for="customer_name">Full Name:</label>
                         <input type="text" id="customer_name" name="customer_name" placeholder="Enter your full name" required>
                     </div>
-                    
                     <div class="form-group">
                         <label for="email">Email Address:</label>
                         <input type="email" id="email" name="email" placeholder="Enter your email address" required>
                     </div>
-                    
                     <div class="form-group">
                         <label for="subject_title">Subject Title:</label>
                         <input type="text" id="subject_title" name="subject_title" placeholder="Enter a brief title for your issue" required>
                     </div>
-                    
                     <div class="form-group">
                         <label for="type_of_enquiry">Type of Enquiry:</label>
                         <select id="type_of_enquiry" name="type_of_enquiry" required>
@@ -103,71 +91,56 @@
                             <option value="Billing">Billing Issues</option>
                         </select>
                     </div>
-                    
                     <div class="form-group">
                         <label for="issue_description">Issue Description:</label>
                         <textarea id="issue_description" name="issue_description" rows="5" placeholder="Describe your issue in detail" required></textarea>
                     </div>
-                    
                     <div class="form-group">
-                        <button type="submit" id="submitTicketButton" disabled>Submit Ticket</button>
+                        <button type="submit" id="submitTicketButton" class="button button-primary" disabled>Submit Ticket</button>
                     </div>
                 </form>
             </div>
-        </section>
+        </div>
     </main>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Tab switching for contact page
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const tabContents = [
+                document.getElementById('dashboard'),
+                document.getElementById('submitTicket')
+            ];
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    tabContents.forEach(tc => tc.style.display = 'none');
+                    document.getElementById(btn.dataset.target).style.display = 'block';
+                });
+            });
+            // Form validation (unchanged)
             function validateForm(formId, buttonId) {
                 const form = document.getElementById(formId);
                 const submitButton = document.getElementById(buttonId);
                 const inputs = form.querySelectorAll('input[required], textarea[required], select[required]');
-                
                 function updateButtonState() {
                     let allValid = true;
-
                     inputs.forEach(input => {
                         if (input.type === 'select-one') {
-                            // Check if select field has a value
-                            if (!input.value.trim()) {
-                                allValid = false;
-                            }
+                            if (!input.value.trim()) allValid = false;
                         } else {
-                            // Check if input field is filled
-                            if (!input.value.trim()) {
-                                allValid = false;
-                            }
+                            if (!input.value.trim()) allValid = false;
                         }
                     });
-
                     submitButton.disabled = !allValid;
-                    submitButton.style.backgroundColor = allValid ? '#4CAF50' : '#ccc';
+                    submitButton.style.backgroundColor = allValid ? '' : '#ccc';
                 }
-
                 form.addEventListener('input', updateButtonState);
-                form.addEventListener('change', updateButtonState); // Add change event listener for select fields
-                updateButtonState(); // Initial check
+                form.addEventListener('change', updateButtonState);
+                updateButtonState();
             }
-
-            // Validate the submit ticket form
             validateForm('submitTicketForm', 'submitTicketButton');
-
-            // Tab functionality
-            const tabs = document.querySelectorAll('.tab');
-            const tabContents = document.querySelectorAll('.tab-content');
-
-            tabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    const targetId = tab.getAttribute('data-target');
-
-                    tabs.forEach(t => t.classList.remove('active'));
-                    tabContents.forEach(content => content.classList.remove('active'));
-
-                    tab.classList.add('active');
-                    document.getElementById(targetId).classList.add('active');
-                });
-            });
         });
     </script>
     <jsp:include page="footer.jsp"/>

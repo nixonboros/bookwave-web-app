@@ -453,4 +453,364 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 .notification-button svg {
     display: block;
     margin: 0;
+}
+
+/* --- Orders Page Styles --- */
+.orders-boundary {
+  max-width: 1200px;
+  margin: 2rem auto 0 auto;
+  padding: 0 0 2rem 0;
+}
+.orders-header-card {
+  background: #fff;
+  border-radius: 1.25rem;
+  box-shadow: 0 2px 16px 0 rgba(60,72,88,0.10);
+  padding: 2.5rem 2rem 2rem 2rem;
+  margin-bottom: 2.5rem;
+}
+.orders-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary, #1e293b);
+}
+.orders-desc {
+  color: var(--text-secondary, #64748b);
+  margin-bottom: 2rem;
+}
+.orders-table-card {
+  background: #fff;
+  border-radius: 1.25rem;
+  box-shadow: 0 2px 16px 0 rgba(60,72,88,0.10);
+  padding: 2rem;
+}
+.orders-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 1rem;
+  color: var(--text-primary, #1e293b);
+}
+.orders-table th, .orders-table td {
+  padding: 1rem 0.75rem;
+  text-align: left;
+}
+.orders-table th {
+  background: var(--background, #f8fafc);
+  color: var(--primary, #2563eb);
+  font-weight: 600;
+  border-bottom: 2px solid var(--border, #e2e8f0);
+}
+.orders-table tr {
+  border-radius: 0.75rem;
+  transition: background 0.2s;
+}
+.orders-table tr:nth-child(even) {
+  background: #f8fafc;
+}
+.orders-table tr:hover {
+  background: #e8f0fe;
+}
+.orders-table .button {
+  padding: 0.5rem 1.25rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+}
+
+/* --- Contact Support Page Styles --- */
+.contact-boundary {
+  max-width: 1200px;
+  margin: 2.5rem auto 0 auto;
+  padding: 0 0 2rem 0;
+}
+.contact-card {
+  background: #fff;
+  border-radius: 1.25rem;
+  box-shadow: 0 2px 16px 0 rgba(60,72,88,0.10);
+  padding: 2.5rem 2rem 2rem 2rem;
+  margin-bottom: 2.5rem;
+}
+.contact-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary, #1e293b);
+  text-align: left;
+}
+.contact-desc {
+  color: var(--text-secondary, #64748b);
+  margin-bottom: 2rem;
+  text-align: left;
+}
+.section-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary, #1e293b);
+  text-align: left;
+}
+.section-desc {
+  color: var(--text-secondary, #64748b);
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+.table-card {
+  background: #fff;
+  border-radius: 1.25rem;
+  box-shadow: 0 2px 16px 0 rgba(60,72,88,0.10);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  overflow-x: auto;
+}
+.support-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 1rem;
+  color: var(--text-primary, #1e293b);
+}
+.support-table th, .support-table td {
+  padding: 1rem 0.75rem;
+  text-align: left;
+}
+.support-table th {
+  background: var(--background, #f8fafc);
+  color: var(--primary, #2563eb);
+  font-weight: 600;
+  border-bottom: 2px solid var(--border, #e2e8f0);
+}
+.support-table tr {
+  border-radius: 0.75rem;
+  transition: background 0.2s;
+}
+.support-table tr:nth-child(even) {
+  background: #f8fafc;
+}
+.support-table tr:hover {
+  background: #e8f0fe;
+}
+.support-table .button {
+  padding: 0.5rem 1.25rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+}
+.support-form {
+  max-width: unset;
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  border-radius: 0;
+  gap: 1.5rem;
+}
+.support-form .form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+  margin-bottom: 1.25rem;
+}
+.support-form input,
+.support-form select,
+.support-form textarea {
+  padding: 1.1rem 1.2rem;
+  border-radius: 1rem;
+  border: 1.5px solid var(--border, #e2e8f0);
+  font-size: 1.08rem;
+  background: #f8fafc;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1px 6px 0 rgba(60,72,88,0.07);
+  font-family: var(--font-sans);
+  resize: none;
+}
+.support-form input:focus,
+.support-form select:focus,
+.support-form textarea:focus {
+  border-color: var(--primary, #2563eb);
+  outline: none;
+  box-shadow: 0 2px 12px 0 rgba(37,99,235,0.10);
+}
+.support-form input:hover,
+.support-form select:hover,
+.support-form textarea:hover {
+  border-color: var(--primary-dark, #1d4ed8);
+}
+.support-form label {
+  margin-bottom: 0.4rem;
+}
+.support-form textarea {
+  min-height: 140px;
+}
+.support-form button {
+  width: 100%;
+  padding: 1.1rem 0;
+  font-size: 1.15rem;
+  border-radius: 1rem;
+  font-weight: 700;
+  margin-top: 0.5rem;
+  background: linear-gradient(90deg, var(--primary, #2563eb) 80%, var(--primary-dark, #1d4ed8) 100%);
+  color: #fff;
+  border: none;
+  box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.support-form button:disabled {
+  background: #e2e8f0;
+  color: #b0b8c9;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+.support-form button:not(:disabled):hover,
+.support-form button:not(:disabled):focus {
+  background: linear-gradient(90deg, var(--primary-dark, #1d4ed8) 60%, var(--primary, #2563eb) 100%);
+  box-shadow: 0 4px 16px rgba(37,99,235,0.13);
+}
+@media (max-width: 600px) {
+  .support-form {
+    padding: 0;
+  }
+}
+
+/* --- Contact Page Tabs --- */
+.contact-tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  justify-content: flex-start;
+  align-items: center;
+}
+.tab-btn {
+  background: var(--background, #f8fafc);
+  color: var(--primary, #2563eb);
+  border: 2px solid var(--primary, #2563eb);
+  border-radius: 999px;
+  padding: 0.5rem 1.5rem;
+  font-size: 1.08rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, border-color 0.2s;
+  outline: none;
+  box-shadow: 0 1px 4px 0 rgba(60,72,88,0.06);
+}
+.tab-btn.active, .tab-btn:focus {
+  background: var(--primary, #2563eb);
+  color: #fff;
+  border-color: var(--primary, #2563eb);
+  box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+}
+.tab-btn:hover:not(.active) {
+  background: #e8f0fe;
+  color: var(--primary-dark, #1d4ed8);
+  border-color: var(--primary-dark, #1d4ed8);
+}
+
+/* --- Ticket Details Consistent Card Width & UX --- */
+.ticket-details {
+  max-width: 1200px;
+  margin: 2rem auto 0 auto;
+  background: #fff;
+  border-radius: 1.25rem;
+  box-shadow: 0 2px 16px 0 rgba(60,72,88,0.10);
+  padding: 2.5rem 2.5rem 2rem 2.5rem;
+  position: relative;
+}
+.ticket-details .orders-title {
+  margin-top: 0.5rem;
+  margin-bottom: 2.25rem;
+  padding-left: 0.25rem;
+}
+.ticket-details .back-arrow {
+  position: absolute;
+  top: 2.2rem;
+  left: 2.2rem;
+  z-index: 2;
+}
+.ticket-details .back-arrow img {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+.ticket-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem 3rem;
+  margin-bottom: 2.5rem;
+  padding-left: 0.25rem;
+}
+.ticket-field label {
+  font-weight: 600;
+  color: var(--primary, #2563eb);
+  margin-bottom: 0.15rem;
+}
+.ticket-field span, .ticket-field p {
+  color: var(--text-primary, #1e293b);
+  font-size: 1.05rem;
+  margin: 0;
+  word-break: break-word;
+}
+.ticket-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+@media (max-width: 900px) {
+  .ticket-details {
+    padding: 1.25rem 0.5rem;
+  }
+  .ticket-info {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding-left: 0;
+  }
+  .ticket-details .back-arrow {
+    top: 1.2rem;
+    left: 1.2rem;
+  }
+}
+.chat-section {
+  margin-top: 2.5rem;
+  background: #f8fafc;
+  border-radius: 1rem;
+  padding: 2.25rem 2rem 1.75rem 2rem;
+  box-shadow: 0 1px 6px 0 rgba(60,72,88,0.07);
+}
+.chat-history {
+  max-height: 320px;
+  overflow-y: auto;
+  margin-bottom: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 0 0.5rem 0 0.5rem;
+}
+.chat-message {
+  display: flex;
+  flex-direction: column;
+  max-width: 60%;
+  border-radius: 1rem;
+  padding: 1rem 1.25rem;
+  font-size: 1.05rem;
+  box-shadow: 0 1px 4px 0 rgba(60,72,88,0.07);
+  background: #fff;
+  word-break: break-word;
+}
+.chat-message.you {
+  align-self: flex-end;
+  background: linear-gradient(90deg, var(--primary, #2563eb) 80%, var(--primary-dark, #1d4ed8) 100%);
+  color: #fff;
+}
+.chat-message.otheruser {
+  align-self: flex-start;
+  background: #e8f0fe;
+  color: var(--text-primary, #1e293b);
+}
+.message-user {
+  font-size: 0.92rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+  opacity: 0.7;
+}
+.message-text {
+  font-size: 1.05rem;
+  line-height: 1.5;
 } 

@@ -25,66 +25,37 @@
     <jsp:include page="nav-header.jsp"/>
 
     <main>
-        <section class="ticket-details animated">
+        <section class="orders-table-card contact-table-card ticket-details animated">
             <a href="UserSupportDashboardServlet" class="back-arrow">
                 <img src="images/back-arrow.png" alt="Back" />
             </a>
-            <h1>Support Ticket Details</h1>
+            <div style="height: 2.5rem;"></div>
+            <h1 class="orders-title">Support Ticket Details</h1>
             <div class="ticket-info">
-                <div class="ticket-field">
-                    <label for="ticketID">Ticket ID:</label>
-                    <span id="ticketID"><%= ticket.getTicketId() %></span>
-                </div>
-                <div class="ticket-field">
-                    <label for="subjectTitle">Subject Title:</label>
-                    <span id="subjectTitle"><%= ticket.getSubjectTitle() %></span>
-                </div>
-                <div class="ticket-field">
-                    <label for="type">Type:</label>
-                    <span id="type"><%= ticket.getTypeOfEnquiry() %></span>
-                </div>
-                <div class="ticket-field">
-                    <label for="status">Status:</label>
-                    <span id="status"><%= ticket.getStatus() %></span>
-                </div>
-                <div class="ticket-field">
-                    <label for="dateSubmitted">Date Submitted:</label>
-                    <span id="dateSubmitted"><%= ticket.getDateSubmitted() %></span>
-                </div>
-                <div class="ticket-field">
-                    <label for="description">Issue Description:</label>
-                    <p id="description"><%= ticket.getIssueDescription() %></p>
-                </div>
+                <div class="ticket-field"><label>Ticket ID:</label><span><%= ticket.getTicketId() %></span></div>
+                <div class="ticket-field"><label>Subject Title:</label><span><%= ticket.getSubjectTitle() %></span></div>
+                <div class="ticket-field"><label>Type:</label><span><%= ticket.getTypeOfEnquiry() %></span></div>
+                <div class="ticket-field"><label>Status:</label><span><%= ticket.getStatus() %></span></div>
+                <div class="ticket-field"><label>Date Submitted:</label><span><%= ticket.getDateSubmitted() %></span></div>
+                <div class="ticket-field"><label>Issue Description:</label><p><%= ticket.getIssueDescription() %></p></div>
             </div>
-
             <div class="chat-section">
-                <h2>Chat with Support</h2>
+                <h2 class="section-title">Chat with Support</h2>
                 <div class="chat-history" id="chatHistory">
-                    <% 
-                    // Display the chat messages dynamically
-                    if (messages != null) {
-                        for (Message msg : messages) {
-                            String userType = msg.getSender(); // Assume Message has a sender attribute (e.g., "Support" or "User")
-                            String messageText = msg.getMessage(); // Get the message text
-                            String messageClass = userType.equals("Support") ? "otheruser" : "you"; // Determine class based on user type
-                    %>
-                            <div class="chat-message <%= messageClass %>">
-                                <div class="message-user"><%= userType %>:</div>
-                                <div class="message-text"><%= messageText %></div>
-                            </div>
-                    <% 
-                        }
-                    } 
-                    %>
+                    <% if (messages != null) { for (Message msg : messages) { String userType = msg.getSender(); String messageText = msg.getMessage(); String messageClass = userType.equals("Support") ? "otheruser" : "you"; %>
+                    <div class="chat-message <%= messageClass %>">
+                        <div class="message-user"><%= userType %>:</div>
+                        <div class="message-text"><%= messageText %></div>
+                    </div>
+                    <% } } %>
                 </div>
-
-                <form id="chatForm" action="MessageServlet" method="POST">
+                <form id="chatForm" action="MessageServlet" method="POST" class="support-form" style="margin-top:2rem;">
                     <input type="hidden" name="ticketId" value="<%= ticket.getTicketId() %>">
                     <div class="form-group">
                         <textarea id="message" name="message" rows="3" placeholder="Type your message..." required></textarea>
                     </div>
                     <div class="form-group">
-                        <button type="submit" id="sendMessageButton" class="button">Send</button>
+                        <button type="submit" id="sendMessageButton" class="button button-primary">Send</button>
                     </div>
                 </form>
             </div>

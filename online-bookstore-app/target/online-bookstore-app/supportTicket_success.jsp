@@ -15,12 +15,12 @@
     <jsp:include page="nav-header.jsp"/>
 
     <main>
-        <section class="success-section">
-            <img src="images/success.png" alt="Success">
-            <h1>Request has been sent!</h1>
-            <p>Thank you for submitting your request. We will get back to you shortly.</p>
+        <section class="orders-table-card contact-table-card success-section" style="max-width: 480px; margin: 3rem auto 0 auto; text-align: center;">
+            <img src="images/success.png" alt="Success" style="width: 90px; margin-bottom: 1.5rem;" />
+            <h1 class="orders-title" style="font-size: 2rem; margin-bottom: 1rem;">Request has been sent!</h1>
+            <p style="color: var(--text-secondary, #64748b); margin-bottom: 2rem;">Thank you for submitting your request. We will get back to you shortly.</p>
             <div class="success-buttons">
-                <a href="UserSupportDashboardServlet" class="button">Back to dashboard</a>
+                <a href="UserSupportDashboardServlet" class="button button-primary">Back to dashboard</a>
             </div>
         </section>
     </main>
