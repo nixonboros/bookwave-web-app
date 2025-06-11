@@ -1,2 +1,5 @@
+com\webapp\ShipmentTest.class
+com\webapp\BookTest.class
+com\webapp\PaymentServletTest.class
 com\webapp\SupportTicketTest.class
 com\webapp\UserTest.class
