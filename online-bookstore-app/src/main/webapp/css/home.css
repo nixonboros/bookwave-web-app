@@ -1,0 +1,52 @@
+/* --- HOME: Landing Page, Hero, Featured, Newsletter --- */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 80%;
+    height: 200%;
+    background: linear-gradient(45deg, rgba(74, 144, 226, 0.1) 0%, rgba(74, 144, 226, 0) 100%);
+    transform: rotate(-15deg);
+    z-index: -1;
+}
+.book-spread { position: relative; width: 100%; height: 400px; perspective: 1000px; transform-style: preserve-3d; }
+.book { position: absolute; width: 200px; height: 300px; transform-style: preserve-3d; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); cursor: pointer; }
+.book img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-md); box-shadow: var(--shadow-lg); transition: var(--transition); }
+.book-1 { left: 20%; transform: rotateY(-30deg) translateZ(20px); }
+.book-2 { left: 40%; transform: rotateY(-15deg) translateZ(40px); }
+.book-3 { left: 60%; transform: rotateY(0deg) translateZ(60px); }
+.book:hover { transform: translateY(-15px) rotateY(-15deg) scale(1.05); z-index: 2; }
+.book:hover img { box-shadow: var(--shadow-lg), 0 0 20px rgba(74, 144, 226, 0.3); }
+.hero-content { padding: var(--space-lg); }
+.hero-content h1 { font-size: 3.5rem; line-height: 1.2; margin-bottom: var(--space-md); color: var(--text-primary); background: linear-gradient(45deg, var(--text-primary), var(--primary)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: fadeInUp 0.8s ease-out; }
+.hero-content p { font-size: 1.25rem; color: var(--text-secondary); margin-bottom: var(--space-lg); animation: fadeInUp 0.8s ease-out 0.2s backwards; }
+.hero-buttons { display: flex; gap: var(--space-md); animation: fadeInUp 0.8s ease-out 0.4s backwards; }
+.featured-categories { padding: var(--space-xl) 0; background-color: var(--background); }
+.featured-categories h2 { text-align: center; margin-bottom: var(--space-xl); font-size: 2.5rem; color: var(--text-primary); }
+.category-icon { width: 56px; height: 56px; background-color: var(--primary); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; margin-bottom: var(--space-md); color: white; transition: var(--transition); }
+.category-card:hover .category-icon { transform: scale(1.1) rotate(5deg); }
+.category-card h3 { margin-bottom: var(--space-xs); }
+.category-card p { color: var(--text-secondary); margin: 0; }
+.featured-books { padding: var(--space-xl) 0; text-align: center; background: linear-gradient(to bottom, var(--background), white); }
+.featured-books h2 { text-align: center; margin-bottom: var(--space-xl); font-size: 2.5rem; color: var(--text-primary); }
+.book-info { padding: var(--space-md); text-align: center; }
+.book-info h3 { font-size: 1.25rem; margin-bottom: var(--space-xs); color: var(--text-primary); }
+.book-info .author { color: var(--text-secondary); margin-bottom: var(--space-xs); }
+.book-info .price { font-size: 1.25rem; font-weight: 600; color: var(--primary); margin-bottom: var(--space-md); }
+.why-choose-us { padding: var(--space-xl) 0; background-color: var(--background); position: relative; overflow: hidden; }
+.why-choose-us::before { content: ''; position: absolute; bottom: -50%; left: -20%; width: 80%; height: 200%; background: linear-gradient(45deg, rgba(74, 144, 226, 0.1) 0%, rgba(74, 144, 226, 0) 100%); transform: rotate(15deg); z-index: 0; }
+.why-choose-us h2 { text-align: center !important; margin-left: auto; margin-right: auto; margin-bottom: var(--space-xl); font-size: 2.5rem; color: var(--text-primary); display: block; width: 100%; }
+.feature-icon { width: 56px; height: 56px; background-color: var(--primary); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; margin: 0 auto var(--space-md); color: white; transition: var(--transition); }
+.feature-card:hover .feature-icon { transform: scale(1.1) rotate(5deg); }
+.feature-card h3 { margin-bottom: var(--space-xs); }
+.feature-card p { color: var(--text-secondary); margin: 0; }
+.newsletter-section { padding: var(--space-xl) 0; background: linear-gradient(45deg, var(--primary), var(--primary-dark)); color: white; position: relative; overflow: hidden; }
+.newsletter-section::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: url('data:image/svg+xml,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="2" cy="2" r="1" fill="rgba(255,255,255,0.1)"/></svg>'); opacity: 0.1; }
+.newsletter-content { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; text-align: center; padding: 0 var(--space-lg); }
+.newsletter-content h2 { margin-bottom: var(--space-md); }
+.newsletter-content p { margin-bottom: var(--space-lg); color: #fff; font-weight: 500; font-size: 1.1rem; text-shadow: 0 2px 8px rgba(0,0,0,0.10); }
+.newsletter-form { display: flex; gap: var(--space-sm); margin-top: var(--space-lg); }
+.newsletter-form input { flex: 1; padding: 1rem; border: none; border-radius: var(--radius-md); font-family: var(--font-sans); font-size: 1rem; box-shadow: var(--shadow-sm); }
+.newsletter-form button { padding: 1rem 2rem; background-color: white; color: var(--primary); border: none; border-radius: var(--radius-md); font-weight: 500; cursor: pointer; transition: var(--transition); }
+.newsletter-form button:hover { background-color: var(--background); transform: translateY(-2px); box-shadow: var(--shadow-md); } 

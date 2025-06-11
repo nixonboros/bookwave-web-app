@@ -1,0 +1,42 @@
+/* --- LAYOUT: Containers, Grid, Spacing --- */
+.hero, .featured-categories, .category-grid, .featured-books, .book-grid, .why-choose-us, .features-grid, .newsletter-section, .login-container, .staff-login-container, .catalogue-boundary, .catalogue-header-card, .footer-main, .footer-col, .footer-bottom-container {
+    box-sizing: border-box;
+}
+.hero { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-xl); align-items: center; padding: var(--space-xl) 0; max-width: 1200px; margin: 0 auto; position: relative; overflow: hidden; }
+.category-grid, .features-grid, .book-grid {
+    display: grid;
+    gap: var(--space-lg);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+}
+.category-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-md);
+}
+.book-grid {
+    grid-template-columns: repeat(3, 1fr);
+}
+.features-grid {
+    grid-template-columns: repeat(4, 1fr);
+}
+@media (max-width: 1200px) {
+    .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .book-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 700px) {
+    .category-grid, .book-grid, .features-grid {
+        grid-template-columns: 1fr;
+    }
+}
+@media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; text-align: center; padding: var(--space-lg) var(--space-md); }
+    .category-grid, .book-grid, .features-grid { grid-template-columns: 1fr; padding: 0 var(--space-md); }
+} 
