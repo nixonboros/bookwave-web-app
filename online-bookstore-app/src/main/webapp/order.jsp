@@ -45,7 +45,7 @@
               <tbody>
                 <% 
                     List<Order> orders = (List<Order>) request.getAttribute("orders");
-                    if (orders != null) {
+                    if (orders != null && !orders.isEmpty()) {
                         for (Order order : orders) {
                 %>
                     <tr>
