@@ -6,6 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="images/book-logo.png">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <title>My Details - Bookstore</title>
 </head>
@@ -23,11 +24,9 @@
                 <div class="tab" data-target="editAccount">Edit my Account</div>
             </div>
             
-            <!-- DASHBOARD TAB -->
             <div id="dashboard" class="tab-content active">
                 <h1>My Account Details</h1>
                 <div class="account-info">
-                    <!-- Account Details Section -->
                     <div class="account-field">
                         <label><b>Name:</b>
                         <% if (user != null) {
@@ -81,7 +80,6 @@
                 </div>
             </div>
             
-            <!-- EDIT ACCOUNT TAB -->
             <div id="editAccount" class="tab-content">
                 <h2>Edit Account Details</h2>
                 <form id="editAccountForm" action="UpdateAccountServlet" method="post">
@@ -108,6 +106,7 @@
                     <div class="form-group">
                         <label for="phone">Phone:</label>
                         <input type="text" id="phone" name="phone" value="<%= user.getPhone() %>" required>
+                        <small style="color: red;" id="phoneWarning" hidden>Phone number can only be numbers.</small>
                     </div>
 
                     <div class="form-group">
@@ -122,13 +121,19 @@
 
                     <div class="form-group">
                         <label for="postcode">Postcode:</label>
-                        <input type="text" id="postcode" name="postcode" value="<%= user.getPostcode() %>" required>
+                        <input type="text" id="postcode" name="postcode" value="<%= user.getPostcode() %>" pattern="\d*" title="Postcode must contain digits only" required>
+                        <small style="color: red;" id="postcodeWarning" hidden>Postcode can only be numbers.</small>
                     </div>
 
                     <div class="form-group">
                         <label for="country">Country:</label>
                         <input type="text" id="country" name="country" value="<%= user.getCountry() %>" required>
                     </div>                   
+
+                    <div class="form-group">
+                        <label for="password">New Password:</label>
+                        <input type="password" id="password" name="password">
+                    </div>
 
                     <% String status = request.getParameter("status"); %>
                     <% if ("error".equals(status)) { %>
@@ -151,7 +156,21 @@
                 const form = document.getElementById(formId);
                 const submitButton = document.getElementById(buttonId);
                 const inputs = form.querySelectorAll('input[required], textarea[required], select[required]');
+                const postcodeInput = document.getElementById('postcode');
+                const postcodeWarning = document.getElementById('postcodeWarning');
+                const phoneInput = document.getElementById('phone');
+                const phoneWarning = document.getElementById('phoneWarning');
                 
+                postcodeInput.addEventListener('input', () => {
+                    const isValid = /^[0-9]*$/.test(postcodeInput.value);
+                    postcodeWarning.hidden = isValid;
+                });
+                
+                phoneInput.addEventListener('input', () => {
+                    const isValid = /^[0-9]*$/.test(phoneInput.value);
+                    phoneWarning.hidden = isValid;
+                });
+
                 function updateButtonState() {
                     let allValid = true;
 
@@ -178,7 +197,6 @@
 
             validateForm('editAccountForm', 'editAccountButton');
 
-            // tab functionality
             const tabs = document.querySelectorAll('.tab');
             const tabContents = document.querySelectorAll('.tab-content');
 

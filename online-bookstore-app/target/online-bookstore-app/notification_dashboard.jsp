@@ -1,8 +1,11 @@
-<!DOCTYPE html>
+<%@ page import="com.g3app.model.Notification" %>
+<%@ page import="java.util.List" %>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="images/book-logo.png">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <title>Notification Dashboard - Bookstore</title>
 </head>
@@ -12,19 +15,20 @@
     <main>
         <section class="notification-section animated">
             <h1>Notification Dashboard</h1>
-            <p>Here you can view and manage all your notifications. Use the tabs below to navigate between viewing notifications and any other relevant sections.</p>
+            <p>Here you can view and manage all your notifications. Use the tabs below to navigate between viewing notifications.</p>
 
-            <div id="notifications" class="tab-content active">
-                <h2>Your Notifications</h2>
-                <p>Here you can view and manage all your notifications. Click on a notification to view its details.</p>
-                
-                <!-- Example information, TO BE REPLACED WITH DATABASE CONTENT -->
+            <div class="tabs">
+                <div class="tab active" data-target="unreadNotifications">Unread Notifications</div>
+                <div class="tab" data-target="readNotifications">Read Notifications</div>
+            </div>
+
+            <!-- UNREAD NOTIFICATIONS TAB -->
+            <div id="unreadNotifications" class="tab-content active">
+                <h2>Unread Notifications</h2>
                 <table>
                     <thead>
                         <tr>
                             <th>Notification ID</th>
-                            <th>Type</th> 
-                            <th>Title</th>
                             <th>Details</th>
                             <th>Date Received</th>
                             <th>Status</th>
@@ -32,24 +36,72 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <%
+                            List<Notification> unreadNotifications = (List<Notification>) request.getAttribute("unreadNotifications");
+                            if (unreadNotifications != null && !unreadNotifications.isEmpty()) {
+                                for (Notification notification : unreadNotifications) {
+                        %>
                         <tr>
-                            <td>1</td>
-                            <td>Order</td> 
-                            <td>Order Shipped</td>
-                            <td>Your order #12345 has been shipped.</td>
-                            <td>2024-09-01</td>
-                            <td>Unread</td>
-                            <td><a href="notification_detail.jsp?id=1" class="button">View</a></td>
+                            <td><%= notification.getNotificationId() %></td>
+                            <td><%= notification.getMessage() %></td>
+                            <td><%= notification.getDateSent() %></td>
+                            <td><%= notification.getStatus() %></td>
+                            <td>
+                                <a href="UpdateNotificationStatusServlet?notificationId=<%= notification.getNotificationId() %>&ticketId=<%= notification.getTicketId() %>" class="button">View</a>
+                            </td>
                         </tr>
+                        <%
+                                }
+                            } else {
+                        %>
                         <tr>
-                            <td>2</td>
-                            <td>Payment</td>
-                            <td>Payment Successful</td>
-                            <td>Your payment for order #67890 was successful.</td>
-                            <td>2024-08-25</td>
-                            <td>Read</td>
-                            <td><a href="notification_detail.jsp?id=2" class="button">View</a></td>
+                            <td colspan="5">No unread notifications available.</td>
                         </tr>
+                        <%
+                            }
+                        %>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- READ NOTIFICATIONS TAB -->
+            <div id="readNotifications" class="tab-content">
+                <h2>Read Notifications</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Notification ID</th>
+                            <th>Details</th>
+                            <th>Date Received</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%
+                            List<Notification> readNotifications = (List<Notification>) request.getAttribute("readNotifications");
+                            if (readNotifications != null && !readNotifications.isEmpty()) {
+                                for (Notification notification : readNotifications) {
+                        %>
+                        <tr>
+                            <td><%= notification.getNotificationId() %></td>
+                            <td><%= notification.getMessage() %></td>
+                            <td><%= notification.getDateSent() %></td>
+                            <td><%= notification.getStatus() %></td>
+                            <td>
+                                <a href="UpdateNotificationStatusServlet?notificationId=<%= notification.getNotificationId() %>&ticketId=<%= notification.getTicketId() %>" class="button">View</a>
+                            </td>
+                        </tr>
+                        <%
+                                }
+                            } else {
+                        %>
+                        <tr>
+                            <td colspan="5">No read notifications available.</td>
+                        </tr>
+                        <%
+                            }
+                        %>
                     </tbody>
                 </table>
             </div>

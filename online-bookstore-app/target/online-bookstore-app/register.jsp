@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="images/book-logo.png">
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <title>Register - Bookstore</title>
 </head>
@@ -26,13 +27,11 @@
                     <input type="email" id="email" name="email" required>
                 </div>
 
-
                 <div class="form-group">
                     <label class="formLabel" for="dob">Date of Birth</label>
                     <input type="date" id="dob" name="dob" required>
                 </div>
 
-                <!-- Country code dropdown and phone number in the same line -->
                 <div class="form-group">
                     <label class="formLabel" for="phone">Phone Number</label>
                     <div class="phone-group">
@@ -49,14 +48,15 @@
                     </div>
                 </div>
 
-                <!-- Password and Confirm Password -->
+                <!-- Password and Confirm Password with Strength Meter -->
                 <div class="form-group">
                     <label class="formLabel" for="password">Password</label>
-                    <input type="password" id="password" name="password" required placeholder="Password">
+                    <input type="password" id="password" name="password" required placeholder="Password" oninput="checkPasswordStrength(); validatePasswordMatch();">
+                    <small id="password-strength" class="password-strength">Password strength: Weak</small>
                 </div>
                 <div class="form-group">
                     <label class="formLabel" for="confirmPassword">Confirm Password</label>
-                    <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirm Password">
+                    <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirm Password" oninput="validatePasswordMatch();">
                 </div>
 
                 <!-- Address Fields -->
@@ -76,21 +76,46 @@
                     <label class="formLabel" for="country">Country</label>
                     <input type="text" id="country" name="country" required placeholder="Country">
                 </div>
+                <div class="terms-and-conditions-group">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">I agree to the Terms and Conditions</a></label>
+                </div>
+
 
                 <input type="hidden" id="submitted" name="submitted" value="yes">
                 <div class="centerDiv">
                     <button type="submit" class="button" id="submit" name="submit">Register</button>
                 </div>
+                
             </form>
         </section>
     
-
-    <!-- Password validation script -->
     <script>
-        var password = document.getElementById("password");
-        var confirmPassword = document.getElementById("confirmPassword");
+        const password = document.getElementById("password");
+        const confirmPassword = document.getElementById("confirmPassword");
+        const strengthText = document.getElementById("password-strength");
 
-        function validatePassword() {
+        // Validate password strength
+        function checkPasswordStrength() {
+            const value = password.value;
+            let strength = "Weak";
+            let strengthColor = "red";
+
+            if (value.length >= 8) {
+                strength = "Strong";
+                strengthColor = "green";
+                
+            } else if (value.length >= 6) {
+                strength = "Moderate";
+                strengthColor = "orange";
+            }
+            
+            strengthText.textContent = "Password strength: " + strength;
+            strengthText.style.color = strengthColor;
+        }
+
+        // check that passwords match
+        function validatePasswordMatch() {
             if (password.value !== confirmPassword.value) {
                 confirmPassword.setCustomValidity("Passwords do not match");
             } else {
@@ -98,8 +123,9 @@
             }
         }
 
-        password.onchange = validatePassword;
-        confirmPassword.onkeyup = validatePassword;
+        // Attach event listeners to password fields
+        password.addEventListener('input', checkPasswordStrength);
+        confirmPassword.addEventListener('input', validatePasswordMatch);
     </script>
     </main>
 </body>

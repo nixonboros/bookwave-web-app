@@ -73,7 +73,7 @@
 <style>
 .footer {
     background: transparent;
-    margin-top: 0;
+    margin-top: 3rem;
     padding-top: 0;
     border-top: none;
     font-size: 1rem;
