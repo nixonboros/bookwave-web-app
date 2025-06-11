@@ -7,7 +7,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="images/book-logo.png">
-    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
     <title>Contact Support - Bookstore</title>
 </head>
 <body>
@@ -165,6 +169,7 @@
                 });
             });
         });
-    </script><jsp:include page="footer.jsp"/>
+    </script>
+    <jsp:include page="footer.jsp"/>
 </body>
 </html>

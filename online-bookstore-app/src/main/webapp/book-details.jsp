@@ -25,7 +25,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Details - BookWave</title>
     <link rel="icon" type="image/png" href="images/book-logo.png">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/book-details.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
