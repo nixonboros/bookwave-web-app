@@ -21,11 +21,11 @@
                 <form action="StaffLoginServlet" method="POST" class="form" style="display: flex; flex-direction: column; gap: 1.25rem;">
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="text" id="email" name="email" required>
+                        <input type="text" id="email" name="staffEmail" required>
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="password" id="password" name="password" required>
+                        <input type="password" id="password" name="staffPassword" required>
                     </div>
                     <% String errorMessage = request.getParameter("error"); %>
                     <p class="error-message" id="staffLoginError"><%= errorMessage != null ? "Invalid email or password. Please try again." : "" %></p>
