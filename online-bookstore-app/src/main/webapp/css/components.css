@@ -813,4 +813,31 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 .message-text {
   font-size: 1.05rem;
   line-height: 1.5;
+}
+
+.styled-input,
+select.styled-input {
+  padding: 1.1rem 1.2rem;
+  border-radius: 1rem;
+  border: 1.5px solid var(--border, #e2e8f0);
+  font-size: 1.08rem;
+  background: #f8fafc;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1px 6px 0 rgba(60,72,88,0.07);
+  font-family: var(--font-sans);
+  width: 100%;
+  margin-bottom: 0.5rem;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.styled-input:focus,
+select.styled-input:focus {
+  border-color: var(--primary, #2563eb);
+  outline: none;
+  box-shadow: 0 2px 12px 0 rgba(37,99,235,0.10);
+}
+.styled-input:hover,
+select.styled-input:hover {
+  border-color: var(--primary-dark, #1d4ed8);
 } 

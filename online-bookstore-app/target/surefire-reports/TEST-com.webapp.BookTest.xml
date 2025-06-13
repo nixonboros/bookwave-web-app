@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.webapp.BookTest" time="0.44" tests="2" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.webapp.BookTest" time="0.563" tests="2" errors="0" skipped="0" failures="0">
   <properties>
     <property name="netbeans.deploy" value="true"/>
     <property name="java.specification.version" value="21"/>
@@ -17,7 +17,7 @@
     <property name="user.country" value="AU"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-21\bin"/>
-    <property name="sun.java.command" value="C:\Users\nixon\AppData\Local\Temp\surefire8257571720891261198\surefirebooter13475755983988744455.jar C:\Users\nixon\AppData\Local\Temp\surefire8257571720891261198 2025-06-12T00-42-41_099-jvmRun1 surefire4672918926148714614tmp surefire_08609845261267068635tmp"/>
+    <property name="sun.java.command" value="C:\Users\nixon\AppData\Local\Temp\surefire10437876051243681507\surefirebooter13233074042868902220.jar C:\Users\nixon\AppData\Local\Temp\surefire10437876051243681507 2025-06-13T14-59-30_290-jvmRun1 surefire3783291328446785242tmp surefire_03724278979632339905tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="exec.vmArgs" value=""/>
     <property name="surefire.test.class.path" value="E:\Github\bookwave-web-app\online-bookstore-app\target\test-classes;E:\Github\bookwave-web-app\online-bookstore-app\target\classes;C:\Users\nixon\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\nixon\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\nixon\.m2\repository\javax\servlet\javax.servlet-api\4.0.1\javax.servlet-api-4.0.1.jar;C:\Users\nixon\.m2\repository\jakarta\servlet\jakarta.servlet-api\6.0.0\jakarta.servlet-api-6.0.0.jar;C:\Users\nixon\.m2\repository\com\mysql\mysql-connector-j\8.0.32\mysql-connector-j-8.0.32.jar;C:\Users\nixon\.m2\repository\com\google\protobuf\protobuf-java\3.21.9\protobuf-java-3.21.9.jar;C:\Users\nixon\.m2\repository\org\mockito\mockito-core\4.11.0\mockito-core-4.11.0.jar;C:\Users\nixon\.m2\repository\net\bytebuddy\byte-buddy\1.12.19\byte-buddy-1.12.19.jar;C:\Users\nixon\.m2\repository\net\bytebuddy\byte-buddy-agent\1.12.19\byte-buddy-agent-1.12.19.jar;C:\Users\nixon\.m2\repository\org\objenesis\objenesis\3.3\objenesis-3.3.jar;"/>
@@ -33,7 +33,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\nixon\AppData\Local\Temp\surefire8257571720891261198\surefirebooter13475755983988744455.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\nixon\AppData\Local\Temp\surefire10437876051243681507\surefirebooter13233074042868902220.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="21.0.3+7-LTS-152"/>
@@ -62,9 +62,9 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="65.0"/>
   </properties>
-  <testcase name="testDeleteBookByTitle" classname="com.webapp.BookTest" time="0.393">
+  <testcase name="testDeleteBookByTitle" classname="com.webapp.BookTest" time="0.485">
     <system-out><![CDATA[No book found with ID: 0
 ]]></system-out>
   </testcase>
-  <testcase name="testBookCreation" classname="com.webapp.BookTest" time="0.028"/>
+  <testcase name="testBookCreation" classname="com.webapp.BookTest" time="0.032"/>
 </testsuite>
