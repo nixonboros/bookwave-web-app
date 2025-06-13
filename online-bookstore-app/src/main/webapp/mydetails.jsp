@@ -20,7 +20,7 @@
     <main>
         <div class="orders-boundary">
             <div class="orders-header-card">
-                <% String name = user.getFirstName(); %>
+            <% String name = user.getFirstName(); %>
                 <h1 class="orders-title"><% out.println(name + "'s"); %> Details</h1>
                 <p class="orders-desc">Here you can view your details as well as change them if you want.</p>
                 <div class="contact-tabs" style="margin-top: 2rem;">
@@ -41,63 +41,63 @@
                     </div>
                     <form action="DeleteAccountServlet" method="post" onsubmit="return confirm('Are you sure you want to delete your account? This cannot be undone.');" style="display: flex; justify-content: flex-end;">
                         <button type="submit" class="button button-primary" style="background: #ef4444; color: #fff; border: none; min-width: 180px;">Delete Account</button>
-                    </form>
+                        </form>
                 </div>
                 <div id="editAccount" class="tab-content" style="display: none;">
                     <h2 class="section-title">Edit Account Details</h2>
                     <form id="editAccountForm" action="UpdateAccountServlet" method="post" class="support-form" style="margin: 0 auto;">
-                        <div class="form-group">
-                            <label for="firstName">First Name:</label>
+                    <div class="form-group">
+                        <label for="firstName">First Name:</label>
                             <input type="text" id="firstName" name="firstName" value="<%= user.getFirstName() %>" required class="styled-input">
-                        </div>
-                        <div class="form-group">
-                            <label for="lastName">Last Name:</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name:</label>
                             <input type="text" id="lastName" name="lastName" value="<%= user.getLastName() %>" required class="styled-input">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email:</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
                             <input type="email" id="email" name="email" value="<%= user.getEmail() %>" required class="styled-input">
-                        </div>
-                        <div class="form-group">
-                            <label for="dob">Date of Birth:</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="dob">Date of Birth:</label>
                             <input type="date" id="dob" name="dob" value="<%= user.getDob() %>" required class="styled-input">
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone:</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone:</label>
                             <input type="text" id="phone" name="phone" value="<%= user.getPhone() %>" required class="styled-input">
-                            <small style="color: red;" id="phoneWarning" hidden>Phone number can only be numbers.</small>
-                        </div>
-                        <div class="form-group">
-                            <label for="address">Address:</label>
+                        <small style="color: red;" id="phoneWarning" hidden>Phone number can only be numbers.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address:</label>
                             <input type="text" id="address" name="address" value="<%= user.getAddress() %>" required class="styled-input">
-                        </div>
-                        <div class="form-group">
-                            <label for="city">City:</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="city">City:</label>
                             <input type="text" id="city" name="city" value="<%= user.getCity() %>" required class="styled-input">
-                        </div>
-                        <div class="form-group">
-                            <label for="postcode">Postcode:</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="postcode">Postcode:</label>
                             <input type="text" id="postcode" name="postcode" value="<%= user.getPostcode() %>" pattern="\d*" title="Postcode must contain digits only" required class="styled-input">
-                            <small style="color: red;" id="postcodeWarning" hidden>Postcode can only be numbers.</small>
-                        </div>
-                        <div class="form-group">
-                            <label for="country">Country:</label>
+                        <small style="color: red;" id="postcodeWarning" hidden>Postcode can only be numbers.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="country">Country:</label>
                             <input type="text" id="country" name="country" value="<%= user.getCountry() %>" required class="styled-input">
-                        </div>
-                        <div class="form-group">
-                            <label for="password">New Password:</label>
+                    </div>                   
+                    <div class="form-group">
+                        <label for="password">New Password:</label>
                             <input type="password" id="password" name="password" class="styled-input">
+                    </div>
+                    <% String status = request.getParameter("status"); %>
+                    <% if ("error".equals(status)) { %>
+                        <div class="error-message">
+                            <p style="color: red;">An error occurred while processing your request. Please try again.</p>
                         </div>
-                        <% String status = request.getParameter("status"); %>
-                        <% if ("error".equals(status)) { %>
-                            <div class="error-message">
-                                <p style="color: red;">An error occurred while processing your request. Please try again.</p>
-                            </div>
-                        <% } %>
+                    <% } %>
                         <div class="form-group" style="display: flex; justify-content: flex-end;">
                             <button type="submit" id="editAccountButton" class="button button-primary" disabled style="min-width: 180px;">Update</button>
-                        </div>
-                    </form>
+                    </div>
+                </form>
                 </div>
             </div>
         </div>

@@ -81,8 +81,8 @@
                     </tbody>
                 </table>
             </div>
-            <%
-                if (cart != null && !cart.getItems().isEmpty()) {
+                <%
+                    if (cart != null && !cart.getItems().isEmpty()) {
                     double totalAmount = cart.getTotal();
             %>
             <div style="display: flex; justify-content: flex-end; align-items: center; margin-top: 2rem; gap: 2rem; flex-wrap: wrap;">
@@ -91,10 +91,10 @@
                     <button class="button button-primary" style="width: 100%; font-size: 1.15rem; border-radius: 0.75rem;" onclick="checkout()" <% if (cart == null || cart.getItems().isEmpty()) { %>disabled<% } %>>Proceed to Checkout</button>
                 </div>
             </div>
-            <%
-                }
-            %>
-        </div>
+                <%
+                    }
+                %>
+            </div>
     </main>
     <jsp:include page="footer.jsp"/>
 </body>

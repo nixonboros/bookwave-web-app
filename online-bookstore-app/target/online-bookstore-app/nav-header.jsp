@@ -18,11 +18,11 @@
         <div class="navbar__center" id="navbarNav">
             <ul class="navbar__links">
                 <li><a href="index.jsp" class="<%= request.getRequestURI().endsWith("index.jsp") ? "active" : "" %>">Home</a></li>
-                <li><a href="product.jsp" class="<%= request.getRequestURI().endsWith("product.jsp") ? "active" : "" %>">Products</a></li>
+                <li><a href="product.jsp" class="<%= (request.getRequestURI().toLowerCase().contains("product") || request.getRequestURI().toLowerCase().contains("book-details")) ? "active" : "" %>">Products</a></li>
                 <% User user = (User) request.getSession().getAttribute("user");
                    if (user != null) { %>
-                <li><a href="UserOrderDashboardServlet" class="<%= request.getRequestURI().contains("Order") ? "active" : "" %>">Orders</a></li>
-                <li><a href="UserSupportDashboardServlet" class="<%= request.getRequestURI().contains("Support") ? "active" : "" %>">Contact</a></li>
+                <li><a href="UserOrderDashboardServlet" class="<%= (request.getRequestURI().toLowerCase().contains("order") || request.getRequestURI().toLowerCase().contains("shipment")) ? "active" : "" %>">Orders</a></li>
+                <li><a href="UserSupportDashboardServlet" class="<%= (request.getRequestURI().toLowerCase().contains("support") || request.getRequestURI().toLowerCase().contains("contact") || request.getRequestURI().toLowerCase().contains("ticket")) ? "active" : "" %>">Contact</a></li>
                 <% } %>
             </ul>
         </div>

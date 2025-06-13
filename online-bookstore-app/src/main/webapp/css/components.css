@@ -813,7 +813,7 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 .message-text {
   font-size: 1.05rem;
   line-height: 1.5;
-}
+} 
 
 .styled-input,
 select.styled-input {
