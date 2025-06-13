@@ -15,14 +15,16 @@
     <jsp:include page="nav-header.jsp"/>
 
     <main>
-        <section class="success-section">
-            <img src="images/success.png" alt="Success">
-            <h1>Thank you for your purchase!</h1>
-            <p>Your order has been successfully placed and is being processed.</p>
-            <div class="success-buttons">
-                <a href="UserOrderDashboardServlet" class="button">View Orders</a>
+        <div class="orders-boundary">
+            <div class="orders-table-card success-section" style="max-width: 480px; margin: 3rem auto 0 auto; text-align: center;">
+                <img src="images/success.png" alt="Success" style="width: 90px; margin-bottom: 1.5rem;" />
+                <h1 class="orders-title" style="font-size: 2rem; margin-bottom: 1rem;">Thank you for your purchase!</h1>
+                <p style="color: var(--text-secondary, #64748b); margin-bottom: 2rem;">Your order has been successfully placed and is being processed.</p>
+                <div class="success-buttons" style="display: flex; gap: 1rem; justify-content: center;">
+                    <a href="UserOrderDashboardServlet" class="button button-primary">View Orders</a>
+                </div>
             </div>
-        </section>
+        </div>
     </main>
 </body>
 </html>

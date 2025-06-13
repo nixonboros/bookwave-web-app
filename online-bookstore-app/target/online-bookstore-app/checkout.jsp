@@ -93,58 +93,58 @@
                         <div id="existing-address" class="support-form" style="margin-bottom: 1.5rem;">
                             <div class="form-group">
                                 <label for="name">Full Customer Name:</label>
-                                <input type="text" name="name" value="<%= user.getFirstName() + " " + user.getLastName() %>" readonly class="styled-input">
+                                <input type="text" id="name" name="name" value="<%= user.getFirstName() + " " + user.getLastName() %>" readonly class="styled-input">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email:</label>
-                                <input type="text" name="email" value="<%= user.getEmail() %>" readonly class="styled-input">
+                                <input type="text" id="email" name="email" value="<%= user.getEmail() %>" readonly class="styled-input">
                             </div>
                             <div class="form-group">
                                 <label for="address">Address:</label>
-                                <input type="text" name="address" value="<%= user.getAddress() %>" readonly class="styled-input">
+                                <input type="text" id="address" name="address" value="<%= user.getAddress() %>" readonly class="styled-input">
                             </div>
                             <div class="form-group">
                                 <label for="city">City:</label>
-                                <input type="text" name="city" value="<%= user.getCity() %>" readonly class="styled-input">
+                                <input type="text" id="city" name="city" value="<%= user.getCity() %>" readonly class="styled-input">
                             </div>
                             <div class="form-group">
                                 <label for="zip">Zip Code:</label>
-                                <input type="text" name="zip" value="<%= user.getPostcode() %>" readonly class="styled-input">
+                                <input type="text" id="zip" name="zip" value="<%= user.getPostcode() %>" readonly class="styled-input">
                             </div>
                         </div>
                         <div id="new-address" class="support-form" style="display: none; margin-bottom: 1.5rem;">
                             <div class="form-group">
                                 <label for="newName">Full Customer Name:</label>
-                                <input type="text" name="newName" required class="styled-input">
+                                <input type="text" id="newName" name="newName" required class="styled-input">
                             </div>
                             <div class="form-group">
                                 <label for="newEmail">Email:</label>
-                                <input type="text" name="newEmail" required class="styled-input">
+                                <input type="text" id="newEmail" name="newEmail" required class="styled-input">
                             </div>
                             <div class="form-group">
                                 <label for="newAddress">Address:</label>
-                                <input type="text" name="newAddress" required class="styled-input">
+                                <input type="text" id="newAddress" name="newAddress" required class="styled-input">
                             </div>
                             <div class="form-group">
                                 <label for="newCity">City:</label>
-                                <input type="text" name="newCity" required class="styled-input">
+                                <input type="text" id="newCity" name="newCity" required class="styled-input">
                             </div>
                             <div class="form-group">
                                 <label for="newZip">Zip Code:</label>
-                                <input type="text" name="newZip" required class="styled-input">
+                                <input type="text" id="newZip" name="newZip" required class="styled-input">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="paymentMethod">Payment Method:</label>
-                            <select name="paymentMethod" required class="styled-input">
+                            <select id="paymentMethod" name="paymentMethod" required class="styled-input">
                                 <option value="Credit Card">Credit Card</option>
                                 <option value="Paypal">PayPal</option>
                             </select>
                         </div>
-                        <div style="display: flex; justify-content: flex-end; margin-top: 2rem;">
-                            <button type="submit" class="button button-primary" style="min-width: 180px; font-size: 1.1rem;">Place Order</button>
-                        </div>
                     </form>
+                    <div style="display: flex; justify-content: flex-end; margin-top: 2rem;">
+                        <button type="button" class="button button-primary" style="min-width: 180px; font-size: 1.1rem;" onclick="document.getElementById('orderForm').submit();">Place Order</button>
+                    </div>
                     <%
                         }
                     %>
