@@ -3,6 +3,10 @@
 Advanced Software Development - Group 9  
 Online Bookstore System
 
+## Project Screenshot
+
+![Homepage Screenshot](online-bookstore-app/src/main/webapp/images/homepage-screenshot.png)
+
 **GitHub Repository**: https://github.com/nixonboros/bookwave-web-app
 
 ## Team Member Responsibilities
@@ -34,7 +38,7 @@ Online Bookstore System
   - General data validation
   - Helped with User/Staff login and registration
   - User/Staff page navigation bar
-  - SupportTicketTest test class (Testing: creating, retrieving and adding messages to support tickets in database
+  - SupportTicketTest test class (Testing: creating, retrieving and adding messages to support tickets in database)
 
   - **Release 2:**
   - Notification Feature (user notification dashboard, mark all as read functionality, staff adding messages or opening/closing support tickets sends notifications to user)
